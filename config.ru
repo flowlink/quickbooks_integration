@@ -1,0 +1,2 @@
+require "./endpoint"
+run AuguryEndpoint
