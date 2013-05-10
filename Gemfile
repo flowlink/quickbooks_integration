@@ -1,5 +1,17 @@
 source :rubygems
 
-gem 'sinatra'
-gem 'sinatra-contrib'
+gem 'endpoint_base', :git=> 'git@github.com:spree/endpoint_base.git'
 gem 'thin'
+gem 'quickeebooks', :git => 'git://github.com/GeekOnCoffee/quickeebooks.git'
+gem 'tzinfo'
+
+group :test do
+  gem 'vcr'
+  gem 'rspec', '2.11.0'
+  gem 'webmock'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard'
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'rack-test'
+  gem 'debugger'
+end

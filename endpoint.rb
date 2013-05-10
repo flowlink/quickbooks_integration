@@ -1,14 +1,9 @@
 require "sinatra/base"
 require "sinatra/json"
+Dir['./lib/**/*.rb'].each { |f| require f }
 
-class AuguryEndpoint < Sinatra::Base
+class AuguryEndpoint < EndpointBase
   helpers Sinatra::JSON
-
-  before do
-    unless request.env["HTTP_X_AUGURY_TOKEN"] == 'x123'
-      halt 401
-    end
-  end
 
   post '/' do
     json "message_id" => params['message_id'],
@@ -16,5 +11,22 @@ class AuguryEndpoint < Sinatra::Base
          "details" => {
            "ithink" => "it worked"
          }
+  end
+
+  post '/import' do
+    order_import = OrderImporter.new(@message, config(@message))
+    process_result 200, order_import.consume
+  end
+
+  post '/update' do
+    order_update = OrderUpdater.new(@message, config(@message))
+    process_result 200, order_update.consume
+  end
+
+  post '/status/:id_domain/:id' do
+    order_status = StatusChecker.new(@message, config(@message))
+    order_status.id = params[:id]
+    order_status.id_domain = params[:id_domain]
+    process_result 200, order_update.consume
   end
 end
