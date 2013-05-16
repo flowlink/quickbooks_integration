@@ -1,0 +1,5 @@
+=== Quickbooks Endpoint
+
+This is an endpoint application for the Spree Integrator platform.
+
+For more details see: http://edgeguides.spreecommerce.com/integration/
