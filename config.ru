@@ -1,2 +1,2 @@
-require "./endpoint"
-run AuguryEndpoint
+require "./quickbooks_endpoint"
+run QuickbooksEndpoint

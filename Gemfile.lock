@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git@github.com:spree/endpoint_base.git
-  revision: 829a9d72e1d78d08fa60634e1b6af9a66cc1bdf5
+  revision: c40b9b729247298fc7e91bc4f1f8659388db1d7c
   specs:
     endpoint_base (2.0)
       active_support
@@ -20,7 +20,7 @@ GIT
       sinatra-contrib
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://www.rubygems.org/
   specs:
     active_support (3.0.0)
       activesupport (= 3.0.0)
@@ -55,7 +55,7 @@ GEM
     guard-rspec (0.7.3)
       guard (>= 0.10.0)
     i18n (0.4.2)
-    json (1.7.7)
+    json (1.8.0)
     listen (0.7.3)
     lumberjack (1.0.3)
     method_source (0.8.1)

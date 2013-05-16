@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AuguryEndpoint do
+describe QuickbooksEndpoint do
 
   def auth
     {'HTTP_X_AUGURY_TOKEN' => 'x123'}
