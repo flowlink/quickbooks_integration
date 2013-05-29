@@ -127,11 +127,6 @@ class OrderImporter < Client
     }
   end
 
-  def item_exists?(sku)
-    return true if item_service.list.entries.collect(&:name).include?(sku)
-    false
-  end
-
   def create_item(sku, desc, price, cost_price, count_on_hand, product_type="Product")
     return "Item already exists" if item_service.list.entries.collect(&:name).include?(sku)
     begin

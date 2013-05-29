@@ -72,7 +72,12 @@ end
       l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
       l.quantity = line_item["quantity"]
       l.unit_price  = line_item["price"]
-      l.item_name = line_item["variant"]["sku"]       
+      if item_exists?(line_item["variant"]["sku"])
+        l.item_name = line_item["variant"]["sku"]
+      else
+        l.item_name = "New-001"
+        l.desc = "#{line_item["variant"]["sku"]} - #{line_item["variant"]["name"]}"
+      end     
       l
     end
     

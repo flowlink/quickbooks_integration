@@ -132,4 +132,13 @@ class Client
       return {}
     end
   end
+
+  def item_list
+    @item_list ||= item_service.list([],1,999).entries
+  end
+
+  def item_exists?(sku)
+    return true if item_list.collect(&:name).include?(sku)
+    false
+  end
 end
