@@ -1,5 +1,6 @@
 require "sinatra/base"
 require "sinatra/json"
+require "./lib/client.rb"
 Dir['./lib/**/*.rb'].each { |f| require f }
 
 class QuickbooksEndpoint < EndpointBase
