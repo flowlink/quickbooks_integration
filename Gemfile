@@ -4,6 +4,7 @@ gem 'endpoint_base', :git=> 'git@github.com:spree/endpoint_base.git'
 gem 'thin'
 gem 'quickeebooks', :git => 'git://github.com/GeekOnCoffee/quickeebooks.git'
 gem 'tzinfo'
+gem 'capistrano'
 
 group :test do
   gem 'vcr'
@@ -15,3 +16,9 @@ group :test do
   gem 'rack-test'
   gem 'debugger'
 end
+
+group :production do
+  gem 'foreman'
+  gem 'unicorn'
+end
+
