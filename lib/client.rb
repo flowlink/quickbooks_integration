@@ -10,13 +10,6 @@ class Client
     @order = payload['order']['actual']
   end
 
-  def acceptable?
-    return false unless @config
-    %w{ access_token access_secret realm }.all? do |key|
-      @config[key]
-    end
-  end
-
   def consumer
     # The tokens below are OUR APP tokens, not the store tokens. They may want to be ENV variables
     # But are not store specific. 

@@ -20,28 +20,18 @@ class StatusChecker < Client
     response = receipt_service.fetch_by_id(id, idDomain)
 
     if response.nil?
-    return {
-      'message_id' => @payload['message_id'],
-      'result' => :success,
-      'code' => 400,
-      "owner" => "Quickbooks::StatusChecker"
-    }
+      {
+        'message_id' => @payload['message_id'],
+        'events' => { 'code': 400 }
+      }
     elsif response.synchronized == "true"
-      return     {
-      'message_id' => @payload['message_id'],
-      'result' => :success,
-      'code' => 200
-    }
+      { 'message_id' => @payload['message_id'] }
     elsif response.synchronized == "false"
-    return {
-      'message_id' => @payload['message_id'],
-      'result' => :success,
-      'code' => 200,
-      "delay" => 6000,
-      "update_url" => "http://localhost:3000/status/#{@idDomain}/#{@id}",
-      "owner" => "Quickbooks::OrderUpdater"
-    }
-      
+      {
+        'message_id' => @payload['message_id'],
+        'delay' => 6000,
+        'update_url' => "http://localhost:3000/status/#{@idDomain}/#{@id}",
+      }
     end
 
   end

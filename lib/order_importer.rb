@@ -6,10 +6,6 @@ class OrderImporter < Client
     response.to_hash
   end
 
-  def acceptable?
-    super and (@order['payment_state'] == 'paid')
-  end
-
   private
 
   def quickbooks_address(address)
