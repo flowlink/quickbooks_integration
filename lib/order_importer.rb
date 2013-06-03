@@ -112,7 +112,8 @@ class OrderImporter < Client
     o = receipt_service.create(r)
     @id = o.success.object_ref.id.value
     @idDomain = o.success.object_ref.id.idDomain
-
+    xref = CrossReference.new
+    xref.add(@order["number"], @id, @idDomain)
     {
       'message_id' => @payload['message_id'],
       'result' => :success,

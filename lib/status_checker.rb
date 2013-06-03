@@ -22,7 +22,7 @@ class StatusChecker < Client
     if response.nil?
       {
         'message_id' => @payload['message_id'],
-        'events' => { 'code': 400 }
+        'events' => { 'code' => 400 }
       }
     elsif response.synchronized == "true"
       { 'message_id' => @payload['message_id'] }

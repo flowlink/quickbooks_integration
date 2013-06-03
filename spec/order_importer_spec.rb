@@ -25,22 +25,4 @@ let(:store) { Factories.store('quickbooks' => { 'access_token' => 'qyprdUDbIJZOD
                    "Shipping Charges", 0, 0, 0, "Other Charge")
     end
   end
-
-  context "acceptability" do
-    it "shouldn't be acceptable without config" do
-      subject.quickbooks = {}
-      subject.acceptable?.should be_false
-    end
-
-    it "shouldn't be acceptable without complete config" do
-      subject.quickbooks = { 'realm' => '3' }
-      subject.acceptable?.should be_false
-    end
-
-    it "should be acceptable with proper config" do
-      subject.order['payment_state'] = 'paid'
-      subject.acceptable?.should be_true
-    end
-  end
-
 end
