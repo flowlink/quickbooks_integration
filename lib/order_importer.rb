@@ -114,10 +114,9 @@ class OrderImporter < Client
     @idDomain = o.success.object_ref.id.idDomain
     xref = CrossReference.new
     xref.add(@order["number"], @id, @idDomain)
+    
     {
-      'message_id' => @payload['message_id'],
-      'result' => :success,
-      'code' => 200,
+      'message_id' => @message_id,
       "delay" => 6000,
       "update_url" => "http://localhost:3000/status/#{@idDomain}/#{@id}",
       "owner" => "Quickbooks::OrderImporter"

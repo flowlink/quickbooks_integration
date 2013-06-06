@@ -4,10 +4,11 @@ class Client
 
   attr_accessor :store, :quickbooks
 
-  def initialize(payload, config={})
+  def initialize(payload, message_id, config={})
     @payload = payload
     @config = config
     @order = payload['order']['actual']
+    @message_id = message_id
   end
 
   def consumer

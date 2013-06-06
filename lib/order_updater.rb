@@ -2,7 +2,7 @@ class OrderUpdater < Client
 
   attr_accessor :order
 
-  def initialize(payload, config={})
+  def initialize(payload, message_id, config={})
     super
     @order = payload['order']['current'] || payload['order']['actual']
     @previous = payload['previous']
@@ -35,7 +35,9 @@ end
     raise "Total Fail <0" if @order['total'].to_f < 0
     raise "No Web Order Customer Defined in Quickbooks" unless quickbooks_customers.include?("Web Order")
 
-    event = Augury.collections.events.find_one('order_number' => @order["number"], 'owner' => 'Augury::Consumers::QuickBooks::OrderImporter')
+    xref = CrossReference.new
+    reference = xref.lookup(@order['number'])
+    raise "No Original QB Import Data Defined" if reference.nil?
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
@@ -58,9 +60,7 @@ end
 
     raise "No Shipping Method Defined in Quickbooks #{h.ship_method_name}" unless ship_method_service.list.entries.collect(&:name).include?(h.ship_method_name)
 
-
-   return {} if event.nil?
-    r = receipt_service.fetch_by_id(event["quickbooks_id"], event["quickbooks_domain"])
+    r = receipt_service.fetch_by_id(reference[:id], reference[:id_domain])
 
     #raise "Unable to find order to update" if r.nil?
     #raise "Unable to update order. Not Synced!" unless r.synchronized == "true"
@@ -133,9 +133,7 @@ end
     @idDomain = o.success.object_ref.id.idDomain
 
     {
-      'message_id' => @payload['message_id'],
-      'result' => :success,
-      'code' => 200,
+      'message_id' => @message_id,
       "delay" => 6000,
       "update_url" => "http://localhost:3000/status/#{@idDomain}/#{@id}",
       "owner" => "Quickbooks::OrderUpdater"

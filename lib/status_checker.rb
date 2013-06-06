@@ -12,23 +12,20 @@ class StatusChecker < Client
     verify_quickbooks_import
   end
 
-  def self.delay
-    5.minutes.to_i
-  end
-
   def verify_quickbooks_import
     response = receipt_service.fetch_by_id(id, idDomain)
 
     if response.nil?
       {
-        'message_id' => @payload['message_id'],
-        'events' => { 'code' => 400 }
+        'message_id' => @message_id,
+        'events' => { 'code' => 400,
+                      'error' => get_errors }
       }
     elsif response.synchronized == "true"
-      { 'message_id' => @payload['message_id'] }
+      { 'message_id' => @message_id }
     elsif response.synchronized == "false"
       {
-        'message_id' => @payload['message_id'],
+        'message_id' => @message_id,
         'delay' => 6000,
         'update_url' => "http://localhost:3000/status/#{@idDomain}/#{@id}",
       }
