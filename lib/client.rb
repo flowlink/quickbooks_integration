@@ -24,7 +24,7 @@ class Client
   def build_service(klass)
     service = klass.new
     service.access_token = client
-    service.realm_id = @config['realm']
+    service.realm_id = @config['quickbooks.realm']
     service
   end
 
@@ -57,13 +57,13 @@ class Client
     c_service = Quickeebooks::Windows::Service::Customer.new
     c_service.access_token = client
 
-    c_service.realm_id = @config['realm']
+    c_service.realm_id = @config['quickbooks.realm']
     @customers = c_service.list.entries.collect{|s| s.name}
     return @customers
   end
 
   def client
-    @client ||= OAuth::AccessToken.new(consumer, @config["access_token"], @config["access_secret"])
+    @client ||= OAuth::AccessToken.new(consumer, @config["quickbooks.access_token"], @config["quickbooks.access_secret"])
   end
 
   def deposit_to_account_name(name)
