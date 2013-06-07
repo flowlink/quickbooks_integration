@@ -35,7 +35,7 @@ class QuickbooksEndpoint < EndpointBase
   post '/status/:id_domain/:id' do
     order_status = StatusChecker.new(@message[:payload], @message[:message_id], @config)
     order_status.id = params[:id]
-    order_status.id_domain = params[:id_domain]
+    order_status.idDomain = params[:id_domain]
     begin
       result = order_status.consume
       code = 200
