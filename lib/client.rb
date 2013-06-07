@@ -7,8 +7,10 @@ class Client
   def initialize(payload, message_id, config={})
     @payload = payload
     @config = config
-    @order = payload['order']['actual']
     @message_id = message_id
+    if payload['order'] and payload['order']['actual']
+      @order = payload['order']['actual']
+    end
   end
 
   def consumer

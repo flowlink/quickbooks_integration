@@ -5,7 +5,6 @@ class StatusChecker < Client
   def after_initialize(message)
     @message = message
     @key = message.key
-    @order = message.payload['order']['actual']
   end
 
   def consume
