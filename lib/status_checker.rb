@@ -27,7 +27,7 @@ class StatusChecker < Client
       {
         'message_id' => @message_id,
         'delay' => 6000,
-        'update_url' => "http://localhost:3000/status/#{@idDomain}/#{@id}",
+        'update_url' => "/status/#{@idDomain}/#{@id}",
       }
     end
 
