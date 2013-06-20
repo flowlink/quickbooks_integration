@@ -49,7 +49,7 @@ class OrderImporter < Client
 
     raise "No Shipping Method Defined in Quickbooks #{h.ship_method_name}" unless ship_method_service.list.entries.collect(&:name).include?(h.ship_method_name)
     h.payment_method_name = payment_method_name(payment_name)
-    raise "No Payment Method Defined in Quickbooks #{h.payment_method_name}" unless payment_methods.include?(h.payment_method_name)
+    raise "No Payment Method Defined in Quickbooks #{h.payment_method_name}" unless payment_methods.select{|p| p.downcase}.include?(h.payment_method_name.downcase)
 
     r = Quickeebooks::Windows::Model::SalesReceipt.new
     r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
