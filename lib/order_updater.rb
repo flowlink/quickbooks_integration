@@ -23,9 +23,9 @@ class OrderUpdater < Client
       a.city    = address["city"]
       a.country = address["country"]["name"]
       a.country_sub_division_code = address["state_name"]
-if address["state"]
-  a.country_sub_division_code ||= address["state"]["name"]
-end
+      if address["state"]
+        a.country_sub_division_code ||= address["state"]["name"]
+      end
 
       a.postal_code = address["zipcode"]
       return a
@@ -62,10 +62,8 @@ end
 
     r = receipt_service.fetch_by_id(reference[:id], reference[:id_domain])
 
-    #raise "Unable to find order to update" if r.nil?
-    #raise "Unable to update order. Not Synced!" unless r.synchronized == "true"
-    return {} if r.nil?
-    return {} unless r.synchronized == "true"
+    raise "Unable to find order to update" if r.nil?
+    raise "Unable to update order. Not Synced!" unless r.synchronized == "true"
 
     r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
       create_item(line_item["variant"]["sku"], line_item["variant"]["name"],line_item["variant"]["price"],line_item["variant"]["cost_price"], line_item["variant"]["count_on_hand"])
