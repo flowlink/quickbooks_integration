@@ -61,7 +61,7 @@ class Client
     c_service.access_token = client
 
     c_service.realm_id = @config['quickbooks.realm']
-    @customers = c_service.list.entries.collect{|s| s.name}
+    @customers = c_service.list([],1,999).entries.collect{|s| s.name}
     return @customers
   end
 
