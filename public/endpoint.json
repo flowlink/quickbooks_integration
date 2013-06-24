@@ -27,7 +27,7 @@
             },
             "recommends": {
                 "keys": ["order:new"],
-                "events_key": {
+                "event_key": {
                     "order_number": "payload.order.actual.number"
                 },
                 "options": {
@@ -62,7 +62,7 @@
                 "keys": [
                     "order:updated"
                 ],
-                "events_key": {
+                "event_key": {
                     "order_number": "payload.order.actual.number"
                 },
                 "options": {
