@@ -1,0 +1,76 @@
+{
+    "name": "quickbooks",
+    "display": "Quickbooks",
+    "description": "Updates Quickbooks with completed order details",
+    "help": "http://guides.spreecommerce.com/integration/endpoints/quickbooks",
+    "consumers": [
+        {
+            "name": "import",
+            "path": "/import",
+            "description": "Import new order to Quickbooks.",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "description": "Quickbooks Access Token"
+                    },
+                    {
+                        "name": "access_secret",
+                        "description": "Quickbooks Access Secret"
+                    },
+                    {
+                        "name": "realm",
+                        "description": "Quickbooks Realm"
+                    },
+                ],
+                "humanizers": {}
+            },
+            "recommends": {
+                "keys": ["order:new"],
+                "events_key": {
+                    "order_number": "payload.order.actual.number"
+                },
+                "options": {
+                    "retries_allowed": true
+                }
+            },
+            "produces": {
+            }
+        },
+        {
+            "name": "updater",
+            "path": "/update",
+            "description": "Update already imported Order.",
+            "requires": {
+                "parameters": [
+                    {
+                        "name": "access_token",
+                        "description": "Quickbooks Access Token"
+                    },
+                    {
+                        "name": "access_secret",
+                        "description": "Quickbooks Access Secret"
+                    },
+                    {
+                        "name": "realm",
+                        "description": "Quickbooks Realm"
+                    },
+                ],
+                "humanizers": {}
+            },
+            "recommends": {
+                "keys": [
+                    "order:updated"
+                ],
+                "events_key": {
+                    "order_number": "payload.order.actual.number"
+                },
+                "options": {
+                    "allow_retries": true
+                }
+            },
+            "produces": {
+            }
+        }
+    ]
+}
