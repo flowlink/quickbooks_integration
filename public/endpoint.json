@@ -21,7 +21,7 @@
                     {
                         "name": "realm",
                         "description": "Quickbooks Realm"
-                    },
+                    }
                 ],
                 "humanizers": {}
             },
@@ -54,7 +54,7 @@
                     {
                         "name": "realm",
                         "description": "Quickbooks Realm"
-                    },
+                    }
                 ],
                 "humanizers": {}
             },
