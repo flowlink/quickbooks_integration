@@ -88,8 +88,9 @@ class Client
     "FED EX" => "Federal Express",
     "Bits - UPS" => "UPS",
     "ROW" => "ROW",
-"littleBits Internal Order" => "Hand Delivered" }
-
+    "littleBits Internal Order" => "Hand Delivered",
+    "FREE SHIPPING!" => "UPS"}
+    
     if map[name]
       return map[name]
     else
