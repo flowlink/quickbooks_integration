@@ -8,7 +8,9 @@ class Client
     @payload = payload
     @config = config
     @message_id = message_id
-    if payload['order'] and payload['order']['actual']
+    if payload['order'] and payload['order']['current']
+      @order = payload['order']['current']
+    elsif payload['order'] and payload['order']['actual']
       @order = payload['order']['actual']
     end
   end
