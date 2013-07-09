@@ -73,10 +73,10 @@ class Client
 
   def deposit_to_account_name(name)
     map = {
-     "master" =>  "Mastercard",
-       "visa" => "Visa",
+     "master" =>  "Visa/MC",
+       "visa" => "Visa/MC",
        "american_express" => "AmEx",
-      "discover" => "Discover",
+      "discover" => "Visa/MC",
       "PayPal" => "PAYPAL" }
       return map[name] || "OtherCreditCard"
   end
