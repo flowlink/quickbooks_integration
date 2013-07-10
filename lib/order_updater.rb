@@ -62,8 +62,8 @@ class OrderUpdater < Client
 
     r = receipt_service.fetch_by_id(reference[:id], reference[:id_domain])
 
-    raise "Unable to find order to update" if r.nil?
-    raise "Unable to update order. Not Synced!" unless r.synchronized == "true"
+     return { 'message_id' => @message_id } if r.nil?
+     return { 'message_id' => @message_id } unless r.synchronized == "true"
 
     r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
       create_item(line_item["variant"]["sku"], line_item["variant"]["name"],line_item["variant"]["price"],line_item["variant"]["cost_price"], line_item["variant"]["count_on_hand"])
