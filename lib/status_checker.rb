@@ -17,8 +17,9 @@ class StatusChecker < Client
     if response.nil?
       {
         'message_id' => @message_id,
-        'events' => [{ 'code' => 400,
-                      'error' => get_errors }]
+        'notifications' => [{ 'level' => "info",
+			      'subject' => "Quickbooks id: #{@id} Failed to Import"
+                      	      'description' => get_errors }]
       }
     elsif response.synchronized == "true"
       { 'message_id' => @message_id }
