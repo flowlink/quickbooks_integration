@@ -26,8 +26,8 @@
                 "humanizers": {}
             },
             "recommends": {
-                "keys": ["order:new"],
-                "event_key": {
+                "messages": ["order:new"],
+                "identifiers": {
                     "order_number": "payload.order.actual.number"
                 },
                 "options": {
@@ -59,10 +59,10 @@
                 "humanizers": {}
             },
             "recommends": {
-                "keys": [
+                "messages": [
                     "order:updated"
                 ],
-                "event_key": {
+                "identifiers": {
                     "order_number": "payload.order.actual.number"
                 },
                 "options": {
