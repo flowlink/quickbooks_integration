@@ -4,7 +4,7 @@ class StatusChecker < Client
 
   def after_initialize(message)
     @message = message
-    @key = message.key
+    @key = message.message
   end
 
   def consume
@@ -18,7 +18,7 @@ class StatusChecker < Client
       {
         'message_id' => @message_id,
         'notifications' => [{ 'level' => "info",
-			      'subject' => "Quickbooks id: #{@id} Failed to Import"
+			      'subject' => "Quickbooks id: #{@id} Failed to Import",
                       	      'description' => get_errors }]
       }
     elsif response.synchronized == "true"
@@ -36,7 +36,7 @@ class StatusChecker < Client
   def get_errors
     begin
       return status_service.list().entries.select{|e| e.NgIdSet.NgObjectType == "SalesReceipt" and e.NgIdSet.NgId == @id}.collect{|e| e.MessageDesc}.join(", ")
-    rescue 
+    rescue
       return "No Error Information Found"
     end
   end
