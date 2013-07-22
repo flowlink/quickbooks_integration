@@ -11,7 +11,7 @@ class QuickbooksEndpoint < EndpointBase
     order_import = OrderImporter.new(@message[:payload], @message[:message_id], @config)
     begin
       result = order_import.consume
-      code = 200
+      code = result.delete("code") || 200
     rescue Exception => e
       code = 500
       result = {"error" => e.message, "backtrace" => e.backtrace.inspect}

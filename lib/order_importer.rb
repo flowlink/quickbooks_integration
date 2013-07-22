@@ -1,6 +1,12 @@
 class OrderImporter < Client
   attr_accessor :order
 
+  def get_params
+    @customer_name = "Web Order"
+    @shipping_item = "Shipping Charges"
+    @account_name  = "Sales"
+  end
+
   def consume
     response = import_to_quickbooks
     response.to_hash
@@ -22,8 +28,17 @@ class OrderImporter < Client
     end
 
   def import_to_quickbooks
-    raise "Total Fail <0" if @order['total'].to_f < 0
-    raise "No Web Order Customer Defined in Quickbooks" unless quickbooks_customers.include?("Web Order")
+    get_params
+
+    return {
+      'message_id' => @message_id,
+      'notifications' => [{"level" => "error", "subject" => "Order #{@order['number']} has a negative balance", "description" => "Order #{@order['number']} needs to be manually cancelled in Quickbooks"}]
+    } if @order['total'].to_f < 0
+    
+    return {
+      'message_id' => @message_id,
+      'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Customer", "description" => "Define Customer #{@customer_name} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 } unless quickbooks_customers.include?(@customer_name)
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
@@ -47,7 +62,11 @@ class OrderImporter < Client
     h.note = [@order["bill_address"]["firstname"],@order["bill_address"]["lastname"]].join(" ")
     h.ship_method_name = ship_method_name(flatten_child_nodes(@order, "shipment").first["shipping_method"]["name"]) 
 
-    raise "No Shipping Method Defined in Quickbooks #{h.ship_method_name}" unless ship_method_service.list.entries.collect(&:name).include?(h.ship_method_name)
+    return {
+      'message_id' => @message_id,
+      'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Shipping Method", "description" => "Define Shipping Method #{h.ship_method_name} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 } unless ship_method_service.list.entries.collect(&:name).include?(h.ship_method_name)
+    
     h.payment_method_name = payment_method_name(payment_name)
 
     r = Quickeebooks::Windows::Model::SalesReceipt.new
@@ -70,7 +89,7 @@ class OrderImporter < Client
         l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
         l.quantity = 1
         l.unit_price  = a['amount']
-        l.item_name = "Shipping Charges"
+        l.item_name = @shipping_item
         create_item("Shipping Charges", "Shipping Charges", 0, 0, 0, "Other Charge")
         r.line_items << l
       end
@@ -122,6 +141,10 @@ class OrderImporter < Client
     }
   end
 
+  def verify_item_exists(sku)
+    return true if item_service.list.entries.collect(&:name).include?(sku)
+  end
+
   def create_item(sku, desc, price, cost_price, count_on_hand, product_type="Product")
     return "Item already exists" if item_service.list.entries.collect(&:name).include?(sku)
     begin
@@ -131,17 +154,23 @@ class OrderImporter < Client
       i.unit_price = Quickeebooks::Windows::Model::Price.new(price)
       i.type = product_type
 
-      raise "No Account Defined in Quickbooks" unless account_service.list.entries.collect(&:name).include?("Sales")
-      i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, "Sales")
-      i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, "Sales")
-      i.cogs_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, "Sales")
+      return {
+      'message_id' => @message_id,
+      'notifications' => [{"level" => "error", "subject" => "No Account Defined in Quickbooks", "description" => "Define Account #{@account_name} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 }  unless account_service.list.entries.collect(&:name).include?(@account_name)
+      i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
+      i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
+      i.cogs_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
       i.taxable = "true"
       i.man_part_num = sku
       i.purchase_cost = Quickeebooks::Windows::Model::Price.new(cost_price)
       i.qty_on_hand = count_on_hand
       return item_service.create(i)
     rescue IntuitRequestException
-      return "Error Creating Item"
+      return {
+      'message_id' => @message_id,
+      'notifications' => [{"level" => "error", "subject" => "Unable to create item #{sku} in Quickbooks", "description" => "Create item #{sku} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 }
     end
   end
 
