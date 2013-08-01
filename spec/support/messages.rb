@@ -1,6 +1,10 @@
 module Factories
   class << self
 
+    def parameters
+      [ {:name => 'quickbooks.access_token', :value => 'qyprd5T3BQ4KMbBkcsRF0UwGV298oczLuaKumJUj8IDtoPnc'}, {:name => 'quickbooks.access_secret', :value => '5YQhKi9dcNOx1J9tHmnGApJdu86Gta4dQUGCYQCT'}, {:name => 'quickbooks.realm', :value => '571550630'}, {:name=>"quickbooks.ship_method_name", :value=>[{"UPS 3-5 Days"=>"UPS", "UPS 2-3 Days"=>"UPS", "USPS 6-10 days"=>"UPS", "Bits - USPS"=>"US Mail", "FED EX"=>"Federal Express", "Bits - UPS"=>"UPS", "ROW"=>"ROW", "littleBits Internal Order"=>"Hand Delivered", "FREE SHIPPING!"=>"UPS"}, {}]}, {:name=>"quickbooks.deposit_to_account_name", :value=>[{"master"=>"Visa/MC", "visa"=>"Visa/MC", "discover"=>"Visa/MC", "american_express"=>"AmEx", "PayPal"=>"PAYPAL"}]}, {:name=>"quickbooks.payment_method_name", :value=>[{"master"=>"MasterCard", "visa"=>"Visa", "american_express"=>"AmEx", "discover"=>"Discover", "PayPal"=>"PayPal"}]}, {:name=>"quickbooks.customer_name", :value=>"Web Order"}, {:name=>"quickbooks.shipping_item", :value=>"Shipping Charges"}, {:name=>"quickbooks.account_name", :value=>"Sales"}]
+    end
+
     def order(args={})
       {
         'number' => "R#{rand(999999999)}",

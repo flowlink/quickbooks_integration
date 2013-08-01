@@ -1,12 +1,6 @@
 class OrderImporter < Client
   attr_accessor :order
 
-  def get_params
-    @customer_name = "Web Order"
-    @shipping_item = "Shipping Charges"
-    @account_name  = "Sales"
-  end
-
   def consume
     response = import_to_quickbooks
     response.to_hash
@@ -28,8 +22,6 @@ class OrderImporter < Client
     end
 
   def import_to_quickbooks
-    get_params
-
     return {
       'message_id' => @message_id,
       'notifications' => [{"level" => "error", "subject" => "Order #{@order['number']} has a negative balance", "description" => "Order #{@order['number']} needs to be manually cancelled in Quickbooks"}]
@@ -37,8 +29,8 @@ class OrderImporter < Client
     
     return {
       'message_id' => @message_id,
-      'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Customer", "description" => "Define Customer #{@customer_name} in Quickbooks and run Sync. Once this is done the order will import."}],
-      'code' => 500 } unless quickbooks_customers.include?(@customer_name)
+      'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Customer", "description" => "Define Customer #{@config['quickbooks.customer_name']} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 } unless quickbooks_customers.include?(@config['quickbooks.customer_name'])
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
@@ -89,8 +81,7 @@ class OrderImporter < Client
         l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
         l.quantity = 1
         l.unit_price  = a['amount']
-        l.item_name = @shipping_item
-        create_item("Shipping Charges", "Shipping Charges", 0, 0, 0, "Other Charge")
+        l.item_name = @config['quickbooks.shipping_item']
         r.line_items << l
       end
     end
@@ -156,11 +147,11 @@ class OrderImporter < Client
 
       return {
       'message_id' => @message_id,
-      'notifications' => [{"level" => "error", "subject" => "No Account Defined in Quickbooks", "description" => "Define Account #{@account_name} in Quickbooks and run Sync. Once this is done the order will import."}],
-      'code' => 500 }  unless account_service.list.entries.collect(&:name).include?(@account_name)
-      i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
-      i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
-      i.cogs_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @account_name)
+      'notifications' => [{"level" => "error", "subject" => "No Account Defined in Quickbooks", "description" => "Define Account #{@config['quickbooks.account_name']} in Quickbooks and run Sync. Once this is done the order will import."}],
+      'code' => 500 }  unless account_service.list.entries.collect(&:name).include?(@config['quickbooks.account_name'])
+      i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
+      i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
+      i.cogs_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
       i.taxable = "true"
       i.man_part_num = sku
       i.purchase_cost = Quickeebooks::Windows::Model::Price.new(cost_price)

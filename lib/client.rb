@@ -72,48 +72,27 @@ class Client
   end
 
   def deposit_to_account_name(name)
-    map = {
-     "master" =>  "Visa/MC",
-       "visa" => "Visa/MC",
-       "american_express" => "AmEx",
-      "discover" => "Visa/MC",
-      "PayPal" => "PAYPAL" }
-      return map[name] || "OtherCreditCard"
+      if @config["quickbooks.deposit_to_account_name"][0] and @config["quickbooks.deposit_to_account_name"][0][name]
+        return @config["quickbooks.deposit_to_account_name"][0][name] 
+      else
+        raise "No Deposit to Account #{name}" 
+      end
   end
 
   def ship_method_name(name)
-    map = {
-    "UPS 3-5 Days" => "UPS",
-    "UPS 2-3 Days" => "UPS",
-    "USPS 6-10 days" => "UPS",
-    "Bits - USPS" => "US Mail",
-    "FED EX" => "Federal Express",
-    "Bits - UPS" => "UPS",
-    "ROW" => "ROW",
-    "littleBits Internal Order" => "Hand Delivered",
-    "FREE SHIPPING!" => "UPS"}
-    
-    if map[name]
-      return map[name]
+    if @config['quickbooks.ship_method_name'][0][name]
+      return @config['quickbooks.ship_method_name'][0][name]
     else
       raise "No Ship Method Found"
     end
   end
 
   def payment_method_name(name)
-        map = {
-        "master" =>
-          "MasterCard",
-         "visa" =>
-          "Visa",
-        "american_express" =>
-          "AmEx",
-        "discover" =>
-          "Discover",
-        "PayPal" =>
-          "PayPal"}
-
-        return map[name] || "OtherCreditCard"
+    if @config['quickbooks.payment_method_name'][0][name]
+      return @config['quickbooks.payment_method_name'][0][name] 
+    else
+      raise "No Credit Card Defined #{name}"
+    end
   end
 
   def payment_methods
