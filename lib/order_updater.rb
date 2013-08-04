@@ -37,7 +37,10 @@ class OrderUpdater < Client
 
     xref = CrossReference.new
     reference = xref.lookup(@order['number'])
-    raise "No Original QB Import Data Defined" if reference.nil?
+    if reference.nil?
+       order_import = OrderImporter.new(@message[:payload], @message[:message_id], @config)
+       result = order_import.consume
+    end
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
