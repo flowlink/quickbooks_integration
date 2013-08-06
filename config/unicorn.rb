@@ -1,4 +1,3 @@
-working_directory '/data/quickbooks/current'
 worker_processes 3
 
 timeout 180
