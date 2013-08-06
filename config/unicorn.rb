@@ -1,4 +1,4 @@
-APP_ROOT = "/data/quickbooks_endpoint"
+APP_ROOT = "/data/quickbooks"
 
 worker_processes 3
 working_directory APP_ROOT + "/current"
