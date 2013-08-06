@@ -3,7 +3,7 @@ worker_processes 3
 
 timeout 180
 
-listen "sockets/unicorn.sock", :backlog => 1024
+listen "unix:sockets/unicorn.sock", :backlog => 1024
 
 pid "pids/unicorn.pid"
 
