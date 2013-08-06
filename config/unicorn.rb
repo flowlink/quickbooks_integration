@@ -1,19 +1,22 @@
+APP_ROOT = "/data/quickbooks_endpoint"
+
 worker_processes 3
+working_directory APP_ROOT + "/current"
 
 timeout 180
 
-listen "unix:sockets/unicorn.sock", :backlog => 1024
+listen APP_ROOT + "/shared/sockets/unicorn.sock", :backlog => 1024
 
-# pid "pids/unicorn.pid"
+pid APP_ROOT + "/shared/pids/unicorn.pid"
 
-stderr_path "log/unicorn.stderr.log"
+stderr_path APP_ROOT + "/shared/log/unicorn.stderr.log"
 
 preload_app true
 
 GC.respond_to?(:copy_on_write_friendly=) and  GC.copy_on_write_friendly = true
 
 before_exec do |server|
-  ENV["BUNDLE_GEMFILE"] = "Gemfile"
+  ENV["BUNDLE_GEMFILE"] = APP_ROOT + "/current/Gemfile"
 end
 
 before_fork do |server, worker|
