@@ -1,10 +1,11 @@
+working_directory '/data/quickbooks/current'
 worker_processes 3
 
 timeout 180
 
-listen "tmp/sockets/unicorn.sock", :backlog => 1024
+listen "sockets/unicorn.sock", :backlog => 1024
 
-pid "tmp/pids/unicorn.pid"
+pid "pids/unicorn.pid"
 
 stderr_path "log/unicorn.stderr.log"
 
