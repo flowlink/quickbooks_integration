@@ -4,7 +4,7 @@ timeout 180
 
 listen "unix:sockets/unicorn.sock", :backlog => 1024
 
-pid "pids/unicorn.pid"
+# pid "pids/unicorn.pid"
 
 stderr_path "log/unicorn.stderr.log"
 
