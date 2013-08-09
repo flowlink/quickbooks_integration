@@ -4,6 +4,9 @@ class OrderUpdater < Client
 
   def initialize(payload, message_id, config={})
     super
+    @payload = payload
+    @message_id = message_id
+    @config = config
     @order = payload['order']['current'] || payload['order']['actual']
     @previous = payload['previous']
   end
@@ -38,9 +41,10 @@ class OrderUpdater < Client
     xref = CrossReference.new
     reference = xref.lookup(@order['number'])
     if reference.nil?
-       order_import = OrderImporter.new(@message[:payload], @message[:message_id], @config)
+       order_import = OrderImporter.new(@payload, @message_id, @config)
        result = order_import.consume
     end
+    return result if reference.nil?
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']

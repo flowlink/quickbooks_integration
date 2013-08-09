@@ -26,7 +26,7 @@ class QuickbooksEndpoint < EndpointBase
       code = 200
     rescue Exception => e
       code = 500
-      result = {"error" => e.message}
+      result = {"error" => e.message, "backtrace" => e.backtrace.inspect}
     end
     process_result code, result
 
