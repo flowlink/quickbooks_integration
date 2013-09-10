@@ -3,6 +3,7 @@
     "display": "Quickbooks",
     "description": "Updates Quickbooks with completed order details",
     "help": "http://guides.spreecommerce.com/integration/endpoints/quickbooks",
+    "icon_url": "quickbooks.png",
     "consumers": [
         {
             "name": "import",
