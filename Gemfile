@@ -21,4 +21,3 @@ group :production do
   gem 'foreman'
   gem 'unicorn'
 end
-
