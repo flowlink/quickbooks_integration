@@ -9,24 +9,24 @@ class OrderImporter < Client
   private
 
   def quickbooks_address(address)
-      a = Quickeebooks::Windows::Model::Address.new
-      a.line1   = [address["firstname"], address["lastname"]].join(" ")
-      a.line2   = address["address1"]
-      a.line3   = address["address2"]
-      a.city    = address["city"]
-      a.country = address["country"]["name"]
-      a.country_sub_division_code = address["state_name"] 
-      a.country_sub_division_code ||= address["state"]["name"] if address["state"]
-      a.postal_code = address["zipcode"]
-      return a
-    end
+    a = Quickeebooks::Windows::Model::Address.new
+    a.line1   = [address["firstname"], address["lastname"]].join(" ")
+    a.line2   = address["address1"]
+    a.line3   = address["address2"]
+    a.city    = address["city"]
+    a.country = address["country"]["name"]
+    a.country_sub_division_code = address["state_name"]
+    a.country_sub_division_code ||= address["state"]["name"] if address["state"]
+    a.postal_code = address["zipcode"]
+    return a
+  end
 
   def import_to_quickbooks
     return {
       'message_id' => @message_id,
       'notifications' => [{"level" => "error", "subject" => "Order #{@order['number']} has a negative balance", "description" => "Order #{@order['number']} needs to be manually cancelled in Quickbooks"}]
     } if @order['total'].to_f < 0
-    
+
     return {
       'message_id' => @message_id,
       'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Customer", "description" => "Define Customer #{@config['quickbooks.customer_name']} in Quickbooks and run Sync. Once this is done the order will import."}],
@@ -52,13 +52,13 @@ class OrderImporter < Client
     h.customer_name = "Web Order"
     h.shipping_address = quickbooks_address(@order["ship_address"])
     h.note = [@order["bill_address"]["firstname"],@order["bill_address"]["lastname"]].join(" ")
-    h.ship_method_name = ship_method_name(flatten_child_nodes(@order, "shipment").first["shipping_method"]["name"]) 
+    h.ship_method_name = ship_method_name(flatten_child_nodes(@order, "shipment").first["shipping_method"]["name"])
 
     return {
       'message_id' => @message_id,
       'notifications' => [{"level" => "error", "subject" => "Cannot Import - No Shipping Method", "description" => "Define Shipping Method #{h.ship_method_name} in Quickbooks and run Sync. Once this is done the order will import."}],
       'code' => 500 } unless ship_method_service.list.entries.collect(&:name).include?(h.ship_method_name)
-    
+
     h.payment_method_name = payment_method_name(payment_name)
 
     r = Quickeebooks::Windows::Model::SalesReceipt.new
@@ -123,7 +123,7 @@ class OrderImporter < Client
     @idDomain = o.success.object_ref.id.idDomain
     xref = CrossReference.new
     xref.add(@order["number"], @id, @idDomain)
-    
+
     {
       'message_id' => @message_id,
       "delay" => 6000,

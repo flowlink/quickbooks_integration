@@ -1,4 +1,4 @@
-class Client 
+class Client
   require 'quickeebooks'
   require 'oauth'
 
@@ -17,7 +17,7 @@ class Client
 
   def consumer
     # The tokens below are OUR APP tokens, not the store tokens. They may want to be ENV variables
-    # But are not store specific. 
+    # But are not store specific.
     OAuth::Consumer.new('qyprdcG20NCyjy5jd7tKal9ivdOcbH', 'tC4GStCV0VjxkL5WylimDhSU89fQu56t1fWErGaR', {
       :site                 => "https://oauth.intuit.com",
       :request_token_path   => "/oauth/v1/get_request_token",
@@ -72,11 +72,11 @@ class Client
   end
 
   def deposit_to_account_name(name)
-      if @config["quickbooks.deposit_to_account_name"][0] and @config["quickbooks.deposit_to_account_name"][0][name]
-        return @config["quickbooks.deposit_to_account_name"][0][name] 
-      else
-        raise "No Deposit to Account #{name}" 
-      end
+    if @config["quickbooks.deposit_to_account_name"][0] and @config["quickbooks.deposit_to_account_name"][0][name]
+      return @config["quickbooks.deposit_to_account_name"][0][name]
+    else
+      raise "No Deposit to Account #{name}"
+    end
   end
 
   def ship_method_name(name)
@@ -89,7 +89,7 @@ class Client
 
   def payment_method_name(name)
     if @config['quickbooks.payment_method_name'][0][name]
-      return @config['quickbooks.payment_method_name'][0][name] 
+      return @config['quickbooks.payment_method_name'][0][name]
     else
       raise "No Credit Card Defined #{name}"
     end

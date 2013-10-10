@@ -15,20 +15,19 @@ class OrderUpdater < Client
 
   private
 
-
   def quickbooks_address(address)
-      a = Quickeebooks::Windows::Model::Address.new
-      a.line1   = address["address1"]
-      a.line2   = address["address2"]
-      a.city    = address["city"]
-      a.country = address["country"]["name"]
-      a.country_sub_division_code = address["state_name"]
-      if address["state"]
-        a.country_sub_division_code ||= address["state"]["name"]
-      end
+    a = Quickeebooks::Windows::Model::Address.new
+    a.line1   = address["address1"]
+    a.line2   = address["address2"]
+    a.city    = address["city"]
+    a.country = address["country"]["name"]
+    a.country_sub_division_code = address["state_name"]
+    if address["state"]
+      a.country_sub_division_code ||= address["state"]["name"]
+    end
 
-      a.postal_code = address["zipcode"]
-      return a
+    a.postal_code = address["zipcode"]
+    return a
   end
 
   def update_in_quickbooks
@@ -43,7 +42,7 @@ class OrderUpdater < Client
     h.doc_number = @order['number']
     payment_name = "None"
     if flatten_child_nodes(@order, 'credit_card').present?
-      payment_name = flatten_child_nodes(@order, 'credit_card').first["cc_type"] 
+      payment_name = flatten_child_nodes(@order, 'credit_card').first["cc_type"]
     elsif flatten_child_nodes(@order, 'payment').present?
       payment_name = flatten_child_nodes(@order, 'payment').first['payment_method']['name']
     end
@@ -75,10 +74,10 @@ class OrderUpdater < Client
       else
         l.item_name = "New-001"
         l.desc = "#{line_item["variant"]["sku"]} - #{line_item["variant"]["name"]}"
-      end     
+      end
       l
     end
-    
+
     adjustments = Adjustment.new(flatten_child_nodes(@order, 'adjustment'))
 
     if adjustments.shipping.any?
@@ -146,7 +145,7 @@ class OrderUpdater < Client
       i.desc = desc
       i.unit_price = Quickeebooks::Windows::Model::Price.new(price)
       i.type = product_type
-      
+
       raise "No Account Defined in Quickbooks" unless account_service.list.entries.collect(&:name).include?("Sales")
       i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, "Sales")
       i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, "Sales")
