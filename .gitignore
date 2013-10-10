@@ -1,3 +1,4 @@
 *.swp
 *.swo
 config/deploy.rb
+data/*.pstore
