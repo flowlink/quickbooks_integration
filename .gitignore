@@ -2,3 +2,4 @@
 *.swo
 config/deploy.rb
 data/*.pstore
+coverage
