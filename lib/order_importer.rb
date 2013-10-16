@@ -149,6 +149,7 @@ class OrderImporter < Client
       'message_id' => @message_id,
       'notifications' => [{"level" => "error", "subject" => "No Account Defined in Quickbooks", "description" => "Define Account #{@config['quickbooks.account_name']} in Quickbooks and run Sync. Once this is done the order will import."}],
       'code' => 500 }  unless account_service.list.entries.collect(&:name).include?(@config['quickbooks.account_name'])
+
       i.account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
       i.expense_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
       i.cogs_account_reference = Quickeebooks::Windows::Model::AccountReference.new(nil, @config['quickbooks.account_name'])
