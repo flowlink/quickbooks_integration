@@ -1,10 +1,15 @@
 source 'https://www.rubygems.org'
 
-gem 'endpoint_base', :git=> 'git@github.com:spree/endpoint_base.git'
+gem 'endpoint_base', :github => 'spree/endpoint_base'
 gem 'thin'
-gem 'quickeebooks', :git => 'git://github.com/GeekOnCoffee/quickeebooks.git'
+gem 'quickeebooks', :github => 'ruckus/quickeebooks'
 gem 'tzinfo'
 gem 'capistrano'
+
+group :development do
+  gem "rake"
+  gem "pry"
+end
 
 group :test do
   gem 'vcr'
@@ -22,4 +27,3 @@ group :production do
   gem 'foreman'
   gem 'unicorn'
 end
-
