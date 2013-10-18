@@ -57,10 +57,6 @@ class Client
     @ship_method_service ||= build_service(Quickeebooks::Windows::Service::ShipMethod)
   end
 
-  def method_name
-
-  end
-
   def quickbooks_customers
     return @customers if @customers
     c_service = Quickeebooks::Windows::Service::Customer.new

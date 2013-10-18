@@ -23,7 +23,45 @@ describe Quickbooks::Base do
     end
   end
 
-  context "Quickeebooks" do
+  context "#payment_method_name" do
+
+    let(:payload) {
+      {"original" => Factories.original}
+    }
+
+    let(:client_base) {
+        Quickbooks::Base.new(payload,"",{},"")
+    }
+
+    context "with credit_card" do
+      it "returns the cc_type when there is a credit_card" do
+        client_base.payment_method_name.should eql "visa"
+      end
+    end
+
+    context "with no credit_card present" do
+
+      let(:payload) {
+        {"original" => Factories.original.tap{ |x| x.delete("credit_cards")} }
+      }
+
+      it "returns the payment_method name when no credit_card present" do
+        client_base.payment_method_name.should eql "Check"
+      end
+    end
+
+    context "with no payments present" do
+      let(:payload) {
+        {"original" => Factories.original.tap{ |x| x.delete("credit_cards")}.tap{|x|x.delete("payments")} }
+      }
+
+      it "returns 'None' as payment_method_name" do
+        client_base.payment_method_name.should eql "None"
+      end
+    end
+  end
+
+  context "Quickeebooks dynamics" do
 
     let(:config) {
       {

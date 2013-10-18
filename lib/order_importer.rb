@@ -34,6 +34,7 @@ class OrderImporter < Client
 
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
+
     payment_name = "None"
 
     if flatten_child_nodes(@order, "credit_card").first.present?
@@ -41,10 +42,9 @@ class OrderImporter < Client
     elsif flatten_child_nodes(@order, "payment").first.present?
       payment_name = flatten_child_nodes(@order, "payment").first["payment_method"]["name"]
     end
+
     h.deposit_to_account_name = deposit_to_account_name(payment_name)
-
     h.class_name = "DRCT-LBT"
-
     create_account(h.deposit_to_account_name)
 
     h.total_amount = @order['total']
@@ -178,4 +178,5 @@ class OrderImporter < Client
       return "Account already exists"
     end
   end
+
 end
