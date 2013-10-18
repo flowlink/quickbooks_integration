@@ -6,7 +6,7 @@ module Quickbooks
 
     VALID_PLATFORMS = %w(Online Windows)
 
-    attr_accessor :payload, :message_id, :config, :platform
+    attr_accessor :payload, :message_id, :config, :platform, :order
 
     def self.client(payload, message_id, config)
       raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless config['quickbooks.platform']
@@ -21,6 +21,7 @@ module Quickbooks
       @message_id = message_id
       @config = config
       @platform = platform
+      @order = payload['original']
     end
 
     def status_service
@@ -38,6 +39,58 @@ module Quickbooks
       "Quickeebooks::#{platform}::Model::#{model_name}".constantize.new
     end
 
+    def build_receipt_header
+      receipt_header = create_model("SalesReceiptHeader")
+      receipt_header.doc_number = @order['number']
+      receipt_header.deposit_to_account_name = deposit_account_name(payment_method_name)
+      # we do not create the account, will raise an exception when the account does not exist in QB.
+
+      receipt_header.class_name = get_config!("quickbooks.receipt_header_class_name")
+
+      receipt_header.total_amount = @order['total']
+      timezone = get_config!("quickbooks.timezone")
+      receipt_header.txn_date = Time.parse(@order['completed_at']).in_time_zone(timezone).strftime("%Y-%m-%d")
+
+      receipt_header.customer_name = "#{@order["bill_address"]["firstname"]} #{@order["bill_address"]["lastname"]}"
+      receipt_header.shipping_address = quickbook_address(@order["ship_address"])
+      receipt_header.note = [@order["bill_address"]["firstname"],@order["bill_address"]["lastname"]].join(" ")
+      receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"]["name"])
+      return receipt_header
+    end
+
+    def payment_method_name
+      if @order.has_key?("credit_cards")
+        payment_name = @order["credit_cards"].first["cc_type"]
+      end
+      unless payment_name
+        payment_name = @order["payments"].first["payment_method"]["name"] if @order["payments"]
+      end
+      payment_name = "None" unless payment_name
+      payment_name
+    end
+
+    def quickbook_address(address)
+      address = create_model("Address")
+      address.line1   = [address["firstname"], address["lastname"]].join(" ")
+      address.line2   = address["address1"]
+      address.line3   = address["address2"]
+      address.city    = address["city"]
+      address.country = address["country"]["name"]
+      address.country_sub_division_code = address["state_name"]
+      address.country_sub_division_code ||= address["state"]["name"] if address["state"]
+      address.postal_code = address["zipcode"]
+    end
+
+    def deposit_account_name(payment_name)
+      deposit_account_name_mapping = get_config!("quickbooks.deposit_to_account_name")
+      lookup_value!(deposit_account_name_mapping.first, payment_name, true)
+    end
+
+    def ship_method_name(shipping_method)
+      ship_method_name_mapping = get_config!("quickbooks.ship_method_names")
+      lookup_value!(ship_method_name_mapping.first, shipping_method, true)
+    end
+
     def access_token
       @access_token ||= OAuth::AccessToken.new(consumer, get_config!("quickbooks.access_token"), get_config!("quickbooks.access_secret"))
     end
@@ -52,7 +105,18 @@ module Quickbooks
     end
 
     def get_config!(key)
-      value = @config[key]
+      lookup_value!(@config,key)
+    end
+
+    def lookup_value!(hash, key, ignore_case = false, default = nil)
+      hash = Hash[hash.map{|k,v| [k.downcase,v]}] if ignore_case
+
+      if default
+        value = hash.fetch(key, default)
+      else
+        value = hash[key]
+      end
+
       raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless value
       value
     end
