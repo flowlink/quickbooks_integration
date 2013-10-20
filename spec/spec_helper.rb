@@ -25,4 +25,5 @@ end
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include Sinatra::IntegratorUtils::Helpers
 end
