@@ -1,7 +1,206 @@
 module Factories
   class << self
     def parameters
-      [ {:name => 'quickbooks.access_token', :value => 'qyprd5T3BQ4KMbBkcsRF0UwGV298oczLuaKumJUj8IDtoPnc'}, {:name => 'quickbooks.access_secret', :value => '5YQhKi9dcNOx1J9tHmnGApJdu86Gta4dQUGCYQCT'}, {:name => 'quickbooks.realm', :value => '571550630'}, {:name=>"quickbooks.ship_method_name", :value=>[{"UPS 3-5 Days"=>"UPS", "UPS 2-3 Days"=>"UPS", "USPS 6-10 days"=>"UPS", "Bits - USPS"=>"US Mail", "FED EX"=>"Federal Express", "Bits - UPS"=>"UPS", "ROW"=>"ROW", "littleBits Internal Order"=>"Hand Delivered", "FREE SHIPPING!"=>"UPS"}, {}]}, {:name=>"quickbooks.deposit_to_account_name", :value=>[{"master"=>"Visa/MC", "visa"=>"Visa/MC", "discover"=>"Visa/MC", "american_express"=>"AmEx", "PayPal"=>"PAYPAL"}]}, {:name=>"quickbooks.payment_method_name", :value=>[{"master"=>"MasterCard", "visa"=>"Visa", "american_express"=>"AmEx", "discover"=>"Discover", "PayPal"=>"PayPal"}]}, {:name=>"quickbooks.customer_name", :value=>"Web Order"}, {:name=>"quickbooks.shipping_item", :value=>"Shipping Charges"}, {:name=>"quickbooks.account_name", :value=>"Sales"}]
+      [
+        {:name => 'quickbooks.access_token', :value => 'qyprd5T3BQ4KMbBkcsRF0UwGV298oczLuaKumJUj8IDtoPnc'},
+        {:name => 'quickbooks.access_secret', :value => '5YQhKi9dcNOx1J9tHmnGApJdu86Gta4dQUGCYQCT'},
+        {:name => 'quickbooks.realm', :value => '571550630'},
+        {:name => 'quickbooks.platform', :value => "windows"},
+        {:name => "quickbooks.ship_method_name", :value => [
+          {
+            "UPS 3-5 Days" => "UPS",
+            "UPS 2-3 Days" => "UPS",
+            "USPS 6-10 days" => "UPS",
+            "Bits - USPS" => "US Mail",
+            "FED EX" => "Federal Express"
+          }]
+        },
+        {:name => "quickbooks.deposit_to_account_name", :value => [
+          {
+            "master" => "Visa/MC",
+            "visa" => "Visa/MC",
+            "discover" => "Visa/MC",
+            "american_express" => "AmEx",
+            "PayPal" => "PAYPAL"
+          }]
+        },
+        {:name => "quickbooks.payment_method_name", :value => [
+          {
+            "master" => "MasterCard",
+            "visa" => "Visa",
+            "american_express" => "AmEx",
+            "discover" => "Discover",
+            "PayPal" => "PayPal"
+          }]
+        },
+        {:name => "quickbooks.use_param_customer_name", :value => true},
+        {:name => "quickbooks.customer_name", :value => "Web Order"},
+        {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
+        {:name => "quickbooks.account_name", :value => "Sales"},
+        {:name => "quickbooks.timezone", :value => "EST"},
+        {:name => "quickbooks.receipt_header_class_name", :value => "DRTL LTS"}
+      ]
+    end
+
+    def order(args = {})
+      {
+          "number"=> "R181807170",
+          "channel"=> "spree",
+          "email"=> "spree@example.com",
+          "currency"=> "USD",
+          "placed_on"=> "2013-07-30T19=>19=>05Z",
+          "updated_at"=> "2013-07-30T20=>08=>39Z",
+          "status"=> "complete",
+          "totals"=> {
+              "item"=> 99.95,
+              "adjustment"=> 15,
+              "tax"=> 5,
+              "shipping"=> 0,
+              "payment"=> 114.95,
+              "order"=> 114.95
+          },
+          "line_items"=> [
+              {
+                  "name"=> "Spree Baseball Jersey",
+                  "sku"=> "SPR-00001",
+                  "external_ref"=> "",
+                  "quantity"=> 2,
+                  "price"=> 19.99,
+                  "variant_id"=> 8,
+                  "options"=> {}
+              },
+              {
+                  "name"=> "Ruby on Rails Baseball Jersey",
+                  "sku"=> "ROR-00004",
+                  "external_ref"=> "",
+                  "quantity"=> 3,
+                  "price"=> 19.99,
+                  "variant_id"=> 20,
+                  "options"=> {
+                      "tshirt-color"=> "Red",
+                      "tshirt-size"=> "Medium"
+                  }
+              }
+          ],
+          "adjustments"=> [
+              {
+                  "name"=> "Shipping",
+                  "value"=> 5
+              },
+              {
+                  "name"=> "Shipping",
+                  "value"=> 5
+              },
+              {
+                  "name"=> "North America 5.0%",
+                  "value"=> 5
+              }
+          ],
+          "shipping_address"=> {
+              "firstname"=> "Brian",
+              "lastname"=> "Quinn",
+              "address1"=> "7735 Old Georgetown Rd",
+              "address2"=> "",
+              "zipcode"=> "20814",
+              "city"=> "Bethesda",
+              "state"=> "Maryland",
+              "country"=> "US",
+              "phone"=> "555-123-456"
+          },
+          "billing_address"=> {
+              "firstname"=> "Brian",
+              "lastname"=> "Quinn",
+              "address1"=> "7735 Old Georgetown Rd",
+              "address2"=> "",
+              "zipcode"=> "20814",
+              "city"=> "Bethesda",
+              "state"=> "Maryland",
+              "country"=> "US",
+              "phone"=> "555-123-456"
+          },
+          "payments"=> [
+              {
+                  "number"=> 6,
+                  "status"=> "completed",
+                  "amount"=> 5,
+                  "payment_method"=> "Check"
+              },
+              {
+                  "number"=> 5,
+                  "status"=> "completed",
+                  "amount"=> 109.95,
+                  "payment_method"=> "Credit Card"
+              }
+          ],
+          "shipments"=> [
+              {
+                  "number"=> "H184070692",
+                  "cost"=> 5,
+                  "status"=> "shipped",
+                  "stock_location"=> null,
+                  "shipping_method"=> "UPS Ground (USD)",
+                  "tracking"=> null,
+                  "updated_at"=> null,
+                  "shipped_at"=> "2013-07-30T20=>08=>38Z",
+                  "items"=> [
+                      {
+                          "name"=> "Spree Baseball Jersey",
+                          "sku"=> "SPR-00001",
+                          "external_ref"=> "",
+                          "quantity"=> 1,
+                          "price"=> 19.99,
+                          "variant_id"=> 8,
+                          "options"=> {}
+                      },
+                      {
+                          "name"=> "Ruby on Rails Baseball Jersey",
+                          "sku"=> "ROR-00004",
+                          "external_ref"=> "",
+                          "quantity"=> 1,
+                          "price"=> 19.99,
+                          "variant_id"=> 20,
+                          "options"=> {
+                              "tshirt-color"=> "Red",
+                              "tshirt-size"=> "Medium"
+                          }
+                      }
+                  ]
+              },
+              {
+                  "number"=> "H532961116",
+                  "cost"=> 5,
+                  "status"=> "ready",
+                  "stock_location"=> null,
+                  "shipping_method"=> "UPS Ground (USD)",
+                  "tracking"=> "4532535354353452",
+                  "updated_at"=> null,
+                  "shipped_at"=> null,
+                  "items"=> [
+                      {
+                          "name"=> "Ruby on Rails Baseball Jersey",
+                          "sku"=> "ROR-00004",
+                          "external_ref"=> "",
+                          "quantity"=> 2,
+                          "price"=> 19.99,
+                          "variant_id"=> 20,
+                          "options"=> {
+                              "tshirt-color"=> "Red",
+                              "tshirt-size"=> "Medium"
+                          }
+                      },
+                      {
+                          "name"=> "Spree Baseball Jersey",
+                          "sku"=> "SPR-00001",
+                          "external_ref"=> "",
+                          "quantity"=> 1,
+                          "price"=> 19.99,
+                          "variant_id"=> 8,
+                          "options"=> {}
+                      }
+                  ]
+              }
+          ]
+      }.merge(args)
     end
 
     def original(args = {})
