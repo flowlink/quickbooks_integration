@@ -10,6 +10,7 @@ module Factories
           {
             "UPS 3-5 Days" => "UPS",
             "UPS 2-3 Days" => "UPS",
+            "UPS Ground (USD)" => "UPS",
             "USPS 6-10 days" => "UPS",
             "Bits - USPS" => "US Mail",
             "FED EX" => "Federal Express"
@@ -137,10 +138,10 @@ module Factories
                   "number"=> "H184070692",
                   "cost"=> 5,
                   "status"=> "shipped",
-                  "stock_location"=> null,
+                  "stock_location"=> nil,
                   "shipping_method"=> "UPS Ground (USD)",
-                  "tracking"=> null,
-                  "updated_at"=> null,
+                  "tracking"=> nil,
+                  "updated_at"=> nil,
                   "shipped_at"=> "2013-07-30T20=>08=>38Z",
                   "items"=> [
                       {
@@ -170,11 +171,11 @@ module Factories
                   "number"=> "H532961116",
                   "cost"=> 5,
                   "status"=> "ready",
-                  "stock_location"=> null,
+                  "stock_location"=> nil,
                   "shipping_method"=> "UPS Ground (USD)",
                   "tracking"=> "4532535354353452",
-                  "updated_at"=> null,
-                  "shipped_at"=> null,
+                  "updated_at"=> nil,
+                  "shipped_at"=> nil,
                   "items"=> [
                       {
                           "name"=> "Ruby on Rails Baseball Jersey",

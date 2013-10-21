@@ -45,8 +45,6 @@ module Quickbooks
       receipt_header.deposit_to_account_name = deposit_account_name(payment_method_name)
       # we do not create the account, will raise an exception when the account does not exist in QB.
 
-      receipt_header.class_name = get_config!("quickbooks.receipt_header_class_name")
-
       receipt_header.total_amount = @order['total']
       timezone = get_config!("quickbooks.timezone")
       receipt_header.txn_date = Time.parse(@order['completed_at']).in_time_zone(timezone).strftime("%Y-%m-%d")
@@ -69,26 +67,27 @@ module Quickbooks
       payment_name
     end
 
-    def quickbook_address(address)
+    def quickbook_address(order_address)
       address = create_model("Address")
-      address.line1   = [address["firstname"], address["lastname"]].join(" ")
-      address.line2   = address["address1"]
-      address.line3   = address["address2"]
-      address.city    = address["city"]
-      address.country = address["country"]["name"]
-      address.country_sub_division_code = address["state_name"]
-      address.country_sub_division_code ||= address["state"]["name"] if address["state"]
-      address.postal_code = address["zipcode"]
+      address.line1   = [order_address["firstname"], order_address["lastname"]].join(" ")
+      address.line2   = order_address["address1"]
+      address.line3   = order_address["address2"]
+      address.city    = order_address["city"]
+      address.country = order_address["country"]["name"]
+      address.country_sub_division_code = order_address["state_name"]
+      address.country_sub_division_code ||= order_address["state"]["name"] if order_address["state"]
+      address.postal_code = order_address["zipcode"]
+      return address
     end
 
     def deposit_account_name(payment_name)
       deposit_account_name_mapping = get_config!("quickbooks.deposit_to_account_name")
-      lookup_value!(deposit_account_name_mapping.first, payment_name, true)
+      lookup_value!(deposit_account_name_mapping.first, payment_name)
     end
 
     def ship_method_name(shipping_method)
-      ship_method_name_mapping = get_config!("quickbooks.ship_method_names")
-      lookup_value!(ship_method_name_mapping.first, shipping_method, true)
+      ship_method_name_mapping = get_config!("quickbooks.ship_method_name")
+      lookup_value!(ship_method_name_mapping.first, shipping_method)
     end
 
     def access_token
