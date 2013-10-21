@@ -73,7 +73,7 @@ describe Quickbooks::Base do
     }
 
     let(:client_base) {
-        Quickbooks::Base.new(payload,"",{},"")
+      Quickbooks::Base.new(payload,"",{},"")
     }
 
     context "with credit_card" do
@@ -105,19 +105,40 @@ describe Quickbooks::Base do
   end
 
   context "#deposit_account_name" do
+    let(:config_param) {config(message)}
+    let(:client_base) {
+      Quickbooks::Base.new(message[:payload],"",config_param,"")
+    }
+
     it "will use the mapping based on the payment_method_name" do
-      message = {:payload => {"parameters" => Factories.parameters}}
-      @config = config(message)
-      puts @config.inspect
+      client_base.deposit_account_name("visa").should eql "Visa/MC"
+    end
 
-
-
+    it "will raise an exception when no mapping found" do
+      expect{
+        client_base.deposit_account_name("cash")
+      }.to raise_error(Quickbooks::LookupValueNotFoundException, /Can't find the key/)
     end
   end
 
   context "#build_receipt_header" do
+    let(:config_param) {config(message)}
+    let(:client_base) {
+      Quickbooks::Base.new(message[:payload],"",config_param,"Windows")
+    }
+
+    # todo fix this naming
+    it "set the correct vars" do
+      receipt_header = client_base.build_receipt_header
+      receipt_header.class.should eql Quickeebooks::Windows::Model::SalesReceiptHeader
+      receipt_header.doc_number.should eql "R181807170"
+      receipt_header.deposit_to_account_name.should eql "Visa/MC"
+      receipt_header.total_amount.should eql "114.95"
+      receipt_header.customer_name.should eql "Brian Quinn"
+      receipt_header.shipping_address.class.should eql Quickeebooks::Windows::Model::Address
+      receipt_header.ship_method_name.should eql "UPS"
+    end
 
   end
-
 
 end
