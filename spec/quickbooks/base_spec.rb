@@ -137,6 +137,7 @@ describe Quickbooks::Base do
       receipt_header.customer_name.should eql "Brian Quinn"
       receipt_header.shipping_address.class.should eql Quickeebooks::Windows::Model::Address
       receipt_header.ship_method_name.should eql "UPS"
+      receipt_header.payment_method_name.should eql "Visa"
     end
 
   end
