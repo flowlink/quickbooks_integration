@@ -53,6 +53,8 @@ module Quickbooks
       receipt_header.shipping_address = quickbook_address(@order["ship_address"])
       receipt_header.note = [@order["bill_address"]["firstname"],@order["bill_address"]["lastname"]].join(" ")
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"]["name"])
+
+      receipt_header.payment_method_name = payment_method(payment_method_name)
       return receipt_header
     end
 
@@ -88,6 +90,11 @@ module Quickbooks
     def ship_method_name(shipping_method)
       ship_method_name_mapping = get_config!("quickbooks.ship_method_name")
       lookup_value!(ship_method_name_mapping.first, shipping_method)
+    end
+
+    def payment_method(payment_name)
+      payment_method_name_mapping = get_config!("quickbooks.payment_method_name")
+      lookup_value!(payment_method_name_mapping.first, payment_name)
     end
 
     def access_token
