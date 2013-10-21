@@ -6,7 +6,7 @@ module Quickbooks
 
     VALID_PLATFORMS = %w(Online Windows)
 
-    attr_accessor :payload, :message_id, :config, :platform, :order
+    attr_accessor :payload, :message_id, :config, :platform, :order, :original
 
     def self.client(payload, message_id, config)
       raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless config['quickbooks.platform']
@@ -21,7 +21,8 @@ module Quickbooks
       @message_id = message_id
       @config = config
       @platform = platform
-      @order = payload['original']
+      @order = payload['order']
+      @original = payload['original']
     end
 
     def status_service
@@ -45,25 +46,43 @@ module Quickbooks
       receipt_header.deposit_to_account_name = deposit_account_name(payment_method_name)
       # we do not create the account, will raise an exception when the account does not exist in QB.
 
-      receipt_header.total_amount = @order['total']
+      receipt_header.total_amount = @order['totals']['order']
       timezone = get_config!("quickbooks.timezone")
-      receipt_header.txn_date = Time.parse(@order['completed_at']).in_time_zone(timezone).strftime("%Y-%m-%d")
+      receipt_header.txn_date = Time.parse(@order['placed_on']).in_time_zone(timezone).strftime("%Y-%m-%d")
 
-      receipt_header.customer_name = "#{@order["bill_address"]["firstname"]} #{@order["bill_address"]["lastname"]}"
-      receipt_header.shipping_address = quickbook_address(@order["ship_address"])
-      receipt_header.note = [@order["bill_address"]["firstname"],@order["bill_address"]["lastname"]].join(" ")
-      receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"]["name"])
+      receipt_header.customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
+      receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
+      receipt_header.note = [@order["billing_address"]["firstname"],@order["billing_address"]["lastname"]].join(" ")
+      receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
 
       receipt_header.payment_method_name = payment_method(payment_method_name)
       return receipt_header
     end
 
+    def sales_receipt
+      receipt = create_model("SalesReceipt")
+
+      # r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
+      #   l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+      #   l.quantity = line_item["quantity"]
+      #   l.unit_price  = line_item["price"]
+      #   if item_exists?(line_item["variant"]["sku"])
+      #     l.item_name = line_item["variant"]["sku"]
+      #   else
+      #     l.item_name = "New-001"
+      #     l.desc = "#{line_item["variant"]["sku"]} - #{line_item["variant"]["name"]}"
+      #   end
+      #   l
+      # end
+
+    end
+
     def payment_method_name
-      if @order.has_key?("credit_cards")
-        payment_name = @order["credit_cards"].first["cc_type"]
+      if @original.has_key?("credit_cards")
+        payment_name = @original["credit_cards"].first["cc_type"]
       end
       unless payment_name
-        payment_name = @order["payments"].first["payment_method"]["name"] if @order["payments"]
+        payment_name = @original["payments"].first["payment_method"]["name"] if @original["payments"]
       end
       payment_name = "None" unless payment_name
       payment_name

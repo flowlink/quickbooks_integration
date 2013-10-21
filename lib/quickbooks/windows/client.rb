@@ -8,11 +8,6 @@ module Quickbooks
         return header
       end
 
-      def persist
-
-        return 200, {"key" => "value"}
-      end
-
     end
   end
 end

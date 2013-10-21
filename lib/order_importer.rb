@@ -61,6 +61,7 @@ class OrderImporter < Client
 
     h.payment_method_name = payment_method_name(payment_name)
 
+
     r = Quickeebooks::Windows::Model::SalesReceipt.new
     r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
       l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new

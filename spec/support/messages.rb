@@ -49,8 +49,8 @@ module Factories
           "channel"=> "spree",
           "email"=> "spree@example.com",
           "currency"=> "USD",
-          "placed_on"=> "2013-07-30T19=>19=>05Z",
-          "updated_at"=> "2013-07-30T20=>08=>39Z",
+          "placed_on"=> "2013-07-30T19:19:5Z",
+          "updated_at"=> "2013-07-30T20:08:39Z",
           "status"=> "complete",
           "totals"=> {
               "item"=> 99.95,
