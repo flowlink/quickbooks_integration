@@ -133,7 +133,7 @@ describe Quickbooks::Base do
       receipt_header.class.should eql Quickeebooks::Windows::Model::SalesReceiptHeader
       receipt_header.doc_number.should eql "R181807170"
       receipt_header.deposit_to_account_name.should eql "Visa/MC"
-      receipt_header.total_amount.should eql "114.95"
+      receipt_header.total_amount.should eql 114.95
       receipt_header.customer_name.should eql "Brian Quinn"
       receipt_header.shipping_address.class.should eql Quickeebooks::Windows::Model::Address
       receipt_header.ship_method_name.should eql "UPS"
