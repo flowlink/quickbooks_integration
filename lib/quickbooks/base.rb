@@ -29,6 +29,14 @@ module Quickbooks
       @status_service ||= create_service("Status")
     end
 
+    def item_service
+      @item_service ||= create_service("Item")
+    end
+
+    def receipt_service
+      @receipt_service ||= create_service("SalesReceipt")
+    end
+
     def create_service(service_name)
       service = "Quickeebooks::#{platform}::Service::#{service_name}".constantize.new
       service.access_token = access_token
@@ -61,20 +69,58 @@ module Quickbooks
 
     def sales_receipt
       receipt = create_model("SalesReceipt")
+      receipt.line_items = @order["line_items"].each do |line_item|
+        sales_receipt_line_item = create_model("SalesReceiptLineItem")
+        sales_receipt_line_item.quantity = line_item["quantity"]
+        sales_receipt_line_item.unit_price = line_item["price"]
+        sales_receipt_line_item.name = line_item["sku"]
+        sales_receipt_line_item.desc = line_item["name"]
+        sales_receipt_line_item
+      end
 
-      # r.line_items = flatten_child_nodes(@order, 'line_item').collect do |line_item|
-      #   l = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
-      #   l.quantity = line_item["quantity"]
-      #   l.unit_price  = line_item["price"]
-      #   if item_exists?(line_item["variant"]["sku"])
-      #     l.item_name = line_item["variant"]["sku"]
-      #   else
-      #     l.item_name = "New-001"
-      #     l.desc = "#{line_item["variant"]["sku"]} - #{line_item["variant"]["name"]}"
-      #   end
-      #   l
-      # end
+      adjustments = Adjustment.new(@original["adjustments"])
 
+      if adjustments.shipping.any?
+        adjustments.shipping.each do |a|
+          item = create_model("SalesReceiptLineItem")
+          item.quantity = 1
+          item.unit_price = a["amount"]
+          item.name = get_config!("quickbooks.shipping_item")
+          receipt.line_items << item
+        end
+      end
+
+      if adjustments.tax.any?
+        adjustments.tax.each do |a|
+          item = create_model("SalesReceiptLineItem")
+          item.quantity = 1
+          item.unit_price = a["amount"]
+          item.name = get_config!("quickbooks.tax_item")
+          receipt.line_items << item
+        end
+      end
+
+      if adjustments.coupon.any?
+        adjustments.coupon.each do |a|
+          item = create_model("SalesReceiptLineItem")
+          item.quantity = 1
+          item.unit_price = a["amount"]
+          item.name = get_config!("quickbooks.coupon_item")
+          receipt.line_items << item
+        end
+      end
+
+      if adjustments.discount.any?
+        adjustments.discount.each do |a|
+          item = create_model("SalesReceiptLineItem")
+          item.quantity = 1
+          item.unit_price = a["amount"]
+          item.name = get_config!("quickbooks.discount_item")
+          receipt.line_items << item
+        end
+      end
+      receipt.header = build_receipt_header
+      receipt
     end
 
     def payment_method_name

@@ -127,7 +127,6 @@ describe Quickbooks::Base do
       Quickbooks::Base.new(message[:payload],"",config_param,"Windows")
     }
 
-    # todo fix this naming
     it "set the correct vars" do
       receipt_header = client_base.build_receipt_header
       receipt_header.class.should eql Quickeebooks::Windows::Model::SalesReceiptHeader

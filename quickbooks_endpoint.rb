@@ -8,8 +8,15 @@ class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
   post '/persist' do
-    client = Quickbooks::Base.client(@message[:payload], @message[:message_id], @config)
-    process_result *client.persist
+
+    begin
+      client = Quickbooks::Base.client(@message[:payload], @message[:message_id], @config)
+      process_result *client.persist
+    rescue Exception => e
+      process_result 500, {"error" => e.message, "backtrace" => e.backtrace.inspect}
+    end
+
+
   end
 
   # post '/import' do

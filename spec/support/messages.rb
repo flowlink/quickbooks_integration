@@ -2,10 +2,10 @@ module Factories
   class << self
     def parameters
       [
-        {:name => 'quickbooks.access_token', :value => 'qyprd5T3BQ4KMbBkcsRF0UwGV298oczLuaKumJUj8IDtoPnc'},
-        {:name => 'quickbooks.access_secret', :value => '5YQhKi9dcNOx1J9tHmnGApJdu86Gta4dQUGCYQCT'},
-        {:name => 'quickbooks.realm', :value => '571550630'},
-        {:name => 'quickbooks.platform', :value => "windows"},
+        {:name => 'quickbooks.access_token', :value => 'lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj'},
+        {:name => 'quickbooks.access_secret', :value => 's7V4WL7VUvPbEOANIAOtA8rpqeLfr2UUnGo8wxt3'},
+        {:name => 'quickbooks.realm', :value => '814984455'},
+        {:name => 'quickbooks.platform', :value => "online"},
         {:name => "quickbooks.ship_method_name", :value => [
           {
             "UPS 3-5 Days" => "UPS",
@@ -37,6 +37,9 @@ module Factories
         {:name => "quickbooks.use_param_customer_name", :value => true},
         {:name => "quickbooks.customer_name", :value => "Web Order"},
         {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
+        {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
+        {:name => "quickbooks.coupon_item", :value => "Coupons"},
+        {:name => "quickbooks.discount_item", :value => "Discount"},
         {:name => "quickbooks.account_name", :value => "Sales"},
         {:name => "quickbooks.timezone", :value => "EST"},
         {:name => "quickbooks.receipt_header_class_name", :value => "DRTL LTS"}
@@ -93,7 +96,7 @@ module Factories
                   "value"=> 5
               },
               {
-                  "name"=> "North America 5.0%",
+                  "name"=> "North America 5.0",
                   "value"=> 5
               }
           ],
@@ -311,12 +314,12 @@ module Factories
                   "position"=> 1,
                   "attachment_content_type"=> "image/jpeg",
                   "attachment_file_name"=> "spree_jersey.jpeg",
-                  "type"=> "Spree=>=>Image",
+                  "type"=> "Spree::Image",
                   "attachment_updated_at"=> "2013-07-24T17=>01=>27Z",
                   "attachment_width"=> 480,
                   "attachment_height"=> 480,
                   "alt"=> nil,
-                  "viewable_type"=> "Spree=>=>Variant",
+                  "viewable_type"=> "Spree::Variant",
                   "viewable_id"=> 8,
                   "attachment_url"=> "/spree/products/41/product/spree_jersey.jpeg?1374685287"
                 },
@@ -325,12 +328,12 @@ module Factories
                   "position"=> 2,
                   "attachment_content_type"=> "image/jpeg",
                   "attachment_file_name"=> "spree_jersey_back.jpeg",
-                  "type"=> "Spree=>=>Image",
+                  "type"=> "Spree::Image",
                   "attachment_updated_at"=> "2013-07-24T17=>01=>28Z",
                   "attachment_width"=> 480,
                   "attachment_height"=> 480,
                   "alt"=> nil,
-                  "viewable_type"=> "Spree=>=>Variant",
+                  "viewable_type"=> "Spree::Variant",
                   "viewable_id"=> 8,
                   "attachment_url"=> "/spree/products/42/product/spree_jersey_back.jpeg?1374685288"
                 }
@@ -378,12 +381,12 @@ module Factories
                   "position"=> 1,
                   "attachment_content_type"=> "image/png",
                   "attachment_file_name"=> "ror_baseball_jersey_red.png",
-                  "type"=> "Spree=>=>Image",
+                  "type"=> "Spree::Image",
                   "attachment_updated_at"=> "2013-07-24T17=>00=>58Z",
                   "attachment_width"=> 240,
                   "attachment_height"=> 240,
                   "alt"=> nil,
-                  "viewable_type"=> "Spree=>=>Variant",
+                  "viewable_type"=> "Spree::Variant",
                   "viewable_id"=> 20,
                   "attachment_url"=> "/spree/products/7/product/ror_baseball_jersey_red.png?1374685258"
                 },
@@ -392,12 +395,12 @@ module Factories
                   "position"=> 2,
                   "attachment_content_type"=> "image/png",
                   "attachment_file_name"=> "ror_baseball_jersey_back_red.png",
-                  "type"=> "Spree=>=>Image",
+                  "type"=> "Spree::Image",
                   "attachment_updated_at"=> "2013-07-24T17=>00=>59Z",
                   "attachment_width"=> 240,
                   "attachment_height"=> 240,
                   "alt"=> nil,
-                  "viewable_type"=> "Spree=>=>Variant",
+                  "viewable_type"=> "Spree::Variant",
                   "viewable_id"=> 20,
                   "attachment_url"=> "/spree/products/8/product/ror_baseball_jersey_back_red.png?1374685259"
                 }
@@ -554,8 +557,8 @@ module Factories
             "label"=> "Shipping",
             "mandatory"=> true,
             "eligible"=> true,
-            "originator_type"=> "Spree=>=>ShippingMethod",
-            "adjustable_type"=> "Spree=>=>Order"
+            "originator_type"=> "Spree::ShippingMethod",
+            "adjustable_type"=> "Spree::Order"
           },
           {
             "id"=> 20,
@@ -563,17 +566,17 @@ module Factories
             "label"=> "Shipping",
             "mandatory"=> true,
             "eligible"=> true,
-            "originator_type"=> "Spree=>=>ShippingMethod",
-            "adjustable_type"=> "Spree=>=>Order"
+            "originator_type"=> "Spree::ShippingMethod",
+            "adjustable_type"=> "Spree::Order"
           },
           {
             "id"=> 22,
             "amount"=> "5.0",
-            "label"=> "North America 5.0%",
+            "label"=> "North America 5.0",
             "mandatory"=> false,
             "eligible"=> true,
-            "originator_type"=> "Spree=>=>TaxRate",
-            "adjustable_type"=> "Spree=>=>Order"
+            "originator_type"=> "Spree::TaxRate",
+            "adjustable_type"=> "Spree::Order"
           }
         ],
         "credit_cards"=> [
