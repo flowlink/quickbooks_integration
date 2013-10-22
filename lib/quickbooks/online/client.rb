@@ -6,6 +6,21 @@ module Quickbooks
         not_supported!
       end
 
+      def sales_receipt
+        receipt = create_model("SalesReceipt")
+        receipt.header = build_receipt_header
+        receipt
+      end
+
+      def find_or_create_customer
+
+
+        customer_service = create_service("Customer")
+
+
+
+      end
+
       def persist
         receipt = receipt_service.create(sales_receipt)
         puts receipt.inspect
