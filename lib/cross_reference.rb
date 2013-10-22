@@ -18,4 +18,5 @@ class CrossReference
       xref[order_number]
     end
   end
+
 end
