@@ -8,7 +8,7 @@ describe Quickbooks::Windows::Client do
       :payload => {
         "order" => Factories.order,
         "original" => Factories.original,
-        "parameters" => Factories.parameters
+        "parameters" => Factories.parameters("lvprdL8WCVGmBMQat8mosUW0UMLYwAn9mOTS7OMb6ykMI522","WXiArfxd6a2kjQ3mSYJIpApPMUrHlqoCWDstY5Hy","821557985", "Windows")
       }
     }
   }

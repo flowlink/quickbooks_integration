@@ -138,7 +138,6 @@ describe Quickbooks::Base do
       receipt_header.ship_method_name.should eql "UPS"
       receipt_header.payment_method_name.should eql "Visa"
     end
-
   end
 
 end

@@ -37,6 +37,14 @@ module Quickbooks
       @receipt_service ||= create_service("SalesReceipt")
     end
 
+    def customer_service
+      @customer_service ||= create_service("Customer")
+    end
+
+    def account_service
+      @account_service ||= create_service("Account")
+    end
+
     def create_service(service_name)
       service = "Quickeebooks::#{platform}::Service::#{service_name}".constantize.new
       service.access_token = access_token
@@ -58,7 +66,12 @@ module Quickbooks
       timezone = get_config!("quickbooks.timezone")
       receipt_header.txn_date = Time.parse(@order['placed_on']).in_time_zone(timezone).strftime("%Y-%m-%d")
 
-      receipt_header.customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
+      customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
+      unless find_customer_by_name(customer_name)
+        create_customer(customer_name)
+      end
+
+      receipt_header.customer_name = customer_name
       receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
       receipt_header.note = [@order["billing_address"]["firstname"],@order["billing_address"]["lastname"]].join(" ")
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
@@ -66,7 +79,6 @@ module Quickbooks
       receipt_header.payment_method_name = payment_method(payment_method_name)
       return receipt_header
     end
-
 
     def payment_method_name
       if @original.has_key?("credit_cards")

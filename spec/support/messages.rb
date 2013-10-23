@@ -1,11 +1,11 @@
 module Factories
   class << self
-    def parameters
+    def parameters(token='lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj', secret='s7V4WL7VUvPbEOANIAOtA8rpqeLfr2UUnGo8wxt3', realm='814984455', platform='online')
       [
-        {:name => 'quickbooks.access_token', :value => 'lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj'},
-        {:name => 'quickbooks.access_secret', :value => 's7V4WL7VUvPbEOANIAOtA8rpqeLfr2UUnGo8wxt3'},
-        {:name => 'quickbooks.realm', :value => '814984455'},
-        {:name => 'quickbooks.platform', :value => "online"},
+        {:name => 'quickbooks.access_token', :value => token },
+        {:name => 'quickbooks.access_secret', :value => secret },
+        {:name => 'quickbooks.realm', :value => realm },
+        {:name => 'quickbooks.platform', :value => platform },
         {:name => "quickbooks.ship_method_name", :value => [
           {
             "UPS 3-5 Days" => "UPS",
