@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customer/v2/814984455
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <Name>Harry Hare</Name>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '211'
+      Authorization:
+      - OAuth oauth_body_hash="LL3X%2BsyiD2qw9r6xHq5cXDNg6Ag%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="4fw9w5KHhnvpkOXRjT1rP3SPOWdR8Djjf67Uactx8", oauth_signature="IbepYEqJjqWuTN3d8FxxLp%2B3EWQ%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1382539580", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 23 Oct 2013 14:46:21 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.142'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 5e5ddf4f-1d90-4fe1-9772-58bd703aa3ed
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '444'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Customer xmlns="http://www.intuit.com/sb/cdm/v2"
+        xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id
+        idDomain="QBO">2</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-23T07:46:22-07:00</CreateTime><LastUpdatedTime>2013-10-23T07:46:22-07:00</LastUpdatedTime></MetaData><Name>Harry
+        Hare</Name><WebSite/><Email/><CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="StringTypeCustomField"><DefinitionId>Preferred Delivery Method</DefinitionId><Value>DONT</Value></CustomField><CustomField
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StringTypeCustomField"><DefinitionId>Resale
+        Number</DefinitionId></CustomField><CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="BooleanTypeCustomField"><DefinitionId>Bill With Parent</DefinitionId><Value>false</Value></CustomField><ShowAs>Harry
+        Hare</ShowAs><OpenBalance><Amount>0</Amount></OpenBalance></Customer>
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 14:46:22 GMT
+recorded_with: VCR 2.4.0

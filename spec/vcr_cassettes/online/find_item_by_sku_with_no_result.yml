@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+blaat&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '57'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="GZNBUsQrZU7TYOQF99mlAwI2sjegTBaO3cl40HVZw",
+        oauth_signature="V1gl7HSC4I4d2hmpzygOAzSFP2I%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382531585", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 23 Oct 2013 12:33:06 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.142'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 305324bb-5348-409e-b71d-864c05f46a7d
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '237'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Items"/><qbo:Count>0</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 12:33:07 GMT
+recorded_with: VCR 2.4.0

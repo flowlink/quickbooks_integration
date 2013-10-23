@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customers/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Harry+Hare&PageNum=1&ResultsPerPage=20
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '63'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="IBmECYFpfphFgKaPX4hlIYVu2SN9OAjBSSDI5IuSRg",
+        oauth_signature="C2T1Ft4orwK0%2FumJEbGC56aRr5M%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382539182", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 23 Oct 2013 14:39:44 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.142'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 8c1e9401-01d6-4aa5-9e65-4afd82009858
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '239'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Customers"/><qbo:Count>0</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 14:39:45 GMT
+recorded_with: VCR 2.4.0
