@@ -34,7 +34,6 @@ describe QuickbooksEndpoint do
       it "should respond to POST 'persist'" do
         post '/persist', message.to_json, auth
         puts last_response.body.inspect
-
       end
 
     end
