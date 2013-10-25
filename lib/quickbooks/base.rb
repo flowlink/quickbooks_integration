@@ -72,20 +72,21 @@ module Quickbooks
       txn_date = Quickeebooks::Common::DateTime.new
       txn_date.value = tz.utc_to_local(utc_time).to_s
       receipt_header.txn_date = txn_date
-      customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
-      customer = find_customer_by_name(customer_name)
-
-      unless customer
-       customer = create_customer
-      end
-      receipt_header.customer_id = customer.id
-      #receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
-      receipt_header.note = [@order["billing_address"]["firstname"],@order["billing_address"]["lastname"]].join(" ")
+      receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
-
       receipt_header.payment_method_name = payment_method(payment_method_name)
       return receipt_header
     end
+
+    # def find_customer_by_name(name)
+    #   list = customer_service.list([],1,999).entries
+    #   customer = nil
+    #   list.each do |item|
+    #     customer = item
+    #     break if customer.name == name
+    #   end
+    #   customer
+    # end
 
     def payment_method_name
       if @original.has_key?("credit_cards")

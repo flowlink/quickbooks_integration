@@ -6,6 +6,17 @@ module Quickbooks
         not_supported!
       end
 
+      def build_receipt_header
+        receipt_header = super
+        customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
+        customer = find_customer_by_name(customer_name)
+        unless customer
+         customer = create_customer
+        end
+        receipt_header.customer_id = customer.id
+        receipt_header
+      end
+
       def sales_receipt
         receipt = create_model("SalesReceipt")
         receipt.header = build_receipt_header
