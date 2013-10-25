@@ -13,7 +13,16 @@ class QuickbooksEndpoint < EndpointBase
       client = Quickbooks::Base.client(@message[:payload], @message[:message_id], @config)
       process_result *client.persist
     rescue Exception => e
-      process_result 500, {"error" => e.message, "backtrace" => e.backtrace.inspect}
+      process_result 500, {
+          'message_id' => @message[:message_id],
+          'notifications' => [
+            {
+              "level" => "error",
+              "subject" => e.message,
+              "description" => e.backtrace.inspect
+            }
+          ]
+        }
     end
 
 

@@ -139,7 +139,7 @@ describe Quickbooks::Online::Client do
     it "creates the sales_receipt" do
       receipt = client.sales_receipt
       receipt.should_not be_nil
-      receipt.line_items.count.should eql 2
+      receipt.line_items.count.should eql 5
       receipt.doc_number.should eql "R181807170"
     end
   end
