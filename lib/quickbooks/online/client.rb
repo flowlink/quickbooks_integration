@@ -29,6 +29,67 @@ module Quickbooks
           sales_receipt_line_item.desc = line_item["name"]
           line_items << sales_receipt_line_item
         end
+        adjustments = Adjustment.new(@original["adjustments"])
+
+        adjustments.shipping.each do |adjustment|
+          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+          sku = get_config!("quickbooks.shipping_item")
+          desc = adjustment["label"]
+          price = adjustment["amount"]
+          item = create_item(sku,desc,price)
+
+          line.quantity = 1
+          line.unit_price = price
+          line.amount = price
+          line.desc = desc
+          line.item_id = item.id
+          line_items << line
+        end
+
+        adjustments.tax.each do |adjustment|
+          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+          sku = get_config!("quickbooks.tax_item")
+          desc = adjustment["label"]
+          price = adjustment["amount"]
+          item = create_item(sku,desc,price)
+
+          line.quantity = 1
+          line.unit_price = price
+          line.amount = price
+          line.desc = desc
+          line.item_id = item.id
+          line_items << line
+        end
+
+        adjustments.coupon.each do |adjustment|
+          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+          sku = get_config!("quickbooks.coupon_item")
+          desc = adjustment["label"]
+          price = adjustment["amount"]
+          item = create_item(sku,desc,price)
+
+          line.quantity = 1
+          line.unit_price = price
+          line.amount = price
+          line.desc = desc
+          line.item_id = item.id
+          line_items << line
+        end
+
+        adjustments.discount.each do |adjustment|
+          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+          sku = get_config!("quickbooks.discount_item")
+          desc = adjustment["label"]
+          price = adjustment["amount"]
+          item = create_item(sku,desc,price)
+
+          line.quantity = 1
+          line.unit_price = price
+          line.amount = price
+          line.desc = desc
+          line.item_id = item.id
+          line_items << line
+        end
         receipt.line_items = line_items
         receipt
       end
