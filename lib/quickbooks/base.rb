@@ -1,5 +1,6 @@
 require 'quickeebooks'
 require 'oauth'
+require 'tzinfo'
 
 module Quickbooks
   class Base
@@ -9,7 +10,7 @@ module Quickbooks
     attr_accessor :payload, :message_id, :config, :platform, :order, :original
 
     def self.client(payload, message_id, config)
-      raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless config['quickbooks.platform']
+      raise LookupValueNotFoundException.new("Can't find the key quickbooks.platform in the provided mapping") unless config['quickbooks.platform']
       platform = config['quickbooks.platform'].capitalize
       raise InvalidPlatformException.new("We cannot create the Quickbooks #{platform} client") unless VALID_PLATFORMS.include?(platform)
       klass = "Quickbooks::#{platform}::Client"
@@ -77,9 +78,8 @@ module Quickbooks
       unless customer
        customer = create_customer
       end
-      receipt_header.customer_name = customer_name
       receipt_header.customer_id = customer.id
-      receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
+      #receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
       receipt_header.note = [@order["billing_address"]["firstname"],@order["billing_address"]["lastname"]].join(" ")
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
 
@@ -100,13 +100,11 @@ module Quickbooks
 
     def quickbook_address(order_address)
       address = create_model("Address")
-      address.line1   = [order_address["firstname"], order_address["lastname"]].join(" ")
-      address.line2   = order_address["address1"]
-      address.line3   = order_address["address2"]
+      address.line1   = order_address["address1"]
+      address.line2   = order_address["address2"]
       address.city    = order_address["city"]
-      address.country = order_address["country"]["name"]
-      address.country_sub_division_code = order_address["state_name"]
-      address.country_sub_division_code ||= order_address["state"]["name"] if order_address["state"]
+      address.country = order_address["country"]
+      address.country_sub_division_code = order_address["state"]
       address.postal_code = order_address["zipcode"]
       return address
     end
