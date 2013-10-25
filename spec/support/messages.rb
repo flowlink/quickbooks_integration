@@ -145,7 +145,7 @@ module Factories
                   "shipping_method"=> "UPS Ground (USD)",
                   "tracking"=> nil,
                   "updated_at"=> nil,
-                  "shipped_at"=> "2013-07-30T20=>08=>38Z",
+                  "shipped_at"=> "2013-07-30T20:08:38Z",
                   "items"=> [
                       {
                           "name"=> "Spree Baseball Jersey",
@@ -216,9 +216,9 @@ module Factories
         "state"=> "complete",
         "adjustment_total"=> "15.0",
         "user_id"=> 1,
-        "created_at"=> "2013-07-29T17=>42=>02Z",
-        "updated_at"=> "2013-07-30T20=>08=>39Z",
-        "completed_at"=> "2013-07-30T19=>19=>05Z",
+        "created_at"=> "2013-07-29T17:42:02Z",
+        "updated_at"=> "2013-07-30T20:08:39Z",
+        "completed_at"=> "2013-07-30T19:19:05Z",
         "payment_total"=> "114.95",
         "shipment_state"=> "partial",
         "payment_state"=> "paid",

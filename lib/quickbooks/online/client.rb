@@ -25,6 +25,8 @@ module Quickbooks
           sales_receipt_line_item.quantity = quantity
           sales_receipt_line_item.unit_price  = price
           sales_receipt_line_item.item_id  = item.id
+          sales_receipt_line_item.amount = (quantity * price)
+          sales_receipt_line_item.desc = line_item["name"]
           line_items << sales_receipt_line_item
         end
         receipt.line_items = line_items
@@ -63,20 +65,34 @@ module Quickbooks
         list.entries.first
       end
 
-      def create_customer(name)
+      def create_customer
         customer = create_model("Customer")
-        customer.name = name
+
+        customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
+
+        billing_address = quickbook_address(@order["billing_address"])
+        billing_address.tag = "Billing"
+        customer.address = billing_address
+
+        shipping_address = quickbook_address(@order["shipping_address"])
+        shipping_address.tag = "Shipping"
+        #quickeebooks will append the addresses to the internal addresses var.
+        customer.address = shipping_address
+        customer.name = customer_name
+
+        customer.email_address = @order["email"]
+
         return customer_service.create(customer)
       end
 
       def persist
         begin
           receipt = receipt_service.create(sales_receipt)
-          @id = receipt.success.object_ref.id.value
-          @idDomain = receipt.success.object_ref.id.idDomain
+          @id = receipt.id.value
+          @idDomain = receipt.id.idDomain
           xref = CrossReference.new
           xref.add(@order["number"], @id, @idDomain)
-        rescue Exception
+        rescue Exception => exception
           return 500, {
             'message_id' => @message_id,
             'parameters' => @config,

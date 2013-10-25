@@ -1,0 +1,386 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customers/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Brian+Quinn&PageNum=1&ResultsPerPage=20
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '64'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="dJN6fhgEmgAU2XEYFUjAXL506ohZiV2RTYJxKkg6Px0",
+        oauth_signature="ySfIVf63HTG%2F8x5%2FcrGQeIoK5%2BI%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382698301", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:42 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - ef870f72-c971-4095-802c-1b4be2ec78d2
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '625'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Customers"><Customer><Id idDomain="QBO">7</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-25T03:13:45-07:00</CreateTime><LastUpdatedTime>2013-10-25T03:13:45-07:00</LastUpdatedTime></MetaData><Name>Brian
+        Quinn</Name><Address><Line1>Brian Quinn</Line1><Line2>7735 Old Georgetown
+        Rd</Line2><City>Bethesda</City><PostalCode>20814</PostalCode><GeoCode>LAT=39.0069662,LNG=-77.1119614</GeoCode><Tag>Billing</Tag></Address><Address><Line1>Brian
+        Quinn</Line1><Line2>7735 Old Georgetown Rd</Line2><City>Bethesda</City><PostalCode>20814</PostalCode><GeoCode>LAT=39.0069662,LNG=-77.1119614</GeoCode><Tag>Shipping</Tag></Address><WebSite/><Email><Address>spree@example.com</Address></Email><CustomField
+        xsi:type="BooleanTypeCustomField"><DefinitionId>Bill With Parent</DefinitionId><Value>false</Value></CustomField><CustomField
+        xsi:type="StringTypeCustomField"><DefinitionId>Preferred Delivery Method</DefinitionId><Value>EMAIL</Value></CustomField><ShowAs>Brian
+        Quinn</ShowAs><OpenBalance><Amount>0</Amount></OpenBalance></Customer></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:42 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Sales&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '57'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="1I82vPiSOb4xqJ0GD5rS0PV1P805euSw5AsR2Z8sk",
+        oauth_signature="ZDPdOkAwz0eRSP7lHh7xll7xv1M%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382698302", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:43 GMT
+      Server:
+      - Apache/2.2.3 (Red Hat)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - a085a86a-1d15-4b93-a99a-33b9fa6b50af
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '364'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:44 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+SPR-00001&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '61'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="PbcNupxmK2WE76hdoj7C5e0nEyUcbNMXHHptyak5c",
+        oauth_signature="ZpQ17ezJtSlrHeRM7ckIfIn7LfQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382698304", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:45 GMT
+      Server:
+      - Apache/2.2.3 (Red Hat)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - b4d982ba-976b-488f-824a-02e375fc195e
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '440'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Items"><Item><Id idDomain="QBO">10</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-23T07:00:25-07:00</CreateTime><LastUpdatedTime>2013-10-23T07:00:25-07:00</LastUpdatedTime></MetaData><Name>SPR-00001</Name><Desc>Spree
+        Baseball Jersey</Desc><Taxable>true</Taxable><UnitPrice><Amount>19.99</Amount></UnitPrice><IncomeAccountRef><AccountId
+        idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
+        idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:46 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Sales&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '57'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="WZimbi7z9YbGsncU0PRfuql49Bu832zDnTaTcTYgPo",
+        oauth_signature="dGFIUgOlhhvL1cohUHx8YP1CZ0g%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382698306", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:47 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - e079790a-0fc0-434f-83c9-bd2c0bc86de2
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '364'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:48 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+ROR-00004&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '61'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="4x1D0iQPvfJDKvufIGhzF62igkENdddhXE3RRvuH49Q",
+        oauth_signature="5MWt5zL%2FnK%2FCqQ1hP7sbGU6u10Q%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1382698308", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:49 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 3e65ae89-c55b-4576-aa1e-0e97bf5f19c4
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '447'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Items"><Item><Id idDomain="QBO">11</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-23T07:05:11-07:00</CreateTime><LastUpdatedTime>2013-10-23T07:05:11-07:00</LastUpdatedTime></MetaData><Name>ROR-00004</Name><Desc>Ruby
+        on Rails Baseball Jersey</Desc><Taxable>true</Taxable><UnitPrice><Amount>19.99</Amount></UnitPrice><IncomeAccountRef><AccountId
+        idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
+        idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:49 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/sales-receipt/v2/814984455
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <SalesReceipt xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <DocNumber>R181807170</DocNumber>
+        <Header>
+        <DocNumber>R181807170</DocNumber>
+        <TxnDate>2013-07-30T14:19:05+0000</TxnDate>
+        <Note>Brian Quinn</Note>
+        <CustomerId idDomain="QBO">7</CustomerId>
+        <CustomerName>Brian Quinn</CustomerName>
+        <TotalAmt>114.95</TotalAmt>
+        <DepositToAccountName>Visa/MC</DepositToAccountName>
+        <ShipAddr>
+        <Line1>Brian Quinn</Line1>
+        <Line2>7735 Old Georgetown Rd</Line2>
+        <Line3/>
+        <City>Bethesda</City>
+        <PostalCode>20814</PostalCode>
+        </ShipAddr>
+        <ShipMethodName>UPS</ShipMethodName>
+        <PaymentMethodName>Visa</PaymentMethodName>
+        </Header>
+        <Line>
+        <Desc>Spree Baseball Jersey</Desc>
+        <Amount>39.98</Amount>
+        <ItemId idDomain="QBO">10</ItemId>
+        <UnitPrice>19.99</UnitPrice>
+        <Qty>2</Qty>
+        </Line>
+        <Line>
+        <Desc>Ruby on Rails Baseball Jersey</Desc>
+        <Amount>59.97</Amount>
+        <ItemId idDomain="QBO">11</ItemId>
+        <UnitPrice>19.99</UnitPrice>
+        <Qty>3</Qty>
+        </Line>
+        </SalesReceipt>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '1054'
+      Authorization:
+      - OAuth oauth_body_hash="WfNQpVWk4Uz6fqrxsywy42m1m3E%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="u6fQfTJE2TqiFWcVMsMejVVdlUYzISIsCfTGcjzIBBE", oauth_signature="GGvuWxDh43%2BBYzAu7RlPai9IISQ%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1382698309", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:51:50 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 77fd0715-9250-4d53-aacf-4bb43917d830
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '642'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><SalesReceipt
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id idDomain="QBO">10</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-25T03:51:51-07:00</CreateTime><LastUpdatedTime>2013-10-25T03:51:51-07:00</LastUpdatedTime></MetaData><Header><DocNumber>R181807170</DocNumber><TxnDate>2013-07-30-07:00</TxnDate><Note>Brian
+        Quinn</Note><CustomerId idDomain="QBO">7</CustomerId><SubTotalAmt>99.95</SubTotalAmt><TotalAmt>99.95</TotalAmt><ToBePrinted>false</ToBePrinted><ToBeEmailed>false</ToBeEmailed><ShipAddr><Line1>Brian
+        Quinn</Line1><Line2>7735 Old Georgetown Rd</Line2><City>Bethesda</City><PostalCode>20814</PostalCode><GeoCode>LAT=39.0069662,LNG=-77.1119614</GeoCode></ShipAddr><ShipMethodId
+        idDomain="QBO"/><ShipMethodName>UPS</ShipMethodName><DepositToAccountId idDomain="QBO">4</DepositToAccountId><DepositToAccountName>Undeposited
+        Funds</DepositToAccountName><DiscountTaxable>true</DiscountTaxable></Header><Line><Id>1</Id><Desc>Spree
+        Baseball Jersey</Desc><Amount>39.98</Amount><Taxable>false</Taxable><ItemId>10</ItemId><UnitPrice>19.99</UnitPrice><Qty>2</Qty></Line><Line><Id>2</Id><Desc>Ruby
+        on Rails Baseball Jersey</Desc><Amount>59.97</Amount><Taxable>false</Taxable><ItemId>11</ItemId><UnitPrice>19.99</UnitPrice><Qty>3</Qty></Line></SalesReceipt>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:51:51 GMT
+recorded_with: VCR 2.4.0

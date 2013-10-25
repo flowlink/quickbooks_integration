@@ -64,14 +64,21 @@ module Quickbooks
 
       receipt_header.total_amount = @order['totals']['order']
       timezone = get_config!("quickbooks.timezone")
-      receipt_header.txn_date = Time.parse(@order['placed_on']).in_time_zone(timezone).strftime("%Y-%m-%d")
 
+      utc_time = Time.parse(@order["placed_on"])
+      tz = TZInfo::Timezone.get(timezone)
+
+      txn_date = Quickeebooks::Common::DateTime.new
+      txn_date.value = tz.utc_to_local(utc_time).to_s
+      receipt_header.txn_date = txn_date
       customer_name = "#{@order["billing_address"]["firstname"]} #{@order["billing_address"]["lastname"]}"
-      unless find_customer_by_name(customer_name)
-        create_customer(customer_name)
-      end
+      customer = find_customer_by_name(customer_name)
 
+      unless customer
+       customer = create_customer
+      end
       receipt_header.customer_name = customer_name
+      receipt_header.customer_id = customer.id
       receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
       receipt_header.note = [@order["billing_address"]["firstname"],@order["billing_address"]["lastname"]].join(" ")
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])

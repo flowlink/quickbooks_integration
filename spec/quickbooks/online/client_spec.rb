@@ -108,21 +108,28 @@ describe Quickbooks::Online::Client do
   context "#create_customer" do
     it "will add a customer to Quickbooks" do
       VCR.use_cassette('online/create_customer') do
-        customer = client.create_customer("Harry Hare")
+        customer = client.create_customer
         customer.should_not be_nil
         customer.class.should eql Quickeebooks::Online::Model::Customer
-        customer.name.should eql "Harry Hare"
+        customer.name.should eql "Brian Quinn"
+
+        customer.billing_address.should_not be_nil
+        customer.billing_address.class.should eql Quickeebooks::Online::Model::Address
+
+        customer.shipping_address.should_not be_nil
+        customer.shipping_address.class.should eql Quickeebooks::Online::Model::Address
+
       end
     end
 
     it "will raise an exception if the name is already in use" do
+
       VCR.use_cassette('online/create_customer_with_same_name') do
-        customer = client.create_customer("Black Pete")
+        customer = client.create_customer
         customer.should_not be_nil
         customer.class.should eql Quickeebooks::Online::Model::Customer
-
         expect {
-          client.create_customer("Black Pete")
+          client.create_customer
         }.to raise_error(IntuitRequestException)
       end
     end
@@ -137,4 +144,12 @@ describe Quickbooks::Online::Client do
     end
   end
 
+  context "#persit" do
+    it "creates a new sales receipt for a new order" do
+      VCR.use_cassette('online/persist_new_order') do
+        result = *client.persist
+        result[0].should eql 200
+      end
+    end
+  end
 end
