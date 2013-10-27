@@ -167,11 +167,14 @@ module Quickbooks
         rescue Exception => exception
           return 500, {
             'message_id' => @message_id,
-            'parameters' => @config,
-            'payload' => @payload,
-            'error' => exception.message,
-            'backtrace' => exception.backtrace
-           }
+            'notifications' => [
+              {
+                "level" => "error",
+                "subject" => exception.message,
+                "description" => exception.backtrace
+              }
+            ]
+          }
         end
 
         return 200, {

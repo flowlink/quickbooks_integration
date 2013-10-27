@@ -89,7 +89,7 @@ module Quickbooks
     # end
 
     def payment_method_name
-      if @original.has_key?("credit_cards")
+      if @original.has_key?("credit_cards") && !@original["credit_cards"].empty?
         payment_name = @original["credit_cards"].first["cc_type"]
       end
       unless payment_name
