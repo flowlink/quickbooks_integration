@@ -171,7 +171,7 @@ module Quickbooks
               {
                 "level" => "error",
                 "subject" => exception.message,
-                "description" => exception.backtrace
+                "description" => exception.backtrace.join("\n")
               }
             ]
           }
