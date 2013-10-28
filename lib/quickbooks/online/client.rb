@@ -147,35 +147,11 @@ module Quickbooks
       end
 
       def persist
-        begin
-          receipt = receipt_service.create(sales_receipt)
-          @id = receipt.id.value
-          @idDomain = receipt.id.idDomain
-          xref = CrossReference.new
-          xref.add(@order["number"], @id, @idDomain)
-        rescue Exception => exception
-          return 500, {
-            'message_id' => @message_id,
-            'notifications' => [
-              {
-                "level" => "error",
-                "subject" => exception.message,
-                "description" => exception.backtrace.join("\n")
-              }
-            ]
-          }
-        end
-
-        return 200, {
-          'message_id' => @message_id,
-          'notifications' => [
-            {
-              "level" => "info",
-              "subject" => "persisted order #{@order["number"]} in Quickbooks",
-              "description" => "Quickbooks SalesReceipt id = #{@id} and idDomain = #{@idDomain}"
-            }
-          ]
-        }
+        super
+        receipt = receipt_service.create(sales_receipt)
+        @id = receipt.id.value
+        @idDomain = receipt.id.idDomain
+        @xref.add(@order["number"], @id, @idDomain)
       end
     end
   end

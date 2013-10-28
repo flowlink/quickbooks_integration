@@ -16,12 +16,12 @@ describe Quickbooks::Base do
   context ".client" do
     it "raise InvalidPlatformException when config has invalid platform" do
       expect {
-        Quickbooks::Base.client({},"",{"quickbooks.platform" => "smoke"})
+        Quickbooks::Base.client({},"",{"quickbooks.platform" => "smoke"},message["message"])
       }.to raise_error(Quickbooks::InvalidPlatformException, /We cannot create the/)
     end
 
     it "initializes the correct platform client" do
-      client = Quickbooks::Base.client({},"",{"quickbooks.platform" => "online"})
+      client = Quickbooks::Base.client({},"",{"quickbooks.platform" => "online"}, message["message"])
       client.class.should eql Quickbooks::Online::Client
     end
   end
@@ -37,7 +37,7 @@ describe Quickbooks::Base do
       }
     }
 
-    let(:client) { Quickbooks::Base.client({},"",config) }
+    let(:client) { Quickbooks::Base.client({},"",config,message["message"]) }
 
     context "#create_service" do
       it "returns the service instance based on platform" do
@@ -61,7 +61,7 @@ describe Quickbooks::Base do
   context "#get_config!" do
     it "raises an exception when the key is not present in the config" do
       expect {
-        Quickbooks::Base.new({},"",{},"").get_config!("bla")
+        Quickbooks::Base.new({},"",{},"", message["message"]).get_config!("bla")
       }.to raise_error(Quickbooks::LookupValueNotFoundException, /Can't find the key/)
     end
   end
@@ -73,7 +73,7 @@ describe Quickbooks::Base do
     }
 
     let(:client_base) {
-      Quickbooks::Base.new(payload,"",{},"")
+      Quickbooks::Base.new(payload,"",{},"","order:new")
     }
 
     context "with credit_card" do
@@ -107,7 +107,7 @@ describe Quickbooks::Base do
   context "#deposit_account_name" do
     let(:config_param) {config(message)}
     let(:client_base) {
-      Quickbooks::Base.new(message[:payload],"",config_param,"")
+      Quickbooks::Base.new(message[:payload],"",config_param,"","order:new")
     }
 
     it "will use the mapping based on the payment_method_name" do
@@ -124,7 +124,7 @@ describe Quickbooks::Base do
   context "#build_receipt_header" do
     let(:config_param) {config(message)}
     let(:client_base) {
-      Quickbooks::Base.new(message[:payload],"",config_param,"Windows")
+      Quickbooks::Base.new(message[:payload],"",config_param,"Windows","order:new")
     }
 
     it "set the correct vars" do
@@ -136,6 +136,18 @@ describe Quickbooks::Base do
       receipt_header.shipping_address.class.should eql Quickeebooks::Windows::Model::Address
       receipt_header.ship_method_name.should eql "UPS"
       receipt_header.payment_method_name.should eql "Visa"
+    end
+  end
+
+  context "#persist" do
+    let(:config_param) {config(message)}
+
+    it "raises an exception when there is a cross reference present with 'order:new' message" do
+      CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(12)
+      client = Quickbooks::Base.client(message[:payload],"",config_param, "order:new")
+      expect {
+        client.persist
+      }.to raise_error Quickbooks::AlreadyPersistedOrderAsNew
     end
   end
 

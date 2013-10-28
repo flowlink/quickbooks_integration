@@ -4,6 +4,7 @@ SimpleCov.start do
 end
 require 'rubygems'
 require 'bundler'
+require "pstore"
 
 Bundler.require(:default, :test)
 
