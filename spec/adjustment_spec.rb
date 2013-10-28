@@ -46,8 +46,7 @@ describe Adjustment do
     adjustment.discount.first["label"].should eql "Special Test Discount"
   end
 
-
-  it "returns the adjustments without originator_type and amount > 0.0 as charges" do
+  it "returns the adjustments without originator_type and amount > 0.0 as manual_charge" do
 
     adjustments = [
       {
@@ -62,12 +61,10 @@ describe Adjustment do
     ]
 
     adjustment = Adjustment.new(adjustments)
-    adjustment.charge.count.should eql 1
+    adjustment.manual_charge.count.should eql 1
     adjustment.discount.count.should eql 0
-    adjustment.charge.first["amount"].should eql "5.0"
-    adjustment.charge.first["label"].should eql "extra charge manual shipping and gift wrapping"
-
+    adjustment.manual_charge.first["amount"].should eql "5.0"
+    adjustment.manual_charge.first["label"].should eql "extra charge manual shipping and gift wrapping"
   end
-
 
 end

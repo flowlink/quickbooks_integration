@@ -33,7 +33,7 @@ describe QuickbooksEndpoint do
 
             response["message_id"].should eql "abc"
             response["notifications"].first["subject"].should eql "persisted order R181807170 in Quickbooks"
-            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 36 and idDomain = QBO"
+            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 43 and idDomain = QBO"
           end
         end
 
