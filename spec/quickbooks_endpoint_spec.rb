@@ -32,8 +32,8 @@ describe QuickbooksEndpoint do
     context "persist" do
 
       it "should respond to POST 'persist'" do
+        pending "make proper test"
         post '/persist', message.to_json, auth
-        puts last_response.body.inspect
       end
 
     end
