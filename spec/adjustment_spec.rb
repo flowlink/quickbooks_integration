@@ -26,7 +26,7 @@ describe Adjustment do
     expect { Adjustment.new(adjustments) }.to raise_error Exception, "Insuficient API Version. Needs to be bumped to at least 8240b6c0"
   end
 
-  it "returns the adjustments without originator_type as discount" do
+  it "returns the adjustments without originator_type and amount < 0.0 as discount" do
 
     adjustments = [
       {
@@ -45,5 +45,29 @@ describe Adjustment do
     adjustment.discount.first["amount"].should eql "-5.0"
     adjustment.discount.first["label"].should eql "Special Test Discount"
   end
+
+
+  it "returns the adjustments without originator_type and amount > 0.0 as charges" do
+
+    adjustments = [
+      {
+        "id" => 15,
+        "amount" => "5.0",
+        "label" => "extra charge manual shipping and gift wrapping",
+        "mandatory" => nil,
+        "eligible" => true,
+        "originator_type" => nil,
+        "adjustable_type" => "Spree::Order"
+      }
+    ]
+
+    adjustment = Adjustment.new(adjustments)
+    adjustment.charge.count.should eql 1
+    adjustment.discount.count.should eql 0
+    adjustment.charge.first["amount"].should eql "5.0"
+    adjustment.charge.first["label"].should eql "extra charge manual shipping and gift wrapping"
+
+  end
+
 
 end

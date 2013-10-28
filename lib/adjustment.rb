@@ -18,6 +18,10 @@ class Adjustment
   end
 
   def discount
-    @adjustments.select{|a| a["originator_type"] == nil}
+    @adjustments.select{|a| a["originator_type"] == nil && a["amount"].to_f < 0.0 }
+  end
+
+  def charge
+    @adjustments.select{|a| a["originator_type"] == nil && a["amount"].to_f > 0.0 }
   end
 end
