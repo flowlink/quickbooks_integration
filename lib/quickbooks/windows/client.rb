@@ -7,6 +7,7 @@ module Quickbooks
         header.class_name = get_config!("quickbooks.receipt_header_class_name")
         return header
       end
+
     end
   end
 end

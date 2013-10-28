@@ -10,7 +10,6 @@ describe QuickbooksEndpoint do
     described_class
   end
 
-
   context "persist" do
     context "with order:new" do
       context "online" do
@@ -26,7 +25,7 @@ describe QuickbooksEndpoint do
           }
         }
 
-        it "should respond to POST 'persist'" do
+        it "generates a json response with an info notification" do
           VCR.use_cassette('online/persist_new_order') do
             post '/persist', message.to_json, auth
             last_response.status.should eql 200
@@ -37,6 +36,7 @@ describe QuickbooksEndpoint do
             response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 36 and idDomain = QBO"
           end
         end
+
       end
     end
   end
