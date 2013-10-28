@@ -20,5 +20,4 @@ class Adjustment
   def discount
     @adjustments.select{|a| a["originator_type"] == nil}
   end
-
 end

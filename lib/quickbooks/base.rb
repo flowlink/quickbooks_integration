@@ -78,16 +78,6 @@ module Quickbooks
       return receipt_header
     end
 
-    # def find_customer_by_name(name)
-    #   list = customer_service.list([],1,999).entries
-    #   customer = nil
-    #   list.each do |item|
-    #     customer = item
-    #     break if customer.name == name
-    #   end
-    #   customer
-    # end
-
     def payment_method_name
       if @original.has_key?("credit_cards") && !@original["credit_cards"].empty?
         payment_name = @original["credit_cards"].first["cc_type"]
