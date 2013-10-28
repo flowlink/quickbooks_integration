@@ -15,7 +15,8 @@ describe Quickbooks::Online::Client do
   }
 
   let(:config_param) {config(message) }
-  let(:client) { Quickbooks::Base.client(message[:payload], "abc", config_param) }
+  let(:client) { Quickbooks::Base.client(message[:payload], "abc", config_param, message["message"]) }
+
 
   context "#find_account_by_name" do
 
@@ -146,9 +147,10 @@ describe Quickbooks::Online::Client do
 
   context "#persit" do
     it "creates a new sales receipt for a new order" do
+      CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
       VCR.use_cassette('online/persist_new_order') do
-        result = *client.persist
-        result[0].should eql 200
+        response_hash = {:id=>"43", :id_domain=>"QBO"}
+        client.persist.should eql response_hash
       end
     end
   end

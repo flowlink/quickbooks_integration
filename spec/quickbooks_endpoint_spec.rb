@@ -24,8 +24,8 @@ describe QuickbooksEndpoint do
             }
           }
         }
-
         it "generates a json response with an info notification" do
+          CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
           VCR.use_cassette('online/persist_new_order') do
             post '/persist', message.to_json, auth
             last_response.status.should eql 200

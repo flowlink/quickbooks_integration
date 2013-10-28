@@ -14,7 +14,7 @@ describe Quickbooks::Windows::Client do
   }
 
   let(:config_param) {config(message) }
-  let(:client) { Quickbooks::Base.client(message[:payload], "abc", config_param) }
+  let(:client) { Quickbooks::Base.client(message[:payload], "abc", config_param, message["message"]) }
 
   context "build_receipt_header" do
     it "will add the correct class_name" do

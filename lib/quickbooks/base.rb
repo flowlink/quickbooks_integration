@@ -7,23 +7,25 @@ module Quickbooks
 
     VALID_PLATFORMS = %w(Online Windows)
 
-    attr_accessor :payload, :message_id, :config, :platform, :order, :original
+    attr_accessor :payload, :message_id, :config, :platform, :order, :original, :xref, :message_name
 
-    def self.client(payload, message_id, config)
+    def self.client(payload, message_id, config, message_name)
       raise LookupValueNotFoundException.new("Can't find the key quickbooks.platform in the provided mapping") unless config['quickbooks.platform']
       platform = config['quickbooks.platform'].capitalize
       raise InvalidPlatformException.new("We cannot create the Quickbooks #{platform} client") unless VALID_PLATFORMS.include?(platform)
       klass = "Quickbooks::#{platform}::Client"
-      klass.constantize.new(payload,message_id,config,platform)
+      klass.constantize.new(payload,message_id,config,platform, message_name)
     end
 
-    def initialize(payload, message_id, config, platform)
+    def initialize(payload, message_id, config, platform, message_name)
       @payload = payload
       @message_id = message_id
       @config = config
       @platform = platform
       @order = payload['order']
       @original = payload['original']
+      @xref = CrossReference.new
+      @message_name = message_name
     end
 
     def status_service
@@ -73,8 +75,11 @@ module Quickbooks
       txn_date.value = tz.utc_to_local(utc_time).to_s
       receipt_header.txn_date = txn_date
       receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
+
+      # todo move this to ship
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
       receipt_header.payment_method_name = payment_method(payment_method_name)
+
       return receipt_header
     end
 
@@ -145,6 +150,10 @@ module Quickbooks
       value
     end
 
+    def persist
+      raise AlreadyPersistedOrderAsNew.new("Got 'order:new' message for already persisted order") if (@xref.lookup(@order['number']) && @message_name == "order:new")
+    end
+
     def not_supported!
       raise UnsupportedException.new("#{caller_locations(1,1)[0].label} is not supported for Quickbooks #{@platform}")
     end
@@ -153,4 +162,5 @@ module Quickbooks
   class InvalidPlatformException < Exception; end
   class LookupValueNotFoundException < Exception; end
   class UnsupportedException < Exception; end
+  class AlreadyPersistedOrderAsNew < Exception; end
 end
