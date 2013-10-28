@@ -40,69 +40,58 @@ module Quickbooks
           sales_receipt_line_item.desc = line_item["name"]
           line_items << sales_receipt_line_item
         end
+
         adjustments = Adjustment.new(@original["adjustments"])
 
         adjustments.shipping.each do |adjustment|
-          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
           sku = get_config!("quickbooks.shipping_item")
-          desc = adjustment["label"]
-          price = adjustment["amount"]
-          item = create_item(sku,desc,price)
-
-          line.quantity = 1
-          line.unit_price = price
-          line.amount = price
-          line.desc = desc
-          line.item_id = item.id
+          line = adjustment_to_line(adjustment,sku)
           line_items << line
         end
 
         adjustments.tax.each do |adjustment|
-          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
           sku = get_config!("quickbooks.tax_item")
-          desc = adjustment["label"]
-          price = adjustment["amount"]
-          item = create_item(sku,desc,price)
-
-          line.quantity = 1
-          line.unit_price = price
-          line.amount = price
-          line.desc = desc
-          line.item_id = item.id
+          line = adjustment_to_line(adjustment,sku)
           line_items << line
         end
 
         adjustments.coupon.each do |adjustment|
-          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
           sku = get_config!("quickbooks.coupon_item")
-          desc = adjustment["label"]
-          price = adjustment["amount"]
-          item = create_item(sku,desc,price)
-
-          line.quantity = 1
-          line.unit_price = price
-          line.amount = price
-          line.desc = desc
-          line.item_id = item.id
+          line = adjustment_to_line(adjustment,sku)
           line_items << line
         end
 
         adjustments.discount.each do |adjustment|
-          line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
           sku = get_config!("quickbooks.discount_item")
-          desc = adjustment["label"]
-          price = adjustment["amount"]
-          item = create_item(sku,desc,price)
-
-          line.quantity = 1
-          line.unit_price = price
-          line.amount = price
-          line.desc = desc
-          line.item_id = item.id
+          line = adjustment_to_line(adjustment,sku)
           line_items << line
         end
+
+        # TODO
+        # adjustment.manual_charge.each do |adjustment|
+        #   sku = get_config!("quickbooks.manual_charge_item")
+        #   line = adjustment_to_line(adjustment,sku)
+        #   line_items << line
+        # end
+
         receipt.line_items = line_items
         receipt
+      end
+
+      def adjustment_to_line(adjustment, adjustment_sku)
+        line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+        sku = adjustment_sku
+        desc = adjustment["label"]
+        price = adjustment["amount"]
+        item = create_item(sku,desc,price)
+
+        line.quantity = 1
+        line.unit_price = price
+        line.amount = price
+        line.desc = desc
+        line.item_id = item.id
+
+        line
       end
 
       def find_account_by_name(account_name)

@@ -21,7 +21,7 @@ class Adjustment
     @adjustments.select{|a| a["originator_type"] == nil && a["amount"].to_f < 0.0 }
   end
 
-  def charge
+  def manual_charge
     @adjustments.select{|a| a["originator_type"] == nil && a["amount"].to_f > 0.0 }
   end
 end
