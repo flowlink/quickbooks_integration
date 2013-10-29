@@ -91,7 +91,8 @@ class Client
     "Bits - UPS" => "UPS",
     "ROW" => "ROW",
     "littleBits Internal Order" => "Hand Delivered",
-    "FREE SHIPPING!" => "UPS"}
+    "FREE SHIPPING!" => "UPS",
+    "Free 2-3 Day Shipping in the U.S. (Limited time only. Restrictions apply.)" => "UPS"}
     
     if map[name]
       return map[name]
