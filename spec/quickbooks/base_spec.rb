@@ -143,7 +143,7 @@ describe Quickbooks::Base do
     let(:config_param) {config(message)}
 
     it "raises an exception when there is a cross reference present with 'order:new' message" do
-      CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(12)
+      CrossReference.any_instance.stub(:lookup).with("R181807170").and_return({:id => 14, :id_domain => "QBO"})
       client = Quickbooks::Base.client(message[:payload],"",config_param, "order:new")
       expect {
         client.persist
