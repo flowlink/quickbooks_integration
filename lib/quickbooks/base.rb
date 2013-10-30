@@ -154,7 +154,12 @@ module Quickbooks
     def persist
       order_number = @order["number"]
       order_xref = @xref.lookup(order_number)
-      raise AlreadyPersistedOrderAsNew.new("Got 'order:new' message for order #{order_number} that already has a sales receipt with id: #{order_xref[:id]} and domain: #{order_xref[:id_domain]}") if (order_xref && @message_name == "order:new")
+      case @message_name
+      when "order:new"
+        raise AlreadyPersistedOrderException.new("Got 'order:new' message for order #{order_number} that already has a sales receipt with id: #{order_xref[:id]} and domain: #{order_xref[:id_domain]}") if order_xref
+      when "order:updated"
+        raise NoReceiptForOrderException.new("Got 'order:updated' message for order #{order_number} that has not a sales receipt for it yet.") if !order_xref
+      end
     end
 
     def not_supported!
@@ -165,5 +170,6 @@ module Quickbooks
   class InvalidPlatformException < Exception; end
   class LookupValueNotFoundException < Exception; end
   class UnsupportedException < Exception; end
-  class AlreadyPersistedOrderAsNew < Exception; end
+  class AlreadyPersistedOrderException < Exception; end
+  class NoReceiptForOrderException < Exception; end
 end
