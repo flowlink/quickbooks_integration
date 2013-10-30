@@ -76,8 +76,9 @@ module Quickbooks
       receipt_header.txn_date = txn_date
       receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
 
-      # todo move this to ship
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
+
+      # todo set this by ID!
       receipt_header.payment_method_name = payment_method(payment_method_name)
 
       return receipt_header
@@ -151,7 +152,9 @@ module Quickbooks
     end
 
     def persist
-      raise AlreadyPersistedOrderAsNew.new("Got 'order:new' message for already persisted order") if (@xref.lookup(@order['number']) && @message_name == "order:new")
+      order_number = @order["number"]
+      order_xref = @xref.lookup(order_number)
+      raise AlreadyPersistedOrderAsNew.new("Got 'order:new' message for order #{order_number} that already has a sales receipt with id: #{order_xref[:id]} and domain: #{order_xref[:id_domain]}") if (order_xref && @message_name == "order:new")
     end
 
     def not_supported!
