@@ -32,7 +32,7 @@ describe QuickbooksEndpoint do
             response = JSON.parse(last_response.body)
 
             response["message_id"].should eql "abc"
-            response["notifications"].first["subject"].should eql "persisted order R181807170 in Quickbooks"
+            response["notifications"].first["subject"].should eql "Created Quickbooks sales receipt 43 for order R181807170"
             response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 43 and idDomain = QBO"
           end
         end

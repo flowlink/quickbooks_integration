@@ -18,5 +18,4 @@ TBD
 static_customer_name
 use_static_customer_name
 
-
 class_name only for windows.

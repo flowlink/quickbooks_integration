@@ -1,0 +1,153 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://services.intuit.com/sb/paymentmethod/v2/821557985
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <PaymentMethodQuery xmlns="http://www.intuit.com/sb/cdm/v2"><StartPage>1</StartPage><ChunkSize>20</ChunkSize></PaymentMethodQuery>
+    headers:
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '169'
+      Authorization:
+      - OAuth oauth_body_hash="XY5WBDZJ%2FiVp7bA4r2bPPbbxfgE%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="ReAueKX2b3Gs60QH8dtgp4KygcTgyF9d8X6I5aExcU", oauth_signature="rJnNlUUzckBrQqW54ifY%2FDXg82w%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1383155286", oauth_token="lvprdL8WCVGmBMQat8mosUW0UMLYwAn9mOTS7OMb6ykMI522",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Oct 2013 17:48:06 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Headerquerytime:
+      - '12'
+      Headerdaotime:
+      - '12'
+      Contextinittime:
+      - '7'
+      Response-App-Time:
+      - '100'
+      Response-Id:
+      - 7a07499f-ee19-44c7-a171-4bba867d3c0a
+      Response-Routing-Time:
+      - '140'
+      Content-Length:
+      - '644'
+      Connection:
+      - close
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><RestResponse
+        xmlns="http://www.intuit.com/sb/cdm/v2"><PaymentMethods><PaymentMethod><Id
+        idDomain="QB">9</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">9</ExternalKey><Synchronized>true</Synchronized><Name>E-Check</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">8</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">8</ExternalKey><Synchronized>true</Synchronized><Name>Gift Card</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">7</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">7</ExternalKey><Synchronized>true</Synchronized><Name>Debit
+        Card</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">6</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">6</ExternalKey><Synchronized>true</Synchronized><Name>Visa</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">5</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">5</ExternalKey><Synchronized>true</Synchronized><Name>MasterCard</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">4</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">4</ExternalKey><Synchronized>true</Synchronized><Name>Discover</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">3</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">3</ExternalKey><Synchronized>true</Synchronized><Name>American
+        Express</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">2</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">2</ExternalKey><Synchronized>true</Synchronized><Name>Check</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">17</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-05-01T01:45:09Z</CreateTime><LastUpdatedTime>2013-05-01T01:45:09Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">17</ExternalKey><Synchronized>true</Synchronized><Name>OtherCreditCard</Name><Active>true</Active><Type>OtherCreditCard</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">16</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-04-21T13:49:47Z</CreateTime><LastUpdatedTime>2013-04-21T13:49:47Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">16</ExternalKey><Synchronized>true</Synchronized><Name>Paypal</Name><Active>true</Active><Type>OtherCreditCard</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">15</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-04-01T18:36:52Z</CreateTime><LastUpdatedTime>2013-04-01T18:36:52Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">15</ExternalKey><Synchronized>true</Synchronized><Name>ACH</Name><Active>true</Active><Type>Other</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">14</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2012-11-21T16:54:23Z</CreateTime><LastUpdatedTime>2012-11-21T16:54:23Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">14</ExternalKey><Synchronized>true</Synchronized><Name>wire
+        transfer</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">13</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2012-09-04T22:03:58Z</CreateTime><LastUpdatedTime>2012-09-04T22:03:58Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">13</ExternalKey><Synchronized>true</Synchronized><Name>Wire</Name><Active>true</Active><Type>Cash</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">12</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2012-06-06T01:34:52Z</CreateTime><LastUpdatedTime>2012-06-06T01:34:52Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">12</ExternalKey><Synchronized>true</Synchronized><Name>Square</Name><Active>true</Active><Type>ECheck</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">11</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2012-06-04T14:01:51Z</CreateTime><LastUpdatedTime>2012-06-04T14:01:51Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">11</ExternalKey><Synchronized>true</Synchronized><Name>Online
+        payment</Name><Active>true</Active><Type>ECheck</Type></PaymentMethod><PaymentMethod><Id
+        idDomain="QB">1</Id><SyncToken>1</SyncToken><MetaData><CreateTime>1970-01-01T00:00:00Z</CreateTime><LastUpdatedTime>1970-01-01T00:00:00Z</LastUpdatedTime></MetaData><ExternalKey
+        idDomain="QB">1</ExternalKey><Synchronized>true</Synchronized><Name>Cash</Name><Active>true</Active><Type>Cash</Type></PaymentMethod></PaymentMethods></RestResponse>
+    http_version: 
+  recorded_at: Wed, 30 Oct 2013 17:48:06 GMT
+- request:
+    method: post
+    uri: https://services.intuit.com/sb/paymentmethod/v2/821557985
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <PaymentMethodQuery xmlns="http://www.intuit.com/sb/cdm/v2"><StartPage>2</StartPage><ChunkSize>20</ChunkSize></PaymentMethodQuery>
+    headers:
+      Content-Type:
+      - text/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '169'
+      Authorization:
+      - OAuth oauth_body_hash="4tIP8ggxPaXnOyV76bi5AKn%2FfI0%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="NhobQFISskwS2YSgSsxzgxp0HdJoK2YGaoZClf6FNs", oauth_signature="JyTKzIiH2bZ5jaO%2FWuqsZdFrQFA%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1383155287", oauth_token="lvprdL8WCVGmBMQat8mosUW0UMLYwAn9mOTS7OMb6ykMI522",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 30 Oct 2013 17:48:07 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Headerquerytime:
+      - '11'
+      Headerdaotime:
+      - '12'
+      Contextinittime:
+      - '7'
+      Response-App-Time:
+      - '37'
+      Response-Id:
+      - c275f8bc-d8ea-417e-a42f-497a82064003
+      Response-Routing-Time:
+      - '86'
+      Content-Length:
+      - '138'
+      Connection:
+      - close
+      Content-Type:
+      - text/xml
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><RestResponse
+        xmlns="http://www.intuit.com/sb/cdm/v2"><PaymentMethods/></RestResponse>
+    http_version: 
+  recorded_at: Wed, 30 Oct 2013 17:48:07 GMT
+recorded_with: VCR 2.4.0

@@ -9,7 +9,18 @@ class QuickbooksEndpoint < EndpointBase
   post '/persist' do
     begin
       client = Quickbooks::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
-      client.persist
+      result = client.persist
+      order_number = @message[:payload]["order"]["number"]
+      process_result 200, {
+        'message_id' => @message[:message_id],
+        'notifications' => [
+          {
+            "level" => "info",
+            "subject" => "Created Quickbooks sales receipt #{result[:id]} for order #{order_number}",
+            "description" => "Quickbooks SalesReceipt id = #{result[:id]} and idDomain = #{result[:id_domain]}"
+          }
+        ]
+      }
     rescue Exception => exception
       process_result 500, {
         'message_id' => @message_id,
@@ -17,22 +28,11 @@ class QuickbooksEndpoint < EndpointBase
           {
             "level" => "error",
             "subject" => exception.message,
-            "description" => exception.backtrace
+            "description" => exception.backtrace.join("\n")
           }
         ]
       }
     end
-
-    process_result 200, {
-      'message_id' => @message_id,
-      'notifications' => [
-        {
-          "level" => "info",
-          "subject" => "persisted order #{@order["number"]} in Quickbooks",
-          "description" => "Quickbooks SalesReceipt id = #{@id} and idDomain = #{@idDomain}"
-        }
-      ]
-    }
   end
 
 end
