@@ -148,11 +148,18 @@ module Quickbooks
 
       def persist
         super
-        receipt = receipt_service.create(sales_receipt)
-        @id = receipt.id.value
-        @idDomain = receipt.id.idDomain
-        @xref.add(@order["number"], @id, @idDomain)
+        case @message_name
+          when "order:new"
+            receipt = receipt_service.create(sales_receipt)
+            id = receipt.id.value
+            idDomain = receipt.id.idDomain
+            @xref.add(@order["number"], id, idDomain)
+          when "order:updated"
+          else
+            raise Exception.new("received unsupported message #{@message_name}, either use 'order:new' or 'order:updated'")
+        end
       end
+
     end
   end
 end

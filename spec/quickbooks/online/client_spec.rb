@@ -148,6 +148,7 @@ describe Quickbooks::Online::Client do
   context "#persit" do
 
     context "for a new order" do
+
       it "creates a new sales receipt for a new order" do
         CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
         VCR.use_cassette('online/persist_new_order') do
@@ -155,11 +156,17 @@ describe Quickbooks::Online::Client do
           client.persist.should eql response_hash
         end
       end
+
       it "will raise an exception if the order already exists in Quickbooks" do
         CrossReference.any_instance.stub(:lookup).with("R181807170").and_return({:id => 14, :id_domain => "QBO"})
         expect {
           client.persist
         }.to raise_error(Quickbooks::AlreadyPersistedOrderAsNew, "Got 'order:new' message for order R181807170 that already has a sales receipt with id: 14 and domain: QBO")
+      end
+    end
+
+    context "for an updated order" do
+      it "updates the existing sales receipt" do
       end
     end
 
