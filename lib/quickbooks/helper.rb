@@ -4,6 +4,7 @@ require 'oauth'
 module Quickbooks
   module Helper
 
+    # Not supported on QBO!
     def self.ship_method_names service
       fetch_names_hash service
     end
