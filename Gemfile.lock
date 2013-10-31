@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/ruckus/quickeebooks.git
-  revision: e5ebaf1cb780f586ac2272571331f85ad50d449e
+  revision: 6fd3fbb7ffa3c28bb75c474954ca8b17ba1df64e
   specs:
-    quickeebooks (0.1.20)
+    quickeebooks (0.1.22)
       activemodel
       nokogiri (~> 1.5.9)
       oauth

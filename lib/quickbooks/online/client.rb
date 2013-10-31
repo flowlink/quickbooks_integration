@@ -153,13 +153,23 @@ module Quickbooks
             receipt = receipt_service.create(sales_receipt)
             id = receipt.id.value
             idDomain = receipt.id.idDomain
-            @xref.add(@order["number"], id, idDomain)
+            cross_ref_hash = @xref.add(@order["number"], id, idDomain)
           when "order:updated"
+            order_number = @order["number"]
+            cross_ref_hash = @xref.lookup(order_number)
+            current_receipt = receipt_service.fetch_by_id(cross_ref_hash[:id])
+            receipt = sales_receipt
+            receipt.id = Quickeebooks::Online::Model::Id.new(cross_ref_hash[:id])
+            receipt.sync_token = current_receipt.sync_token
+            receipt = receipt_service.update(receipt)
           else
             raise Exception.new("received unsupported message #{@message_name}, either use 'order:new' or 'order:updated'")
         end
+        {
+          "receipt" => receipt,
+          "xref" => cross_ref_hash
+        }
       end
-
     end
   end
 end

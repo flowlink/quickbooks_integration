@@ -19,8 +19,8 @@ class QuickbooksEndpoint < EndpointBase
           'notifications' => [
             {
               "level" => "info",
-              "subject" => "Created Quickbooks sales receipt #{result[:id]} for order #{order_number}",
-              "description" => "Quickbooks SalesReceipt id = #{result[:id]} and idDomain = #{result[:id_domain]}"
+              "subject" => "Created Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
+              "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
             }
           ]
         }
@@ -30,8 +30,8 @@ class QuickbooksEndpoint < EndpointBase
           'notifications' => [
             {
               "level" => "info",
-              "subject" => "Updated the Quickbooks sales receipt #{result[:id]} for order #{order_number}",
-              "description" => ""
+              "subject" => "Updated the Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
+              "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
             }
           ]
         }
