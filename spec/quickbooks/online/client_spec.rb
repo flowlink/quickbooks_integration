@@ -160,48 +160,12 @@ describe Quickbooks::Online::Client do
 
     context "for an updated order" do
 
-      let(:changed_hash) {
-        {
-          "totals"=> {
-              "item"=> 119.94,
-              "adjustment"=> 15,
-              "tax"=> 5,
-              "shipping"=> 0,
-              "payment"=> 114.95,
-              "order"=> 134.94
-          },
-          "line_items"=> [
-              {
-                  "name"=> "Spree Baseball Jersey",
-                  "sku"=> "SPR-00001",
-                  "external_ref"=> "",
-                  "quantity"=> 3,
-                  "price"=> 19.99,
-                  "variant_id"=> 8,
-                  "options"=> {}
-              },
-              {
-                  "name"=> "Ruby on Rails Baseball Jersey",
-                  "sku"=> "ROR-00004",
-                  "external_ref"=> "",
-                  "quantity"=> 3,
-                  "price"=> 19.99,
-                  "variant_id"=> 20,
-                  "options"=> {
-                      "tshirt-color"=> "Red",
-                      "tshirt-size"=> "Medium"
-                  }
-              }
-          ]
-        }
-      }
-
       let(:message) {
         {
           "message" => "order:updated",
           'message_id' => 'abc',
           :payload => {
-            "order" => Factories.order(changed_hash),
+            "order" => Factories.order(Factories.order_changes),
             "original" => Factories.original,
             "parameters" => Factories.parameters
           }

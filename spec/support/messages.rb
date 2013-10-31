@@ -1,5 +1,42 @@
 module Factories
   class << self
+
+    def order_changes(args = {})
+      {
+        "totals"=> {
+          "item"=> 119.94,
+          "adjustment"=> 15,
+          "tax"=> 5,
+          "shipping"=> 0,
+          "payment"=> 114.95,
+          "order"=> 134.94
+        },
+        "line_items"=> [
+          {
+            "name"=> "Spree Baseball Jersey",
+            "sku"=> "SPR-00001",
+            "external_ref"=> "",
+            "quantity"=> 3,
+            "price"=> 19.99,
+            "variant_id"=> 8,
+            "options"=> {}
+          },
+          {
+            "name"=> "Ruby on Rails Baseball Jersey",
+            "sku"=> "ROR-00004",
+            "external_ref"=> "",
+            "quantity"=> 3,
+            "price"=> 19.99,
+            "variant_id"=> 20,
+            "options"=> {
+                "tshirt-color"=> "Red",
+                "tshirt-size"=> "Medium"
+            }
+          }
+        ]
+      }.merge(args)
+    end
+
     def parameters(token='lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj', secret='s7V4WL7VUvPbEOANIAOtA8rpqeLfr2UUnGo8wxt3', realm='814984455', platform='online')
       [
         {:name => 'quickbooks.access_token', :value => token },

@@ -39,6 +39,33 @@ describe QuickbooksEndpoint do
 
       end
     end
+
+    context "with order:updated" do
+      context "online" do
+        let(:message) {
+          {
+            "message" => "order:updated",
+            :message_id => 'abc',
+            :payload => {
+              "order" => Factories.order(Factories.order_changes),
+              "original" => Factories.original,
+              "parameters" => Factories.parameters
+            }
+          }
+        }
+
+        it "generates a json response with the update info notification" do
+          VCR.use_cassette('online/persist_updated_order') do
+            post '/persist', message.to_json, auth
+            last_response.status.should eql 200
+            response = JSON.parse(last_response.body)
+            response["message_id"].should eql "abc"
+            response["notifications"].first["subject"].should eql "Updated the Quickbooks sales receipt 43 for order R181807170"
+            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 43 and idDomain = QBO"
+          end
+        end
+      end
+    end
   end
 
 end
