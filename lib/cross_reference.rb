@@ -3,7 +3,7 @@ class CrossReference
 
   def initialize
     require "pstore"
-    @xref = PStore.new("data/xref.pstore")
+    @xref = PStore.new("log/xref.pstore")
     @xref.ultra_safe = true
   end
 
