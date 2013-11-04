@@ -32,8 +32,8 @@ describe QuickbooksEndpoint do
             response = JSON.parse(last_response.body)
 
             response["message_id"].should eql "abc"
-            response["notifications"].first["subject"].should eql "Created Quickbooks sales receipt 44 for order R181807170"
-            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 44 and idDomain = QBO"
+            response["notifications"].first["subject"].should eql "Created Quickbooks sales receipt 45 for order R181807170"
+            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 45 and idDomain = QBO"
           end
         end
 
@@ -60,8 +60,8 @@ describe QuickbooksEndpoint do
             last_response.status.should eql 200
             response = JSON.parse(last_response.body)
             response["message_id"].should eql "abc"
-            response["notifications"].first["subject"].should eql "Updated the Quickbooks sales receipt 44 for order R181807170"
-            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 44 and idDomain = QBO"
+            response["notifications"].first["subject"].should eql "Updated the Quickbooks sales receipt 45 for order R181807170"
+            response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 45 and idDomain = QBO"
           end
         end
       end

@@ -1,77 +1,58 @@
 {
-    "name": "quickbooks",
-    "display": "Quickbooks",
-    "description": "Updates Quickbooks with completed order details",
-    "help": "http://guides.spreecommerce.com/integration/endpoints/quickbooks",
-    "icon_url": "quickbooks.png",
-    "services": [
-        {
-            "name": "import",
-            "path": "/import",
-            "description": "Import new order to Quickbooks.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "access_token",
-                        "description": "Quickbooks Access Token"
-                    },
-                    {
-                        "name": "access_secret",
-                        "description": "Quickbooks Access Secret"
-                    },
-                    {
-                        "name": "realm",
-                        "description": "Quickbooks Realm"
-                    }
-                ],
-                "humanizers": {}
-            },
-            "recommends": {
-                "messages": ["order:new"],
-                "identifiers": {
-                    "order_number": "payload.order.actual.number"
-                },
-                "options": {
-                    "retries_allowed": true
-                }
-            },
-            "produces": {
-            }
-        },
-        {
-            "name": "updater",
-            "path": "/update",
-            "description": "Update already imported Order.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "access_token",
-                        "description": "Quickbooks Access Token"
-                    },
-                    {
-                        "name": "access_secret",
-                        "description": "Quickbooks Access Secret"
-                    },
-                    {
-                        "name": "realm",
-                        "description": "Quickbooks Realm"
-                    }
-                ],
-                "humanizers": {}
-            },
-            "recommends": {
-                "messages": [
-                    "order:updated"
-                ],
-                "identifiers": {
-                    "order_number": "payload.order.actual.number"
-                },
-                "options": {
-                    "allow_retries": true
-                }
-            },
-            "produces": {
-            }
+  "name": "quickbooks",
+  "display": "Quickbooks",
+  "description": "Updates Quickbooks with completed order details",
+  "help": "http://guides.spreecommerce.com/integration/quickbooks_integration.html",
+  "icon_url": "quickbooks.png",
+  "services": [
+    {
+      "name": "persist",
+      "path": "/persist",
+      "description": "Import new order to a Quickbooks SalesReceipt or updates existing SalesReceipt.",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks oAUTH Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks oAUTH Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks oAUTH Realm",
+            "data_type": "string"
+          },
+          {
+            "name": "platform",
+            "description": "Quickbooks Client platform (windows or online)",
+            "data_type": "string"
+          },
+          {
+            "name": "ship_method_name",
+            "description": "Mapping from Spree shipping methods to Quickbooks shipping method names",
+            "data_type": "list"
+          },
+          {
+            "name": "deposit_to_account_name",
+            "description": "Quickbooks account name to book the SalesReceipt in.",
+            "data_type": "string"
+          }
+        ],
+        "humanizers": {}
+      },
+      "recommends": {
+        "messages": ["order:new","order:updated"],
+        "identifiers": {},
+        "options": {
+          "retries_allowed": true
         }
-    ]
+      },
+      "produces": {
+      }
+    }
+  ]
 }
