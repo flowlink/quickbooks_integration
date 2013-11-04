@@ -37,7 +37,7 @@ module Factories
       }.merge(args)
     end
 
-    def parameters(token='lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj', secret='s7V4WL7VUvPbEOANIAOtA8rpqeLfr2UUnGo8wxt3', realm='814984455', platform='online')
+    def parameters(token='qyprdeWdq0V9n7kdb2rS6RTfJ87kwsEgA72Ex68BNVcqCTsV', secret='Bg4SfWKJH1z5JC9ltPcnLt96ZrDAXAy6Zp6XQif3', realm='814984455', platform='online')
       [
         {:name => 'quickbooks.access_token', :value => token },
         {:name => 'quickbooks.access_secret', :value => secret },
@@ -53,15 +53,7 @@ module Factories
             "FED EX" => "Federal Express"
           }]
         },
-        {:name => "quickbooks.deposit_to_account_name", :value => [
-          {
-            "master" => "Visa/MC",
-            "visa" => "Visa/MC",
-            "discover" => "Visa/MC",
-            "american_express" => "AmEx",
-            "PayPal" => "PAYPAL"
-          }]
-        },
+        {:name => "quickbooks.deposit_to_account_name", :value => "Undeposited Funds"},
         {:name => "quickbooks.payment_method_name", :value => [
           {
             "master" => "MasterCard",
@@ -71,9 +63,6 @@ module Factories
             "PayPal" => "PayPal"
           }]
         },
-        {:name => "quickbooks.use_param_customer_name", :value => true},
-        {:name => "quickbooks.customer_name", :value => "Web Order"},
-
         {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
         {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
         {:name => "quickbooks.coupon_item", :value => "Coupons"},

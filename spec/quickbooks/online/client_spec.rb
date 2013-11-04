@@ -159,10 +159,12 @@ describe Quickbooks::Online::Client do
 
   context "#sales_receipt" do
     it "creates the sales_receipt" do
-      receipt = client.sales_receipt
-      receipt.should_not be_nil
-      receipt.line_items.count.should eql 5
-      receipt.doc_number.should eql "R181807170"
+      VCR.use_cassette("online/create_sales_receipt") do
+        receipt = client.sales_receipt
+        receipt.should_not be_nil
+        receipt.line_items.count.should eql 5
+        receipt.doc_number.should eql "R181807170"
+      end
     end
   end
 
@@ -173,7 +175,7 @@ describe Quickbooks::Online::Client do
       it "creates a new sales receipt for a new order" do
         CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
         VCR.use_cassette('online/persist_new_order') do
-          response_hash = {:id=>"44", :id_domain=>"QBO"}
+          response_hash = {:id=>"45", :id_domain=>"QBO"}
           client.persist["xref"].should eql response_hash
         end
       end

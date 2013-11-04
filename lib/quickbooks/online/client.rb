@@ -16,6 +16,8 @@ module Quickbooks
         receipt_header.customer_id = customer.id
 
         receipt_header.payment_method_id = find_payment_method_by_name(payment_method(payment_method_name)).id
+        receipt_header.deposit_to_account_id = find_account_by_name(get_config!("quickbooks.deposit_to_account_name")).id
+
         receipt_header
       end
 

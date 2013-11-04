@@ -66,9 +66,6 @@ module Quickbooks
     def build_receipt_header
       receipt_header = create_model("SalesReceiptHeader")
       receipt_header.doc_number = @order['number']
-      receipt_header.deposit_to_account_name = deposit_account_name(payment_method_name)
-      # we do not create the account, will raise an exception when the account does not exist in QB.
-
       receipt_header.total_amount = @order['totals']['order']
       timezone = get_config!("quickbooks.timezone")
 
@@ -107,11 +104,6 @@ module Quickbooks
       address.country_sub_division_code = order_address["state"]
       address.postal_code = order_address["zipcode"]
       return address
-    end
-
-    def deposit_account_name(payment_name)
-      deposit_account_name_mapping = get_config!("quickbooks.deposit_to_account_name")
-      lookup_value!(deposit_account_name_mapping.first, payment_name)
     end
 
     def ship_method_name(shipping_method)
