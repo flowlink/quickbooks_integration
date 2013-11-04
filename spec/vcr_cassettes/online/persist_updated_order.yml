@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qbo.sbfinance.intuit.com/resource/sales-receipt/v2/814984455/43
+    uri: https://qbo.sbfinance.intuit.com/resource/sales-receipt/v2/814984455/44
     body:
       encoding: US-ASCII
       string: ''
@@ -14,9 +14,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="VMG87t37xSHcW65Pou4u23I2axr09VHo28dSz0hSXE",
-        oauth_signature="yat25qcL8iONfZ5q9IFPN028RDM%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227646", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="CXHhJANM7rNGt8yKq9RpYBy27hzFDyTuBG5pWVNbB4",
+        oauth_signature="%2BMyHzqlSymIQ5%2FdmrNjLJI2UfEE%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558906", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -24,7 +24,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:08 GMT
+      - Mon, 04 Nov 2013 09:55:06 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -34,11 +34,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - bd093336-fb8c-4f70-ac86-4eac6e3f4bcc
+      - 17d18772-f498-4b9c-b3ef-4b4b18f024a5
       Via:
-      - 1.1 ipp-gateway-ap01
+      - 1.1 ipp-gateway-ap06
       Content-Length:
-      - '710'
+      - '736'
       Connection:
       - close
       Content-Type:
@@ -47,16 +47,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><SalesReceipt
         xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
-        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id idDomain="QBO">43</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-28T12:27:18-07:00</CreateTime><LastUpdatedTime>2013-10-28T12:27:18-07:00</LastUpdatedTime></MetaData><Header><DocNumber>R181807170</DocNumber><TxnDate>2013-07-30-07:00</TxnDate><CustomerId
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id idDomain="QBO">44</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-04T01:55:05-08:00</CreateTime><LastUpdatedTime>2013-11-04T01:55:05-08:00</LastUpdatedTime></MetaData><Header><DocNumber>R181807170</DocNumber><TxnDate>2013-07-30-07:00</TxnDate><CustomerId
         idDomain="QBO">8</CustomerId><SubTotalAmt>114.95</SubTotalAmt><TotalAmt>114.95</TotalAmt><ToBePrinted>false</ToBePrinted><ToBeEmailed>false</ToBeEmailed><ShipAddr><Line1>7735
         Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><GeoCode>LAT=38.987477,LNG=-77.097917</GeoCode></ShipAddr><ShipMethodId
         idDomain="QBO"/><ShipMethodName>UPS</ShipMethodName><DepositToAccountId idDomain="QBO">4</DepositToAccountId><DepositToAccountName>Undeposited
-        Funds</DepositToAccountName><DiscountTaxable>true</DiscountTaxable></Header><Line><Id>1</Id><Desc>Spree
+        Funds</DepositToAccountName><PaymentMethodId idDomain="QBO">3</PaymentMethodId><PaymentMethodName>Visa</PaymentMethodName><DiscountTaxable>true</DiscountTaxable></Header><Line><Id>1</Id><Desc>Spree
         Baseball Jersey</Desc><Amount>39.98</Amount><Taxable>false</Taxable><ItemId>10</ItemId><UnitPrice>19.99</UnitPrice><Qty>2</Qty></Line><Line><Id>2</Id><Desc>Ruby
         on Rails Baseball Jersey</Desc><Amount>59.97</Amount><Taxable>false</Taxable><ItemId>11</ItemId><UnitPrice>19.99</UnitPrice><Qty>3</Qty></Line><Line><Id>3</Id><Desc>Shipping</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>12</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line><Line><Id>4</Id><Desc>Shipping</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>12</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line><Line><Id>5</Id><Desc>North
         America 5.0</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>13</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line></SalesReceipt>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:07 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:06 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/customers/v2/814984455
@@ -75,9 +75,9 @@ http_interactions:
       Content-Length:
       - '64'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="rcJYQuhBOUWBUgkrdplVK1hCpyopxLrZ2p9VXAjDPc",
-        oauth_signature="YF%2BWoHWAwWwFCu9qKTJ%2Fj9Uo21g%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227647", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="0zr6ANLvxU0yUQxomBlW2YnWCLiwzw0mYusONP1sTY",
+        oauth_signature="cniF8%2FvETOYm7YCFMLsUHt2YiLg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558906", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -85,7 +85,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:09 GMT
+      - Mon, 04 Nov 2013 09:55:07 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -95,9 +95,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 5dbe0e39-53bc-499f-88af-9edc2ac7724a
+      - 446fef9d-ec6d-40a2-aa02-650661c481a6
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap05
       Content-Length:
       - '650'
       Connection:
@@ -116,7 +116,62 @@ http_interactions:
         xsi:type="StringTypeCustomField"><DefinitionId>Preferred Delivery Method</DefinitionId><Value>EMAIL</Value></CustomField><ShowAs>Brian
         Quinn</ShowAs><OpenBalance><Amount>0</Amount></OpenBalance></Customer></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:08 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:08 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/payment-methods/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Visa&PageNum=1&ResultsPerPage=20
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '57'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="VOjh6iP0wOQIVBVwcKArefTatNp8VlHYDi13rfjJb0",
+        oauth_signature="DCmRZxE7rFxiUyLoRmAtoFRDe00%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558908", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 04 Nov 2013 09:55:08 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.153'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 49691da3-5a92-4b24-aab4-899a1e6fb0ed
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '364'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="PaymentMethods"><PaymentMethod><Id idDomain="QBO">3</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Visa</Name><Type>CREDIT_CARD</Type></PaymentMethod></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Mon, 04 Nov 2013 09:55:09 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
@@ -135,9 +190,9 @@ http_interactions:
       Content-Length:
       - '57'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="mCgrpRIOpug1P2na0yV7b7dzqXIc6hKTOBGF2qjDiKo",
-        oauth_signature="ePiyBCn1XhpOolCjvJWHFaLiaYI%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227648", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="loS8dK01Sfh7np9epObksASPh5e9VdUZqZ5w8Gos",
+        oauth_signature="vtgfLYWsDmTQX%2B5NdyJ2eaWt%2F0c%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558909", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -145,7 +200,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:09 GMT
+      - Mon, 04 Nov 2013 09:55:10 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -155,9 +210,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - e757c9ee-8634-41ba-9cb6-21aab4c8ec66
+      - 4f702e03-7b63-4406-a04a-08ff162a2440
       Via:
-      - 1.1 ipp-gateway-ap02
+      - 1.1 ipp-gateway-ap01
       Content-Length:
       - '364'
       Connection:
@@ -171,7 +226,7 @@ http_interactions:
         xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:08 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:10 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
@@ -190,9 +245,9 @@ http_interactions:
       Content-Length:
       - '61'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="45sYpKvFCwAFaeZUfJXhsC2oHbvN6Mz77GVoihDpEOs",
-        oauth_signature="1TXFL44VK0DZn3Cwu%2B4kU1C9HN8%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227648", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="4nFhV4wd9nlWVkrtmAyRKqrRQosfXg5CdEwokGk05M",
+        oauth_signature="YxLhOkz%2BQG7bzZLsqwzuIDhKgwY%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558910", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -200,7 +255,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:10 GMT
+      - Mon, 04 Nov 2013 09:55:11 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -210,9 +265,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 36c7bed9-bdc1-4489-95f4-a73646eda57b
+      - 1660a417-d877-49a5-ac73-f65b61838ca6
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap02
       Content-Length:
       - '440'
       Connection:
@@ -229,7 +284,7 @@ http_interactions:
         idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
         idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:09 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:11 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
@@ -248,9 +303,9 @@ http_interactions:
       Content-Length:
       - '57'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="fxQ63YSZvCTChZjEAXVG5d3UhjqxKLkbMES7sLU1KM",
-        oauth_signature="eNHtRYF70F6L7LoNvsjAnNR2PcY%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227649", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="namgxSpDza8zxtmIWPtdQ8slGeu9TUavwgeyAcxD4M",
+        oauth_signature="blmnj7MzM8LZ1EGlOTTxiR0ZxN8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558912", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -258,7 +313,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:10 GMT
+      - Mon, 04 Nov 2013 09:55:12 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -268,7 +323,7 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 3da9badb-ef84-4900-a0a3-d9e5f715f5f0
+      - 41b1394c-026e-48f8-b511-445298f642ea
       Via:
       - 1.1 ipp-gateway-ap04
       Content-Length:
@@ -284,7 +339,7 @@ http_interactions:
         xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:10 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:13 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
@@ -303,9 +358,9 @@ http_interactions:
       Content-Length:
       - '61'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="rUO0KFpKRqdlfTtfB0ypW9xsjkTCNFl48BlbzubbcQY",
-        oauth_signature="ZojNMo9qlFJh0lRzzdSI59QRXWs%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227650", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="dgRPWvL3rsBJMkoh6CpWX2YbIHqtDcbi99YOClaz8",
+        oauth_signature="CVLMWU%2F8KfSOuZXZmnmNom%2BCW94%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558913", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -313,7 +368,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:11 GMT
+      - Mon, 04 Nov 2013 09:55:13 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -323,9 +378,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - b6dcd2df-7949-4f2b-864d-5b03886c923b
+      - 2bac2920-cecf-4fb4-9a76-17a121c5b177
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap04
       Content-Length:
       - '447'
       Connection:
@@ -342,7 +397,7 @@ http_interactions:
         idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
         idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:10 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:14 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
@@ -361,9 +416,9 @@ http_interactions:
       Content-Length:
       - '57'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="LFag2NOpjWU6BkYZxBt45nuxLWkmGbc4MixwNu1uxzc",
-        oauth_signature="u0CemDPn3DzyceAofDe6Op7f5Ww%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227650", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="fJhJvFcmhhc5ms1o1A6Q7yZLX4xZh4JM0XWf9T4",
+        oauth_signature="fTWHKKd%2BpjQhEUUYuPFjnwJrNDQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558914", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -371,7 +426,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:12 GMT
+      - Mon, 04 Nov 2013 09:55:14 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -381,7 +436,7 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 2549287b-bdd8-4e22-b43c-e215b5cf9dd4
+      - 3a25c959-8bee-40bc-9c4c-be315d2d849d
       Via:
       - 1.1 ipp-gateway-ap06
       Content-Length:
@@ -397,7 +452,7 @@ http_interactions:
         xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:11 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:15 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
@@ -416,9 +471,9 @@ http_interactions:
       Content-Length:
       - '68'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Y0qtuWdGZ1Sqjimx05JAzRMeiAiWBopxzIqYPaHajc",
-        oauth_signature="unzpFsZLD3Pr8%2F%2FbXAOj8PLzeP4%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227651", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="ZNAXwSmqV2PIpNGZ1mVilVYhKO3oTI9hgpPqcPlbFQ",
+        oauth_signature="rwPbOFtwyfZx05JiFokHvYCbcTk%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558915", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -426,7 +481,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:12 GMT
+      - Mon, 04 Nov 2013 09:55:15 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -436,120 +491,7 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 676531b5-23f6-41ba-b494-9a715b2bd925
-      Via:
-      - 1.1 ipp-gateway-ap04
-      Content-Length:
-      - '432'
-      Connection:
-      - close
-      Content-Type:
-      - application/xml;charset=UTF-8
-    body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
-        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
-        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:type="Items"><Item><Id idDomain="QBO">12</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-25T06:08:14-07:00</CreateTime><LastUpdatedTime>2013-10-25T06:08:14-07:00</LastUpdatedTime></MetaData><Name>Shipping
-        Charges</Name><Desc>Shipping</Desc><Taxable>true</Taxable><UnitPrice><Amount>5</Amount></UnitPrice><IncomeAccountRef><AccountId
-        idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
-        idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
-    http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:12 GMT
-- request:
-    method: post
-    uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
-    body:
-      encoding: UTF-8
-      string: Filter=NAME+%3AEQUALS%3A+Sales&PageNum=1&ResultsPerPage=1
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '57'
-      Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="YsasX7OneWocIRlxWC5oNUSaANck9JQq47T7HWak",
-        oauth_signature="%2Bbz6D7I19oAJT5QQWG7d%2BnRzV7g%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227652", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 31 Oct 2013 13:54:13 GMT
-      Server:
-      - Apache/2.2.22 (Unix)
-      Qbo-Version:
-      - '67.153'
-      Cache-Control:
-      - max-age=0, no-cache, no-store, must-revalidate, private
-      Expires:
-      - '0'
-      Intuit-Tid:
-      - 488d8b84-5bd3-454a-9796-9fa4a3ae2ee8
-      Via:
-      - 1.1 ipp-gateway-ap04
-      Content-Length:
-      - '364'
-      Connection:
-      - close
-      Content-Type:
-      - application/xml;charset=UTF-8
-    body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
-        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
-        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
-    http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:12 GMT
-- request:
-    method: post
-    uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
-    body:
-      encoding: UTF-8
-      string: Filter=NAME+%3AEQUALS%3A+Shipping+Charges&PageNum=1&ResultsPerPage=1
-    headers:
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-      User-Agent:
-      - OAuth gem v0.4.7
-      Content-Length:
-      - '68'
-      Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="ZWztVi6qTuhrYhQdytqrECahiK0g9DMHe3ExFwEj8",
-        oauth_signature="%2FI2s7m%2BocGX2ELx%2BItbrxNsAgkc%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227652", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 31 Oct 2013 13:54:14 GMT
-      Server:
-      - Apache/2.2.22 (Unix)
-      Qbo-Version:
-      - '67.153'
-      Cache-Control:
-      - max-age=0, no-cache, no-store, must-revalidate, private
-      Expires:
-      - '0'
-      Intuit-Tid:
-      - f38ea885-6a55-46fd-b759-53c486dfc9fa
+      - 00cf3058-549f-458c-a563-a37a7cdfc1d7
       Via:
       - 1.1 ipp-gateway-ap03
       Content-Length:
@@ -568,7 +510,7 @@ http_interactions:
         idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
         idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:13 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:16 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
@@ -587,9 +529,9 @@ http_interactions:
       Content-Length:
       - '57'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="mJl5EXJXA7sgWJnhn2aFgkkhW0AMEEoml00kEpQAw",
-        oauth_signature="U94XhO8kCUTQTZHG6YBWYchEdFQ%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227653", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="w3U17XZMjq4RiAFK7YfuKzYT1cVrTM9svxZHh1ML5AU",
+        oauth_signature="cgaFIReZj7ni7kE3NotONhdJLdg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558916", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -597,7 +539,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:14 GMT
+      - Mon, 04 Nov 2013 09:55:16 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -607,9 +549,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - a92d6757-2cdf-4ebd-862a-3dcaf9da4a8e
+      - 1e1573b1-93d7-4c95-a121-001a323922e0
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap03
       Content-Length:
       - '364'
       Connection:
@@ -623,7 +565,120 @@ http_interactions:
         xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:14 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:17 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Shipping+Charges&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '68'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="XbQNlutjoWvRu0F1jjFsrq2ENWxU8Awhq2uG871htG8",
+        oauth_signature="zf2uLJlJ%2Bfj9GzUHhRcAysFY%2Fg0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558917", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 04 Nov 2013 09:55:17 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.153'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - a8e0b890-f239-48ac-bf4c-d886600cbb65
+      Via:
+      - 1.1 ipp-gateway-ap02
+      Content-Length:
+      - '432'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Items"><Item><Id idDomain="QBO">12</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-25T06:08:14-07:00</CreateTime><LastUpdatedTime>2013-10-25T06:08:14-07:00</LastUpdatedTime></MetaData><Name>Shipping
+        Charges</Name><Desc>Shipping</Desc><Taxable>true</Taxable><UnitPrice><Amount>5</Amount></UnitPrice><IncomeAccountRef><AccountId
+        idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
+        idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Mon, 04 Nov 2013 09:55:18 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/accounts/v2/814984455
+    body:
+      encoding: UTF-8
+      string: Filter=NAME+%3AEQUALS%3A+Sales&PageNum=1&ResultsPerPage=1
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '57'
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="2z9g7P3vyrdfwFp6hwToqNuN2kKmCTTkOkRNrAQ3O4",
+        oauth_signature="WnZdDuRhOwK4DCo7GWAxQi7rV7Q%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558918", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 04 Nov 2013 09:55:19 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.153'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 68c6953a-1819-4ac5-b0b8-f76b5a369e24
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '364'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><qbo:SearchResults
+        xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><qbo:CdmCollections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="Accounts"><Account><Id idDomain="QBO">1</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-07T05:49:40-07:00</CreateTime><LastUpdatedTime>2013-10-07T05:49:40-07:00</LastUpdatedTime></MetaData><Name>Sales</Name><Subtype>SalesOfProductIncome</Subtype></Account></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
+    http_version: 
+  recorded_at: Mon, 04 Nov 2013 09:55:19 GMT
 - request:
     method: post
     uri: https://qbo.sbfinance.intuit.com/resource/items/v2/814984455
@@ -642,9 +697,9 @@ http_interactions:
       Content-Length:
       - '70'
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="0MYmTgxkmoCP1sgwLrznjiH5ClHjzDZF0mzWpgmwc",
-        oauth_signature="HJdEPE9c4hQDTN0qiaEgUaWyeys%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1383227654", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="OrEC4xwK6EZ2iUCGG6niC0cidBFttJYEiR8PJrMoUFk",
+        oauth_signature="yLekRGctz%2BUn5XSCH5krEB3XGs0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1383558919", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -652,7 +707,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:15 GMT
+      - Mon, 04 Nov 2013 09:55:20 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -662,9 +717,9 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 3daad81f-7649-4a8f-9e4b-56120ff63a4d
+      - 0855dbad-6054-4819-9a4b-deb9ca607d62
       Via:
-      - 1.1 ipp-gateway-ap01
+      - 1.1 ipp-gateway-ap02
       Content-Length:
       - '445'
       Connection:
@@ -681,23 +736,23 @@ http_interactions:
         idDomain="QBO">1</AccountId></IncomeAccountRef><ExpenseAccountRef><AccountId
         idDomain="QBO">49</AccountId></ExpenseAccountRef></Item></qbo:CdmCollections><qbo:Count>1</qbo:Count><qbo:CurrentPage>1</qbo:CurrentPage></qbo:SearchResults>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:14 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:20 GMT
 - request:
     method: post
-    uri: https://qbo.sbfinance.intuit.com/resource/sales-receipt/v2/814984455/43
+    uri: https://qbo.sbfinance.intuit.com/resource/sales-receipt/v2/814984455/44
     body:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <SalesReceipt xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
-        <Id>43</Id>
+        <Id>44</Id>
         <SyncToken>0</SyncToken>
         <DocNumber>R181807170</DocNumber>
         <Header>
         <DocNumber>R181807170</DocNumber>
         <TxnDate>2013-07-30T14:19:05+0000</TxnDate>
         <CustomerId idDomain="QBO">8</CustomerId>
-        <TotalAmt>139.94</TotalAmt>
+        <TotalAmt>134.94</TotalAmt>
         <DepositToAccountName>Visa/MC</DepositToAccountName>
         <ShipAddr>
         <Line1>7735 Old Georgetown Rd</Line1>
@@ -708,6 +763,7 @@ http_interactions:
         <PostalCode>20814</PostalCode>
         </ShipAddr>
         <ShipMethodName>UPS</ShipMethodName>
+        <PaymentMethodId idDomain="QBO">3</PaymentMethodId>
         <PaymentMethodName>Visa</PaymentMethodName>
         </Header>
         <Line>
@@ -756,11 +812,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '1486'
+      - '1538'
       Authorization:
-      - OAuth oauth_body_hash="p8l2Pq1UNHqLcDL8WQ5GvCtqr30%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="AfN5NkbnyOqWdWd0GkOYRB3sXoEVgTDCa4o60lE0sw", oauth_signature="kKkCNMiFoW4nu3rVhiVEvRdkUjs%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1383227654", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+      - OAuth oauth_body_hash="crdAfiKSMluMVxWj4iEIOUQ0XwY%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="30svgbMzmRPxiDcXg181MAGPOrRfGLjgEZwmeR4VKac", oauth_signature="VFPXg6XXZpvvtQLIl2ezt%2B%2FO7mY%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1383558920", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
         oauth_version="1.0"
   response:
     status:
@@ -768,7 +824,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 31 Oct 2013 13:54:16 GMT
+      - Mon, 04 Nov 2013 09:55:21 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -778,11 +834,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 793770ee-754d-4b1e-ba8c-34b998b0e059
+      - f3a8ac37-f6b8-4e40-993b-f485a7e016b1
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap01
       Content-Length:
-      - '716'
+      - '733'
       Connection:
       - close
       Content-Type:
@@ -791,14 +847,14 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><SalesReceipt
         xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1"
-        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id idDomain="QBO">43</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-10-28T12:27:18-07:00</CreateTime><LastUpdatedTime>2013-10-31T06:54:16-07:00</LastUpdatedTime></MetaData><Header><DocNumber>R181807170</DocNumber><TxnDate>2013-07-30-07:00</TxnDate><CustomerId
+        xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id idDomain="QBO">44</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-11-04T01:55:05-08:00</CreateTime><LastUpdatedTime>2013-11-04T01:55:21-08:00</LastUpdatedTime></MetaData><Header><DocNumber>R181807170</DocNumber><TxnDate>2013-07-30-07:00</TxnDate><CustomerId
         idDomain="QBO">8</CustomerId><SubTotalAmt>134.94</SubTotalAmt><TotalAmt>134.94</TotalAmt><ToBePrinted>false</ToBePrinted><ToBeEmailed>false</ToBeEmailed><ShipAddr><Line1>7735
         Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><GeoCode>LAT=38.987477,LNG=-77.097917</GeoCode></ShipAddr><ShipMethodId
         idDomain="QBO"/><ShipMethodName>UPS</ShipMethodName><DepositToAccountId idDomain="QBO">4</DepositToAccountId><DepositToAccountName>Undeposited
-        Funds</DepositToAccountName><DiscountTaxable>true</DiscountTaxable></Header><Line><Id>6</Id><Desc>Spree
+        Funds</DepositToAccountName><PaymentMethodId idDomain="QBO">3</PaymentMethodId><PaymentMethodName>Visa</PaymentMethodName><DiscountTaxable>true</DiscountTaxable></Header><Line><Id>6</Id><Desc>Spree
         Baseball Jersey</Desc><Amount>59.97</Amount><Taxable>false</Taxable><ItemId>10</ItemId><UnitPrice>19.99</UnitPrice><Qty>3</Qty></Line><Line><Id>7</Id><Desc>Ruby
         on Rails Baseball Jersey</Desc><Amount>59.97</Amount><Taxable>false</Taxable><ItemId>11</ItemId><UnitPrice>19.99</UnitPrice><Qty>3</Qty></Line><Line><Id>8</Id><Desc>Shipping</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>12</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line><Line><Id>9</Id><Desc>Shipping</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>12</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line><Line><Id>10</Id><Desc>North
         America 5.0</Desc><Amount>5.00</Amount><Taxable>false</Taxable><ItemId>13</ItemId><UnitPrice>5</UnitPrice><Qty>1</Qty></Line></SalesReceipt>
     http_version: 
-  recorded_at: Thu, 31 Oct 2013 13:54:16 GMT
+  recorded_at: Mon, 04 Nov 2013 09:55:22 GMT
 recorded_with: VCR 2.4.0
