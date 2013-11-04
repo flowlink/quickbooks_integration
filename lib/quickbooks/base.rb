@@ -48,6 +48,10 @@ module Quickbooks
       @account_service ||= create_service("Account")
     end
 
+    def payment_method_service
+      @payment_method_service ||= create_service("PaymentMethod")
+    end
+
     def create_service(service_name)
       service = "Quickeebooks::#{platform}::Service::#{service_name}".constantize.new
       service.access_token = access_token
@@ -78,7 +82,6 @@ module Quickbooks
 
       receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
 
-      # todo set this by ID!
       receipt_header.payment_method_name = payment_method(payment_method_name)
 
       return receipt_header

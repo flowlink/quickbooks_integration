@@ -39,6 +39,27 @@ describe Quickbooks::Online::Client do
     end
   end
 
+  context "#find_payment_by_name" do
+
+    it "will return a Quickeebooks::Online::Model::PaymentMethod instance" do
+      VCR.use_cassette('online/payment_method_found') do
+        payment_method = client.find_payment_method_by_name("Visa")
+        payment_method.class.should eql Quickeebooks::Online::Model::PaymentMethod
+        payment_method.id.class.should eql Quickeebooks::Online::Model::Id
+        payment_method.id.value.should eql "3"
+        payment_method.name.should eql "Visa"
+      end
+    end
+
+    it "will raise an exception when the account name is not found" do
+      VCR.use_cassette('online/payment_method_not_found_found') do
+        expect {
+          client.find_payment_method_by_name("Blaat")
+          }.to raise_error(Exception, "No PaymentMethod 'Blaat' defined in Quickbooks")
+      end
+    end
+  end
+
   context "#find_item_by_sku" do
     it "will return nil if no item was found" do
       VCR.use_cassette('online/find_item_by_sku_with_no_result') do
@@ -152,7 +173,7 @@ describe Quickbooks::Online::Client do
       it "creates a new sales receipt for a new order" do
         CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
         VCR.use_cassette('online/persist_new_order') do
-          response_hash = {:id=>"43", :id_domain=>"QBO"}
+          response_hash = {:id=>"44", :id_domain=>"QBO"}
           client.persist["xref"].should eql response_hash
         end
       end
@@ -182,6 +203,6 @@ describe Quickbooks::Online::Client do
         end
       end
     end
-
   end
+
 end

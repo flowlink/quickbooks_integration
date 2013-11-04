@@ -14,6 +14,8 @@ module Quickbooks
          customer = create_customer
         end
         receipt_header.customer_id = customer.id
+
+        receipt_header.payment_method_id = find_payment_method_by_name(payment_method(payment_method_name)).id
         receipt_header
       end
 
@@ -123,6 +125,14 @@ module Quickbooks
 
       def find_customer_by_name(name)
         list = customer_service.list(["NAME :EQUALS: #{name}"]).entries
+        list.entries.first
+      end
+
+      def find_payment_method_by_name(name)
+        list = payment_method_service.list(["NAME :EQUALS: #{name}"]).entries
+        if list.count == 0
+          raise Exception.new("No PaymentMethod '#{name}' defined in Quickbooks")
+        end
         list.entries.first
       end
 

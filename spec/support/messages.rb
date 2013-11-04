@@ -73,6 +73,7 @@ module Factories
         },
         {:name => "quickbooks.use_param_customer_name", :value => true},
         {:name => "quickbooks.customer_name", :value => "Web Order"},
+
         {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
         {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
         {:name => "quickbooks.coupon_item", :value => "Coupons"},
