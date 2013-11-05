@@ -1,7 +1,10 @@
 require "sinatra/base"
 require "sinatra/json"
 require "endpoint_base"
-Dir['./lib/**/*.rb'].each { |f| require f }
+
+require "quickbooks"
+
+#Dir['./lib/**/*.rb'].each { |f| require f }
 
 class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
