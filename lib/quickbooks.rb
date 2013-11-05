@@ -1,3 +1,5 @@
+$LOAD_PATH.unshift File.dirname(__FILE__)
+
 require "adjustment"
 require "cross_reference"
 require "quickbooks/base"
