@@ -40,6 +40,46 @@
             "name": "deposit_to_account_name",
             "description": "Quickbooks account name to book the SalesReceipt in.",
             "data_type": "string"
+          },
+          {
+            "name": "payment_method_name",
+            "description": "Mapping from Spree payment method names to Quickbooks payment method names",
+            "data_type": "list"
+          },
+          {
+            "name": "shipping_item",
+            "description": "Quickbooks Item SKU to use for shipping line items",
+            "data_type": "string"
+          },
+          {
+            "name": "tax_item",
+            "description": "Quickbooks Item SKU to use for tax line items",
+            "data_type": "string"
+          },
+          {
+            "name": "coupon_item",
+            "description": "Quickbooks Item SKU to use for coupon line items",
+            "data_type": "string"
+          },
+          {
+            "name": "discount_item",
+            "description": "Quickbooks Item SKU to use for discount line items",
+            "data_type": "string"
+          },
+          {
+            "name": "account_name",
+            "description": "Quickbooks Income Account name for the items, defaults to 'Sales'",
+            "data_type": "string"
+          },
+          {
+            "name": "timezone",
+            "description": "The timezone",
+            "data_type": "string"
+          },
+          {
+            "name": "receipt_header_class_name",
+            "description": "Quickbooks Class name for SalesReceipt, only supported by Quickbooks Desktop!",
+            "data_type": "string"
           }
         ],
         "humanizers": {}
