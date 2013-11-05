@@ -36,7 +36,7 @@ class OrderImporter < Client
     end
     h.deposit_to_account_name = deposit_to_account_name(payment_name)
 
-    h.class_name = "DRTC:LBT"
+    h.class_name = @order["customer_type"]
 
     create_account(h.deposit_to_account_name)
 
