@@ -81,17 +81,13 @@
             "description": "Quickbooks Class name for SalesReceipt, only supported by Quickbooks Desktop!",
             "data_type": "string"
           }
-        ],
-        "humanizers": {}
+        ]
       },
       "recommends": {
         "messages": ["order:new","order:updated"],
-        "identifiers": {},
         "options": {
           "retries_allowed": true
         }
-      },
-      "produces": {
       }
     }
   ]
