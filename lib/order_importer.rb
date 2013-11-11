@@ -25,6 +25,14 @@ class OrderImporter < Client
     raise "Total Fail <0" if @order['total'].to_f < 0
     raise "No Web Order Customer Defined in Quickbooks" unless quickbooks_customers.include?("Web Order")
 
+    xref = CrossReference.new
+    reference = xref.lookup(@order['number'])
+    unless reference.nil?
+       order_updater = OrderUpdater.new(@payload, @message_id, @config)
+       result = order_updater.consume
+    end
+    return result unless reference.nil?
+
     h = Quickeebooks::Windows::Model::SalesReceiptHeader.new
     h.doc_number = @order['number']
     payment_name = "None"
