@@ -77,7 +77,8 @@ class Client
        "visa" => "Visa/MC",
        "american_express" => "AmEx",
       "discover" => "Visa/MC",
-      "PayPal" => "PAYPAL" }
+      "PayPal" => "PAYPAL",
+      "Purchase Order" => "Purchase Orders" }
       return map[name] || "OtherCreditCard"
   end
 
