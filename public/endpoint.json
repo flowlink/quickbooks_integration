@@ -70,11 +70,6 @@
             "name": "timezone",
             "description": "The timezone",
             "data_type": "string"
-          },
-          {
-            "name": "receipt_header_class_name",
-            "description": "Quickbooks Class name for SalesReceipt, only supported by Quickbooks Desktop!",
-            "data_type": "string"
           }
         ]
       },

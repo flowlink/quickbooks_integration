@@ -57,8 +57,7 @@ module Factories
         {:name => "quickbooks.coupon_item", :value => "Coupons"},
         {:name => "quickbooks.discount_item", :value => "Discount"},
         {:name => "quickbooks.account_name", :value => "Sales"},
-        {:name => "quickbooks.timezone", :value => "EST"},
-        {:name => "quickbooks.receipt_header_class_name", :value => "DRTL LTS"}
+        {:name => "quickbooks.timezone", :value => "EST"}
       ]
     end
 
