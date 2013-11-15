@@ -41,8 +41,7 @@ class OrderUpdater < Client
     xref = CrossReference.new
     reference = xref.lookup(@order['number'])
     if reference.nil?
-       order_import = OrderImporter.new(@payload, @message_id, @config)
-       result = order_import.consume
+       raise "This Order Hasn't been Imported Yet"
     end
     return result if reference.nil?
 
