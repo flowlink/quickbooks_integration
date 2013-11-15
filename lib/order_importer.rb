@@ -115,19 +115,22 @@ class OrderImporter < Client
     end
 
     r.header = h
+    begin
+      o = receipt_service.create(r)
+      @id = o.success.object_ref.id.value
+      @idDomain = o.success.object_ref.id.idDomain
+      xref = CrossReference.new
+      xref.add(@order["number"], @id, @idDomain)
 
-    o = receipt_service.create(r)
-    @id = o.success.object_ref.id.value
-    @idDomain = o.success.object_ref.id.idDomain
-    xref = CrossReference.new
-    xref.add(@order["number"], @id, @idDomain)
-    
-    {
-      'message_id' => @message_id,
-      "delay" => 6000,
-      "update_url" => "/status/#{@idDomain}/#{@id}",
-      "owner" => "Quickbooks::OrderImporter"
-    }
+      return {
+        'message_id' => @message_id,
+        "delay" => 6000,
+        "update_url" => "/status/#{@idDomain}/#{@id}",
+        "owner" => "Quickbooks::OrderImporter"
+      }
+    rescue
+
+    end
   end
 
   def create_item(sku, desc, price, cost_price, count_on_hand, product_type="Product")

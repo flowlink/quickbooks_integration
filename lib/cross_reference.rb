@@ -2,7 +2,7 @@ class CrossReference
   attr_accessor :xref
   def initialize
     require "pstore"
-    @xref = PStore.new("data/xref.pstore")
+    @xref = PStore.new("data/xref.pstore", true)
     @xref.ultra_safe = true
   end
 
