@@ -1,4 +1,3 @@
-
 # Quickbooks Online Integration
 
 ## Overview
@@ -23,13 +22,7 @@ To get started, you will need to connect the hub to your Quickbooks Online (QBO)
 | quickbooks.access_secret | oAUTH Access Secret Key | dj20492dhjkdjeh2838w7 |
 | quickbooks.realm | The realm code that QBO need | 82341 |
 | quickbooks.deposit_to_account_name | The account in QBO where all the sales receipts are booked on | "web sales" |
-| quickbooks.payment_method_name | the payment method mapping that maps the storefront payment name to the payment name in QBO  | ```{
-            "master" => "MasterCard",
-            "visa" => "Visa",
-            "american_express" => "AmEx",
-            "discover" => "Discover",
-            "PayPal" => "PayPal"
-          } ```|
+| quickbooks.payment_method_name | the payment method mapping that maps the storefront payment name to the payment name in QBO  |{ "master" => "MasterCard", "visa" => "Visa", "american_express" => "AmEx", "discover" => "Discover", "PayPal" => "PayPal"} |
 | quickbooks.shipping_item | The account to book the sales receipt shipping line items on. | Shipping |
 | quickbooks.tax_item | The account to book the sales receipt tax line items on. | Tax |
 | quickbooks.coupon_item | The account to book the sales receipt coupon codes line items on. | Coupons |
