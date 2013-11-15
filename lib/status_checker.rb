@@ -34,7 +34,7 @@ class StatusChecker < Client
 
   def get_errors
     begin
-      return status_service.list().entries.select{|e| e.NgIdSet.NgObjectType == "SalesReceipt" and e.NgIdSet.NgId == @id}.collect{|e| "#{e.stateCode} - #{e.MessageDesc} - #{e.StateCode} - #{e.MessageCode}"}.join(", ")
+      return status_service.list().entries.select{|e| e.NgIdSet.NgObjectType == "SalesReceipt" and e.NgIdSet.NgId == @id}.collect{|e| "#{e.StateDesc} - #{e.MessageDesc} - #{e.StateCode} - #{e.MessageCode}"}.join(", ")
     rescue 
       return "No Error Information Found"
     end
