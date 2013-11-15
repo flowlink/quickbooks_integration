@@ -29,7 +29,7 @@ module Quickbooks
         line_items = []
 
         @order["line_items"].each do |line_item|
-          sales_receipt_line_item = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+          sales_receipt_line_item = Quickeebooks::Online::Model::SalesReceiptLineItem.new
 
           sku = line_item["sku"]
           desc = line_item["name"]
@@ -83,7 +83,7 @@ module Quickbooks
       end
 
       def adjustment_to_line(adjustment, adjustment_sku)
-        line = Quickeebooks::Windows::Model::SalesReceiptLineItem.new
+        line = Quickeebooks::Online::Model::SalesReceiptLineItem.new
         sku = adjustment_sku
         desc = adjustment["label"]
         price = adjustment["amount"]
@@ -119,7 +119,7 @@ module Quickbooks
         item = create_model("Item")
         item.name = sku
         item.desc = desc
-        item.unit_price = Quickeebooks::Windows::Model::Price.new(price)
+        item.unit_price = Quickeebooks::Online::Model::Price.new(price)
         item.account_reference = account
         item.taxable = "true"
         return item_service.create(item)

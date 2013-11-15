@@ -14,14 +14,8 @@ describe Quickbooks::Base do
   }
 
   context ".client" do
-    it "raise InvalidPlatformException when config has invalid platform" do
-      expect {
-        Quickbooks::Base.client({},"",{"quickbooks.platform" => "smoke"},message["message"])
-      }.to raise_error(Quickbooks::InvalidPlatformException, /We cannot create the/)
-    end
-
     it "initializes the correct platform client" do
-      client = Quickbooks::Base.client({},"",{"quickbooks.platform" => "online"}, message["message"])
+      client = Quickbooks::Base.client({},"",{}, message["message"])
       client.class.should eql Quickbooks::Online::Client
     end
   end
@@ -107,16 +101,16 @@ describe Quickbooks::Base do
   context "#build_receipt_header" do
     let(:config_param) {config(message)}
     let(:client_base) {
-      Quickbooks::Base.new(message[:payload],"",config_param,"Windows","order:new")
+      Quickbooks::Base.new(message[:payload],"",config_param,"Online","order:new")
     }
 
     it "set the correct vars" do
       receipt_header = client_base.build_receipt_header
-      receipt_header.class.should eql Quickeebooks::Windows::Model::SalesReceiptHeader
+      receipt_header.class.should eql Quickeebooks::Online::Model::SalesReceiptHeader
       receipt_header.doc_number.should eql "R181807170"
       receipt_header.total_amount.should eql 114.95
-      receipt_header.shipping_address.class.should eql Quickeebooks::Windows::Model::Address
-      receipt_header.ship_method_name.should eql "UPS"
+      receipt_header.shipping_address.class.should eql Quickeebooks::Online::Model::Address
+      receipt_header.ship_method_name.should eql "UPS Ground (USD)"
       receipt_header.payment_method_name.should eql "Visa"
     end
   end

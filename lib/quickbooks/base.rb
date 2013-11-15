@@ -5,14 +5,12 @@ require 'tzinfo'
 module Quickbooks
   class Base
 
-    VALID_PLATFORMS = %w(Online Windows)
+    VALID_PLATFORMS = %w(Online)
 
     attr_accessor :payload, :message_id, :config, :platform, :order, :original, :xref, :message_name
 
     def self.client(payload, message_id, config, message_name)
-      raise LookupValueNotFoundException.new("Can't find the key quickbooks.platform in the provided mapping") unless config['quickbooks.platform']
-      platform = config['quickbooks.platform'].capitalize
-      raise InvalidPlatformException.new("We cannot create the Quickbooks #{platform} client") unless VALID_PLATFORMS.include?(platform)
+      platform = "Online"
       klass = "Quickbooks::#{platform}::Client"
       klass.constantize.new(payload,message_id,config,platform, message_name)
     end
@@ -77,7 +75,7 @@ module Quickbooks
       receipt_header.txn_date = txn_date
       receipt_header.shipping_address = quickbook_address(@order["shipping_address"])
 
-      receipt_header.ship_method_name = ship_method_name(@order["shipments"].first["shipping_method"])
+      receipt_header.ship_method_name = @order["shipments"].first["shipping_method"]
 
       receipt_header.payment_method_name = payment_method(payment_method_name)
 

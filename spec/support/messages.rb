@@ -37,22 +37,11 @@ module Factories
       }.merge(args)
     end
 
-    def parameters(token='qyprdeWdq0V9n7kdb2rS6RTfJ87kwsEgA72Ex68BNVcqCTsV', secret='Bg4SfWKJH1z5JC9ltPcnLt96ZrDAXAy6Zp6XQif3', realm='814984455', platform='online')
+    def parameters(token='qyprdeWdq0V9n7kdb2rS6RTfJ87kwsEgA72Ex68BNVcqCTsV', secret='Bg4SfWKJH1z5JC9ltPcnLt96ZrDAXAy6Zp6XQif3', realm='814984455')
       [
         {:name => 'quickbooks.access_token', :value => token },
         {:name => 'quickbooks.access_secret', :value => secret },
         {:name => 'quickbooks.realm', :value => realm },
-        {:name => 'quickbooks.platform', :value => platform },
-        {:name => "quickbooks.ship_method_name", :value => [
-          {
-            "UPS 3-5 Days" => "UPS",
-            "UPS 2-3 Days" => "UPS",
-            "UPS Ground (USD)" => "UPS",
-            "USPS 6-10 days" => "UPS",
-            "Bits - USPS" => "US Mail",
-            "FED EX" => "Federal Express"
-          }]
-        },
         {:name => "quickbooks.deposit_to_account_name", :value => "Undeposited Funds"},
         {:name => "quickbooks.payment_method_name", :value => [
           {

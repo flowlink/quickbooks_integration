@@ -27,11 +27,6 @@
             "data_type": "string"
           },
           {
-            "name": "platform",
-            "description": "Quickbooks Client platform (windows or online)",
-            "data_type": "string"
-          },
-          {
             "name": "ship_method_name",
             "description": "Mapping from Spree shipping methods to Quickbooks shipping method names",
             "data_type": "list"
