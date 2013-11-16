@@ -12,8 +12,6 @@ To get started, you will need to connect the hub to your Quickbooks Online (QBO)
 
 ### Persist
 
-#### Request
-
 #### Parameters
 
 | Name | Value | Example |
@@ -30,5 +28,45 @@ To get started, you will need to connect the hub to your Quickbooks Online (QBO)
 | quickbooks.account_name | The account to book the sales receipt product line items on. | Sales |
 | quickbooks.timezone | The timezone for your account | EST |
 
+
+#### Request
+
+The request is either an `order:new` or an `order:updated` message. For the details on the order messages see the online guide:
+
+* [New Order](http://guides.spreecommerce.com/integration/order_messages.html#ordernew)
+* [Update Order](http://guides.spreecommerce.com/integration/order_messages.html#orderupdated)
+
 #### Response
+
+The response will be a notification. 
+
+For a created (order:new) order:
+
+```json
+{
+  "message_id":"52263b13b43957220e004c1a",
+  'notifications' => [
+    {
+      "level" => "info",
+      "subject" => "Created Quickbooks sales receipt 123 for order R242342354543,
+      "description" => "Quickbooks SalesReceipt id = 123 and idDomain = QBO"
+    }
+  ]
+}
+```
+
+For an updated (order:updated) order:
+```json
+{
+  "message_id":"52263b13b43957220e004c1a",
+  'notifications' => [
+    {
+      "level" => "info",
+      "subject" => "Updated Quickbooks sales receipt 123 for order R242342354543,
+      "description" => "Quickbooks SalesReceipt id = 123 and idDomain = QBO"
+    }
+  ]
+}
+```
+
 
