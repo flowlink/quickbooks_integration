@@ -84,6 +84,7 @@ class Client
 
   def ship_method_name(name)
     map = {
+    "Digital Delivery" => "Digital Delivery",
     "UPS" => "UPS",
     "UPS 3-5 Days" => "UPS",
     "UPS 2-3 Days" => "UPS",
