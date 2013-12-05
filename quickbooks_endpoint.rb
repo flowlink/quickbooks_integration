@@ -2,14 +2,14 @@ require "sinatra/base"
 require "sinatra/json"
 require "endpoint_base"
 
-require File.expand_path(File.dirname(__FILE__) + '/lib/quickbooks')
+require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
   post '/persist' do
     begin
-      client = Quickbooks::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
+      client = QBIntegration::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
       result = client.persist
       order_number = @message[:payload]["order"]["number"]
 
@@ -50,5 +50,4 @@ class QuickbooksEndpoint < EndpointBase
       }
     end
   end
-
 end

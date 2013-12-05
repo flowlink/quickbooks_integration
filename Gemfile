@@ -2,7 +2,7 @@ source 'https://www.rubygems.org'
 
 gem 'endpoint_base', :github => 'spree/endpoint_base'
 gem 'thin'
-gem 'quickeebooks', :github => 'ruckus/quickeebooks'
+gem 'quickbooks-ruby', :github => 'ruckus/quickbooks-ruby'
 gem 'tzinfo'
 gem 'capistrano'
 
