@@ -5,12 +5,11 @@ module QBIntegration
     attr_accessor :payload, :message_id, :config, :platform, :order, :original, :xref, :message_name
 
     def self.client(payload, message_id, config, message_name)
-      platform = "Online"
-      klass = "QBIntegration::#{platform}::Client"
-      klass.constantize.new(payload,message_id,config,platform, message_name)
+      klass = "QBIntegration::Online::Client"
+      klass.constantize.new(payload, message_id, config, message_name)
     end
 
-    def initialize(payload, message_id, config, platform, message_name)
+    def initialize(payload = {}, message_id = nil, config = nil, message_name = nil)
       @payload = payload
       @message_id = message_id
       @config = config
@@ -46,9 +45,9 @@ module QBIntegration
     end
 
     def create_service(service_name)
-      service = "Quickeebooks::#{platform}::Service::#{service_name}".constantize.new
+      service = "Quickbooks::Service::#{service_name}".constantize.new
       service.access_token = access_token
-      service.realm_id = get_config!('quickbooks.realm')
+      service.company_id = get_config!('quickbooks.realm')
       service
     end
 
@@ -110,7 +109,11 @@ module QBIntegration
     end
 
     def access_token
-      @access_token ||= OAuth::AccessToken.new(consumer, get_config!("quickbooks.access_token"), get_config!("quickbooks.access_secret"))
+      @access_token ||= OAuth::AccessToken.new(
+        consumer,
+        get_config!("quickbooks.access_token"),
+        get_config!("quickbooks.access_secret")
+      )
     end
 
     def consumer
