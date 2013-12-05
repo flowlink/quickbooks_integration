@@ -1,6 +1,6 @@
-module Quickbooks
+module QBIntegration
   module Online
-    class Client < Quickbooks::Base
+    class Client < QBIntegration::Base
 
       def status_service
         not_supported!

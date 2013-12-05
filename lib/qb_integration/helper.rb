@@ -1,9 +1,7 @@
-require 'quickeebooks'
 require 'oauth'
 
-module Quickbooks
+module QBIntegration
   module Helper
-
     def self.payment_method_names service
       fetch_names_hash service
     end
@@ -27,6 +25,5 @@ module Quickbooks
       end
       data
     end
-
   end
 end

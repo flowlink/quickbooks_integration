@@ -1,17 +1,12 @@
-require 'quickeebooks'
-require 'oauth'
-require 'tzinfo'
-
-module Quickbooks
+module QBIntegration
   class Base
-
     VALID_PLATFORMS = %w(Online)
 
     attr_accessor :payload, :message_id, :config, :platform, :order, :original, :xref, :message_name
 
     def self.client(payload, message_id, config, message_name)
       platform = "Online"
-      klass = "Quickbooks::#{platform}::Client"
+      klass = "QBIntegration::#{platform}::Client"
       klass.constantize.new(payload,message_id,config,platform, message_name)
     end
 

@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/ruckus/quickeebooks.git
-  revision: 6fd3fbb7ffa3c28bb75c474954ca8b17ba1df64e
+  remote: git://github.com/ruckus/quickbooks-ruby.git
+  revision: ec8e3a7764d9fc164d2c8c1f41dc428d3f87ae9e
   specs:
-    quickeebooks (0.1.22)
+    quickbooks-ruby (0.0.2)
       activemodel
       nokogiri (~> 1.5.9)
       oauth
@@ -151,7 +151,7 @@ DEPENDENCIES
   foreman
   guard-rspec
   pry
-  quickeebooks!
+  quickbooks-ruby!
   rack-test
   rake
   rb-fsevent (~> 0.9.1)
