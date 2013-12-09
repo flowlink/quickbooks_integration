@@ -50,7 +50,7 @@ module QBIntegration
     end
 
     def create_model(model_name)
-      "Quickeebooks::#{platform}::Model::#{model_name}".constantize.new
+      "Quickbooks::Model::#{model_name}".constantize.new
     end
 
     def build_receipt_header
@@ -110,7 +110,7 @@ module QBIntegration
       @access_token = Auth.new(
         token: get_config!("quickbooks.access_token"),
         secret: get_config!("quickbooks.access_secret")
-      )
+      ).access_token
     end
 
     def get_config!(key)
