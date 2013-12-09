@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/ruckus/quickbooks-ruby.git
-  revision: b09cc70f5df36c1091de9654d2bfaad267df55f9
+  revision: ec8e3a7764d9fc164d2c8c1f41dc428d3f87ae9e
+  branch: master
   specs:
     quickbooks-ruby (0.0.2)
       activemodel

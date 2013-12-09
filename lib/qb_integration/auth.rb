@@ -8,7 +8,7 @@ module QBIntegration
     end
 
     def access_token
-      access_token ||= OAuth::AccessToken.new(consumer, token, secret)
+      @access_token ||= OAuth::AccessToken.new(consumer, token, secret)
     end
 
     private

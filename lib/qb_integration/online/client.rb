@@ -112,17 +112,17 @@ module QBIntegration
       end
 
       def create_item(sku, desc, price)
-        account = find_account_by_name(lookup_value!(@config,"quickbooks.account_name",false,"Sales"))
-        item = find_item_by_sku(sku)
-        return item if item
+        # account = find_account_by_name(lookup_value!(@config,"quickbooks.account_name",false,"Sales"))
+        # item = find_item_by_sku(sku)
+        # return item if item
 
         item = create_model("Item")
         item.name = sku
-        item.desc = desc
-        item.unit_price = Quickeebooks::Online::Model::Price.new(price)
-        item.account_reference = account
+        item.description = desc
+        item.unit_price = price
         item.taxable = "true"
-        return item_service.create(item)
+        item.income_account_ref = 6 # inventory asset
+        item_service.create(item)
       end
 
       def find_customer_by_name(name)
