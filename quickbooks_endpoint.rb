@@ -7,6 +7,10 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
+  post '/product_persist' do
+    binding.pry
+  end
+
   post '/persist' do
     begin
       client = QBIntegration::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
