@@ -609,5 +609,84 @@ module Factories
         ]
       }.merge(args)
     end
+
+    def product(args={})
+      {
+        "name"=> "Ruby on Rails T-Shirt",
+        "description"=> "...",
+        "available_on"=> "2012-11-20T00:00:00-05:00",
+        "sku"=> "ROR-TS",
+        "external_ref"=> "",
+        "price"=> 31,
+        "cost_price"=> 21,
+        "url"=> "http://example.com/products/ruby-on-rails-tshirt",
+        "taxons"=> [
+          [ "Categories",  "Clothes", "T-Shrits" ],
+          [ "Brands", "Ruby on Rails" ],
+          [ "Brands", "Open Source" ]
+        ],
+        "options"=> [ "color", "size" ],
+        "variants"=> [
+          {
+            "name"=> "Ruby on Rails T-Shirt XL",
+            "sku"=> "ROR-TS-1",
+            "price"=> 35,
+            "cost_price"=> 22,
+            "weight"=> nil,
+            "demensions"=> {
+              "height"=> nil,
+              "width"=> nil,
+              "depth"=> nil
+            },
+            "upc"=> "849231000874",
+            "options"=> {
+              "color"=> "GREY",
+              "size"=> "XL"
+            }
+          },
+          {
+            "name"=> "Ruby on Rails T-Shirt SML",
+            "sku"=> "ROR-TS-1",
+            "price"=> 35,
+            "cost_price"=> 22,
+            "weight"=> nil,
+            "demensions"=> {
+              "height"=> nil,
+              "width"=> nil,
+              "depth"=> nil
+            },
+            "upc"=> "849231000875",
+            "options"=> {
+              "color"=> "GREY",
+              "size"=> "SML"
+            },
+            "images"=> [
+              {
+                "url"=> "http://emaple.com/p/1//v/4/image.jpg",
+                "position"=> 1,
+                "title"=> "Ruby on Rails T-Shirt - Grey Small",
+                "type"=> "thumbnail",
+                "demensions"=> {
+                  "height"=> 220,
+                  "width"=> 100
+                }
+              }
+            ]
+          }
+        ],
+        "images"=> [
+          {
+            "url"=> "http://emaple.com/p/1/image.jpg",
+            "position"=> 1,
+            "title"=> "Ruby on Rails T-Shirt",
+            "type"=> "thumbnail",
+            "demensions"=> {
+              "height"=> 220,
+              "width"=> 100
+            }
+          }
+        ]
+      }.merge(args)
+    end
   end
 end
