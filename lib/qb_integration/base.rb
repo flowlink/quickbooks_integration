@@ -1,7 +1,5 @@
 module QBIntegration
   class Base
-    VALID_PLATFORMS = %w(Online)
-
     attr_accessor :payload, :message_id, :config, :platform, :order, :original, :xref, :message_name
 
     def self.client(payload, message_id, config, message_name)
@@ -109,20 +107,10 @@ module QBIntegration
     end
 
     def access_token
-      @access_token ||= OAuth::AccessToken.new(
-        consumer,
-        get_config!("quickbooks.access_token"),
-        get_config!("quickbooks.access_secret")
+      @access_token = Auth.new(
+        token: get_config!("quickbooks.access_token"),
+        secret: get_config!("quickbooks.access_secret")
       )
-    end
-
-    def consumer
-      @consumer ||= OAuth::Consumer.new('qyprdcG20NCyjy5jd7tKal9ivdOcbH', 'tC4GStCV0VjxkL5WylimDhSU89fQu56t1fWErGaR', {
-        :site                 => "https://oauth.intuit.com",
-        :request_token_path   => "/oauth/v1/get_request_token",
-        :authorize_url        => "https://appcenter.intuit.com/Connect/Begin",
-        :access_token_path    => "/oauth/v1/get_access_token"
-      })
     end
 
     def get_config!(key)
@@ -147,9 +135,16 @@ module QBIntegration
       order_xref = @xref.lookup(order_number)
       case @message_name
       when "order:new"
-        raise AlreadyPersistedOrderException.new("Got 'order:new' message for order #{order_number} that already has a sales receipt with id: #{order_xref[:id]} and domain: #{order_xref[:id_domain]}") if order_xref
+        if order_xref
+          raise AlreadyPersistedOrderException.new(
+            "Got 'order:new' message for order #{order_number} that already has a
+            sales receipt with id: #{order_xref[:id]} and domain: #{order_xref[:id_domain]}"
+          )
+        end
       when "order:updated"
-        raise NoReceiptForOrderException.new("Got 'order:updated' message for order #{order_number} that has not a sales receipt for it yet.") if !order_xref
+        if !order_xref
+          raise NoReceiptForOrderException.new("Got 'order:updated' message for order #{order_number} that has not a sales receipt for it yet.")
+        end
       end
     end
 
