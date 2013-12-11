@@ -99,30 +99,32 @@ module QBIntegration
       end
 
       def find_account_by_name(account_name)
-        list = account_service.list(["NAME :EQUALS: #{account_name}"],1,1)
-        if list.count == 0
-          raise Exception.new("No Account '#{account_name}' defined in Quickbooks")
-        end
-        list.entries.first
+        response = account_service.query("select * from Account where Name = '#{account_name}'")
+        raise Exception.new("No Account '#{account_name}' defined in Quickbooks") unless response.count
+        response.entries.first
       end
 
       def find_item_by_sku(sku)
-        list = item_service.list(["NAME :EQUALS: #{sku}"],1,1)
-        list.entries.first
+        response = item_service.query("select * from Item where Name = '#{sku}'")
+        response.entries.first
       end
 
       def create_item(sku, desc, price)
-        # account = find_account_by_name(lookup_value!(@config,"quickbooks.account_name",false,"Sales"))
-        # item = find_item_by_sku(sku)
-        # return item if item
+        unless item = find_item_by_sku(sku)
+          item = create_model("Item")
 
-        item = create_model("Item")
-        item.name = sku
-        item.description = desc
-        item.unit_price = price
-        item.taxable = "true"
-        item.income_account_ref = 6 # inventory asset
-        item_service.create(item)
+          item.name = sku
+          item.description = desc
+          item.unit_price = price
+          item.taxable = "true"
+
+          account = find_account_by_name(lookup_value!(@config,"quickbooks.account_name",false,"Sales"))
+          item.income_account_ref = account.id
+
+          item_service.create(item)
+        end
+
+        item
       end
 
       def find_customer_by_name(name)
