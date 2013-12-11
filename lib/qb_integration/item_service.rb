@@ -3,22 +3,16 @@ module QBIntegration
     class Item
       def initialize(base)
         @base = base
-        @config = @base.config
         @service = @base.create_service("Item")
-        @account_service = @base.account_service
       end
 
-      def create(sku, desc, price, account_name)
-        item = @base.create_model("Item")
+      def create(attributes = {})
+        item = fill(@base.create_model("Item"), attributes)
+        @service.create item
+      end
 
-        item.name = sku
-        item.description = desc
-        item.unit_price = price
-
-        account = @account_service.find_by_name @config.fetch("service.account_name", "Sales")
-        item.income_account_ref = account.id
-
-        @service.create(item)
+      def update(item, attributes = {})
+        item = @service.update fill(item, attributes)
       end
 
       def find_by_sku(sku)
@@ -26,10 +20,10 @@ module QBIntegration
         response.entries.first
       end
 
-      def update(item, attributes = {})
+      private
+      def fill(item, attributes)
         attributes.each {|key, value| item.send("#{key}=", value)}
-
-        item = @service.update(item)
+        item
       end
     end
   end
