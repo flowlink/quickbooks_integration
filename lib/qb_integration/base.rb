@@ -6,6 +6,7 @@ module QBIntegration
       @payload = message[:payload]
       @original = payload[:original]
       @message_name = message[:message]
+      @message_id = message[:message_id]
 
       @config = config
     end

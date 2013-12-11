@@ -16,7 +16,7 @@ describe QBIntegration::ProductImporter do
         message: "product:new",
         message_id: 123,
         payload: {
-          product: Factories.product_new(sku: "tr")
+          product: Factories.product_new
         }
       }.with_indifferent_access
     end

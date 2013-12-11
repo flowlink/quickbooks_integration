@@ -13,34 +13,24 @@ module QBIntegration
     end
 
     def import
-      case @message_name
-      when "product:new"    then import_new
-      when "product:update" then import_update
-      end
-    end
-
-    def import_new
       if item = item_service.find_by_sku(sku)
-        Notification.new(
-          @message_id,
-          "info",
-          "Unable to import product with Sku = #{sku} to Quickbooks because it was already there.",
-          "Unable to import product with Sku = #{sku} to Quickbooks because it was already there."
-        )
+        item_service.update(item, { description: @description, unit_price: @price })
+
+         notification "Updated product with Sku = #{sku} on Quickbooks successfully."
       else
         item_service.create(sku, @desc, @price, nil)
 
-        Notification.new(
-          @message_id,
-          "info",
-          "Imported product with Sku = #{sku} to Quickbooks successfully.",
-          "Imported product with Sku = #{sku} to Quickbooks successfully."
-        )
+        notification "Imported product with Sku = #{sku} to Quickbooks successfully."
       end
     end
 
-    def import_update
-      Notification.new(123, "info", "Everything ok", "Really")
+    def notification(text)
+      Notification.new(
+        @message_id,
+        "info",
+        text,
+        text
+      )
     end
   end
 
