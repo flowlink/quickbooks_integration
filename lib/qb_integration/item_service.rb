@@ -25,6 +25,12 @@ module QBIntegration
         response = @service.query("select * from Item where Name = '#{sku}'")
         response.entries.first
       end
+
+      def update(item, attributes = {})
+        attributes.each {|key, value| item.send("#{key}=", value)}
+
+        item = @service.update(item)
+      end
     end
   end
 end
