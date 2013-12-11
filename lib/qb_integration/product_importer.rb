@@ -18,7 +18,12 @@ module QBIntegration
 
          notification "Updated product with Sku = #{sku} on Quickbooks successfully."
       else
-        item_service.create(sku, @desc, @price, nil)
+        item_service.create({
+          name: sku,
+          description: @desc,
+          unit_price: @price,
+          income_account_ref: 6
+        })
 
         notification "Imported product with Sku = #{sku} to Quickbooks successfully."
       end
