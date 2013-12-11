@@ -610,7 +610,7 @@ module Factories
       }.merge(args)
     end
 
-    def product(args={})
+    def product_new(args={})
       {
         "name"=> "Ruby on Rails T-Shirt",
         "description"=> "...",

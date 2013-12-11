@@ -15,7 +15,7 @@ module QBIntegration
     end
 
     def item_service
-      @item_service ||= create_service("Item")
+      @item_service ||= Service::Item.new(self)
     end
 
     def receipt_service
@@ -27,7 +27,7 @@ module QBIntegration
     end
 
     def account_service
-      @account_service ||= create_service("Account")
+      @account_service ||= Service::Account.new(self)
     end
 
     def payment_method_service

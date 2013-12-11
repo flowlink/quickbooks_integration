@@ -8,24 +8,9 @@ class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
   post '/product_persist' do
-    client = QBIntegration::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
+    code, notification = QBIntegration::ProductImporter.new(@message, @config).import
 
-    sku = @message[:payload][:product][:sku]
-    desc = @message[:payload][:product][:description]
-    price = @message[:payload][:product][:price]
-
-    service = client.create_item(sku, desc, price)
-
-    process_result 200, {
-      'message_id' => @message[:message_id],
-      'notifications' => [
-        {
-          "level" => "info",
-          "subject" => "Imported product with SKU = #{sku} into Quickbooks",
-          "description" => "Imported product with SKU = #{sku} into Quickbooks"
-        }
-      ]
-    }
+    process_result code, notification.to_json
   end
 
   post '/persist' do
