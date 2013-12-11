@@ -9,6 +9,7 @@ class QuickbooksEndpoint < EndpointBase
 
   post '/product_persist' do
     client = QBIntegration::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
+
     sku = @message[:payload][:product][:sku]
     desc = @message[:payload][:product][:description]
     price = @message[:payload][:product][:price]
@@ -20,7 +21,7 @@ class QuickbooksEndpoint < EndpointBase
       'notifications' => [
         {
           "level" => "info",
-          "subject" => "Imported product with SKU = #{sku} into Quickbooks"
+          "subject" => "Imported product with SKU = #{sku} into Quickbooks",
           "description" => "Imported product with SKU = #{sku} into Quickbooks"
         }
       ]
