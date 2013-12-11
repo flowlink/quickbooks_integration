@@ -10,22 +10,7 @@ describe QuickbooksEndpoint do
     described_class
   end
 
-  describe "product_persist" do
-    context "with product:new" do
-      let(:message) do
-        {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product
-          }
-        }
-      end
-
-      it "works" do
-        post '/product_persist', message.to_json, auth
-      end
-    end
+  describe "/product_persist" do
   end
 
   describe "persist" do

@@ -116,7 +116,6 @@ module QBIntegration
           item.name = sku
           item.description = desc
           item.unit_price = price
-          item.taxable = "true"
 
           account = find_account_by_name(lookup_value!(@config,"quickbooks.account_name",false,"Sales"))
           item.income_account_ref = account.id
