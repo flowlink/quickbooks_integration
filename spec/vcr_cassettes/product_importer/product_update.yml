@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-TS'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="E3J3QrzBrCnClXOKe5n0bwZ7lUsaK2GSePiAWJk0NWE",
+        oauth_signature="f%2BKcGOEG1mAl%2Fcs18%2B7AMAUQrfs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386858640", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:30:41 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 9b85df30-a8b4-48af-959c-a86e0e667d4a
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '423'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:30:41.661-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>10</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:52:48-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Active>true</Active><FullyQualifiedName>ROR-TS</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:30:41 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Id>10</Id>
+        <SyncToken>1</SyncToken>
+        <MetaData>
+        <CreateTime>2013-12-12T11:52:35-0200</CreateTime>
+        <LastUpdatedTime>2013-12-12T11:52:48-0200</LastUpdatedTime>
+        </MetaData>
+        <Name>ROR-TS</Name>
+        <Active>true</Active>
+        <UnitPrice>31</UnitPrice>
+        <Type>Service</Type>
+        <Taxable>false</Taxable>
+        <IncomeAccountRef>6</IncomeAccountRef>
+        <PurchaseCost>0.0</PurchaseCost>
+        <TrackQtyOnHand>false</TrackQtyOnHand>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '507'
+      Authorization:
+      - OAuth oauth_body_hash="2%2BBTILcq7TZhhkVdBQ3SU4BwkgQ%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="W1jPY1RHwlHgssut5B0ZU7ABX8ukjqGMl1yheojtM", oauth_signature="N7EtGnl8IsE1M8Xzl6bSeKeLGzg%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386858641", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:30:42 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - e76ccc6f-7448-4533-871d-ec8ecb455d39
+      Via:
+      - 1.1 ipp-gateway-ap02
+      Content-Length:
+      - '381'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:30:43.176-08:00"><Item
+        domain="QBO" sparse="false"><Id>10</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:52:48-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Active>true</Active><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:30:43 GMT
+recorded_with: VCR 2.4.0

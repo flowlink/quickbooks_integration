@@ -16,16 +16,19 @@ module QBIntegration
       if item = item_service.find_by_sku(sku)
         item_service.update(item, { description: @description, unit_price: @price })
 
-         notification "Updated product with Sku = #{sku} on Quickbooks successfully."
+
+        [200, notification("Updated product with Sku = #{sku} on Quickbooks successfully.")]
       else
+        account = account_service.find_by_name @config.fetch("quickbooks.account_name")
+
         item_service.create({
           name: sku,
           description: @desc,
           unit_price: @price,
-          income_account_ref: 6
+          income_account_ref: account.id
         })
 
-        notification "Imported product with Sku = #{sku} to Quickbooks successfully."
+        [200, notification("Imported product with Sku = #{sku} to Quickbooks successfully.")]
       end
     end
 
@@ -35,7 +38,7 @@ module QBIntegration
         "info",
         text,
         text
-      )
+      ).to_json
     end
   end
 

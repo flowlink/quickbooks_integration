@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="cdrAsCCE9pjbYS5BQQVqUEfp295q2eAwTgl82Vg8Q",
+        oauth_signature="rWyjB%2FNe0CHnIJuwl3GNxgtAoXs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386856970", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:02:51 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - b16c592d-e3d4-42ed-a5ae-2fcd1b4752ad
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:02:51.880-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-27T10:55:44-08:00</LastUpdatedTime></MetaData><Name>Inventory
+        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
+        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>12.00</CurrentBalance><CurrentBalanceWithSubAccounts>12.00</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:02:52 GMT
+recorded_with: VCR 2.4.0

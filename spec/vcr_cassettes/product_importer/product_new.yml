@@ -1,0 +1,172 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'NEW-SHINY-PRODUCT'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="hDBLrUxorzfPpr7BN1DatDcLWF79FrXlck0BYNfShz4",
+        oauth_signature="UbPBOA1nrYR4aYHwE5qfdY4AhcE%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386858710", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:31:52 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 3a22ab3d-82a2-4adf-8c4f-6b042f46dc2f
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '167'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:31:52.221-08:00"><QueryResponse/></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:31:52 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="6C4VuuC3Vvo3vqZptv9aCSdGRcQJeJRqx9vErNEzPA",
+        oauth_signature="niKIS537WnGYIoiqGC5LRasRZgs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386858712", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:31:53 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - aa12da8a-9be4-4b86-a32c-6088b643fe9e
+      Via:
+      - 1.1 ipp-gateway-ap01
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:31:53.458-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-27T10:55:44-08:00</LastUpdatedTime></MetaData><Name>Inventory
+        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
+        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>12.00</CurrentBalance><CurrentBalanceWithSubAccounts>12.00</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:31:53 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Name>NEW-SHINY-PRODUCT</Name>
+        <Description>...</Description>
+        <UnitPrice>31</UnitPrice>
+        <Type>Inventory</Type>
+        <IncomeAccountRef>6</IncomeAccountRef>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '262'
+      Authorization:
+      - OAuth oauth_body_hash="waorVrfCQe9tGT%2FJrAaN%2BY5EGSk%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="v2Au7eVeNRLcjTxMt38zRXdbHgw9N3aq5NNo7vXtrw", oauth_signature="Gfw8yWCFJqP%2BJMJn8F0vPok6YTw%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386858713", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 14:31:54 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - a5209d76-bea3-4c7c-8831-3b1be13d2d0c
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '397'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T06:31:54.851-08:00"><Item
+        domain="QBO" sparse="false"><Id>11</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T06:31:54-08:00</CreateTime><LastUpdatedTime>2013-12-12T06:31:54-08:00</LastUpdatedTime></MetaData><Name>NEW-SHINY-PRODUCT</Name><Description>...</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 14:31:55 GMT
+recorded_with: VCR 2.4.0

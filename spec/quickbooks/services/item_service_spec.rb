@@ -1,14 +1,7 @@
 require "spec_helper"
 
 describe QBIntegration::Service::Item do
-  let(:config) do
-    {
-      'quickbooks.access_token' => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
-      'quickbooks.access_secret' => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
-      'quickbooks.account_name' => "Inventory Asset",
-      'quickbooks.realm' => "835973000"
-    }
-  end
+  let(:config) { Factories.config }
 
   subject do
     described_class.new config
