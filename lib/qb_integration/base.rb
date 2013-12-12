@@ -29,6 +29,10 @@ module QBIntegration
       @payment_method_service ||= Service::PaymentMethod.new(config, payload)
     end
 
+    def customer_service
+      @customer_service ||= Service::Customer.new(config, payload)
+    end
+
     def not_supported!
       raise UnsupportedException.new("#{caller_locations(1,1)[0].label} is not supported for Quickbooks #{@platform}")
     end
