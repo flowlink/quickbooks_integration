@@ -19,7 +19,8 @@ module QBIntegration
         'quickbooks.realm' => "1014843225",
         'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
-        "quickbooks.payment_method_name" => [{ "visa" => "Discover" }]
+        "quickbooks.payment_method_name" => [{ "visa" => "Discover" }],
+        'quickbooks.account_name' => "Inventory Asset",
       }
     end
 
@@ -29,10 +30,12 @@ module QBIntegration
       expect(subject.build_sales_receipt_lines.count).to eq message[:payload][:order][:line_items].count
     end
 
-    it "" do
-      subject.save
-    end
+    it "persist new sales receipt" do
+      VCR.use_cassette("sales_receipt/persist_new_receipt") do
+        sales_receipt = subject.save
 
-    pending ".save"
+        expect(sales_receipt.doc_number).to eq Factories.order["number"]
+      end
+    end
   end
 end
