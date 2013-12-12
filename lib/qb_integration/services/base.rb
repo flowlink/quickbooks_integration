@@ -20,11 +20,11 @@ module QBIntegration
         quickbooks.update fill(model, attributes)
       end
 
-      private
       def create_model
-        "Quickbooks::Model::#{@model_name}".constantize.new
+        "Quickbooks::Model::#{model_name}".constantize.new
       end
 
+      private
       def create_service
         service = "Quickbooks::Service::#{@model_name}".constantize.new
         service.access_token = access_token
