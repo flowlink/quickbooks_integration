@@ -6,7 +6,6 @@ module QBIntegration
       super
 
       @order = payload['order']
-      @xref = CrossReference.new
       @sales_receipt = Quickbooks::Model::SalesReceipt.new
     end
 
@@ -28,9 +27,13 @@ module QBIntegration
       sales_receipt.bill_address = Address.build order["billing_address"]
 
       sales_receipt.payment_method_ref = payment_method_service.matching_payment.id
+      sales_receipt.customer_ref = customer_service.find_or_create.id
 
-      binding.pry
-      # sales_receipt_service.create sales_receipt
+      # TODO We need a check here. Users might want to default a default
+      # Undeposit funds account
+      sales_receipt.deposit_to_account_ref = account_service.find_by_name(config.fetch("quickbooks.account_name")).id
+
+      sales_receipt_service.create sales_receipt
     end
 
     # TODO legacy not sure we still need this header key in sales receipt
@@ -64,25 +67,9 @@ module QBIntegration
       receipt_header
     end
 
-    def payment_method_name
-      if @original.has_key?("credit_cards") && !@original["credit_cards"].empty?
-        payment_name = @original["credit_cards"].first["cc_type"]
-      end
-      unless payment_name
-        payment_name = @original["payments"].first["payment_method"]["name"] if @original["payments"]
-      end
-      payment_name = "None" unless payment_name
-      payment_name
-    end
-
     def ship_method_name(shipping_method)
       ship_method_name_mapping = get_config!("quickbooks.ship_method_name")
       lookup_value!(ship_method_name_mapping.first, shipping_method)
-    end
-
-    def payment_method(payment_name)
-      payment_method_name_mapping = get_config!("quickbooks.payment_method_name")
-      lookup_value!(payment_method_name_mapping.first, payment_name)
     end
 
     # TODO Understand this xref thing. Not sure we still need it
