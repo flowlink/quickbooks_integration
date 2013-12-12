@@ -1,6 +1,10 @@
 module QBIntegration
   module Service
     class Base
+      include Helper
+
+      attr_reader :quickbooks, :model_name, :config
+
       def initialize(model_name, config)
         @model_name = model_name
         @config = config
@@ -9,11 +13,11 @@ module QBIntegration
 
       def create(attributes = {})
         model = fill(create_model, attributes)
-        @quickbooks.create model
+        quickbooks.create model
       end
 
       def update(model, attributes = {})
-        @quickbooks.update fill(model, attributes)
+        quickbooks.update fill(model, attributes)
       end
 
       private

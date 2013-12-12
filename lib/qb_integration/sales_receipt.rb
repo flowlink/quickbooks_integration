@@ -29,7 +29,8 @@ module QBIntegration
 
       sales_receipt.payment_method_ref = payment_method_service.matching_payment.id
 
-      sales_receipt_service.create sales_receipt
+      binding.pry
+      # sales_receipt_service.create sales_receipt
     end
 
     # TODO legacy not sure we still need this header key in sales receipt

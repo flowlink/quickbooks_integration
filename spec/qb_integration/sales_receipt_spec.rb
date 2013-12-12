@@ -16,9 +16,10 @@ module QBIntegration
 
     let(:config) do
       {
-        'quickbooks.realm' => "123",
-        'quickbooks.access_token' => "123",
-        'quickbooks.access_secret' => "123"
+        'quickbooks.realm' => "1014843225",
+        'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
+        "quickbooks.payment_method_name" => [{ "visa" => "Discover" }]
       }
     end
 
@@ -26,6 +27,10 @@ module QBIntegration
 
     it ".build_sales_receipt_lines" do
       expect(subject.build_sales_receipt_lines.count).to eq message[:payload][:order][:line_items].count
+    end
+
+    it "" do
+      subject.save
     end
 
     pending ".save"

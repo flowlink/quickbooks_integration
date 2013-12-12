@@ -1,5 +1,7 @@
 module QBIntegration
   class Base
+    include Helper
+
     attr_accessor :payload, :original, :message_name, :message_id, :config
 
     def initialize(message = {}, config)
@@ -20,42 +22,11 @@ module QBIntegration
     end
 
     def sales_receipt_service
-      @receipt_service ||= create_service("SalesReceipt")
+      @receipt_service ||= Service::SalesReceipt.new(@config).quickbooks
     end
 
     def payment_method_service
-      @payment_method_service ||= PaymentMethod.new(self)
-    end
-
-    def create_service(service_name)
-      service = "Quickbooks::Service::#{service_name}".constantize.new
-      service.access_token = access_token
-      service.company_id = get_config!('quickbooks.realm')
-      service
-    end
-
-    def access_token
-      @access_token = Auth.new(
-        token: get_config!("quickbooks.access_token"),
-        secret: get_config!("quickbooks.access_secret")
-      ).access_token
-    end
-
-    def get_config!(key)
-      lookup_value!(@config, key)
-    end
-
-    def lookup_value!(hash, key, ignore_case = false, default = nil)
-      hash = Hash[hash.map{|k,v| [k.downcase,v]}] if ignore_case
-
-      if default
-        value = hash.fetch(key, default)
-      else
-        value = hash[key]
-      end
-
-      raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless value
-      value
+      @payment_method_service ||= Service::PaymentMethod.new(config, payload)
     end
 
     def not_supported!

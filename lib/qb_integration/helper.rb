@@ -1,7 +1,18 @@
-require 'oauth'
-
 module QBIntegration
   module Helper
+    def lookup_value!(hash, key, ignore_case = false, default = nil)
+      hash = Hash[hash.map{|k,v| [k.downcase,v]}] if ignore_case
+
+      if default
+        value = hash.fetch(key, default)
+      else
+        value = hash[key]
+      end
+
+      raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless value
+      value
+    end
+
     def self.payment_method_names service
       fetch_names_hash service
     end
