@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Name>NEW-SKU-HERE</Name>
+        <Description>Something witty.</Description>
+        <UnitPrice>99.9</UnitPrice>
+        <Type>Inventory</Type>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '233'
+      Authorization:
+      - OAuth oauth_body_hash="A9L%2BwAG5Y37jmg%2FI8LVZeZ1nQcM%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="lIItqcIYU2PYrKMtIPiE5JRMHnZO8139eahE4JCBRE", oauth_signature="AIte2dRLXYjWTKuoYseYNYrwBbI%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386854451", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 13:20:53 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 7ace9042-2f45-4057-8a24-33a65ccbae6e
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '370'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:20:54.428-08:00"><Item
+        domain="QBO" sparse="false"><Id>9</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T05:20:54-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:20:54-08:00</LastUpdatedTime></MetaData><Name>NEW-SKU-HERE</Name><Description>Something
+        witty.</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>99.9</UnitPrice><Type>Service</Type><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 13:20:54 GMT
+recorded_with: VCR 2.4.0
