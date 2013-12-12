@@ -10,7 +10,7 @@ class QuickbooksEndpoint < EndpointBase
   post '/product_persist' do
     code, notification = QBIntegration::ProductImporter.new(@message, @config).import
 
-    process_result code, notification.to_json
+    process_result code, notification
   end
 
   post '/persist' do

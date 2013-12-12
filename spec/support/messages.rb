@@ -1,6 +1,15 @@
 module Factories
   class << self
 
+    def config
+      {
+        'quickbooks.access_token' => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        'quickbooks.access_secret' => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
+        'quickbooks.account_name' => "Inventory Asset",
+        'quickbooks.realm' => "835973000"
+      }
+    end
+
     def order_changes(args = {})
       {
         "totals"=> {
@@ -610,12 +619,12 @@ module Factories
       }.merge(args)
     end
 
-    def product_new(args={})
+    def product(sku = 'ROR-TS')
       {
         "name"=> "Ruby on Rails T-Shirt",
         "description"=> "...",
         "available_on"=> "2012-11-20T00:00:00-05:00",
-        "sku"=> "ROR-TS",
+        "sku"=> sku,
         "external_ref"=> "",
         "price"=> 31,
         "cost_price"=> 21,
@@ -686,7 +695,7 @@ module Factories
             }
           }
         ]
-      }.merge(args)
+      }
     end
   end
 end
