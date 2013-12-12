@@ -1,0 +1,131 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'T-SHIRT-PUGS-RULE'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="lcoDRp6FPworLOjSitYCa1U0b8hyAlXm0HwVqANUI0",
+        oauth_signature="5dGvtg%2BPIaKZfkrQ5KbQeFUuCL8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386854970", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 13:29:32 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 60b33d10-afa9-442c-b7d9-2cffe28ca9ec
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '469'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:29:32.757-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>7</Id><SyncToken>4</SyncToken><MetaData><CreateTime>2013-12-09T12:16:19-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:14:25-08:00</LastUpdatedTime></MetaData><Name>T-SHIRT-PUGS-RULE</Name><Description>Pug
+        life chose me.</Description><Active>true</Active><FullyQualifiedName>T-SHIRT-PUGS-RULE</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>19.9</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 13:29:32 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Id>7</Id>
+        <SyncToken>4</SyncToken>
+        <MetaData>
+        <CreateTime>2013-12-09T18:16:19-0200</CreateTime>
+        <LastUpdatedTime>2013-12-12T11:14:25-0200</LastUpdatedTime>
+        </MetaData>
+        <Name>T-SHIRT-PUGS-RULE</Name>
+        <Description>new description</Description>
+        <Active>true</Active>
+        <UnitPrice>19.9</UnitPrice>
+        <Type>Service</Type>
+        <Taxable>false</Taxable>
+        <IncomeAccountRef>6</IncomeAccountRef>
+        <PurchaseCost>0.0</PurchaseCost>
+        <TrackQtyOnHand>false</TrackQtyOnHand>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '562'
+      Authorization:
+      - OAuth oauth_body_hash="lz1ogl2B6CxLBJLKYVIurpeDwts%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="l23jDiWktAU7zvdajKrLSvZJ4qzAUhEOVJzFXdlkw", oauth_signature="8lK0R8F5zw61a5ala0aK4gKTLpA%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386854972", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 13:29:33 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - e0e74211-d4f9-4764-ade2-dc1d40175282
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '412'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:29:34.178-08:00"><Item
+        domain="QBO" sparse="false"><Id>7</Id><SyncToken>5</SyncToken><MetaData><CreateTime>2013-12-09T12:16:19-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:29:34-08:00</LastUpdatedTime></MetaData><Name>T-SHIRT-PUGS-RULE</Name><Description>new
+        description</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>19.9</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 13:29:34 GMT
+recorded_with: VCR 2.4.0

@@ -10,7 +10,8 @@ Bundler.require(:default, :test)
 
 ENV['ENDPOINT_KEY'] = 'x123'
 
-require File.join(File.dirname(__FILE__), '..', 'quickbooks_endpoint.rb')
+require File.join(File.dirname(__FILE__), '..', 'lib/qb_integration.rb')
+require File.join(File.dirname(__FILE__), '..', 'quickbooks_endpoint')
 Dir["./spec/support/**/*.rb"].each {|f| require f}
 
 Sinatra::Base.environment = 'test'

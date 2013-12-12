@@ -3,8 +3,8 @@ require "spec_helper"
 describe QBIntegration::ProductImporter do
   let(:config) do
     {
-      'quickbooks.access_token' => "",
-      'quickbooks.access_secret' => "",
+      'quickbooks.access_token' => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      'quickbooks.access_secret' => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
       'quickbooks.account_name' => "Inventory Asset",
       'quickbooks.realm' => "835973000"
     }
