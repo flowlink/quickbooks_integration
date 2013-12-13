@@ -25,17 +25,32 @@ module QBIntegration
 
       subject { Line.new config, payload }
 
+      let(:account) { double("Account", id: 76) }
+
       it ".build_from_line_items" do
-        expect(subject.build_from_line_items.count).to eq payload[:order][:line_items].count
+        VCR.use_cassette("line/build_from_line_items") do
+          expect(subject.build_from_line_items(account).count).to eq payload[:order][:line_items].count
+        end
       end
 
       it ".build_from_adjustments" do
-        expect(subject.build_from_adjustments.count).to eq payload[:original][:adjustments].count
+        VCR.use_cassette("line/build_from_adjustments") do
+          expect(subject.build_from_adjustments(account).count).to eq payload[:original][:adjustments].count
+        end
       end
 
       it "just build" do
-        total = payload[:original][:adjustments].count + payload[:order][:line_items].count
-        expect(subject.build_lines.count).to eq total
+        VCR.use_cassette("line/build_them_all") do
+          total = payload[:original][:adjustments].count + payload[:order][:line_items].count
+          expect(subject.build_lines.count).to eq total
+        end
+      end
+
+      context "returns the adjustments without originator_type" do
+        it "returns as discount if amount < 0.0" do
+          adjustment = { amount: "-5.0", originator_type: nil }
+          expect(subject.map_adjustment_sku adjustment).to eq config.fetch("quickbooks.discount_item")
+        end
       end
     end
   end
