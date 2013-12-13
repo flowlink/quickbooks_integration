@@ -16,9 +16,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Ru64ONYGDUqPRsZtu2N10DPdjeWa3QY3S9FdfgJClfI",
-        oauth_signature="gf2%2BKe%2FzrvOnuRuaUinUfdAFSE4%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1386941053", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="IZ3b1Y7tqTr9q1x2zm2khUibhYklvya3STHT61eeJQ",
+        oauth_signature="SJiBeYzYcyNvhKgxZzWBdtvN5no%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964914", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -26,7 +26,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:14 GMT
+      - Fri, 13 Dec 2013 20:01:55 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -36,7 +36,7 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - f20bcb6a-2e1f-4fa5-87ca-9a7a528f7036
+      - d20df2e8-79b1-447c-a237-313d2c6afb42
       Via:
       - 1.1 ipp-gateway-ap03
       Content-Length:
@@ -48,11 +48,177 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:14.799-08:00"><QueryResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:01:55.597-08:00"><QueryResponse
         startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>10</Id><SyncToken>2</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Description>...</Description><Active>true</Active><FullyQualifiedName>ROR-TS</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
         name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:14 GMT
+  recorded_at: Fri, 13 Dec 2013 20:01:56 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Sales%20of%20Product%20Income'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="M2zJUF34TJXu3mzyFRTNOKEnmz9SqXAxPtojEYbLB4s",
+        oauth_signature="hC%2F3avJOC2dkGFLQnutVTy%2BS23c%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964916", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:01:56 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 9291c0ce-55ba-4564-b1db-9c900a4eb991
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '454'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:01:56.773-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>4</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:10-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:10-08:00</LastUpdatedTime></MetaData><Name>Sales
+        of Product Income</Name><SubAccount>false</SubAccount><FullyQualifiedName>Sales
+        of Product Income</FullyQualifiedName><Active>true</Active><Classification>Revenue</Classification><AccountType>Income</AccountType><AccountSubType>SalesOfProductIncome</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:01:57 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="UU3xyX77Mt7POxa3pwEjiOqQw4rkSNnDewlEEJHNM",
+        oauth_signature="kS8x1XGJ5Kl%2FqdAF2cobnmRonDs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964917", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:01:57 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 057a0bec-0514-4031-8882-4363bc19290e
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '457'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:01:58.012-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-27T10:55:44-08:00</LastUpdatedTime></MetaData><Name>Inventory
+        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
+        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>12.00</CurrentBalance><CurrentBalanceWithSubAccounts>12.00</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:01:58 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Cost%20of%20Goods%20Sold'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="p7y1d7cqvw4hPNVNbncMfISqEqra3B8svk1yj0H64",
+        oauth_signature="JWZ%2BeQVSZ4bMhe7NlFuOyjAoJII%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964918", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:01:59 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - d055ad5d-5731-4352-9527-8ebc77b3d35a
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:01:59.225-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:11-08:00</LastUpdatedTime></MetaData><Name>Cost
+        of Goods Sold</Name><SubAccount>false</SubAccount><FullyQualifiedName>Cost
+        of Goods Sold</FullyQualifiedName><Active>true</Active><Classification>Expense</Classification><AccountType>Cost
+        of Goods Sold</AccountType><AccountSubType>SuppliesMaterialsCogs</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:00 GMT
 - request:
     method: post
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
@@ -70,11 +236,14 @@ http_interactions:
         <Name>ROR-TS</Name>
         <Description>...</Description>
         <Active>true</Active>
+        <SubItem>false</SubItem>
         <UnitPrice>31</UnitPrice>
-        <Type>Service</Type>
+        <Type>Inventory</Type>
         <Taxable>false</Taxable>
-        <IncomeAccountRef>6</IncomeAccountRef>
+        <AssetAccountRef>6</AssetAccountRef>
+        <IncomeAccountRef>4</IncomeAccountRef>
         <PurchaseCost>0.0</PurchaseCost>
+        <ExpenseAccountRef>5</ExpenseAccountRef>
         <TrackQtyOnHand>false</TrackQtyOnHand>
         </Item>
     headers:
@@ -87,11 +256,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '538'
+      - '643'
       Authorization:
-      - OAuth oauth_body_hash="AmcdBgp18vkm7ILxrEdRFa%2BnAxA%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="VTpI8QqChuer8TkF95LWl40TiMwrMQFSMUHBZDO3I", oauth_signature="J73GuIpzBhixM6a9O6YzbCoYsf4%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386941054", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_body_hash="sFuVVEUrLkUcRRSAfgQqLnAe8wI%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="8kepb3zyREX0uVafirw0npTdBR7ycLr5urP3FAYCAg", oauth_signature="9JH%2Bl%2F1wVl57wsTlsxFxqu5v9N0%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386964920", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -99,7 +268,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:15 GMT
+      - Fri, 13 Dec 2013 20:02:00 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -109,11 +278,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 6566977e-84c5-4231-a4b6-d8a3d84ba8a7
+      - ba1fbe6d-1d14-48e5-8db9-a1c2157c91b4
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap02
       Content-Length:
-      - '398'
+      - '423'
       Connection:
       - close
       Content-Type:
@@ -121,11 +290,12 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:16.112-08:00"><Item
-        domain="QBO" sparse="false"><Id>10</Id><SyncToken>2</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Description>...</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:00.655-08:00"><Item
+        domain="QBO" sparse="false"><Id>10</Id><SyncToken>3</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-13T12:02:00-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Description>...</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Sales of Product Income">4</IncomeAccountRef><PurchaseCost>0</PurchaseCost><ExpenseAccountRef
+        name="Cost of Goods Sold">5</ExpenseAccountRef><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:16 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:01 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-TS-v-1'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -142,9 +312,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="vO32FFRB7cNiTtLtAWWJYHRAnjMYh7oqIMMPVvWOgwM",
-        oauth_signature="FKEln%2B75te5uLKk1rO0jx%2Fx5CGw%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1386941056", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="MvN7iN866tJpzewt7ieAu3yNgeUN85gtyebcUvh8",
+        oauth_signature="eCU6My2rHk1kpVagADKHkFF897w%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964921", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -152,7 +322,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:17 GMT
+      - Fri, 13 Dec 2013 20:02:01 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -162,11 +332,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - b799e024-c780-4fac-abeb-2e3e6236b2bb
+      - dead5456-d42c-46d0-a71e-393008cf752b
       Via:
-      - 1.1 ipp-gateway-ap01
+      - 1.1 ipp-gateway-ap02
       Content-Length:
-      - '455'
+      - '456'
       Connection:
       - close
       Content-Type:
@@ -174,12 +344,67 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:17.268-08:00"><QueryResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:02.018-08:00"><QueryResponse
         startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>20</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-13T05:19:34-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:34-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-1</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
         name="ParentRef">10</ParentRef><Level>1</Level><FullyQualifiedName>ROR-TS:ROR-TS-v-1</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>35</UnitPrice><Type>Service</Type><IncomeAccountRef
         name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:17 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:02 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Sales%20of%20Product%20Income'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="0mhIXCtT4zrsdxlY4kmyukaBnBfYlgupO15FrPGXHI",
+        oauth_signature="8SSo%2FDRgkbPOdDxyxusQjKqF2yo%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964922", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:03 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 107830d7-bae0-4902-a9ba-5bad814b55bb
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '452'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:03.128-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>4</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:10-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:10-08:00</LastUpdatedTime></MetaData><Name>Sales
+        of Product Income</Name><SubAccount>false</SubAccount><FullyQualifiedName>Sales
+        of Product Income</FullyQualifiedName><Active>true</Active><Classification>Revenue</Classification><AccountType>Income</AccountType><AccountSubType>SalesOfProductIncome</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:03 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-TS'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -196,9 +421,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="IwisaNKxnW870nVOXjV0MNbMTabtKbSsrICPUt8C3Q",
-        oauth_signature="xBAOU6cVUHo%2FixhZo3Y73ZQgDe4%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1386941057", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="uIZ7LW4hXK9iEbroZ1yfWXrIm5gCh6F23eEGdHOQo",
+        oauth_signature="m%2BBV%2FD%2F37HpP%2BluHn2EQrUlt6aQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964923", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -206,7 +431,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:18 GMT
+      - Fri, 13 Dec 2013 20:02:04 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -216,11 +441,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - f25612f9-a11d-4ce8-9f6c-310b0776993b
+      - faad1186-d2b1-4296-acac-14c30f290067
       Via:
-      - 1.1 ipp-gateway-ap03
+      - 1.1 ipp-gateway-ap05
       Content-Length:
-      - '443'
+      - '469'
       Connection:
       - close
       Content-Type:
@@ -228,11 +453,123 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:18.463-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>10</Id><SyncToken>2</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Description>...</Description><Active>true</Active><FullyQualifiedName>ROR-TS</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:04.348-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>10</Id><SyncToken>3</SyncToken><MetaData><CreateTime>2013-12-12T05:52:35-08:00</CreateTime><LastUpdatedTime>2013-12-13T12:02:00-08:00</LastUpdatedTime></MetaData><Name>ROR-TS</Name><Description>...</Description><Active>true</Active><FullyQualifiedName>ROR-TS</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>31</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Sales of Product Income">4</IncomeAccountRef><PurchaseCost>0</PurchaseCost><ExpenseAccountRef
+        name="Cost of Goods Sold">5</ExpenseAccountRef><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:18 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:05 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="qnakUxUTmOZVXJQwdgpvlrdpcpVrnoBNpg0TrYns",
+        oauth_signature="tULd8Ld2XDYk1exYpoeInU%2FZBsw%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964925", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:06 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 03c6436d-43e0-4680-acbb-60c388ec8f0f
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '458'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:06.307-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-27T10:55:44-08:00</LastUpdatedTime></MetaData><Name>Inventory
+        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
+        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>12.00</CurrentBalance><CurrentBalanceWithSubAccounts>12.00</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:07 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Cost%20of%20Goods%20Sold'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="xImxAb7GCR010l8zNBQiR9fdg59mA7mDEaKlbht0pww",
+        oauth_signature="he6YehCh%2Feba9MldMUPyQMxhAa4%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964927", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:07 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 8ef23a16-86b5-415c-9f94-b33958a274c6
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:07.425-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:11-08:00</LastUpdatedTime></MetaData><Name>Cost
+        of Goods Sold</Name><SubAccount>false</SubAccount><FullyQualifiedName>Cost
+        of Goods Sold</FullyQualifiedName><Active>true</Active><Classification>Expense</Classification><AccountType>Cost
+        of Goods Sold</AccountType><AccountSubType>SuppliesMaterialsCogs</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:08 GMT
 - request:
     method: post
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
@@ -252,10 +589,12 @@ http_interactions:
         <ParentRef>10</ParentRef>
         <SubItem>true</SubItem>
         <UnitPrice>35</UnitPrice>
-        <Type>Service</Type>
+        <Type>Inventory</Type>
         <Taxable>false</Taxable>
-        <IncomeAccountRef>6</IncomeAccountRef>
+        <AssetAccountRef>6</AssetAccountRef>
+        <IncomeAccountRef>4</IncomeAccountRef>
         <PurchaseCost>0.0</PurchaseCost>
+        <ExpenseAccountRef>5</ExpenseAccountRef>
         <TrackQtyOnHand>false</TrackQtyOnHand>
         <Level>1</Level>
         </Item>
@@ -269,11 +608,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '578'
+      - '658'
       Authorization:
-      - OAuth oauth_body_hash="LCIogiSd%2FNofXRvOiauXCQ7oPXY%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="hWIgM4X1HcP1nQFiKFcxdL2XQbbvn3drsneK9ZCgXvk", oauth_signature="bd%2BIh5pdcjmEVpKEnDLkxidxWhw%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386941058", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_body_hash="BEuj7jWBpzZYQhefON52hzMkGyE%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="c2iT35oN8QVkw8UrEqGibONSsTLfTP4hHdDHbd63s", oauth_signature="zblkunkz0htXwZ6dfDB%2FTmCJVi0%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386964928", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -281,7 +620,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:19 GMT
+      - Fri, 13 Dec 2013 20:02:08 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -291,11 +630,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - dd23d4f8-56d5-46d1-963b-593df62fa7d0
+      - f0b584d3-9f14-492c-a0c9-d2b1661afca4
       Via:
-      - 1.1 ipp-gateway-ap04
+      - 1.1 ipp-gateway-ap06
       Content-Length:
-      - '408'
+      - '439'
       Connection:
       - close
       Content-Type:
@@ -303,12 +642,13 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:19.888-08:00"><Item
-        domain="QBO" sparse="false"><Id>20</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-13T05:19:34-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:34-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-1</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:08.863-08:00"><Item
+        domain="QBO" sparse="false"><Id>20</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-12-13T05:19:34-08:00</CreateTime><LastUpdatedTime>2013-12-13T12:02:08-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-1</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
         name="ParentRef">10</ParentRef><Level>1</Level><Taxable>false</Taxable><UnitPrice>35</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+        name="Sales of Product Income">4</IncomeAccountRef><PurchaseCost>0</PurchaseCost><ExpenseAccountRef
+        name="Cost of Goods Sold">5</ExpenseAccountRef><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:20 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:09 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-TS-v-2'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -325,9 +665,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Loeus5kC3WyVd8kFPnGi55cQg7XiCKG1mWT4U3F2yw",
-        oauth_signature="ZBA0d0vCRz35f187wgEmeNAejzM%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1386941060", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="bromNBFyy2EN1dhPzzSKK3SUgInMiUk0KdY4N3b7s",
+        oauth_signature="EPNfLpIZ6AKJkL4%2F6kOzciezObo%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964929", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -335,7 +675,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:21 GMT
+      - Fri, 13 Dec 2013 20:02:10 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -345,9 +685,63 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 92fe5c33-4be2-4fdd-ab62-5da8da1a6556
+      - 2f635b0e-0f4b-42cf-9876-cb435b25304b
       Via:
-      - 1.1 ipp-gateway-ap02
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '458'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:10.147-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>21</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-13T05:19:38-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-2</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
+        name="ParentRef">10</ParentRef><Level>1</Level><FullyQualifiedName>ROR-TS:ROR-TS-v-2</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>35</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:10 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Sales%20of%20Product%20Income'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="PQECFpKXBD1yRSr1lDfMUg121Nzc2Yezhq3dQrHaM",
+        oauth_signature="d2yFNxujNsKbjIshl5wu9gRL1zc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964931", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:11 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 5c0bbbca-a22b-426f-9d8d-1bec0faf8dcf
+      Via:
+      - 1.1 ipp-gateway-ap04
       Content-Length:
       - '453'
       Connection:
@@ -357,12 +751,124 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:21.138-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>21</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-13T05:19:38-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-2</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
-        name="ParentRef">10</ParentRef><Level>1</Level><FullyQualifiedName>ROR-TS:ROR-TS-v-2</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>35</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:11.355-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>4</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:10-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:10-08:00</LastUpdatedTime></MetaData><Name>Sales
+        of Product Income</Name><SubAccount>false</SubAccount><FullyQualifiedName>Sales
+        of Product Income</FullyQualifiedName><Active>true</Active><Classification>Revenue</Classification><AccountType>Income</AccountType><AccountSubType>SalesOfProductIncome</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:21 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:12 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="5oS2aj6KXeyVFEOzfKLEA1XhPGDLV6o6tbk4bBo",
+        oauth_signature="v6vtbAbPMOlU31VbznoGoKPo3Ro%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964932", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:12 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 73671375-3e51-451a-a8a6-d6aab75ac2ca
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:12.469-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-27T10:55:44-08:00</LastUpdatedTime></MetaData><Name>Inventory
+        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
+        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>12.00</CurrentBalance><CurrentBalanceWithSubAccounts>12.00</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:13 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Cost%20of%20Goods%20Sold'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="eifLMqCbhq2qP6POEt22TVucimiWHRXE8N1uTYAZ4",
+        oauth_signature="ff6AFzVB79BhpVUGI4TX3MUVX8A%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386964933", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 20:02:13 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 4dfa8d92-3697-4719-8dd4-ac2bec6a4440
+      Via:
+      - 1.1 ipp-gateway-ap01
+      Content-Length:
+      - '459'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:13.493-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-11-15T12:43:11-08:00</CreateTime><LastUpdatedTime>2013-11-15T12:43:11-08:00</LastUpdatedTime></MetaData><Name>Cost
+        of Goods Sold</Name><SubAccount>false</SubAccount><FullyQualifiedName>Cost
+        of Goods Sold</FullyQualifiedName><Active>true</Active><Classification>Expense</Classification><AccountType>Cost
+        of Goods Sold</AccountType><AccountSubType>SuppliesMaterialsCogs</AccountSubType><CurrentBalance>0</CurrentBalance><CurrentBalanceWithSubAccounts>0</CurrentBalanceWithSubAccounts><CurrencyRef
+        name="United States Dollar">USD</CurrencyRef></Account></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 20:02:14 GMT
 - request:
     method: post
     uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
@@ -382,10 +888,12 @@ http_interactions:
         <ParentRef>10</ParentRef>
         <SubItem>true</SubItem>
         <UnitPrice>35</UnitPrice>
-        <Type>Service</Type>
+        <Type>Inventory</Type>
         <Taxable>false</Taxable>
-        <IncomeAccountRef>6</IncomeAccountRef>
+        <AssetAccountRef>6</AssetAccountRef>
+        <IncomeAccountRef>4</IncomeAccountRef>
         <PurchaseCost>0.0</PurchaseCost>
+        <ExpenseAccountRef>5</ExpenseAccountRef>
         <TrackQtyOnHand>false</TrackQtyOnHand>
         <Level>1</Level>
         </Item>
@@ -399,11 +907,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '578'
+      - '658'
       Authorization:
-      - OAuth oauth_body_hash="tpDFx94zOmPJboi4e2ni%2FpnlvoQ%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="NOrBgOijMX6PmlgijXoemzdoBwI0Ix53QqvPgB9Bg", oauth_signature="wEG8R2KhX0VFTkMYqJJJr%2FqWgsM%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386941061", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_body_hash="x%2BYyzITd3wVxZbt69fekLU6yVcA%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="wdV4Icc6vWXUjmab1C8cwa0QxeSsQjAPe9td1RQ9Jo", oauth_signature="uSXg4IS%2BpiePEhEFPeFgR5mj734%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386964934", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
         oauth_version="1.0"
   response:
     status:
@@ -411,7 +919,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 13 Dec 2013 13:24:22 GMT
+      - Fri, 13 Dec 2013 20:02:14 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
@@ -421,11 +929,11 @@ http_interactions:
       Expires:
       - '0'
       Intuit-Tid:
-      - 9ebb7c35-93a5-414a-82d1-c873d359a570
+      - dbdcdd69-0e18-407c-bc1f-e7e20a3a6c33
       Via:
       - 1.1 ipp-gateway-ap02
       Content-Length:
-      - '408'
+      - '438'
       Connection:
       - close
       Content-Type:
@@ -433,10 +941,11 @@ http_interactions:
     body:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T05:24:22.562-08:00"><Item
-        domain="QBO" sparse="false"><Id>21</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-13T05:19:38-08:00</CreateTime><LastUpdatedTime>2013-12-13T05:19:38-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-2</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-13T12:02:15.111-08:00"><Item
+        domain="QBO" sparse="false"><Id>21</Id><SyncToken>1</SyncToken><MetaData><CreateTime>2013-12-13T05:19:38-08:00</CreateTime><LastUpdatedTime>2013-12-13T12:02:15-08:00</LastUpdatedTime></MetaData><Name>ROR-TS-v-2</Name><Active>true</Active><SubItem>true</SubItem><ParentRef
         name="ParentRef">10</ParentRef><Level>1</Level><Taxable>false</Taxable><UnitPrice>35</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+        name="Sales of Product Income">4</IncomeAccountRef><PurchaseCost>0</PurchaseCost><ExpenseAccountRef
+        name="Cost of Goods Sold">5</ExpenseAccountRef><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
     http_version: 
-  recorded_at: Fri, 13 Dec 2013 13:24:22 GMT
+  recorded_at: Fri, 13 Dec 2013 20:02:15 GMT
 recorded_with: VCR 2.4.0
