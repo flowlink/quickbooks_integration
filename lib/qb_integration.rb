@@ -14,7 +14,7 @@ require "qb_integration/services/base"
 require "qb_integration/services/account_service"
 require "qb_integration/services/item_service"
 
-require "qb_integration/sales_receipt"
+require "qb_integration/order_importer"
 require "qb_integration/address"
 require "qb_integration/services/payment_method"
 require "qb_integration/services/customer"

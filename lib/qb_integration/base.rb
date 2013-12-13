@@ -22,7 +22,7 @@ module QBIntegration
     end
 
     def sales_receipt_service
-      @receipt_service ||= Service::SalesReceipt.new(@config).quickbooks
+      @receipt_service ||= Service::SalesReceipt.new(config, payload)
     end
 
     def payment_method_service
