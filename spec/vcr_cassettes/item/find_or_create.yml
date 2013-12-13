@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Name>ROR-00004</Name>
+        <Description>Ruby on Rails Baseball Jersey</Description>
+        <UnitPrice>19.99</UnitPrice>
+        <Type>Inventory</Type>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '244'
+      Authorization:
+      - OAuth oauth_body_hash="KmBSde040WO7TdI7C9Ns3xzuMBE%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="Nssk04qdppbsA2xpcPcPfLKgf2KmY1qxkPtb6osbgXE", oauth_signature="oo3vL8YpvZIL2nCUWG%2F%2B%2FMK%2FEtw%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386899344", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 01:49:04 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 5759bdf8-24c6-487c-9db0-0a47080be26f
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '377'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T17:49:05.399-08:00"><Item
+        domain="QBO" sparse="false"><Id>16</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T17:49:05-08:00</CreateTime><LastUpdatedTime>2013-12-12T17:49:05-08:00</LastUpdatedTime></MetaData><Name>ROR-00004</Name><Description>Ruby
+        on Rails Baseball Jersey</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>19.99</UnitPrice><Type>Service</Type><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 01:49:06 GMT
+recorded_with: VCR 2.4.0

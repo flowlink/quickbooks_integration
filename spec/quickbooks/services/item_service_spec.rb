@@ -46,4 +46,26 @@ describe QBIntegration::Service::Item do
       expect(item.description).to eq "new description"
     end
   end
+
+  context ".find_or_create_by_sku" do
+    let(:line_item) { Factories.order["line_items"].last.with_indifferent_access }
+
+    before {  }
+
+    it "creates new item when it's not there already" do
+      VCR.use_cassette "item/find_or_create" do
+        subject.stub find_by_sku: nil
+        item = subject.find_or_create_by_sku line_item
+        expect(item.name).to eq line_item[:sku]
+      end
+    end
+
+    it "returns existing item" do
+      VCR.use_cassette("item/find_by_sku") do
+        line_item[:sku] = 'T-SHIRT-PUGS-RULE'
+        item = subject.find_or_create_by_sku line_item
+        expect(item.name).to eq line_item[:sku]
+      end
+    end
+  end
 end
