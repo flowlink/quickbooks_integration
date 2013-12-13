@@ -10,9 +10,6 @@ describe QuickbooksEndpoint do
     described_class
   end
 
-  describe "/product_persist" do
-  end
-
   describe "persist" do
     context "with order:new" do
       let(:message) {
