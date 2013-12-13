@@ -3,7 +3,6 @@ $:.unshift File.dirname(__FILE__)
 require 'oauth'
 require 'tzinfo'
 
-require "adjustment"
 require "cross_reference"
 
 require "qb_integration/helper"
@@ -19,4 +18,5 @@ require "qb_integration/sales_receipt"
 require "qb_integration/address"
 require "qb_integration/services/payment_method"
 require "qb_integration/services/customer"
+require "qb_integration/services/line"
 require "qb_integration/services/sales_receipt"

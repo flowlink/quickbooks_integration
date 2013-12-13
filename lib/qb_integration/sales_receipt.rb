@@ -11,7 +11,7 @@ module QBIntegration
 
     def save
       sales_receipt.doc_number = order["number"]
-      sales_receipt.line_items = build_sales_receipt_lines
+      sales_receipt.line_items = line_service.build_lines
       sales_receipt.total = @order['totals']['order']
 
       # TODO check if we still need this timezone conversion thing
@@ -29,8 +29,8 @@ module QBIntegration
       sales_receipt.payment_method_ref = payment_method_service.matching_payment.id
       sales_receipt.customer_ref = customer_service.find_or_create.id
 
-      # TODO We need a check here. Users might want to default a default
-      # Undeposit funds account
+      # TODO We need a check here. Users might want to just use the default
+      # undeposit funds account
       sales_receipt.deposit_to_account_ref = account_service.find_by_name(config.fetch("quickbooks.account_name")).id
 
       sales_receipt_service.create sales_receipt
@@ -111,28 +111,6 @@ module QBIntegration
         "receipt" => receipt,
         "xref" => cross_ref_hash
       }
-    end
-
-    def build_sales_receipt_lines
-      order["line_items"].inject([]) do |items, line_item|
-        line = Quickbooks::Model::Line.new
-
-        sku = line_item["sku"]
-        description = line_item["name"]
-        price = line_item["price"]
-        quantity = line_item["quantity"]
-
-        line.amount = (quantity * price)
-        line.description = description
-
-        line.sales_item! do |sales_item|
-          sales_item.item_ref = 1 # create_item(sku, description, price).id
-          sales_item.quantity = line_item["quantity"]
-          sales_item.unit_price = line_item["price"]
-        end
-
-        items << line
-      end
     end
   end
 end
