@@ -1,6 +1,5 @@
 module Factories
   class << self
-
     def config
       {
         'quickbooks.access_token' => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
@@ -8,6 +7,10 @@ module Factories
         'quickbooks.account_name' => "Inventory Asset",
         'quickbooks.realm' => "835973000"
       }
+    end
+
+    def config_import_as_sub_item
+      config.merge({ 'quickbooks.import_as_sub_item' => true })
     end
 
     def order_changes(args = {})
@@ -638,7 +641,7 @@ module Factories
         "variants"=> [
           {
             "name"=> "Ruby on Rails T-Shirt XL",
-            "sku"=> "ROR-TS-1",
+            "sku"=> "#{sku}-v-1",
             "price"=> 35,
             "cost_price"=> 22,
             "weight"=> nil,
@@ -655,7 +658,7 @@ module Factories
           },
           {
             "name"=> "Ruby on Rails T-Shirt SML",
-            "sku"=> "ROR-TS-1",
+            "sku"=> "#{sku}-v-2",
             "price"=> 35,
             "cost_price"=> 22,
             "weight"=> nil,
