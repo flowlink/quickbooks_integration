@@ -6,10 +6,22 @@ module QBIntegration
       @product = @payload[:product]
     end
 
+    def load_configs
+      @create_variants_as_sub_item = @config.fetch("quickbooks.create_variants_as_sub_item")
+      @income_account = @config.fetch("quickbooks.income_account")
+
+      if @use_inventory_costing = @config.fetch("quickbooks.use_inventory_costing")
+        @inventory_account = @config.fetch('quickbooks.inventory_account')
+        @cogs_account = @config.fetch('quickbooks.cogs_account')
+      end
+    end
+
     def import
+      load_configs
+
       import_product(@product)
 
-      @product[:variants].collect {|variant| import_variant(variant)}
+      @product[:variants].collect {|variant| import_product(variant)}
 
       [200, notifications]
 
@@ -24,36 +36,41 @@ module QBIntegration
       }]
     end
 
-    def import_variant(variant)
-      import_as_sub_item = @config.fetch("quickbooks.import_as_sub_item")
+    def attributes(product)
+      income_account_id = account_service.find_by_name(@income_account).id
 
-      import_product(variant, import_as_sub_item)
+      @attributes = {
+        name: product[:sku],
+        description: product[:description],
+        unit_price: product[:price],
+        income_account_ref: income_account_id,
+        sub_item: false,
+        type: 'Non Inventory'
+      }
+
+      if @create_variants_as_sub_item && !product.key?(:variants)
+        @attributes[:sub_item] = true
+        @attributes[:parent_ref] = parent_ref
+      end
+
+      if @use_inventory_costing
+        @attributes[:type] = 'Inventory'
+        @attributes[:asset_account_ref] = account_service.find_by_name(@inventory_account).id
+        @attributes[:expense_account_ref] = account_service.find_by_name(@cogs_account).id
+      end
+
+      @attributes
     end
 
-    def import_product(product, import_as_sub_item = false)
-      sku, description, price = product[:sku], product[:description], product[:price]
+    def import_product(product)
+      if item = item_service.find_by_sku(product[:sku])
+        item_service.update(item, attributes(product))
 
-      if item = item_service.find_by_sku(sku)
-        attributes = { description: description, unit_price: price }
-        attributes.merge!({ sub_item: true, parent_ref: parent_ref }) if import_as_sub_item
-
-        item_service.update(item, attributes)
-
-        add_notification('update', product, import_as_sub_item)
+        add_notification('update', product)
       else
-        account = account_service.find_by_name @config.fetch("quickbooks.account_name")
+        item_service.create(attributes(product))
 
-        attributes = {
-          name: sku,
-          description: description,
-          unit_price: price,
-          income_account_ref: account.id
-        }
-        attributes.merge!({ sub_item: true, parent_ref: parent_ref }) if import_as_sub_item
-
-        item_service.create(attributes)
-
-        add_notification('create', product, import_as_sub_item)
+        add_notification('create', product)
       end
     end
 
@@ -76,7 +93,7 @@ module QBIntegration
       }
     end
 
-    def add_notification(operation, product, import_as_sub_item)
+    def add_notification(operation, product)
       @notifications ||= []
       @text ||= {
         'create' => {},
@@ -91,7 +108,7 @@ module QBIntegration
       @text['update'][true]  = "Updated product with Sku = #{sku} on Quickbooks successfully."
       @text['update'][false] = "Updated product with Sku = #{sku} on Quickbooks successfully."
 
-      @notifications << @text[operation][import_as_sub_item]
+      @notifications << @text[operation][@create_variants_as_sub_item]
     end
   end
 end

@@ -2,15 +2,15 @@ module Factories
   class << self
     def config
       {
-        'quickbooks.access_token' => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
-        'quickbooks.access_secret' => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
-        'quickbooks.account_name' => "Inventory Asset",
-        'quickbooks.realm' => "835973000"
+        'quickbooks.access_token'                => "qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        'quickbooks.access_secret'               => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
+        'quickbooks.income_account'              => "Sales of Product Income",
+        'quickbooks.realm'                       => "835973000",
+        'quickbooks.create_variants_as_sub_item' => true,
+        'quickbooks.use_inventory_costing'       => true,
+        'quickbooks.inventory_account'           => "Inventory Asset",
+        'quickbooks.cogs_account'                => "Cost of Goods Sold"
       }
-    end
-
-    def config_import_as_sub_item
-      config.merge({ 'quickbooks.import_as_sub_item' => true })
     end
 
     def order_changes(args = {})
@@ -625,7 +625,7 @@ module Factories
     def product(sku = 'ROR-TS')
       {
         "name"=> "Ruby on Rails T-Shirt",
-        "description"=> "...",
+        "description"=> "Some description text for the product.",
         "available_on"=> "2012-11-20T00:00:00-05:00",
         "sku"=> sku,
         "external_ref"=> "",

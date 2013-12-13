@@ -6,7 +6,7 @@ describe QBIntegration::ProductImporter do
   end
 
   context "when importing products as sub-items" do
-    let(:config) { Factories.config_import_as_sub_item }
+    let(:config) { Factories.config }
 
     context "missing config" do
       let(:config) {{}}
@@ -62,7 +62,7 @@ describe QBIntegration::ProductImporter do
           message: "product:new",
           message_id: 123,
           payload: {
-            product: Factories.product('south-park')
+            product: Factories.product('family-guy')
           }
         }.with_indifferent_access
       end
@@ -73,9 +73,9 @@ describe QBIntegration::ProductImporter do
 
           expect(code).to eq 200
           expect(notification["notifications"].count).to eq 3
-          expect(notification["notifications"][0]["subject"]).to include "south-park"
-          expect(notification["notifications"][1]["subject"]).to include "south-park-v-1"
-          expect(notification["notifications"][2]["subject"]).to include "south-park-v-2"
+          expect(notification["notifications"][0]["subject"]).to include "family-guy"
+          expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
+          expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
         end
       end
     end
