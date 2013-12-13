@@ -33,6 +33,10 @@ module QBIntegration
       @customer_service ||= Service::Customer.new(config, payload)
     end
 
+    def line_service
+      @line_service ||= Service::Line.new(config, payload)
+    end
+
     def not_supported!
       raise UnsupportedException.new("#{caller_locations(1,1)[0].label} is not supported for Quickbooks #{@platform}")
     end
