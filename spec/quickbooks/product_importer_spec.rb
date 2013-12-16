@@ -5,23 +5,23 @@ describe QBIntegration::ProductImporter do
     described_class.new(product_message, config)
   end
 
-  context "when importing products as sub-items" do
-    let(:config) { Factories.config }
+  let(:config) { Factories.config }
 
-    context "missing config" do
+  context "error handling" do
+    let(:product_message) do
+      {
+        message: "product:new",
+        message_id: 123,
+        payload: {
+          product: Factories.product
+        }
+      }.with_indifferent_access
+    end
+
+    context "missing parameters" do
       let(:config) {{}}
 
-      let(:product_message) do
-        {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product
-          }
-        }.with_indifferent_access
-      end
-
-      it "generates an error notifiction" do
+      it "generates an error notification" do
         VCR.use_cassette "product_importer/missing_config" do
           code, notification = subject.import
 
@@ -32,51 +32,69 @@ describe QBIntegration::ProductImporter do
       end
     end
 
-    context "product already exists" do
-      let(:product_message) do
-        {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product
-          }
-        }.with_indifferent_access
+    context "account not found" do
+      let(:config) do
+        c = Factories.config
+        c["quickbooks.income_account"] = "Not to be found"
+        c
       end
 
-      it "updates the product" do
-        VCR.use_cassette "product_importer/product_update_variants" do
+      it "generates an error notification" do
+        VCR.use_cassette "product_importer/missing_account" do
           code, notification = subject.import
 
           expect(code).to eq 200
-          expect(notification["notifications"].count).to eq 3
-          expect(notification["notifications"][0]["subject"]).to include "Updated product with Sku = ROR-TS"
-          expect(notification["notifications"][1]["subject"]).to include "Updated product with Sku = ROR-TS-v-1"
-          expect(notification["notifications"][2]["subject"]).to include "Updated product with Sku = ROR-TS-v-2"
+          expect(notification["notifications"].count).to eq 1
+          expect(notification["notifications"][0]["subject"]).to include "No Account"
         end
       end
     end
+  end
 
-    context "products doesnt exist" do
-      let(:product_message) do
-        {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product('family-guy')
-          }
-        }.with_indifferent_access
+  context "product already exists" do
+    let(:product_message) do
+      {
+        message: "product:new",
+        message_id: 123,
+        payload: {
+          product: Factories.product
+        }
+      }.with_indifferent_access
+    end
+
+    it "updates the product" do
+      VCR.use_cassette "product_importer/product_update_variants" do
+        code, notification = subject.import
+
+        expect(code).to eq 200
+        expect(notification["notifications"].count).to eq 3
+        expect(notification["notifications"][0]["subject"]).to include "Updated product with Sku = ROR-TS"
+        expect(notification["notifications"][1]["subject"]).to include "Updated product with Sku = ROR-TS-v-1"
+        expect(notification["notifications"][2]["subject"]).to include "Updated product with Sku = ROR-TS-v-2"
       end
+    end
+  end
 
-      it "creates the product" do
-        VCR.use_cassette "product_importer/product_new_variants" do
-          code, notification = subject.import
+  context "products doesnt exist" do
+    let(:product_message) do
+      {
+        message: "product:new",
+        message_id: 123,
+        payload: {
+          product: Factories.product('family-guy')
+        }
+      }.with_indifferent_access
+    end
 
-          expect(code).to eq 200
-          expect(notification["notifications"].count).to eq 3
-          expect(notification["notifications"][0]["subject"]).to include "family-guy"
-          expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
-          expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
-        end
+    it "creates the product" do
+      VCR.use_cassette "product_importer/product_new_variants" do
+        code, notification = subject.import
+
+        expect(code).to eq 200
+        expect(notification["notifications"].count).to eq 3
+        expect(notification["notifications"][0]["subject"]).to include "family-guy"
+        expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
+        expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
       end
     end
   end

@@ -25,7 +25,7 @@ module QBIntegration
 
       [200, notifications]
 
-    rescue KeyError => e
+    rescue Exception => e
       [200, {
         'message_id' => @message_id,
         'notifications' => [{
