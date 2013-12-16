@@ -1,30 +1,60 @@
 module QBIntegration
-  class OrderImporter < Base
-    attr_accessor :order, :xref, :sales_receipt
+class OrderImporter < Base
+    attr_accessor :order
 
     def initialize(message = {}, config)
       super
-
       @order = payload['order']
-      @sales_receipt = Quickbooks::Model::SalesReceipt.new
     end
 
+    # if canceled create credit memo (lets assume a canceled order has been
+    # imported already?) TODO build it!
+    #
+    # NOTE do we need to care about the message name and raise? e.g. quickbooks
+    # doesnt have the given order yet and but the enpdoint receives an order:updated
+    # message instead of order:new
     def sync
-      # check if order is paid
-      #
-      # if paid search by order number in quickbooks
-      #
-      #   sales_receipt_service.find_order_by_number
-      #   
-      # if not found create new order
-      #
-      #   sales_receipt_service.create
-      #
-      # if not paid return 'fine come back later'
-      # if canceled create credit memo (lets assume a canceled order has been
-      # imported already?)
-      #
-      #   TODO build it!
+      if sales_receipt = sales_receipt_service.find_by_order_number
+        case message_name
+        when "order:new"
+          raise AlreadyPersistedOrderException.new(
+            "Got 'order:new' message for order #{order[:number]} that already has a
+            sales receipt with id: #{sales_receipt.id}"
+          )
+        when "order:updated"
+          # update it?
+          #
+          # order_number = @order["number"]
+          # cross_ref_hash = @xref.lookup(order_number)
+          # current_receipt = receipt_service.fetch_by_id(cross_ref_hash[:id])
+          # receipt = sales_receipt
+          # receipt.id = Quickeebooks::Online::Model::Id.new(cross_ref_hash[:id])
+          # receipt.sync_token = current_receipt.sync_token
+          # receipt = receipt_service.update(receipt)
+        end
+      else
+        case message_name
+        when "order:new"
+          sales_receipt = sales_receipt_service.create
+          text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
+          [200, notification(text)]
+        when "order:updated"
+          raise NoReceiptForOrderException.new(
+            "Got 'order:updated' message for order #{order[:number]} that has not a sales receipt for it yet."
+          )
+        end
+      end
+    end
+
+    def notification(text)
+      {
+        'message_id' => message_id,
+        'notifications' => {
+          'level' => 'info',
+          'subject' => text,
+          'description' => text
+        }
+      }.with_indifferent_access
     end
 
     # TODO Understand this xref thing. Not sure we still need it

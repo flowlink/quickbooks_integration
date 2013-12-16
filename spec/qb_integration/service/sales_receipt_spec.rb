@@ -33,6 +33,13 @@ module QBIntegration
           expect(sales_receipt.doc_number).to eq Factories.order["number"]
         end
       end
+
+      it "finds by order number" do
+        VCR.use_cassette("sales_receipt/find_by_order_number") do
+          sales_receipt = subject.find_by_order_number
+          expect(sales_receipt.doc_number).to eq Factories.order["number"]
+        end
+      end
     end
   end
 end
