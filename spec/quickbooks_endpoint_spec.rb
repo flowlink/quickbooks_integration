@@ -6,8 +6,28 @@ describe QuickbooksEndpoint do
     {'HTTP_X_AUGURY_TOKEN' => 'x123'}
   end
 
-  def app
-    described_class
+  def parameters
+    [
+      {:name => 'quickbooks.access_token', :value => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC" },
+      {:name => 'quickbooks.access_secret', :value => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX" },
+      {:name => 'quickbooks.realm', :value => "1014843225" },
+      {:name => "quickbooks.deposit_to_account_name", :value => "Undeposited Funds"},
+      {:name => "quickbooks.payment_method_name", :value => [
+        {
+          "master" => "MasterCard",
+          "visa" => "Visa",
+          "american_express" => "AmEx",
+          "discover" => "Discover",
+          "PayPal" => "PayPal"
+        }]
+      },
+      {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
+      {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
+      {:name => "quickbooks.coupon_item", :value => "Coupons"},
+      {:name => "quickbooks.discount_item", :value => "Discount"},
+      {:name => "quickbooks.account_name", :value => "Inventory Asset"},
+      {:name => "quickbooks.timezone", :value => "EST"}
+    ]
   end
 
   describe "persist" do
@@ -19,20 +39,22 @@ describe QuickbooksEndpoint do
           :payload => {
             "order" => Factories.order,
             "original" => Factories.original,
-            "parameters" => Factories.parameters
+            "parameters" => parameters
           }
-        }
+        }.with_indifferent_access
       }
-      it "generates a json response with an info notification" do
-        CrossReference.any_instance.stub(:lookup).with("R181807170").and_return(nil)
-        VCR.use_cassette('online/persist_new_order') do
-          post '/persist', message.to_json, auth
-          last_response.status.should eql 200
-          response = JSON.parse(last_response.body)
 
+      it "generates a json response with an info notification" do
+        message[:payload][:order][:number] = "R136780"
+        message[:payload][:order][:placed_on] = "2013-12-16 14:51:18 -0300"
+
+        VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
+          post '/order_persist', message.to_json, auth
+          last_response.status.should eql 200
+
+          response = JSON.parse(last_response.body)
           response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should eql "Created Quickbooks sales receipt 45 for order R181807170"
-          response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 45 and idDomain = QBO"
+          response["notifications"].first["subject"].should match "Created Quickbooks sales receipt"
         end
       end
     end
@@ -51,6 +73,7 @@ describe QuickbooksEndpoint do
       }
 
       it "generates a json response with the update info notification" do
+        pending "wip"
         VCR.use_cassette('online/persist_updated_order') do
           post '/persist', message.to_json, auth
           last_response.status.should eql 200

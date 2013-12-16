@@ -42,6 +42,12 @@ module QBIntegration
         sales_receipt.customer_ref = customer_service.find_or_create.id
 
         # Associated as both DepositAccountRef and IncomeAccountRef
+        # TODO Do we have to associate account_name to receipt lines and
+        # deposit_to_account_name to the sales receipt itself? (as in the
+        # previous endpoint version)
+        #
+        # Quickbooks might return an weird error if the name here is already used
+        # by other, I think, quickbooks account
         account = account_service.find_by_name config.fetch("quickbooks.account_name")
 
         sales_receipt.line_items = line_service.build_lines account

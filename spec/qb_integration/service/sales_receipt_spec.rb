@@ -6,8 +6,7 @@ module QBIntegration
       let(:payload) do
         {
           "order" => Factories.order,
-          "original" => Factories.original,
-          "parameters" => Factories.parameters
+          "original" => Factories.original
         }.with_indifferent_access
       end
 
