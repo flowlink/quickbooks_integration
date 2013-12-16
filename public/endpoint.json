@@ -79,6 +79,51 @@
           "retries_allowed": true
         }
       }
+    },
+    {
+      "name": "product_persist",
+      "path": "/product_persist",
+      "description": "Enabling this would import all your products from the spree store into QuickBooks",
+      "requires": {
+        "parameters": [
+          {
+            "name": "inventory_costing",
+            "description": "Inventory/Non-Inventory items",
+            "data_type": "boolean"
+          },
+          {
+            "name": "inventory_account",
+            "description": "Inventory Account",
+            "data_type": "string",
+            "default": "Inventory Account",
+            "depends_on": ["inventory_costing"]
+          },
+          {
+            "name": "cogs_account",
+            "description": "COGS Account",
+            "data_type": "string",
+            "default": "COGS Account",
+            "depends_on": ["inventory_costing"]
+          },
+          {
+            "name": "income_account",
+            "description": "Income Account",
+            "data_type": "string",
+            "default": "Income Account"
+          },
+          {
+            "name": "variants_as_sub_items",
+            "description": "Selecting this would have every single variant of a product to be created as a separate item in QuickBooks and be a sub-item to the product of which the variant is",
+            "data_type": "boolean"
+          }          
+        ]
+      },
+      "recommends": {
+        "messages": ["product:new","product:updated"],
+        "options": {
+          "retries_allowed": true
+        }
+      }
     }
   ]
 }
