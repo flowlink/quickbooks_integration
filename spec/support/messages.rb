@@ -627,7 +627,6 @@ module Factories
         "name"=> "Ruby on Rails T-Shirt",
         "description"=> "Some description text for the product.",
         "available_on"=> "2012-11-20T00:00:00-05:00",
-        "sku"=> sku,
         "external_ref"=> "",
         "price"=> 31,
         "cost_price"=> 21,

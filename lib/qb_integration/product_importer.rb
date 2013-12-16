@@ -7,10 +7,10 @@ module QBIntegration
     end
 
     def load_configs
-      @variants_as_sub_items = @config.fetch("quickbooks.variants_as_sub_items")
+      @variants_as_sub_items = (@config.fetch("quickbooks.variants_as_sub_items").to_s == 'true')
       @income_account = @config.fetch("quickbooks.income_account")
 
-      if @inventory_costing = @config.fetch("quickbooks.inventory_costing")
+      if @inventory_costing = (@config.fetch("quickbooks.inventory_costing").to_s == 'true')
         @inventory_account = @config.fetch('quickbooks.inventory_account')
         @cogs_account = @config.fetch('quickbooks.cogs_account')
       end
@@ -21,7 +21,7 @@ module QBIntegration
 
       import_product(@product)
 
-      @product[:variants].collect {|variant| import_product(variant)}
+      @product.fetch(:variants, []).collect {|variant| import_product(variant)}
 
       [200, notifications]
 
@@ -31,7 +31,7 @@ module QBIntegration
         'notifications' => [{
           'level' => 'error',
           'subject' => e.message,
-          'description' => e.message
+          'description' => e.backtrace.join('\n')
         }]
       }]
     end
@@ -102,13 +102,15 @@ module QBIntegration
 
       sku = product[:sku]
 
+      imported_as_sub_item = @variants_as_sub_items && !product.key?(:variants)
+
       @text['create'][true]  = "Imported product with Sku = #{sku} as sub-item of product with Sku = #{@product[:sku]} to Quickbooks successfully."
       @text['create'][false] = "Imported product with Sku = #{sku} to Quickbooks successfully."
 
       @text['update'][true]  = "Updated product with Sku = #{sku} on Quickbooks successfully."
       @text['update'][false] = "Updated product with Sku = #{sku} on Quickbooks successfully."
 
-      @notifications << @text[operation][@variants_as_sub_items]
+      @notifications << @text[operation][imported_as_sub_item]
     end
   end
 end

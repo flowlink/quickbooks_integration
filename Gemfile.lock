@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/ruckus/quickbooks-ruby.git
+  revision: 7c5fa0882ff3e1eee5add24c121f5c07fcbad61c
+  branch: master
+  specs:
+    quickbooks-ruby (0.0.2)
+      activemodel
+      nokogiri (~> 1.5.9)
+      oauth
+      roxml
+
+GIT
   remote: git://github.com/spree/endpoint_base.git
   revision: 20ff4efcd2d7d9029c7252efd91202479c376eb6
   specs:
@@ -7,15 +18,6 @@ GIT
       json
       sinatra (= 1.4.3)
       sinatra-contrib
-
-PATH
-  remote: ../quickbooks-ruby
-  specs:
-    quickbooks-ruby (0.0.2)
-      activemodel
-      nokogiri (~> 1.5.9)
-      oauth
-      roxml
 
 GEM
   remote: https://www.rubygems.org/
@@ -63,7 +65,7 @@ GEM
       guard (>= 0.10.0)
     highline (1.6.19)
     i18n (0.6.9)
-    json (1.8.0)
+    json (1.8.1)
     kgio (2.8.0)
     listen (0.7.3)
     lumberjack (1.0.3)
