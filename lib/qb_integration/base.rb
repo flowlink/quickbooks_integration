@@ -36,9 +36,11 @@ module QBIntegration
     def line_service
       @line_service ||= Service::Line.new(config, payload)
     end
-
-    def not_supported!
-      raise UnsupportedException.new("#{caller_locations(1,1)[0].label} is not supported for Quickbooks #{@platform}")
-    end
   end
+
+  class InvalidPlatformException < Exception; end
+  class LookupValueNotFoundException < Exception; end
+  class UnsupportedException < Exception; end
+  class AlreadyPersistedOrderException < Exception; end
+  class NoReceiptForOrderException < Exception; end
 end

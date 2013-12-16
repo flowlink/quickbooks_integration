@@ -16,6 +16,11 @@ module QBIntegration
         @line_service = Line.new config, payload
       end
 
+      def find_by_order_number
+        query = "SELECT DocNumber FROM SalesReceipt WHERE DocNumber = '#{order[:number]}'"
+        quickbooks.query(query).entries.first
+      end
+
       def create
         sales_receipt = create_model
         sales_receipt.doc_number = order["number"]

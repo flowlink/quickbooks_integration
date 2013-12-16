@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20DocNumber%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="TpDx6usR5SrlLBWyBjzSZ9dsIXiQDKIxR6XMbY5WLQ",
+        oauth_signature="OHe30whNiBaB6W9ZsV80jbvQFM0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387215279", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 16 Dec 2013 17:34:40 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 6ce56bd1-7f58-46cc-ae57-a7ccdc678fff
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '363'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T09:34:40.799-08:00"><QueryResponse
+        startPosition="1" maxResults="10"><SalesReceipt sparse="true"><Id>15</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>25</Id></BillAddr><ShipAddr><Id>26</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>14</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>23</Id></BillAddr><ShipAddr><Id>24</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>13</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>21</Id></BillAddr><ShipAddr><Id>22</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>12</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>19</Id></BillAddr><ShipAddr><Id>20</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>11</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>17</Id></BillAddr><ShipAddr><Id>18</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>10</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>15</Id></BillAddr><ShipAddr><Id>16</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>9</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>9</Id></BillAddr><ShipAddr><Id>10</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>8</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>7</Id></BillAddr><ShipAddr><Id>8</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>7</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>5</Id></BillAddr><ShipAddr><Id>6</Id></ShipAddr></SalesReceipt><SalesReceipt
+        sparse="true"><Id>6</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber></SalesReceipt></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Mon, 16 Dec 2013 17:34:41 GMT
+recorded_with: VCR 2.4.0

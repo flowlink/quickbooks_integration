@@ -13,36 +13,34 @@ class QuickbooksEndpoint < EndpointBase
     process_result code, notification
   end
 
-  post '/persist' do
+  post '/order_persist' do
     begin
-      client = QBIntegration::Base.client(@message[:payload], @message[:message_id], @config, @message[:message])
-      result = client.persist
-      order_number = @message[:payload]["order"]["number"]
+      process_result = QBIntegration::OrderImporter.new(@message, @config).sync
 
-      case @message[:message]
-      when "order:new"
-        process_result 200, {
-          'message_id' => @message[:message_id],
-          'notifications' => [
-            {
-              "level" => "info",
-              "subject" => "Created Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
-              "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
-            }
-          ]
-        }
-      when "order:updated"
-        process_result 200, {
-          'message_id' => @message[:message_id],
-          'notifications' => [
-            {
-              "level" => "info",
-              "subject" => "Updated the Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
-              "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
-            }
-          ]
-        }
-      end
+      # case @message[:message]
+      # when "order:new"
+      #   process_result 200, {
+      #     'message_id' => @message[:message_id],
+      #     'notifications' => [
+      #       {
+      #         "level" => "info",
+      #         "subject" => "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}",
+      #         "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]}"
+      #       }
+      #     ]
+      #   }
+      # when "order:updated"
+      #   process_result 200, {
+      #     'message_id' => @message[:message_id],
+      #     'notifications' => [
+      #       {
+      #         "level" => "info",
+      #         "subject" => "Updated the Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
+      #         "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
+      #       }
+      #     ]
+      #   }
+      # end
     rescue Exception => exception
       process_result 500, {
         'message_id' => @message_id,
