@@ -24,6 +24,7 @@ module QBIntegration
       def create
         sales_receipt = create_model
         sales_receipt.doc_number = order["number"]
+        sales_receipt.email = order["email"]
         sales_receipt.total = order['totals']['order']
 
         # TODO check if we still need this timezone conversion thing
