@@ -18,3 +18,5 @@ require "qb_integration/services/payment_method"
 require "qb_integration/services/customer"
 require "qb_integration/services/line"
 require "qb_integration/services/sales_receipt"
+
+require "quickbooks-ruby"
