@@ -15,7 +15,8 @@ class QuickbooksEndpoint < EndpointBase
 
   post '/order_persist' do
     begin
-      process_result = QBIntegration::OrderImporter.new(@message, @config).sync
+      code, notification = QBIntegration::OrderImporter.new(@message, @config).sync
+      process_result code, notification
 
       # case @message[:message]
       # when "order:new"

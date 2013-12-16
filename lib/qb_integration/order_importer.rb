@@ -47,13 +47,14 @@ class OrderImporter < Base
     end
 
     def notification(text)
-      {
-        'message_id' => message_id,
-        'notifications' => {
-          'level' => 'info',
-          'subject' => text,
-          'description' => text
-        }
+      { 'message_id' => message_id,
+        'notifications' => [
+          {
+            'level' => 'info',
+            'subject' => text,
+            'description' => text
+          }
+        ]
       }.with_indifferent_access
     end
 
