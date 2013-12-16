@@ -115,7 +115,7 @@
             "name": "variants_as_sub_items",
             "description": "Selecting this would have every single variant of a product to be created as a separate item in QuickBooks and be a sub-item to the product of which the variant is",
             "data_type": "boolean"
-          }          
+          }
         ]
       },
       "recommends": {

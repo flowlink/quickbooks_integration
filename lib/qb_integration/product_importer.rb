@@ -7,10 +7,10 @@ module QBIntegration
     end
 
     def load_configs
-      @create_variants_as_sub_item = @config.fetch("quickbooks.create_variants_as_sub_item")
+      @variants_as_sub_items = @config.fetch("quickbooks.variants_as_sub_items")
       @income_account = @config.fetch("quickbooks.income_account")
 
-      if @use_inventory_costing = @config.fetch("quickbooks.use_inventory_costing")
+      if @inventory_costing = @config.fetch("quickbooks.inventory_costing")
         @inventory_account = @config.fetch('quickbooks.inventory_account')
         @cogs_account = @config.fetch('quickbooks.cogs_account')
       end
@@ -48,12 +48,12 @@ module QBIntegration
         type: 'Non Inventory'
       }
 
-      if @create_variants_as_sub_item && !product.key?(:variants)
+      if @variants_as_sub_items && !product.key?(:variants)
         @attributes[:sub_item] = true
         @attributes[:parent_ref] = parent_ref
       end
 
-      if @use_inventory_costing
+      if @inventory_costing
         @attributes[:type] = 'Inventory'
         @attributes[:asset_account_ref] = account_service.find_by_name(@inventory_account).id
         @attributes[:expense_account_ref] = account_service.find_by_name(@cogs_account).id
@@ -108,7 +108,7 @@ module QBIntegration
       @text['update'][true]  = "Updated product with Sku = #{sku} on Quickbooks successfully."
       @text['update'][false] = "Updated product with Sku = #{sku} on Quickbooks successfully."
 
-      @notifications << @text[operation][@create_variants_as_sub_item]
+      @notifications << @text[operation][@variants_as_sub_items]
     end
   end
 end
