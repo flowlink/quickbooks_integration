@@ -4,6 +4,7 @@ module QBIntegration
       super
 
       @product = @payload[:product]
+      @notifications = []
     end
 
     def import
@@ -100,21 +101,14 @@ module QBIntegration
     end
 
     def add_notification(operation, product)
-      @notifications ||= []
+      @notifications.push(text[operation] % product[:sku])
+    end
+
+    def text
       @text ||= {
-        'create' => {},
-        'update' => {}
+        'create' => "Product %s imported to Quickbooks.",
+        'update' => "Product %s updated on Quickbooks."
       }
-
-      sku = product[:sku]
-
-      @text['create'][true]  = "Imported product with Sku = #{sku} as sub-item of product with Sku = #{@product[:sku]} to Quickbooks successfully."
-      @text['create'][false] = "Imported product with Sku = #{sku} to Quickbooks successfully."
-
-      @text['update'][true]  = "Updated product with Sku = #{sku} on Quickbooks successfully."
-      @text['update'][false] = "Updated product with Sku = #{sku} on Quickbooks successfully."
-
-      @notifications << @text[operation][import_as_sub_item?(product)]
     end
   end
 end

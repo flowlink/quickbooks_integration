@@ -68,9 +68,9 @@ describe QBIntegration::ProductImporter do
 
         expect(code).to eq 200
         expect(notification["notifications"].count).to eq 3
-        expect(notification["notifications"][0]["subject"]).to include "Updated product with Sku = ROR-TS"
-        expect(notification["notifications"][1]["subject"]).to include "Updated product with Sku = ROR-TS-v-1"
-        expect(notification["notifications"][2]["subject"]).to include "Updated product with Sku = ROR-TS-v-2"
+        expect(notification["notifications"][0]["subject"]).to include "Product ROR-TS updated"
+        expect(notification["notifications"][1]["subject"]).to include "Product ROR-TS-v-1 updated"
+        expect(notification["notifications"][2]["subject"]).to include "Product ROR-TS-v-2 updated"
       end
     end
   end
@@ -116,7 +116,7 @@ describe QBIntegration::ProductImporter do
           code, notification = subject.import
 
           expect(code).to eq 200
-          expect(notification["notifications"][0]["subject"]).to include "Imported product"
+          expect(notification["notifications"][0]["subject"]).to include "Product nine-inch-nails-cd imported"
         end
       end
     end
