@@ -7,12 +7,6 @@ class OrderImporter < Base
       @order = payload['order']
     end
 
-    # if canceled create credit memo (lets assume a canceled order has been
-    # imported already?) TODO build it!
-    #
-    # NOTE do we need to care about the message name and raise? e.g. quickbooks
-    # doesnt have the given order yet and but the enpdoint receives an order:updated
-    # message instead of order:new
     def sync
       if sales_receipt = sales_receipt_service.find_by_order_number
         case message_name
@@ -21,6 +15,10 @@ class OrderImporter < Base
             "Got 'order:new' message for order #{order[:number]} that already has a
             sales receipt with id: #{sales_receipt.id}"
           )
+        when "order:canceled"
+          credit_memo = credit_memo_service.create_from_receipt sales_receipt
+          text = "Created Quickbooks credit memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
+          [200, notification(text)]
         when "order:updated"
           # update it?
           #
@@ -43,9 +41,17 @@ class OrderImporter < Base
           #   }
         end
       else
-        sales_receipt = sales_receipt_service.create
-        text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
-        [200, notification(text)]
+        case message_name
+        when "order:new" || "order:updated"
+          sales_receipt = sales_receipt_service.create
+          text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
+          [200, notification(text)]
+        else
+          raise AlreadyPersistedOrderException.new(
+            "Got 'order:canceled' message for order #{order[:number]} that already has no
+            sales receipt"
+          )
+        end
       end
     end
 

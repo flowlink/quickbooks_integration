@@ -25,6 +25,10 @@ module QBIntegration
       @receipt_service ||= Service::SalesReceipt.new(config, payload)
     end
 
+    def credit_memo_service
+      @credit_memo_service ||= Service::CreditMemo.new(config, payload)
+    end
+
     def payment_method_service
       @payment_method_service ||= Service::PaymentMethod.new(config, payload)
     end
