@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20DocNumber%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -12,13 +12,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="TpDx6usR5SrlLBWyBjzSZ9dsIXiQDKIxR6XMbY5WLQ",
-        oauth_signature="OHe30whNiBaB6W9ZsV80jbvQFM0%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387215279", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="1USTKNxssE8F1FnGrIMm5vtqTsZ3KFvQFT4dG5k",
+        oauth_signature="FsLq8un1PpYOpfk7GujV3Ma%2FIGQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387318371", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -26,39 +26,62 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 17:34:40 GMT
+      - Tue, 17 Dec 2013 22:12:53 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 6ce56bd1-7f58-46cc-ae57-a7ccdc678fff
+      - b17896ea-873f-4b4e-a6df-8e71ae6874f5
       Via:
       - 1.1 ipp-gateway-ap05
       Content-Length:
-      - '363'
+      - '1436'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T09:34:40.799-08:00"><QueryResponse
-        startPosition="1" maxResults="10"><SalesReceipt sparse="true"><Id>15</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>25</Id></BillAddr><ShipAddr><Id>26</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>14</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>23</Id></BillAddr><ShipAddr><Id>24</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>13</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>21</Id></BillAddr><ShipAddr><Id>22</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>12</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>19</Id></BillAddr><ShipAddr><Id>20</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>11</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>17</Id></BillAddr><ShipAddr><Id>18</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>10</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>15</Id></BillAddr><ShipAddr><Id>16</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>9</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>9</Id></BillAddr><ShipAddr><Id>10</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>8</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>7</Id></BillAddr><ShipAddr><Id>8</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>7</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber><BillAddr><Id>5</Id></BillAddr><ShipAddr><Id>6</Id></ShipAddr></SalesReceipt><SalesReceipt
-        sparse="true"><Id>6</Id><SyncToken>0</SyncToken><DocNumber>R181807170</DocNumber></SalesReceipt></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 17:34:41 GMT
+  recorded_at: Tue, 17 Dec 2013 22:12:53 GMT
 recorded_with: VCR 2.4.0

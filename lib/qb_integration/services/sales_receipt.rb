@@ -17,7 +17,7 @@ module QBIntegration
       end
 
       def find_by_order_number
-        query = "SELECT DocNumber FROM SalesReceipt WHERE DocNumber = '#{order[:number]}'"
+        query = "SELECT * FROM SalesReceipt WHERE DocNumber = '#{order[:number]}'"
         quickbooks.query(query).entries.first
       end
 
