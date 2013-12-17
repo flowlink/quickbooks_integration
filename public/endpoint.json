@@ -111,7 +111,10 @@
           {
             "name": "inventory_costing",
             "description": "Inventory/Non-Inventory items",
-            "data_type": "boolean"
+            "data_type": "boolean",
+            "enables": [
+              "inventory_account", "cogs_account"
+            ]
           },
           {
             "name": "inventory_account",
