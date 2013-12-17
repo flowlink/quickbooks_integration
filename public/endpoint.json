@@ -6,8 +6,8 @@
   "icon_url": "quickbooks.png",
   "services": [
     {
-      "name": "persist",
-      "path": "/persist",
+      "name": "order_persist",
+      "path": "/order_persist",
       "description": "Import new order to a Quickbooks SalesReceipt or updates existing SalesReceipt.",
       "requires": {
         "parameters": [
@@ -75,6 +75,13 @@
       },
       "recommends": {
         "messages": ["order:new","order:updated"],
+        "filters": [
+          {
+            "path": "payload.original.payment_state",
+            "operator": "eq",
+            "value": "paid"
+          }
+        ],
         "options": {
           "retries_allowed": true
         }
