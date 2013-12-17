@@ -6,16 +6,6 @@ module QBIntegration
       @product = @payload[:product]
     end
 
-    def load_configs
-      @variants_as_sub_items = (@config.fetch("quickbooks.variants_as_sub_items").to_s == 'true')
-      @income_account = @config.fetch("quickbooks.income_account")
-
-      if @inventory_costing = (@config.fetch("quickbooks.inventory_costing").to_s == 'true')
-        @inventory_account = @config.fetch('quickbooks.inventory_account')
-        @cogs_account = @config.fetch('quickbooks.cogs_account')
-      end
-    end
-
     def import
       load_configs
 
@@ -36,14 +26,27 @@ module QBIntegration
       }]
     end
 
-    def attributes(product)
-      income_account_id = account_service.find_by_name(@income_account).id
+    private
+    def load_configs
+      @variants_as_sub_items = (@config.fetch("quickbooks.variants_as_sub_items").to_s == 'true')
+      @income_account_id = account_id('quickbooks.income_account')
 
+      if @inventory_costing = (@config.fetch("quickbooks.inventory_costing").to_s == 'true')
+        @inventory_account_id = account_id('quickbooks.inventory_account')
+        @cogs_account_id = account_id('quickbooks.cogs_account')
+      end
+    end
+
+    def account_id(account_name)
+      account_service.find_by_name(@config.fetch(account_name)).id
+    end
+
+    def attributes(product)
       @attributes = {
         name: product[:sku],
         description: product[:description],
         unit_price: product[:price],
-        income_account_ref: income_account_id,
+        income_account_ref: @income_account_id,
         sub_item: false,
         type: 'Non Inventory'
       }
@@ -55,8 +58,8 @@ module QBIntegration
 
       if @inventory_costing
         @attributes[:type] = 'Inventory'
-        @attributes[:asset_account_ref] = account_service.find_by_name(@inventory_account).id
-        @attributes[:expense_account_ref] = account_service.find_by_name(@cogs_account).id
+        @attributes[:asset_account_ref] = @inventory_account_id
+        @attributes[:expense_account_ref] = @cogs_account_id
       end
 
       @attributes
