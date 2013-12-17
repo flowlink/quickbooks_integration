@@ -31,18 +31,21 @@ class OrderImporter < Base
           # receipt.id = Quickeebooks::Online::Model::Id.new(cross_ref_hash[:id])
           # receipt.sync_token = current_receipt.sync_token
           # receipt = receipt_service.update(receipt)
+          #   process_result 200, {
+          #     'message_id' => @message[:message_id],
+          #     'notifications' => [
+          #       {
+          #         "level" => "info",
+          #         "subject" => "Updated the Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
+          #         "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
+          #       }
+          #     ]
+          #   }
         end
       else
-        case message_name
-        when "order:new"
-          sales_receipt = sales_receipt_service.create
-          text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
-          [200, notification(text)]
-        when "order:updated"
-          raise NoReceiptForOrderException.new(
-            "Got 'order:updated' message for order #{order[:number]} that has not a sales receipt for it yet."
-          )
-        end
+        sales_receipt = sales_receipt_service.create
+        text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
+        [200, notification(text)]
       end
     end
 
