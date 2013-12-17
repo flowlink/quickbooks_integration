@@ -628,6 +628,7 @@ module Factories
         "description"=> "Some description text for the product.",
         "available_on"=> "2012-11-20T00:00:00-05:00",
         "external_ref"=> "",
+        "sku"=> sku,
         "price"=> 31,
         "cost_price"=> 21,
         "url"=> "http://example.com/products/ruby-on-rails-tshirt",
