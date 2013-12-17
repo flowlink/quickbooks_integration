@@ -47,11 +47,10 @@ module QBIntegration
         description: product[:description],
         unit_price: product[:price],
         income_account_ref: @income_account_id,
-        sub_item: false,
         type: 'Non Inventory'
       }
 
-      if @variants_as_sub_items && !product.key?(:variants)
+      if import_as_sub_item?(product)
         @attributes[:sub_item] = true
         @attributes[:parent_ref] = parent_ref
       end
@@ -63,6 +62,10 @@ module QBIntegration
       end
 
       @attributes
+    end
+
+    def import_as_sub_item?(product)
+      @variants_as_sub_items && (product[:sku] != @product[:sku])
     end
 
     def import_product(product)
@@ -105,15 +108,13 @@ module QBIntegration
 
       sku = product[:sku]
 
-      imported_as_sub_item = @variants_as_sub_items && !product.key?(:variants)
-
       @text['create'][true]  = "Imported product with Sku = #{sku} as sub-item of product with Sku = #{@product[:sku]} to Quickbooks successfully."
       @text['create'][false] = "Imported product with Sku = #{sku} to Quickbooks successfully."
 
       @text['update'][true]  = "Updated product with Sku = #{sku} on Quickbooks successfully."
       @text['update'][false] = "Updated product with Sku = #{sku} on Quickbooks successfully."
 
-      @notifications << @text[operation][imported_as_sub_item]
+      @notifications << @text[operation][import_as_sub_item?(product)]
     end
   end
 end

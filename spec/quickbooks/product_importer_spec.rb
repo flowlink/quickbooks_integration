@@ -76,25 +76,48 @@ describe QBIntegration::ProductImporter do
   end
 
   context "products doesnt exist" do
-    let(:product_message) do
-      {
-        message: "product:new",
-        message_id: 123,
-        payload: {
-          product: Factories.product('family-guy')
-        }
-      }.with_indifferent_access
+    context "product with variants" do
+      let(:product_message) do
+        {
+          message: "product:new",
+          message_id: 123,
+          payload: {
+            product: Factories.product('family-guy')
+          }
+        }.with_indifferent_access
+      end
+
+      it "creates the product" do
+        VCR.use_cassette "product_importer/product_new_variants" do
+          code, notification = subject.import
+
+          expect(code).to eq 200
+          expect(notification["notifications"].count).to eq 3
+          expect(notification["notifications"][0]["subject"]).to include "family-guy"
+          expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
+          expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
+        end
+      end
     end
 
-    it "creates the product" do
-      VCR.use_cassette "product_importer/product_new_variants" do
-        code, notification = subject.import
+    context "product without variants" do
+      let(:product_message) do
+        {
+          message: "product:new",
+          message_id: 123,
+          payload: {
+            product: Factories.product_without_variants('nine-inch-nails-cd')
+          }
+        }.with_indifferent_access
+      end
 
-        expect(code).to eq 200
-        expect(notification["notifications"].count).to eq 3
-        expect(notification["notifications"][0]["subject"]).to include "family-guy"
-        expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
-        expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
+      it "creates the product" do
+        VCR.use_cassette "product_importer/product_new_without_variants" do
+          code, notification = subject.import
+
+          expect(code).to eq 200
+          expect(notification["notifications"][0]["subject"]).to include "Imported product"
+        end
       end
     end
   end
