@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20DocNumber%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R44534534245'%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R4435534534'%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -12,13 +12,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="tuYnJtap0FmZgtPW99djyhUhrlm8rj3Z8ZZ78xR8Xs",
-        oauth_signature="gD0Na6mxhYxqVUBC9XG%2FdooJ8eE%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223492", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="f5oyoKbjhj4la9uxlYbGTetQnUH5Gbx5QsYFXoJunc",
+        oauth_signature="OVqk1v4Mcx9XOosczo6P1d9mf%2F8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337244", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -26,31 +26,36 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:34 GMT
+      - Wed, 18 Dec 2013 03:27:26 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - e810a897-3b05-4f38-a4e3-aeb2096f1d8e
+      - 89bc0ebf-3d31-4adc-9fdc-f58f748b2a76
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap02
       Content-Length:
-      - '167'
+      - '168'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:34.525-08:00"><QueryResponse/></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNSwqDMBSF4a2EO9c8BLUh0Vmhw5Z2ARJva0BvxESpu68U
+        Ouj08PMd076nkW24RB/IgswFMCQXek8vC4/7OauBxdRR342B0MKOEdrGXCit
+        Pt0wzoEisgOhaGFIadacRzfg1OX+2+QuTPzpqSOHfCuAJT8djhKyyKTKZHWX
+        J60qrcq8PCZRayGgMdcVl/3n88bw/8fmA9IPnNK5AAAA
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:34 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:26 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20PaymentMethod%20WHERE%20Name%20=%20'Visa'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -63,13 +68,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="qHpAy9XA9HX9DXiaOcAwIeBCH86r1M0m4zzrDhfLa0",
-        oauth_signature="kzo%2Fya9guJETm1F%2BZQ1sfdwS8%2B0%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223494", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="SwSBUllaATxCSZ1REODxopH5JwTDcJwwfFVfDvEX1Q",
+        oauth_signature="70HRQ24OtNy90cBv%2BtvcrsqyJDI%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337246", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -77,32 +82,40 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:35 GMT
+      - Wed, 18 Dec 2013 03:27:27 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 2b0a74bb-813a-4ea7-96bd-83590f359e72
+      - 14b60ac9-ad91-4719-b9fc-3c8032e88f84
       Via:
-      - 1.1 ipp-gateway-ap03
+      - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '334'
+      - '333'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:35.629-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><PaymentMethod domain="QBO" sparse="false"><Id>3</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-09T10:44:18-08:00</CreateTime><LastUpdatedTime>2013-12-09T10:44:18-08:00</LastUpdatedTime></MetaData><Name>Visa</Name><Active>true</Active><Type>CREDIT_CARD</Type></PaymentMethod></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIWRb2vCMBDGv0rJe5tUZWo5I043EPZPV/d2HO05w9qkNFHs
+        t99Ntzn3ZhBCfpcnzz1cYHKoymhPjTfOjkUSKxGRzV1h7NtYrLPbzlBEPqAt
+        sHSWxqIlLyYaFjbsTFiRr531FLGJ9WOxDaFOpfT5liqMzVET566SG2PR5iT3
+        PREFU7FPVyW9TtLtJIMsGaXdAa/4So06apgqJTQsd9S0P/6coAlPzptwiimi
+        Cg98uyuD/0QNT9hWZMM9ha0rosJVaFi4vH7k+DU2nltusPTE0kWheyB5h+fW
+        5pl7J6sVyDMAu+AcA2qYNYSBMo6svxOrUZaotN9Pk+EpLchfKrhDH9Z1wVz8
+        9+yvFOS58QNy4cV4BHk8wjQPZk86NDsC+QWQtTXp2epmvsheZ9PVHOSxAvJi
+        HMwX42S+/D/9AY8TQ/UHAgAA
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:35 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:27 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20Customer%20WHERE%20DisplayName%20=%20'Brian%20Quinn'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -115,13 +128,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="007QPmlnPyWKeR8n1KVaaTjPc9oQmDR7lKCrutacc",
-        oauth_signature="ziUr03ZokS16PRKMfRfX%2BTaKZnY%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223495", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="2nkpjcuMh9fLrqlz7heMeWiOJ9gX1PiqtOCNfJ1WUU",
+        oauth_signature="Nw8LDQBll8yCO%2BSVAsW9cKHfhBY%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337247", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -129,19 +142,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:36 GMT
+      - Wed, 18 Dec 2013 03:27:28 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 1d99b188-e762-4a16-8358-f18a88a7a4a8
+      - 8a577797-9098-4967-89ee-c21e9708e576
       Via:
-      - 1.1 ipp-gateway-ap03
+      - 1.1 ipp-gateway-ap01
       Content-Length:
       - '652'
       Connection:
@@ -149,17 +164,25 @@ http_interactions:
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:36.771-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Customer domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T10:40:46-08:00</CreateTime><LastUpdatedTime>2013-12-12T10:40:46-08:00</LastUpdatedTime></MetaData><GivenName>Brian</GivenName><FamilyName>Quinn</FamilyName><FullyQualifiedName>Brian
-        Quinn</FullyQualifiedName><DisplayName>Brian Quinn</DisplayName><PrintOnCheckName>Brian
-        Quinn</PrintOnCheckName><Active>true</Active><PrimaryEmailAddr><Address>spree@example.com</Address></PrimaryEmailAddr><Taxable>false</Taxable><BillAddr><Id>11</Id><Line1>7735
-        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></BillAddr><ShipAddr><Id>12</Id><Line1>7735
-        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></ShipAddr><Job>false</Job><BillWithParent>false</BillWithParent><Balance>0</Balance><BalanceWithJobs>0</BalanceWithJobs><CurrencyRef
-        name="Brazilian Real">BRL</CurrencyRef><PreferredDeliveryMethod>Email</PreferredDeliveryMethod></Customer></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAN1UbW/aMBD+K1G+QxKgCyDjrsBadWpHean22Y2PYtWxI9th
+        ZL9+5/ASCpP2fVIU3T33+Mld7nzkdpfLYAvGCq1GYdKOwwBUprlQ76PwdXXf
+        6oeBdUxxJrWCUViBDW8peVSuFG4BttDKQoAiyo7CjXPFMIpstoGctUXNaWc6
+        j9ZCMZVBtO2GgRM56nTipNtKOq0kXSWDYScddvrt/k2vFfeHcRxSMi/BVCd9
+        zMC4F22F26cZBjnbYbSUznqXkklpnc7BBFznTCBnPp5h5gUzFr+2ZtICsh45
+        vSERvsmyUtlKf4CiMYkahzyDY1PmGCoaYA5WmC09JdtZJfGwh8+XfaIkOmOR
+        J2bda8HR5/86dkklUfPhB7EF9YMhOjaCKRI1ALlnuZBVbc9LoTB4hpD7Uspq
+        XjIp1gJ4IxEcuddxMhW2kKy6Jp8HyIvBbs7UZAPZxzX1KkruModJU2dKINHB
+        8SI5M9U3bJC849wgDd9gLbWFAfgKO5YXEvzE4KFDqFa/OLZiO/YmgdZtJdHR
+        JWMhDwxscZLsO/0kFCQ0Tbs3wUzy4AG0eQenf6lgwbERdZRMhKvoGNwGLGfY
+        Ve+SiS6VMxV9XSJysI/gsnybiq3w12aiOdBnzFDiNTkxLwkEx9cxWduduJ/0
+        sLAGwdlxtNtvD/ppL039fDjEtHqnrTRtx4N0kHjUAyRqylxuRNEU3PlfC27K
+        /K7fjl33Zt3xn8JtXpgB5Y6hC5SMmfTrx1/1o3nEPA2V7FnsBOFSMSiQ4R5a
+        B4r5tTU27LeQfvQXwGRIx4sn/AENzQ85rAF9PgWJU28qvNgbzWk9vn6Y/x72
+        KvsNhuan5Yf+521L/wDwKAaVtQUAAA==
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:37 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:28 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -172,13 +195,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="6j1VTuVNssGNE3QyF6suYYYBlSg38JtkmoeFFqnMBM",
-        oauth_signature="UVfXQC9o9EAq8D1f1T8vKgqk3i8%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223497", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="DHGX1ddvKmi2ygscnMm81qdj7ti2zF6ZwVi1CJaQY4",
+        oauth_signature="bsJTLodA1tae0F2laxX0cTxLTi0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337248", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -186,35 +209,43 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:37 GMT
+      - Wed, 18 Dec 2013 03:27:30 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 20d40b7d-f432-4f49-a474-117a01e80582
+      - d3fe5e35-1dce-4bb8-913f-b22af5a94599
       Via:
-      - 1.1 ipp-gateway-ap03
+      - 1.1 ipp-gateway-ap06
       Content-Length:
-      - '455'
+      - '460'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:37.871-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Account domain="QBO" sparse="false"><Id>76</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-09T21:18:37-08:00</CreateTime><LastUpdatedTime>2013-12-16T11:37:00-08:00</LastUpdatedTime></MetaData><Name>Inventory
-        Asset</Name><SubAccount>false</SubAccount><FullyQualifiedName>Inventory Asset</FullyQualifiedName><Active>true</Active><Classification>Asset</Classification><AccountType>Other
-        Current Asset</AccountType><AccountSubType>Inventory</AccountSubType><CurrentBalance>1029.50</CurrentBalance><CurrentBalanceWithSubAccounts>1029.50</CurrentBalanceWithSubAccounts><CurrencyRef
-        name="Brazilian Real">BRL</CurrencyRef></Account></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAHWTb2/aMBDGv4rl9yRxKP8i46owVULq1kFT7fUtOYY1x4ls
+        BzX79DsogYLaV/Gdf/fc49NF3r9Vhu3ReV3bORdRwhnaoi61/TPnr/njYMqZ
+        D2BLMLXFOe/Q83slVza0OmzQN7X1yEjE+jnfhdBkceyLHVYQ6SMTFXUVb7UF
+        W2C8H3IWdEU6aSKGA5EOxCQXsyydZMMkEqPpIJlmScKVXLfourM+OXDhZ+11
+        eLfJWQVvdNua4A+hkg9FUbc2sLKuQBOyXjyT8Qacp2ZbMB4JWpVqMpYxfeRL
+        Z4u8/otWJTK+BPI7BvgGAZRcOoSAOblVvdlklqciE9NsOHk3KuMPlHwCH16b
+        kuLyqkyMcyGykcjuxn3ZLSrjS+MfQImV3aMNtevYg/cYZHzMypf29+ml6vgo
+        8n7JyMfWmG7dgtFbjeXnOp8wNLyg96iCa0nwFMilAe8JKuAwdHUqv8n2c8+7
+        BtVz2KFjy9Y5atn3+wj0NHk+xmdzZ6y/kSeVBZjD4igh0ll0N6L+1/kb7pcO
+        u8tA/Fdlt9hJpaCF2zILh/1cOPinjQbLNgiGq8XmqVc5YupsmU5Xy0rx9d+h
+        /gOLzJ4TZQMAAA==
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:38 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:29 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'SPR-00001'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -227,13 +258,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="D3SRrQ7WcQuEIOlZFWMgJiYEzVhuYZ8Vk1JhB0Bs",
-        oauth_signature="dALN0x8y9%2BpMyEufzAXAjD5DuJY%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223498", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="kBw5nFgV4j9tp3SY5iTG6XffPWNNFhk4oVSv0Hpw",
+        oauth_signature="3zb0KPrWytOAu%2FEnc5UK98VvSoc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337249", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -241,33 +272,42 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:38 GMT
+      - Wed, 18 Dec 2013 03:27:31 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 854959f8-4449-45bc-9183-a5986a92ea4d
+      - df5b05ad-635f-4390-98fc-0a9bdbcec100
       Via:
       - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '440'
+      - '443'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:38.928-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>4</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:03:28-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:03:28-08:00</LastUpdatedTime></MetaData><Name>SPR-00001</Name><Description>Spree
-        Baseball Jersey</Description><Active>true</Active><FullyQualifiedName>SPR-00001</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>19.99</UnitPrice><Type>Service</Type><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVS7W7bMAx8FcP/Y/ljQxODUbG2KNZhW5PGeQBWZhahsmxI
+        chC//ei0TZouwPzDxh1Px6NFuN43JtqR87q18zhL0jgiq9pa2z/zeF3dT6Zx
+        5APaGk1raR4P5ONrCQ829Do8ke9a6yliE+vn8TaErhTCqy01mOiDJlFtIzba
+        olUkdkUcBd2wT55mxSTLJ9lVlc3K/KossqT4mk3SaZmmsYRlT244+nMCFxat
+        1+E1Zhw1uOdqb4IfIQcK1ER126Dm+vLmkVN36Dx32qDxNCpq+QUEv2E1WFW1
+        L2RlCuIE4BcFvMOAEm4dYaCKk8pj0LzKOFtR5tPXkCA+qOAn+rDuasb1/459
+        loI4Nf6NTKwWT5OUnwzEAcMdeeV0Nw4vV50jim7Q0zMaE/3gq6MBxEcJfFNB
+        70gG1xOINwD3vTHDskejN5rqz40uVKHCPT4bkoc/COIdwgoNeUYPVpm+pvpd
+        8A8Pa6vDwmlFMpslsxmIEwHV0HECcjtGbD4iWPRObXm0C+aXSkf9bevDeJln
+        GCqH6mUZhkf7nRf4OMY5yyvBq8Ofs40b6bMVl38BWhPo0CoDAAA=
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:39 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:30 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-00004'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -280,13 +320,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="4isEXQctb2ealRD6jDM9oxD5PMkLcDfgwc8ljTDo",
-        oauth_signature="ENhKTz7tVe7JmZGzxfk7rl9rvlc%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223499", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="IcnQRFDybkRK8bnbdwzuwRB0UhXP9QTRDF5y5RxGgBQ",
+        oauth_signature="NVs0WoWeWdTRlpcMtDw1qbDi%2FFs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337250", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -294,33 +334,42 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:40 GMT
+      - Wed, 18 Dec 2013 03:27:32 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 3be6f7ab-cd5c-47d1-be9b-632943fbdb87
+      - 2d73bb9d-e991-44a6-9da1-17efa9b418e1
       Via:
       - 1.1 ipp-gateway-ap05
       Content-Length:
-      - '448'
+      - '449'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:40.162-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:03:31-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:03:31-08:00</LastUpdatedTime></MetaData><Name>ROR-00004</Name><Description>Ruby
-        on Rails Baseball Jersey</Description><Active>true</Active><FullyQualifiedName>ROR-00004</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>19.99</UnitPrice><Type>Service</Type><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVS7W7bMAx8FcH/E9nxtjYBo2JtUazDtnw5D8DIzCJUlg1J
+        DuK3H52uSdMFmH/YuOPpeLQId4fKij35YGo3TbJhmghyui6N+z1N1sXT4DYR
+        IaIr0daOpklHIblT8Oxia+KSQlO7QIJNXJgmuxibiZRB76jCoTlqhrqu5NY4
+        dJrkPk9ENBX7jNIsH2SjQXZTZOPJ6GaSj4Zf8vEgvZ2kaaJg0ZLvTv6cwMd5
+        HUx8jZmICg9cbW0MPeRAkSpR1hUari/uZ5y6QR+40xZtoF5Rqs8g+Q2rzumi
+        fiGnUpBnAD8p4iNGVPDgCSMVnFSdgo6KjLPlkzx7DQnynQp+YIjrpmRc/u/Y
+        RynIc+NfyMRythyk/HwCecTwSEF70/TDq2W76UTtxBKNDeIeA23QWvGdr5A6
+        kO+l8FVHsycVfUsg/wJ4aq3tFi1aszVUfmx4pQoFHnBjSR3/JMg3CCu0FBg9
+        O23bkso3wT88rJ2Jc280qWw8HI9BngkouobUivyeEZv3COat1zse7Yr5tdJJ
+        /1CH2F/qBYbCo35ZxG7mvvEin8a4ZHk1eIX4c7F5PX2x6uoPnp2M3TIDAAA=
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:40 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:32 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'Shipping%20Charges'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -333,13 +382,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Jjp9IBxkNvALJ9VT7Qk0IdSqGyUg29hzAC7ofTfc",
-        oauth_signature="Slp0AZnhS0o4MOyLLmxOGNDnat4%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223500", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="WjWB9sqr5vUwhEbxXLgJAujihWNGc9jy7UCpxlyC570",
+        oauth_signature="A38FywH92T%2F933yNd7TwzZFS25U%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337252", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -347,74 +396,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:41 GMT
+      - Wed, 18 Dec 2013 03:27:33 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - e0db8e93-52f5-4694-9544-dedc2c595ac9
+      - d1574e61-91b0-461f-83a4-c556c0a6c19d
       Via:
-      - 1.1 ipp-gateway-ap01
-      Content-Length:
-      - '465'
-      Connection:
-      - close
-      Content-Type:
-      - application/xml;charset=UTF-8
-    body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:41.498-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:29:09-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:29:09-08:00</LastUpdatedTime></MetaData><Name>Shipping
-        Charges</Name><Description>Shipping</Description><Active>true</Active><FullyQualifiedName>Shipping
-        Charges</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>5</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">76</IncomeAccountRef><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
-    http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:41 GMT
-- request:
-    method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'Shipping%20Charges'%20STARTPOSITION%201%20MAXRESULTS%2020
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Content-Type:
-      - application/xml
-      Accept:
-      - application/xml
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      User-Agent:
-      - OAuth gem v0.4.7
-      Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="y22JX0qKwh2x4lFVASn9OoFgONXc5w6KbLthvOJx0",
-        oauth_signature="HylVXBBq0QzqZ7DgIU6jqnfb%2BO0%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223501", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
-        oauth_version="1.0"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Mon, 16 Dec 2013 19:51:42 GMT
-      Server:
-      - Apache/2.2.22 (Unix)
-      Qbo-Version:
-      - '68.147'
-      Cache-Control:
-      - max-age=0, no-cache, no-store, must-revalidate, private
-      Expires:
-      - '0'
-      Intuit-Tid:
-      - cd6de471-67c1-4407-8c3c-7b4d4c5997e8
-      Via:
-      - 1.1 ipp-gateway-ap04
+      - 1.1 ipp-gateway-ap02
       Content-Length:
       - '464'
       Connection:
@@ -422,15 +418,84 @@ http_interactions:
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:42.633-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:29:09-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:29:09-08:00</LastUpdatedTime></MetaData><Name>Shipping
-        Charges</Name><Description>Shipping</Description><Active>true</Active><FullyQualifiedName>Shipping
-        Charges</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>5</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">76</IncomeAccountRef><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVTYW/aMBD9K1G+g5OwDYgOV4yqGtK2wgg/4OYcxWpiR7aD
+        yL/fhbZQOqZ9cfTePd89nV/g7lhX0YGc19bM4nSYxBEZZUttnmbxtngYTOLI
+        BzQlVtbQLO7Ix3cSlia0Ovwi31jjKeImxs/ifQhNLoRXe6pxqE+aobK12GmD
+        RpE4jOIo6Jr7ZEk6GqTZIB0X6TTPxvloNJx8Gg+SSZ4ksYR1S64792cHLqys
+        1+HFZhzVeORqWwXfQzYUqI5KW6Pm+vrrI7tu0HmetMPKU68o5RcQfMKmM6qw
+        z2RkAuIC4AcFvMeAEhaOMFDBTuXZaFakkzyb5sn0xSSIdyr4jj5sm5Jx+b9r
+        H6UgLoN/IhObvW4afoBosUf3RB7EiYZ78srppt/BWQPiPQtzFfSBZHAtgXgF
+        8NBWVbdusdI7TeU/RtwQQYFH/F2RPK0QxBuEDVbkGS2NqtqSyjfBXzxsjQ4r
+        pxXJzyAuAIquYRPkDoy4cY84UxwVmitlW8PR2kUG+6QszYFMsK6L5t5TiOW4
+        f8YPWgmr1qk9erph61bprF9YH/ocXGEoHKrndegezTfO/nkB1yzb4NTx5yqs
+        PX31d8g/JVPji2UDAAA=
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:42 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:33 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'Shipping%20Charges'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="nWhV7WnNVRnjW2XJkyRexikGMX82ouibcyjkm2lcHA",
+        oauth_signature="x3E0%2BfGQmkF94akool%2Fx%2F2FSUrA%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337253", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 18 Dec 2013 03:27:34 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 3b2cf891-5ef1-4429-8d2a-e55e05ad1442
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '464'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVTYW/aMBD9K1G+g5OwDYgOV4yqGtK2wgg/4OYcxWpiR7aD
+        yL/fhbZQOqZ9cfTePd89nV/g7lhX0YGc19bM4nSYxBEZZUttnmbxtngYTOLI
+        BzQlVtbQLO7Ix3cSlia0Ovwi31jjKeImxs/ifQhNLoRXe6pxqE+aobK12GmD
+        RpE4jOIo6Jr7ZEk6GqTZIB0X6TTPxvno03A8HQ+SSZ4ksYR1S64792cHLqys
+        1+HFZhzVeORqWwXfQzYUqI5KW6Pm+vrrI7tu0HmetMPKU68o5RcQfMKmM6qw
+        z2RkAuIC4AcFvMeAEhaOMFDBTuXZaFakkzyb5sn0xSSIdyr4jj5sm5Jx+b9r
+        H6UgLoN/IhObvW4afoBosUf3RB7EiYZ78srppt/BWQPiPQtzFfSBZHAtgXgF
+        8NBWVbdusdI7TeU/RtwQQYFH/F2RPK0QxBuEDVbkGS2NqtqSyjfBXzxsjQ4r
+        pxXJzyAuAIquYRPkDoy4cY84UxwVmitlW8PR2kUG+6QszYFMsK6L5t5TiOW4
+        f8YPWgmr1qk9erph61bprF9YH/ocXGEoHKrndegezTfO/nkB1yzb4NTx5yqs
+        PX31d8g/xb4iHGUDAAA=
+    http_version: 
+  recorded_at: Wed, 18 Dec 2013 03:27:34 GMT
 - request:
     method: get
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'State%20Sales%20Tax-NY'%20STARTPOSITION%201%20MAXRESULTS%2020
@@ -443,13 +508,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="WmkvrcsAXYDyx1tKnYPdmgaJAxFXdDSQJ8Krcl0E",
-        oauth_signature="eijDnDYYgR6tFxylD93%2Bz8zR4sw%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387223502", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="3hoVxhyGUgvR3vx48ZuKxDFo2zkiqNPb0l0m21NDByM",
+        oauth_signature="XGaolNSMT40ZO11Bi0i%2FwxvtF14%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387337254", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -457,19 +522,21 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:43 GMT
+      - Wed, 18 Dec 2013 03:27:35 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 272dafaa-d2e1-4d05-a9df-486e11a429f4
+      - f01efc08-e151-41c3-a3fa-b16d36a7946d
       Via:
-      - 1.1 ipp-gateway-ap02
+      - 1.1 ipp-gateway-ap05
       Content-Length:
       - '475'
       Connection:
@@ -477,15 +544,21 @@ http_interactions:
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:43.956-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>7</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:29:12-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:29:12-08:00</LastUpdatedTime></MetaData><Name>State
-        Sales Tax-NY</Name><Description>North America 5.0</Description><Active>true</Active><FullyQualifiedName>State
-        Sales Tax-NY</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>5</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">76</IncomeAccountRef><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVT0Y7aMBD8FSvv4ACicNHiE73TqUgtByU89NF1lmJdYkf2
+        BpG/74brwXGl6kuS2RnvjjZjuD9WpThgiNa7WTLop4lAZ3xh3a9Zss2fetNE
+        RNKu0KV3OEtajMm9goWjxtJ3jLV3EQU3cXGW7InqTMpo9ljpvj1p+sZXcmed
+        dgblYZQIshX3GaaDUW8w7A0m+eAuG06y0bg/Hae9dJqlaaJg3WBoz/3ZQaCV
+        j5ZebSai0kdmm5JiB9kQYSUKX2nL/PrzM7uudYg8aafLiJ2iUBOQ/IRN60zu
+        X9CpFOQFwDck/ahJK3gIqAlzdqrORof5YJoN7zL+PpkE+U4FX3WkbV0wLv53
+        7KMU5GXwUnNhQ8yJjS4xilwfe8sfIE8EPGI0wdbdFtTSB9qLeYXBGi3Gfe78
+        noa5IXtARaFBkH8APDVl2a4bXdqdxeKf027IgDn9s0R12ifINwink4wWzpRN
+        gcWb4K86bJ2lFbtFNQZ5AZC3NdvAcGDEjTvEAePc4NwY3zjO2U443cVm4Q7o
+        yIdWzGNEStTkE//TD1oFqyaYvY54w9Yt6qx/8JG6UFxhyIM2L2tqn90Xvgjn
+        BVxX2QZHkF9Xye3KV1dF/QYfijJJcgMAAA==
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:44 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:35 GMT
 - request:
     method: post
     uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/salesreceipt
@@ -494,8 +567,8 @@ http_interactions:
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <SalesReceipt xmlns="http://schema.intuit.com/finance/v3" sparse="false">
-        <DocNumber>R44534534245</DocNumber>
-        <TxnDate>2013-12-16 14:51:18 -0300</TxnDate>
+        <DocNumber>R4435534534</DocNumber>
+        <TxnDate>2013-12-18 14:51:18 -0300</TxnDate>
         <Line>
         <Description>Spree Baseball Jersey</Description>
         <Amount>39.98</Amount>
@@ -503,7 +576,8 @@ http_interactions:
         <SalesItemLineDetail>
         <ItemRef>4</ItemRef>
         <UnitPrice>19.99</UnitPrice>
-        <Qty>2</Qty>
+        <RatePercent>0.0</RatePercent>
+        <Qty>2.0</Qty>
         </SalesItemLineDetail>
         </Line>
         <Line>
@@ -513,7 +587,8 @@ http_interactions:
         <SalesItemLineDetail>
         <ItemRef>5</ItemRef>
         <UnitPrice>19.99</UnitPrice>
-        <Qty>3</Qty>
+        <RatePercent>0.0</RatePercent>
+        <Qty>3.0</Qty>
         </SalesItemLineDetail>
         </Line>
         <Line>
@@ -523,7 +598,8 @@ http_interactions:
         <SalesItemLineDetail>
         <ItemRef>6</ItemRef>
         <UnitPrice>5.0</UnitPrice>
-        <Qty>1</Qty>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
         </SalesItemLineDetail>
         </Line>
         <Line>
@@ -533,7 +609,8 @@ http_interactions:
         <SalesItemLineDetail>
         <ItemRef>6</ItemRef>
         <UnitPrice>5.0</UnitPrice>
-        <Qty>1</Qty>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
         </SalesItemLineDetail>
         </Line>
         <Line>
@@ -543,7 +620,8 @@ http_interactions:
         <SalesItemLineDetail>
         <ItemRef>7</ItemRef>
         <UnitPrice>5.0</UnitPrice>
-        <Qty>1</Qty>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
         </SalesItemLineDetail>
         </Line>
         <CustomerRef>5</CustomerRef>
@@ -576,15 +654,15 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '1985'
+      - '2149'
       Authorization:
-      - OAuth oauth_body_hash="Bw%2FJ4WNcPL0pbvzmuLh7zGikgrw%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="oK9twUvFWpR65NH3hdJnCXfPBbmpwEbG7OVHTO3mo", oauth_signature="ErMJBwY4JkeuOdgLEcBF7x0m2Kg%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387223504", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_body_hash="gVXbUNYTwx1JTCm5RMtnlNhb%2FcU%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="fZfXuRLvzY410aiq6jO7lh3hnfiaq8X8p7LS1zZYpU", oauth_signature="P2oDBw05XKets8Iwa9xvh2v0p%2BE%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387337255", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
         oauth_version="1.0"
   response:
     status:
@@ -592,43 +670,51 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 16 Dec 2013 19:51:45 GMT
+      - Wed, 18 Dec 2013 03:27:37 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '69.135'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - d6075c3b-cee1-476b-bb7b-34dc638701a9
+      - b353ce91-52da-4742-b68e-30d5f3fbea84
       Via:
-      - 1.1 ipp-gateway-ap05
+      - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '916'
+      - '915'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-16T11:51:45.883-08:00"><SalesReceipt
-        domain="QBO" sparse="false"><Id>22</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-16T11:51:46-08:00</CreateTime><LastUpdatedTime>2013-12-16T11:51:46-08:00</LastUpdatedTime></MetaData><DocNumber>R44534534245</DocNumber><TxnDate>2013-12-16</TxnDate><CurrencyRef
-        name="Brazilian Real">BRL</CurrencyRef><Line><Id>1</Id><LineNum>1</LineNum><Description>Spree
-        Baseball Jersey</Description><Amount>39.98</Amount><DetailType>SalesItemLineDetail</DetailType><SalesItemLineDetail><ItemRef
-        name="SPR-00001">4</ItemRef><UnitPrice>19.99</UnitPrice><Qty>2</Qty></SalesItemLineDetail></Line><Line><Id>2</Id><LineNum>2</LineNum><Description>Ruby
-        on Rails Baseball Jersey</Description><Amount>59.97</Amount><DetailType>SalesItemLineDetail</DetailType><SalesItemLineDetail><ItemRef
-        name="ROR-00004">5</ItemRef><UnitPrice>19.99</UnitPrice><Qty>3</Qty></SalesItemLineDetail></Line><Line><Id>3</Id><LineNum>3</LineNum><Description>Shipping</Description><Amount>5.00</Amount><DetailType>SalesItemLineDetail</DetailType><SalesItemLineDetail><ItemRef
-        name="Shipping Charges">6</ItemRef><UnitPrice>5</UnitPrice><Qty>1</Qty></SalesItemLineDetail></Line><Line><Id>4</Id><LineNum>4</LineNum><Description>Shipping</Description><Amount>5.00</Amount><DetailType>SalesItemLineDetail</DetailType><SalesItemLineDetail><ItemRef
-        name="Shipping Charges">6</ItemRef><UnitPrice>5</UnitPrice><Qty>1</Qty></SalesItemLineDetail></Line><Line><Id>5</Id><LineNum>5</LineNum><Description>North
-        America 5.0</Description><Amount>5.00</Amount><DetailType>SalesItemLineDetail</DetailType><SalesItemLineDetail><ItemRef
-        name="State Sales Tax-NY">7</ItemRef><UnitPrice>5</UnitPrice><Qty>1</Qty></SalesItemLineDetail></Line><Line><Amount>114.95</Amount><DetailType>SubTotalLineDetail</DetailType><SubTotalLineDetail/></Line><CustomerRef
-        name="Brian Quinn">5</CustomerRef><BillAddr><Id>37</Id><Line1>7735 Old Georgetown
-        Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></BillAddr><ShipAddr><Id>38</Id><Line1>7735
-        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></ShipAddr><GlobalTaxCalculation>NotApplicable</GlobalTaxCalculation><TotalAmt>114.95</TotalAmt><PrintStatus>NeedToPrint</PrintStatus><EmailStatus>NotSet</EmailStatus><BillEmail><Address>spree@example.com</Address></BillEmail><Balance>0</Balance><PaymentMethodRef
-        name="Visa">3</PaymentMethodRef><DepositToAccountRef name="Inventory Asset">76</DepositToAccountRef></SalesReceipt></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAOVW7W7rNgx9FcH/E8exXSeFqrsk3S469PYjcQfsp2KzjTBZ
+        Miy5q/f0o5wPO22CrcAuBmxBAJvUsUgekhLpl7dCkleojNDqyguGI4+AynQu
+        1MuV95T+NJh4xFiuci61giuvAeN9YfRG2VrYJZhSKwMEN1HmyttYW176vsk2
+        UPChaDHDTBf+s1BcZeC/hh6xosB9xqMgHATjQZCkwfRynFyGyXAaXwxGk8vR
+        yGN0xSWYJWQgSktyXXCB7j3O79GbklcGd3jm0gAib3IWR9THB101Kkv1b6DY
+        iPqdQL+B5dfcckYXFXALKbrAPnow2Vqnfg9Fb7mxT2WOcv5Xn72HUr8zfK2z
+        u7pYQ8WWURTGcRjhn/qdmqZvCqE9AxPq73V0UVcV5qVZwjNR3BE4r/gfQgqu
+        yBK49Nh8eYuOdzD0XCho6Qm27DgZjTlx/0qvwWQVUozZZ6uyAiBzbmDNpSQ/
+        Y1FAgy72IHRW6FpZFk6HU3RvJ+EulguZNiWwNm83FgpnYqt3WxzW6QkAOoly
+        F9rqYTkY4S/wmEvsdo3RJyXsQyUyYAGan1K/U9BH27Ax9d0DM3/KhL+l40DK
+        +JiU8RlSlvW6IRpJxk3M3yMnRu+S70bO8n5LTuSx+BPkhJ8iJzwmJzxXMRtR
+        lnhSnOFh6Jrie9XIzjRZbHj1gocSuzjJRvyBieBTTETHTET/XybiYybiM0zc
+        6cpuyKwAtMMJRv5vUGLx0CQtkKT8bXD3q8eSf56UnfdBEOHVdTqYep1qy+XZ
+        WD6s+wcbi9pYjTT2j3x33D/WQqm2+XsIRudCylmeV22uJr2yDViShDG5lzn5
+        ChorxOrf8TzLt3YCNCQw3jnYDZic465OpAsXS9WwpxVqdu97JXp9LV6FGxkW
+        Ogf2jVeNxBHhgHwPoA8aZwjZvo9HkwC962nwisUbZYI3ShIlibtGkcRbrV7Y
+        IEmGo2kyDZzWKajfhenqvgs4/q8G3IX5VWq8e7CeF1xmteS7drOzspTYa2sJ
+        1D+JoW2NzYquVA8KipWvrOuX2rA7wMFFtxr0t7dAf8T5S+5R2q4AAX1dW32t
+        ArsCnQVjmHHjxA/wxotSgpsCsUN2S9s07vBzLt1s6Ea2/St94E0ByuL4tNF5
+        1wC/CMM9dxu9X3dNV2ojbKpnWeZy0n10o14RqquGzIwBiyfBhWvCD/B9y++G
+        ThSPh1z2J8H/ZRUsCwAA
     http_version: 
-  recorded_at: Mon, 16 Dec 2013 19:51:46 GMT
+  recorded_at: Wed, 18 Dec 2013 03:27:38 GMT
 recorded_with: VCR 2.4.0

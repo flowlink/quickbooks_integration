@@ -46,8 +46,8 @@ describe QuickbooksEndpoint do
 
       it "generates a json response with an info notification" do
         # change order number in case you want to persist a new order
-        message[:payload][:order][:number] = "R44534534245"
-        message[:payload][:order][:placed_on] = "2013-12-16 14:51:18 -0300"
+        message[:payload][:order][:number] = "R4435534534"
+        message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
         VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
           post '/order_persist', message.to_json, auth
