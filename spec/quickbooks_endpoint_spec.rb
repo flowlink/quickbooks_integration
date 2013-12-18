@@ -30,10 +30,9 @@ describe QuickbooksEndpoint do
   end
 
   describe "order sync" do
-    context "with order:new" do
+    context "new sales receipt" do
       let(:message) {
         {
-          "message" => "order:new",
           :message_id => "abc",
           :payload => {
             "order" => Factories.order,
@@ -43,19 +42,31 @@ describe QuickbooksEndpoint do
         }.with_indifferent_access
       }
 
-      it "generates a json response with an info notification" do
-        # change order number in case you want to persist a new order
-        message[:payload][:order][:number] = "R4435534534"
-        message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
+      shared_context "persist new sales receipt" do
+        it "generates a json response with an info notification" do
+          # change order number in case you want to persist a new order
+          message[:payload][:order][:number] = "R4435534534"
+          message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
-        VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
-          post '/order_persist', message.to_json, auth
-          last_response.status.should eql 200
+          VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
+            post '/order_persist', message.to_json, auth
+            last_response.status.should eql 200
 
-          response = JSON.parse(last_response.body)
-          response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should match "Created Quickbooks sales receipt"
+            response = JSON.parse(last_response.body)
+            response["message_id"].should eql "abc"
+            response["notifications"].first["subject"].should match "Created Quickbooks sales receipt"
+          end
         end
+      end
+
+      context "with order:new" do
+        before { message[:message] = "order:new" }
+        include_context "persist new sales receipt"
+      end
+
+      context "with order:updated" do
+        before { message[:message] = "order:updated" }
+        include_context "persist new sales receipt"
       end
     end
 
@@ -83,32 +94,6 @@ describe QuickbooksEndpoint do
           response = JSON.parse(last_response.body)
           response["message_id"].should eql "abc"
           response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
-        end
-      end
-    end
-
-    context "with order:updated" do
-      let(:message) {
-        {
-          "message" => "order:updated",
-          :message_id => 'abc',
-          :payload => {
-            "order" => Factories.order(Factories.order_changes),
-            "original" => Factories.original,
-            "parameters" => Factories.parameters
-          }
-        }
-      }
-
-      it "generates a json response with the update info notification" do
-        pending "wip"
-        VCR.use_cassette('online/persist_updated_order') do
-          post '/persist', message.to_json, auth
-          last_response.status.should eql 200
-          response = JSON.parse(last_response.body)
-          response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should eql "Updated the Quickbooks sales receipt 45 for order R181807170"
-          response["notifications"].first["description"].should eql "Quickbooks SalesReceipt id = 45 and idDomain = QBO"
         end
       end
     end
