@@ -42,7 +42,7 @@ module QBIntegration
         end
       else
         case message_name
-        when "order:new" || "order:updated"
+        when "order:new", "order:updated"
           sales_receipt = sales_receipt_service.create
           text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
           [200, notification(text)]
