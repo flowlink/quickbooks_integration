@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe QuickbooksEndpoint do
-
   def auth
     {'HTTP_X_AUGURY_TOKEN' => 'x123'}
   end
@@ -30,7 +29,7 @@ describe QuickbooksEndpoint do
     ]
   end
 
-  describe "persist" do
+  describe "order sync" do
     context "with order:new" do
       let(:message) {
         {
@@ -56,6 +55,34 @@ describe QuickbooksEndpoint do
           response = JSON.parse(last_response.body)
           response["message_id"].should eql "abc"
           response["notifications"].first["subject"].should match "Created Quickbooks sales receipt"
+        end
+      end
+    end
+
+    context "order canceled" do
+      let(:message) {
+        {
+          "message" => "order:canceled",
+          :message_id => "abc",
+          :payload => {
+            "order" => Factories.order,
+            "original" => Factories.original,
+            "parameters" => parameters
+          }
+        }.with_indifferent_access
+      }
+
+      it "generates a json response with an info notification" do
+        # change order number in case you want to persist a credit memo
+        message[:payload][:order][:number] = "R4435534534"
+
+        VCR.use_cassette("credit_memo/sync_order_credit_memo_post") do
+          post '/order_persist', message.to_json, auth
+          last_response.status.should eql 200
+
+          response = JSON.parse(last_response.body)
+          response["message_id"].should eql "abc"
+          response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
         end
       end
     end

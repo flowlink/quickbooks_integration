@@ -1,5 +1,5 @@
 module QBIntegration
-class OrderImporter < Base
+  class OrderImporter < Base
     attr_accessor :order
 
     def initialize(message = {}, config)
