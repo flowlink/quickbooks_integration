@@ -15,7 +15,7 @@ class QuickbooksEndpoint < EndpointBase
 
   post '/order_persist' do
     begin
-      code, notification = QBIntegration::OrderImporter.new(@message, @config).sync
+      code, notification = QBIntegration::Order.new(@message, @config).sync
       process_result code, notification
     rescue Exception => exception
       process_result 500, {
