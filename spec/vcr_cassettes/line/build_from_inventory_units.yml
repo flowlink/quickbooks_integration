@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'SPR-00015'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="y0j22XMWvSVyz1MfXF9ubA5WmSeTpw2kImPSnyriWw",
+        oauth_signature="S0J0j%2FuiOzU7jwQuqSSEMQuxIbY%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387419708", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 02:21:55 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 84291aaf-3975-44bd-b693-2e43adffcce9
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '472'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVT247aMBD9FcvvwQmIhUaDV3sR2pXaLpfwAa49FGsTJ7Id
+        RP6+E7oLC0Xqk3VmjmeOZ47h/lCVbI8+2NrNeDZIOUOna2Pd7xnfFPNkylmI
+        yhlV1g5nvMPA7yW8utjauMLQ1C4goyIuzPguxiYXIugdVmpgj5yBriuxtU45
+        jWI/4izaiuoM02yUZMMkmxbZNB9m+fhuMEnvknSapymXsGzRd6f6pMDHRR1s
+        /CuTs0odKNuWMfSQBEWsmKkrZSm/fHwj1Y3ygTptVRmwZxg5TEHQAevO6aJ+
+        RycpcAbwA6N6VlFJePKoIhYkVZ6UTorsWz4e56MPlSC+sOC7CnHTGMLmf9eu
+        qSDOjX8qCqwXqyRN02wM4ojhGYP2tulfL9eNR2QrWhB6ViTrnfURxFcGPOho
+        9yijbxHEB4B5W5bdslWl3Vo0131uZKFQB/WrRHmcIIhPCGtVYiD06nTZGjSf
+        hH/isHE2LrzV2A/6DKDoGuqOfk+ICveILEVOwQet69aRs7bMqd4oG2ew6TeP
+        hs1bZwKXkymt8YotYdF6vVMBbwi7lTrxn+oQe3kXGAqv9Psydm/uhcx/GsFl
+        lGSQ7ei4cGsfvvge8g8QyKOCZgMAAA==
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 02:21:57 GMT
+recorded_with: VCR 2.4.0

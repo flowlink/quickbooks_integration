@@ -1,0 +1,295 @@
+{
+  "id": 6,
+  "number": "RMA717566838",
+  "state": "authorized",
+  "amount": "19.9",
+  "order_id": 50,
+  "reason": "hey hey",
+  "created_at": "2013-12-18T23:40:58.321Z",
+  "updated_at": "2013-12-18T23:40:58.321Z",
+  "inventory_units": [
+    {
+      "id": 150,
+      "state": "shipped",
+      "variant_id": 10,
+      "order_id": 50,
+      "shipment_id": 51,
+      "return_authorization_id": 6,
+      "variant": {
+        "id": 10,
+        "name": "Spree Ringer T-Shirt",
+        "sku": "SPR-00015",
+        "price": "19.99",
+        "weight": null,
+        "height": null,
+        "width": null,
+        "depth": null,
+        "is_master": true,
+        "cost_price": "17.0",
+        "permalink": "spree-ringer-t-shirt",
+        "product_created_at": "2013-12-13T21:05:31.455Z",
+        "product_updated_at": "2013-12-18T18:59:27.615Z"
+      }
+    }
+  ],
+  "order": {
+    "id": 50,
+    "number": "R471374122",
+    "item_total": "99.95",
+    "total": "109.95",
+    "ship_total": "5.0",
+    "state": "awaiting_return",
+    "adjustment_total": "10.0",
+    "user_id": 1,
+    "created_at": "2013-12-18T03:49:36.467Z",
+    "updated_at": "2013-12-18T23:40:58.346Z",
+    "completed_at": "2013-12-18T03:49:38.281Z",
+    "payment_total": "109.95",
+    "shipment_state": "shipped",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "currency": "USD",
+    "tax_total": "5.0",
+    "bill_address": {
+      "id": 95,
+      "firstname": "Spree",
+      "lastname": "Commerce",
+      "full_name": "Spree Commerce",
+      "address1": "4600 East West Highway, Suite 800",
+      "address2": null,
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "123 456-789",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 96,
+      "firstname": "Spree",
+      "lastname": "Commerce",
+      "full_name": "Spree Commerce",
+      "address1": "4600 East West Highway, Suite 800",
+      "address2": null,
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "123 456-789",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 51,
+        "quantity": 5,
+        "price": "19.99",
+        "variant_id": 10,
+        "created_at": "2013-12-18T03:49:36.949Z",
+        "updated_at": "2013-12-18T03:49:36.949Z",
+        "single_display_amount": "$19.99",
+        "display_amount": "$99.95",
+        "total": "99.95",
+        "variant": {
+          "id": 10,
+          "name": "Spree Ringer T-Shirt",
+          "sku": "SPR-00015",
+          "price": "19.99",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "17.0",
+          "permalink": "spree-ringer-t-shirt",
+          "product_created_at": "2013-12-13T21:05:31.455Z",
+          "product_updated_at": "2013-12-18T18:59:27.615Z",
+          "options_text": "",
+          "option_values": [],
+          "product_id": 10,
+          "images": [
+            {
+              "id": 38,
+              "position": 1,
+              "attachment_content_type": "image/jpeg",
+              "attachment_file_name": "spree_ringer_t.jpeg",
+              "type": "Spree::Image",
+              "attachment_updated_at": "2013-12-13T21:05:54.269Z",
+              "attachment_width": 480,
+              "attachment_height": 480,
+              "alt": null,
+              "viewable_type": "Spree::Variant",
+              "viewable_id": 10,
+              "mini_url": "/spree/products/38/mini/spree_ringer_t.jpeg?1386968754",
+              "small_url": "/spree/products/38/small/spree_ringer_t.jpeg?1386968754",
+              "product_url": "/spree/products/38/product/spree_ringer_t.jpeg?1386968754",
+              "large_url": "/spree/products/38/large/spree_ringer_t.jpeg?1386968754"
+            },
+            {
+              "id": 39,
+              "position": 2,
+              "attachment_content_type": "image/jpeg",
+              "attachment_file_name": "spree_ringer_t_back.jpeg",
+              "type": "Spree::Image",
+              "attachment_updated_at": "2013-12-13T21:05:54.791Z",
+              "attachment_width": 480,
+              "attachment_height": 480,
+              "alt": null,
+              "viewable_type": "Spree::Variant",
+              "viewable_id": 10,
+              "mini_url": "/spree/products/39/mini/spree_ringer_t_back.jpeg?1386968754",
+              "small_url": "/spree/products/39/small/spree_ringer_t_back.jpeg?1386968754",
+              "product_url": "/spree/products/39/product/spree_ringer_t_back.jpeg?1386968754",
+              "large_url": "/spree/products/39/large/spree_ringer_t_back.jpeg?1386968754"
+            }
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 49,
+        "amount": "109.95",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 51,
+        "tracking": null,
+        "number": "005550682",
+        "cost": "5.0",
+        "shipped_at": "2013-12-18T18:35:56.104Z",
+        "state": "shipped",
+        "order_id": "R471374122",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 163,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 51,
+            "shipping_method_id": 1
+          },
+          {
+            "id": 164,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 51,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 165,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 51,
+            "shipping_method_id": 3
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 150,
+            "variant_id": 10,
+            "state": "shipped"
+          },
+          {
+            "id": 146,
+            "variant_id": 10,
+            "state": "shipped"
+          },
+          {
+            "id": 147,
+            "variant_id": 10,
+            "state": "shipped"
+          },
+          {
+            "id": 148,
+            "variant_id": 10,
+            "state": "shipped"
+          },
+          {
+            "id": 149,
+            "variant_id": 10,
+            "state": "shipped"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 103,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      },
+      {
+        "id": 104,
+        "amount": "5.0",
+        "label": "North America 5.0%",
+        "mandatory": null,
+        "eligible": true,
+        "originator_type": "Spree::TaxRate",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 48,
+        "month": "12",
+        "year": "2014",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Sean",
+        "last_name": "Schofield",
+        "gateway_customer_profile_id": "BGS-1234",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  }
+}
