@@ -136,5 +136,18 @@ describe QuickbooksEndpoint do
         response["notifications"].first["subject"].should match "Received return for order not sync"
       end
     end
+
+    context "update" do
+      before { message[:message] = "return_authorization:updated" }
+
+      it "updates existing return just fine" do
+        VCR.use_cassette("credit_memo/sync_return_authorization_updated") do
+          post '/return_authorization_persist', message.to_json, auth
+          last_response.status.should eql 200
+          response = JSON.parse(last_response.body)
+          response["notifications"].first["subject"].should match "Updated Quickbooks Credit Memo"
+        end
+      end
+    end
   end
 end
