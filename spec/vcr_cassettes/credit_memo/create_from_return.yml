@@ -1,0 +1,241 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R471374122'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="u6Lf4YugJ6qGWsCYnjVi2pqx35EHSCriEYMVHtV2Qs",
+        oauth_signature="btkN1d81OBIhvoRdjIyLERbS4gI%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387465030", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 14:57:12 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - f4b7fca7-2f79-436d-9fd5-0ca5c4c866a3
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '923'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAOVW32/jNgz+VwQDe1tiO05qO1B1S9K7rUCvaxNn96zabKNN
+        lgxL7sX760c5P5y2KYZhONzD9aERyc8i+VGkRD9sS0meoTZCq0svHAYeAZXr
+        QqinS2+dfRokHjGWq4JLreDSa8F4Hxi9VrYRdgmm0soAwU2UufQ21lZT3zf5
+        Bko+FB1mmOvSfxSKqxz858gjVpS4zygIo0E4GoRpFlxMJ/E0jIbRKBoEyTQI
+        PEbvG6jb4/4YQW3vtBF2F6ZHSr5FayOtcSKjKy7BLCEHUVlS6JILxN3Pf8fo
+        K14b9PjIpQFEXhdsckF9/KGrVuWZ/gsUC6jfC/QzWH7FLWd0UQO3kGHI7Bhx
+        nIXpdDKZjoNdtNQ/QdEbbuy6KlAu/u2z11Dq946vdH7blA9Qs+U4DqN4HI5G
+        1O+1NNsqRJ7sn1D/oKOLpq6xjEjgI1Hc8T2v+d9CCq7IErj02Hx5g3H3MAxc
+        KOjYCXfkOBmdOfGwpFdg8hoZxiqwVVUDkCUeFKhJNlhtRG0xwhMEnZW6UZal
+        6TCdUH8v4SaWC5m1FbCuatcWSudhp3dbHO30DABjRLnPbHW3HARBEE485AJD
+        3xkZXSth72qRAwvRf0r9XkHvbcswIveDhT/nw9/RcSRl9JKU0XukbERVISXn
+        iZgMXdm/FQ/ougRlyaz4szHWLT2WniVk8oaM8D+REb0kI3qHjFtd2w2ZlYB+
+        OMHkf/oOtGR8S/iREeOx8Pwh+V+c7GMPg/dPevOQacvlu5m8sftHHwsMXiOL
+        J7Xuem+hS9TmONQuXC8fQYzOhZSzoqi7aiVxX66QjS+CgHzEyUO+AP77TTxt
+        vvL2Z7LCWQ0k6eZSB6QLgdnPwW7AFBwdOJEuXGZ1y9Yr1OzXByXmcCWehbtK
+        FroA9pnXrcSr44h8DaA40jHnbj0KknBM/RMNjlLLomSYJuNxnLpxiZTeaPXE
+        BnE8DNJRGsXp/g+tzkD9PnPXDz0HyQ/EQZ/5r1I/cIktsOAybyTft6WdVZXE
+        nnyQQP2zGNodxlnZn+mjgmKLKLuy3DaG3QLeXbrTYNwnBvoRr2B5QGm7AgSc
+        6roz2imwfTBYMIYZd6x/gS0vKwnu4YCttDftKrvHz7l0zwl3ax+W9I63rsHx
+        Bt3oou+UP4ThnptQr+2uOyv3osj0LM9dbfqP1qrY2aAgnxpV4NSIE9evbz44
+        TIf9ywPFFw8XlF++lNg/bT1FNHEJAAA=
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 14:57:13 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'SPR-00015'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="L6pIi9hTIDPK9A2QsiRTiIeUdWhufuYoykCYCIADE",
+        oauth_signature="P2V9lginRhC1ickBMaC4qj5aGi8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387465033", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 14:57:14 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 63982570-98fc-416c-811b-dc3a7a5d2abc
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '473'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVT7W7iMBB8Fcv/gxMQhUaLq14rdJXurnyEB/DZy2E1cSLb
+        QeTtb0NbKBzS/bJmd7w73h3Dw6Eq2R59sLWb8WyQcoZO18a6PzO+KebJlLMQ
+        lTOqrB3OeIeBP0h4cbG1cYWhqV1ARkVcmPFdjE0uRNA7rNTAHjkDXVdia51y
+        GsV+xFm0FdUZptkoyYZJdl+kd/l4kmfjQZZOknSapymXsGzRd6f6pMDHRR1s
+        fJfJWaUOlG3LGHpIgiJWzNSVspRffnsl1Y3ygTptVRmwZxg5TEHQAevO6aJ+
+        QycpcAbwE6N6VlFJePKoIhYkVZ6UTorsPh+P89Hdu0oQX1jwQ4W4aQxh879r
+        11QQ58a/FAXWi1WSpmk2BnHE8IxBe9v0r5frxiOyFS0IPSuS9c76COIrAx51
+        tHuU0bcI4gPAvC3Lbtmq0m4tmus+N7JQqIP6XaI8ThDEJ4S1KjEQenG6bA2a
+        T8I/cdg4GxfeauwHfQZQdA11R78nRIV7RJYip+Cj1nXryFlb5lRvlI0z2PSb
+        R8PmrTOBy8mU1njFlrBovd6pgDeE3Uqd+E91iL28CwyFV/ptGbtX953MfxrB
+        ZZRkkO3ouHBrH774HvIvPR4cYmYDAAA=
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 14:57:15 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/creditmemo
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <CreditMemo xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Line>
+        <Description>Spree Ringer T-Shirt</Description>
+        <Amount>19.99</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>20</ItemRef>
+        <UnitPrice>19.99</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <CustomerRef>6</CustomerRef>
+        <BillEmail>
+        <Address>spree@example.com</Address>
+        </BillEmail>
+        <BillAddr>
+        <Id>87</Id>
+        <Line1>4600 East West Highway, Suite 800</Line1>
+        <City>Bethesda</City>
+        <Country>US</Country>
+        <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
+        <PostalCode>20814</PostalCode>
+        <Lat>38.984479</Lat>
+        <Long>-77.09293799999999</Long>
+        </BillAddr>
+        <DepositToAccountRef>78</DepositToAccountRef>
+        <PaymentMethodRef>3</PaymentMethodRef>
+        </CreditMemo>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '843'
+      Authorization:
+      - OAuth oauth_body_hash="bbBZ69oqBridV3wgi8fabVNM6h8%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="UZkRSCsmD0bWiGm3fjVDptjiohCiDDDW5YBFdbJ5g", oauth_signature="AYKh7nrSgw2KHeqiFdbJfUnkJks%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387465035", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 14:57:16 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - a8515aed-3fd8-4c5f-9351-eac75b4ae447
+      Via:
+      - 1.1 ipp-gateway-ap02
+      Content-Length:
+      - '771'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAM1VWXPaMBD+Kx4/F2xzGTNCKUeaZiYnNtNnYW9AU1nySCKF
+        /vquzGGapJPX8mBrdz9r99sLcrUrhfcK2nAlx37UDn0PZK4KLtdjf5l9aw19
+        z1gmCyaUhLG/B+NfUXIr7ZbbBZhKSQMeXiLN2N9YW42CwOQbKFmb15h2rsrg
+        hUsmcwheu75neYn3dMKo24o6rSjJwsGoH4+iQTtJ+q1wOApDn5KZhoLbeyiV
+        V6iScQzuefqIsVRMG/z+hQkDiLst6CAiAb5Iupd5pn6CpCEJGoHcg2VzZll9
+        KbOQYQD0vf/44JsEFyhyx4xdVgXKxWefvYWSoHE8V/nDtlyBplEY9UjQyCTb
+        ScRc3kyCk47MtlpjOfYLePEkc3mbavabC86ktwAmfDpd3GHEDQxD5hLqvBzT
+        4mR05sTTkczB5JpXFotO00oDeAssOGgva6Ubri1GeIEgk1JtpaVRgiUiwVHC
+        SyzjIttXQFMmwNxaKJ2Hg95dcbaTDwAYI8oNs/Rp0QrDMOr7mAsM/WCkZCm5
+        fdI8h5P/RkGe7d7xci8s+Uc+gkM6Ds/PeWxXmbJM/JPGO3twdjHbGqtK0BeM
+        6szOVInaHJt14Cp1BlEy5UJMikLX1UoGTbki2huEoXeNHeX9AHx85+vNL7b/
+        4qU4UeAN636rgWTGkfwU7AZMwdCBE8nMMdN7ukxRczyflMhhzl+5G/iZKoDe
+        M70XOOBn5FsAeVK4AUR97oRD178XGhwRS7vDdjLs9eLEjQGm9E7JNW3FcTtM
+        Okk3To4/tDoDCRrm2G7VOQfu6iYHcdzte4+i8G5A6TVY9QubvvgPice9OH5P
+        PE6i+Ey4oXkj1IqJjO1mTORbweoJe1B2UlWC52wlgAQfYkjdeZPy3L9nmeA0
+        SJtaZreGPgDuH1VrMNwLA7nGNSpOKGVTQMClru7HWoGTgrGCMdS4Fv4KO1ZW
+        Atwqx7E5mg5VPOKnTLgFfwrtJJIFuN2Nu+Wwz0/2t+p66R73PQp//7vQP2DA
+        7d+lBgAA
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 14:57:18 GMT
+recorded_with: VCR 2.4.0

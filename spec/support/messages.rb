@@ -719,5 +719,9 @@ module Factories
         ]
       }
     end
+
+    def return_authorization
+      JSON.parse IO.read("#{File.dirname(__FILE__)}/return_authorization.json")
+    end
   end
 end

@@ -3,13 +3,6 @@ require 'spec_helper'
 module QBIntegration
   module Service
     describe CreditMemo do
-      let(:payload) do
-        {
-          "order" => Factories.order,
-          "original" => Factories.original
-        }.with_indifferent_access
-      end
-
       let(:config) do
         {
           'quickbooks.realm' => "1014843225",
@@ -25,14 +18,40 @@ module QBIntegration
 
       subject { CreditMemo.new(config, payload) }
 
-      it "creates from sales receipt" do
-        payload[:order][:number] = "R518606166"
-        payload[:order][:totals][:order] = "125.70"
+      context "order message" do
+        let(:payload) do
+          {
+            "order" => Factories.order,
+            "original" => Factories.original
+          }.with_indifferent_access
+        end
 
-        VCR.use_cassette("credit_memo/create_from_receipt") do
-          sales_receipt = Service::SalesReceipt.new(config, payload).find_by_order_number
-          credit_memo = subject.create_from_receipt sales_receipt
-          expect(credit_memo.doc_number).to eq sales_receipt.doc_number
+        it "creates from sales receipt" do
+          payload[:order][:number] = "R518606166"
+          payload[:order][:totals][:order] = "125.70"
+
+          VCR.use_cassette("credit_memo/create_from_receipt") do
+            sales_receipt = Service::SalesReceipt.new(config, payload).find_by_order_number
+            credit_memo = subject.create_from_receipt sales_receipt
+            expect(credit_memo.doc_number).to eq sales_receipt.doc_number
+          end
+        end
+      end
+
+      context "return authorization message" do
+        let(:payload) do
+          {
+            return_authorization: Factories.return_authorization,
+            order: Factories.return_authorization["order"],
+            original: Factories.return_authorization
+          }.with_indifferent_access
+        end
+
+        it "creates credit memo given payload and sales receipt" do
+          VCR.use_cassette("credit_memo/create_from_return") do
+            sales_receipt = Service::SalesReceipt.new(config, payload, dependencies: false).find_by_order_number
+            credit_memo = subject.create_from_return Factories.return_authorization, sales_receipt
+          end
         end
       end
     end
