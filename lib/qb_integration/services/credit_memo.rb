@@ -6,7 +6,7 @@ module QBIntegration
 
       def initialize(config, payload)
         super("CreditMemo", config)
-
+        @payload = payload
         @order = payload[:order]
       end
 
@@ -30,11 +30,11 @@ module QBIntegration
       def create_from_return(return_authorization, sales_receipt)
         credit_memo = create_model
         credit_memo.doc_number = return_authorization[:number]
-        credit_memo.email = sales_receipt.bill_email.email
+        credit_memo.email = sales_receipt.bill_email.address
         credit_memo.total = return_authorization[:amount]
 
         credit_memo.placed_on = return_authorization[:created_at]
-        # credit_memo.line_items = return_authorization[:created_at]
+        credit_memo.line_items = line_service.build_from_inventory_units
 
         credit_memo.bill_address = sales_receipt.bill_address
         credit_memo.payment_method_ref = sales_receipt.payment_method_ref
@@ -43,6 +43,11 @@ module QBIntegration
 
         quickbooks.create credit_memo
       end
+
+      private
+        def line_service
+          Service::Line.new(config, payload)
+        end
     end
   end
 end
