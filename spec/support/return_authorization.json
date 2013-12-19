@@ -271,7 +271,7 @@
       {
         "id": 104,
         "amount": "5.0",
-        "label": "North America 5.0%",
+        "label": "North America 5.0",
         "mandatory": null,
         "eligible": true,
         "originator_type": "Spree::TaxRate",
