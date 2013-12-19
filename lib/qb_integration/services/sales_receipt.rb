@@ -4,16 +4,18 @@ module QBIntegration
       attr_reader :order, :payload
       attr_reader :payment_method_service, :line_service, :account_service, :customer_service
 
-      def initialize(config, payload)
+      def initialize(config, payload, options = { dependencies: true })
         super("SalesReceipt", config)
 
         @order = payload[:order]
         @original = payload[:original]
 
-        @payment_method_service = PaymentMethod.new config, payload
-        @customer_service = Customer.new config, payload
-        @account_service = Account.new config
-        @line_service = Line.new config, payload
+        if options[:dependencies]
+          @payment_method_service = PaymentMethod.new config, payload
+          @customer_service = Customer.new config, payload
+          @account_service = Account.new config
+          @line_service = Line.new config, payload
+        end
       end
 
       def find_by_order_number

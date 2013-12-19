@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="kbN85N2jBiNzwLDsJZbNz3q9XNi5Bo5ddlGI5vPHmM",
+        oauth_signature="sBiGoOfdtrFOX3F8pouEs9voIds%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387414185", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 00:49:48 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 33e93ccf-d9c3-42f2-9ab9-c017f9842015
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '1435'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 00:49:49 GMT
+recorded_with: VCR 2.4.0

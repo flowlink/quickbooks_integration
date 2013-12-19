@@ -26,6 +26,23 @@ module QBIntegration
 
         quickbooks.create credit_memo
       end
+
+      def create_from_return(return_authorization, sales_receipt)
+        credit_memo = create_model
+        credit_memo.doc_number = return_authorization[:number]
+        credit_memo.email = sales_receipt.bill_email.email
+        credit_memo.total = return_authorization[:amount]
+
+        credit_memo.placed_on = return_authorization[:created_at]
+        # credit_memo.line_items = return_authorization[:created_at]
+
+        credit_memo.bill_address = sales_receipt.bill_address
+        credit_memo.payment_method_ref = sales_receipt.payment_method_ref
+        credit_memo.customer_ref = sales_receipt.customer_ref
+        credit_memo.deposit_to_account_ref = sales_receipt.deposit_to_account_ref
+
+        quickbooks.create credit_memo
+      end
     end
   end
 end
