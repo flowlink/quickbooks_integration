@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe QuickbooksEndpoint do
   def auth
-    {'HTTP_X_AUGURY_TOKEN' => 'x123'}
+    { 'HTTP_X_AUGURY_TOKEN' => 'x123', 'Content-Type' => 'application/json' }
   end
 
   def parameters
@@ -90,23 +90,35 @@ describe QuickbooksEndpoint do
   end
 
   describe "return authorizations" do
-    let(:message) {
+    let(:message) do
       {
         message: "return_authorization:new",
         message_id: "abc",
         payload: {
-          return_authorization: {
-            order: { number: Factories.order["number"] }
-          },
-          "parameters" => parameters
+          return_authorization: Factories.return_authorization,
+          original: Factories.return_authorization,
+          parameters: parameters
         }
       }.with_indifferent_access
-    }
+    end
 
     it "generates a json response with an info notification" do
       VCR.use_cassette("credit_memo/sync_return_authorization_new") do
         post '/return_authorization_persist', message.to_json, auth
         last_response.status.should eql 200
+        response = JSON.parse(last_response.body)
+        response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
+      end
+    end
+
+    it "returns 500 if order return was not sync yet" do
+      message[:payload][:return_authorization][:order][:number] = "imnotthereatall"
+
+      VCR.use_cassette("credit_memo/return_authorization_non_sync_order") do
+        post '/return_authorization_persist', message.to_json, auth
+        last_response.status.should eql 500
+        response = JSON.parse(last_response.body)
+        response["notifications"].first["subject"].should match "Received return for order not sync"
       end
     end
   end
