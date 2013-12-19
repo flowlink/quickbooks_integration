@@ -1,3 +1,5 @@
+require 'pry'
+
 module QBIntegration
   class ReturnAuthorization < Base
     attr_reader :order, :ra
@@ -11,12 +13,20 @@ module QBIntegration
       payload[:order] = @order
     end
 
-    # TODO check return_authorization:updated messages
     def sync
       if sales_receipt = sales_receipt_service.find_by_order_number
-        credit_memo = credit_memo_service.create_from_return ra, sales_receipt
-        text = "Created Quickbooks credit memo #{credit_memo.id} for return #{ra[:number]}"
-        [200, notification(text)]
+        case message_name
+        when "return_authorization:new"
+          credit_memo = credit_memo_service.create_from_return ra, sales_receipt
+          text = "Created Quickbooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
+          [200, notification(text)]
+        when "return_authorization:updated"
+          # credit_memo = credit_memo_service.find_by_number ra[:number], ra, sales_receipt
+          # credit_memo_service.update credit_memo
+          [200, notification("Hang on return_authorization:updated")]
+        else
+          [500, notification("Cand handle message #{message_name}", "error")]
+        end
       else
         [500, notification("Received return for order not sync with quickbooks", "error")]
       end
