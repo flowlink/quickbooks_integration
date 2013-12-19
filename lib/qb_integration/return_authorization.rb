@@ -21,9 +21,15 @@ module QBIntegration
           text = "Created Quickbooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
           [200, notification(text)]
         when "return_authorization:updated"
-          # credit_memo = credit_memo_service.find_by_number ra[:number], ra, sales_receipt
-          # credit_memo_service.update credit_memo
-          [200, notification("Hang on return_authorization:updated")]
+          if credit_memo = credit_memo_service.find_by_number(ra[:number])
+            credit_memo_service.update credit_memo, ra, sales_receipt
+            text = "Updated Quickbooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
+            [200, notification(text)]
+          else
+            credit_memo = credit_memo_service.create_from_return ra, sales_receipt
+            text = "Created Quickbooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
+            [200, notification(text)]
+          end
         else
           [500, notification("Cand handle message #{message_name}", "error")]
         end

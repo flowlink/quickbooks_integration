@@ -53,6 +53,17 @@ module QBIntegration
             credit_memo = subject.create_from_return Factories.return_authorization, sales_receipt
           end
         end
+
+        it "updates credit memo given payload and sales receipt" do
+          VCR.use_cassette("credit_memo/updates_from_return") do
+            sales_receipt = Service::SalesReceipt.new(config, payload, dependencies: false).find_by_order_number
+
+            credit_memo = subject.find_by_number Factories.return_authorization["number"]
+            sales_receipt.email = "creditmemo_updated@quickbooks.com"
+            credit_memo_updated = subject.update credit_memo, Factories.return_authorization, sales_receipt
+            expect(credit_memo_updated.bill_email.address).to eq "creditmemo_updated@quickbooks.com"
+          end
+        end
       end
     end
   end
