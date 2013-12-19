@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ruckus/quickbooks-ruby.git
-  revision: 7c5fa0882ff3e1eee5add24c121f5c07fcbad61c
+  revision: c1cc46d170a686f28a190538995ff65a690c1759
   branch: master
   specs:
     quickbooks-ruby (0.0.2)
@@ -78,7 +78,7 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.5.10)
+    nokogiri (1.5.11)
     oauth (0.4.7)
     pry (0.9.12.1)
       coderay (~> 1.0.5)

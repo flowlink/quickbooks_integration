@@ -120,11 +120,6 @@ module QBIntegration
       def eligible_adjustments
         adjustments.select { |a| a["eligible"] }
       end
-
-      private
-        def variants
-          # payload[:inventory_units].each 
-        end
     end
   end
 end

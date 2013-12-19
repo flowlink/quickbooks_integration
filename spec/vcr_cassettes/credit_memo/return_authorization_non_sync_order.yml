@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'imnotthereatall'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="HI4fTNQwfzGMJfMAbLazm4LgHfubMi6vvk1yI4fi8",
+        oauth_signature="h6X%2FcwY7%2F7Uxcu2Gw2qEINYPdgs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387468598", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 19 Dec 2013 15:56:40 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 2e97a01e-6054-4a0c-8133-0b8e90f931ce
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '167'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNywqDMBBA0V8Js89L+wwx7gpdttgPEJ3WgE7ERKl/Xyl0
+        0f3lXFu+h54tOEUfqAAtFDCkJrSeXgU8qgs/AYupprbuA2EBK0Yonb1Smn26
+        YxwDRWQbQrGALqXRSBmbDoda+G8jmjDIp6eaGpRLDiz5YXMypXOuM67PlTqa
+        /cHstMiV5upklAJnbzNO68+Xzsr/o/sA2t6hDbkAAAA=
+    http_version: 
+  recorded_at: Thu, 19 Dec 2013 15:56:41 GMT
+recorded_with: VCR 2.4.0
