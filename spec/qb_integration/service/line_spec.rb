@@ -6,6 +6,7 @@ module QBIntegration
       let(:payload) do
         {
           "order" => Factories.order,
+          "return_authorization" => Factories.return_authorization,
           "original" => Factories.original
         }.with_indifferent_access
       end
@@ -36,6 +37,12 @@ module QBIntegration
       it ".build_from_adjustments" do
         VCR.use_cassette("line/build_from_adjustments") do
           expect(subject.build_from_adjustments(account).count).to eq payload[:original][:adjustments].count
+        end
+      end
+
+      it ".build_from_inventory_units" do
+        VCR.use_cassette("line/build_from_inventory_units") do
+          expect(subject.build_from_inventory_units(account).count).to eq payload[:return_authorization][:inventory_units].count
         end
       end
 

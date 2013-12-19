@@ -1,14 +1,21 @@
 module QBIntegration
   module Service
     # Both Spree line items and adjustments are mapped as SalesReceipt lines
+    #
+    # Return authorizations inventory units variants are alsy sync as Credit
+    # Memo lines
     class Line < Base
-      attr_reader :line_items, :adjustments, :lines, :config, :item_service
+      attr_reader :line_items, :adjustments, :lines, :config, :item_service,
+        :inventory_units, :return_authorization, :order
 
       def initialize(config, payload)
         @config = config
         @model_name = "Line"
-        @line_items = payload[:order][:line_items]
+        @order = payload[:order] || {}
+        @line_items = order[:line_items] || []
         @adjustments = payload[:original][:adjustments]
+        @return_authorization = payload[:return_authorization] || {}
+        @inventory_units = return_authorization[:inventory_units] || []
 
         @lines = []
         @item_service = Item.new(config)
@@ -65,6 +72,31 @@ module QBIntegration
         end
       end
 
+      # NOTE watch out as the price here might not always be accurate. If the
+      # variant price changed after the order was created we'd get that price
+      # here not the one in the order line item
+      #
+      # TODO We should group inventory units variant and create only one line
+      # per variant with the proper quantity set
+      def build_from_inventory_units(account = nil)
+        inventory_units.each do |unit|
+          line = create_model
+
+          line.amount = unit[:variant][:price]
+          line.description = unit[:variant][:name]
+
+          line.sales_item! do |sales_item|
+            sales_item.item_ref = item_service.find_or_create_by_sku(unit[:variant], account).id
+            sales_item.quantity = 1
+            sales_item.unit_price = unit[:variant][:price]
+          end
+
+          lines.push line
+        end
+
+        lines
+      end
+
       # NOTE Watch out for Spree >= 2.2
       def map_adjustment_sku(adjustment)
         case adjustment[:originator_type]
@@ -88,6 +120,11 @@ module QBIntegration
       def eligible_adjustments
         adjustments.select { |a| a["eligible"] }
       end
+
+      private
+        def variants
+          # payload[:inventory_units].each 
+        end
     end
   end
 end
