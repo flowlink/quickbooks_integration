@@ -39,6 +39,15 @@ module QBIntegration
           expect(sales_receipt.doc_number).to eq Factories.order["number"]
         end
       end
+
+      it "updates existing sales receipt" do
+        payload[:order][:email] = "updated@mail.com"
+
+        VCR.use_cassette("sales_receipt/sync_updated_order") do
+          sales_receipt = subject.update subject.find_by_order_number
+          expect(sales_receipt.bill_email.address).to eq "updated@mail.com"
+        end
+      end
     end
   end
 end

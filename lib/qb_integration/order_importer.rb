@@ -17,35 +17,17 @@ module QBIntegration
           )
         when "order:canceled"
           credit_memo = credit_memo_service.create_from_receipt sales_receipt
-          text = "Created Quickbooks credit memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
+          text = "Created Quickbooks Credit Memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
           [200, notification(text)]
         when "order:updated"
-          [200, notification("hang tight not sure what to do right now")]
-          # update it?
-          #
-          # order_number = @order["number"]
-          # cross_ref_hash = @xref.lookup(order_number)
-          # current_receipt = receipt_service.fetch_by_id(cross_ref_hash[:id])
-          # receipt = sales_receipt
-          # receipt.id = Quickeebooks::Online::Model::Id.new(cross_ref_hash[:id])
-          # receipt.sync_token = current_receipt.sync_token
-          # receipt = receipt_service.update(receipt)
-          #   process_result 200, {
-          #     'message_id' => @message[:message_id],
-          #     'notifications' => [
-          #       {
-          #         "level" => "info",
-          #         "subject" => "Updated the Quickbooks sales receipt #{result["xref"][:id]} for order #{order_number}",
-          #         "description" => "Quickbooks SalesReceipt id = #{result["xref"][:id]} and idDomain = #{result["xref"][:id_domain]}"
-          #       }
-          #     ]
-          #   }
+          sales_receipt = sales_receipt_service.update sales_receipt
+          [200, notification("Updated Quickbooks Sales Receipt #{sales_receipt.doc_number}")]
         end
       else
         case message_name
         when "order:new", "order:updated"
           sales_receipt = sales_receipt_service.create
-          text = "Created Quickbooks sales receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
+          text = "Created Quickbooks Sales Receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
           [200, notification(text)]
         else
           raise AlreadyPersistedOrderException.new(

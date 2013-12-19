@@ -54,7 +54,7 @@ describe QuickbooksEndpoint do
 
             response = JSON.parse(last_response.body)
             response["message_id"].should eql "abc"
-            response["notifications"].first["subject"].should match "Created Quickbooks sales receipt"
+            response["notifications"].first["subject"].should match "Created Quickbooks Sales Receipt"
           end
         end
       end
@@ -67,6 +67,21 @@ describe QuickbooksEndpoint do
       context "with order:updated" do
         before { message[:message] = "order:updated" }
         include_context "persist new sales receipt"
+      end
+    end
+
+    context "existing sales receipt with order:updated" do
+      before { message[:message] = "order:updated" }
+
+      it "updates sales receipt just fine" do
+        VCR.use_cassette("sales_receipt/sync_updated_order_post") do
+          post '/order_persist', message.to_json, auth
+          last_response.status.should eql 200
+
+          response = JSON.parse(last_response.body)
+          response["message_id"].should eql "abc"
+          response["notifications"].first["subject"].should match "Updated Quickbooks Sales Receipt"
+        end
       end
     end
 
@@ -83,7 +98,7 @@ describe QuickbooksEndpoint do
 
           response = JSON.parse(last_response.body)
           response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
+          response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
         end
       end
     end
@@ -107,7 +122,7 @@ describe QuickbooksEndpoint do
         post '/return_authorization_persist', message.to_json, auth
         last_response.status.should eql 200
         response = JSON.parse(last_response.body)
-        response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
+        response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
       end
     end
 
