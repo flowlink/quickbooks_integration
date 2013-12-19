@@ -30,18 +30,18 @@ describe QuickbooksEndpoint do
   end
 
   describe "order sync" do
-    context "new sales receipt" do
-      let(:message) {
-        {
-          :message_id => "abc",
-          :payload => {
-            "order" => Factories.order,
-            "original" => Factories.original,
-            "parameters" => parameters
-          }
-        }.with_indifferent_access
-      }
+    let(:message) {
+      {
+        :message_id => "abc",
+        :payload => {
+          "order" => Factories.order,
+          "original" => Factories.original,
+          "parameters" => parameters
+        }
+      }.with_indifferent_access
+    }
 
+    context "new sales receipt" do
       shared_context "persist new sales receipt" do
         it "generates a json response with an info notification" do
           # change order number in case you want to persist a new order
@@ -71,17 +71,7 @@ describe QuickbooksEndpoint do
     end
 
     context "order canceled" do
-      let(:message) {
-        {
-          "message" => "order:canceled",
-          :message_id => "abc",
-          :payload => {
-            "order" => Factories.order,
-            "original" => Factories.original,
-            "parameters" => parameters
-          }
-        }.with_indifferent_access
-      }
+      before { message[:message] = "order:canceled" }
 
       it "generates a json response with an info notification" do
         # change order number in case you want to persist a credit memo
@@ -95,6 +85,28 @@ describe QuickbooksEndpoint do
           response["message_id"].should eql "abc"
           response["notifications"].first["subject"].should match "Created Quickbooks credit memo"
         end
+      end
+    end
+  end
+
+  describe "return authorizations" do
+    let(:message) {
+      {
+        message: "return_authorization:new",
+        message_id: "abc",
+        payload: {
+          return_authorization: {
+            order: { number: Factories.order["number"] }
+          },
+          "parameters" => parameters
+        }
+      }.with_indifferent_access
+    }
+
+    it "generates a json response with an info notification" do
+      VCR.use_cassette("credit_memo/sync_return_authorization_new") do
+        post '/return_authorization_persist', message.to_json, auth
+        last_response.status.should eql 200
       end
     end
   end

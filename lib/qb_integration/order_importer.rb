@@ -20,6 +20,7 @@ module QBIntegration
           text = "Created Quickbooks credit memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
           [200, notification(text)]
         when "order:updated"
+          [200, notification("hang tight not sure what to do right now")]
           # update it?
           #
           # order_number = @order["number"]

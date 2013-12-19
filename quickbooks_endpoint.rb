@@ -30,4 +30,22 @@ class QuickbooksEndpoint < EndpointBase
       }
     end
   end
+
+  post '/return_authorization_persist' do
+    begin
+      code, notification = QBIntegration::ReturnAuthorization.new(@message, @config).sync
+      process_result code, notification
+    rescue Exception => exception
+      process_result 500, {
+        'message_id' => @message_id,
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
+    end
+  end
 end

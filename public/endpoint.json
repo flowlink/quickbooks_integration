@@ -88,6 +88,48 @@
       }
     },
     {
+      "name": "return_authorization_persist",
+      "path": "/return_authorization_persist",
+      "description": "Import order return authorizations to Quickbooks as a Credit Memo",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks oAUTH Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks oAUTH Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks oAUTH Realm",
+            "data_type": "string"
+          },
+          {
+            "name": "deposit_to_account_name",
+            "description": "Quickbooks account name to book the SalesReceipt in.",
+            "data_type": "string"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["return_authorization:new", "return_authorization:updated"],
+        "filters": [
+          {
+            "path": "payload.return_authorization.order.payment_state",
+            "operator": "eq",
+            "value": "paid"
+          }
+        ],
+        "options": {
+          "retries_allowed": true
+        }
+      }
+    },
+    {
       "name": "product_persist",
       "path": "/product_persist",
       "description": "Enabling this would import all your products from the spree store into QuickBooks",
