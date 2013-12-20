@@ -49,6 +49,14 @@ module QBIntegration
           expect(sales_receipt.bill_email.address).to eq "updated@mail.com"
         end
       end
+
+      it "appends ship tracking number if available on update" do
+        payload[:order][:shipments].first[:tracking] = "IamAString"
+        VCR.use_cassette("sales_receipt/sync_updated_order_with_tracking_number") do
+          sales_receipt = subject.update subject.find_by_order_number
+          expect(sales_receipt.tracking_num).to match "IamAString"
+        end
+      end
     end
   end
 end
