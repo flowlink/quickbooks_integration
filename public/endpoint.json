@@ -117,13 +117,6 @@
       },
       "recommends": {
         "messages": ["return_authorization:new", "return_authorization:updated"],
-        "filters": [
-          {
-            "path": "payload.return_authorization.order.payment_state",
-            "operator": "eq",
-            "value": "paid"
-          }
-        ],
         "options": {
           "retries_allowed": true
         }
