@@ -31,6 +31,7 @@ module QBIntegration
 
       def update(sales_receipt)
         build sales_receipt
+        sales_receipt.tracking_num = shipments_tracking_number.join(", ")
         quickbooks.update sales_receipt
       end
 
@@ -40,13 +41,6 @@ module QBIntegration
           sales_receipt.email = order["email"]
           sales_receipt.total = order['totals']['order']
 
-          # TODO check if we still need this timezone conversion thing
-          # timezone = get_config!("quickbooks.timezone")
-          # utc_time = Time.parse(@order["placed_on"])
-          # tz = TZInfo::Timezone.get(timezone)
-
-          # txn_date = Quickeebooks::Common::DateTime.new
-          # txn_date.value = tz.utc_to_local(utc_time).to_s
           sales_receipt.placed_on = order['placed_on']
 
           sales_receipt.ship_address = Address.build order["shipping_address"]
@@ -70,6 +64,12 @@ module QBIntegration
           # undeposit funds account. That should be the default behaviour which
           # we can accomplish by just not setting any account ref
           sales_receipt.deposit_to_account_ref = account.id
+        end
+
+        def shipments_tracking_number
+          order[:shipments].map do |shipment|
+            shipment[:tracking]
+          end
         end
     end
   end
