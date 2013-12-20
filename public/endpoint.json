@@ -27,11 +27,6 @@
             "data_type": "string"
           },
           {
-            "name": "ship_method_name",
-            "description": "Mapping from Spree shipping methods to Quickbooks shipping method names",
-            "data_type": "list"
-          },
-          {
             "name": "deposit_to_account_name",
             "description": "Quickbooks account name to book the SalesReceipt in.",
             "data_type": "string"
