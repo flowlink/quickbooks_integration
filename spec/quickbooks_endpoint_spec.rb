@@ -25,7 +25,7 @@ describe QuickbooksEndpoint do
       {:name => "quickbooks.coupon_item", :value => "Coupons"},
       {:name => "quickbooks.discount_item", :value => "Discount"},
       {:name => "quickbooks.account_name", :value => "Inventory Asset"},
-      {:name => "quickbooks.timezone", :value => "EST"}
+      {:name => "quickbooks.web_orders_user", :value => "false"}
     ]
   end
 

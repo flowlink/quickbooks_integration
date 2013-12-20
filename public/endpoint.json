@@ -62,9 +62,9 @@
             "data_type": "string"
           },
           {
-            "name": "timezone",
-            "description": "The timezone",
-            "data_type": "string"
+            "name": "web_orders_user",
+            "description": "Check to use 'Web Orders' as customer name for all QB transactions",
+            "data_type": "boolean"
           }
         ]
       },

@@ -19,7 +19,8 @@ module QBIntegration
           'quickbooks.account_name' => "Inventory Asset",
           "quickbooks.shipping_item" => "Shipping Charges",
           "quickbooks.tax_item" => "State Sales Tax-NY",
-          "quickbooks.discount_item" => "Discount"
+          "quickbooks.discount_item" => "Discount",
+          "quickbooks.web_orders_user" => "false"
         }
       end
 

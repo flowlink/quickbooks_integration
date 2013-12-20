@@ -10,11 +10,12 @@ module QBIntegration
       end
 
       def find_or_create
-        fetch_by_display_name || create
+        name = use_web_orders? ? "Web Orders" : nil
+        fetch_by_display_name(name) || create
       end
 
-      def fetch_by_display_name
-        query = "SELECT * FROM Customer WHERE DisplayName = '#{display_name}'"
+      def fetch_by_display_name(name = nil)
+        query = "SELECT * FROM Customer WHERE DisplayName = '#{name || display_name}'"
         quickbooks.query(query).entries.first
       end
 
@@ -31,16 +32,25 @@ module QBIntegration
       def create
         new_customer = create_model
 
-        new_customer.given_name = order["billing_address"]["firstname"]
-        new_customer.family_name = order["billing_address"]["lastname"]
-        new_customer.display_name = display_name
-        new_customer.email_address = order[:email]
+        if use_web_orders?
+          new_customer.display_name = "Web Orders"
+        else
+          new_customer.given_name = order["billing_address"]["firstname"]
+          new_customer.family_name = order["billing_address"]["lastname"]
+          new_customer.display_name = display_name
+          new_customer.email_address = order[:email]
 
-        new_customer.billing_address = Address.build order["billing_address"]
-        new_customer.shipping_address = Address.build order["shipping_address"]
+          new_customer.billing_address = Address.build order["billing_address"]
+          new_customer.shipping_address = Address.build order["shipping_address"]
+        end
 
         quickbooks.create new_customer
       end
+
+      private
+        def use_web_orders?
+          config.fetch('quickbooks.web_orders_user') == "true"
+        end
     end
   end
 end

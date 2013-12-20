@@ -16,9 +16,10 @@ module QBIntegration
 
       let(:config) do
         {
-        'quickbooks.realm' => "1014843225",
-        'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
-        'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
+          'quickbooks.realm' => "1014843225",
+          'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+          'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
+          'quickbooks.web_orders_user' => "false"
         }
       end
 
@@ -39,6 +40,18 @@ module QBIntegration
 
           VCR.use_cassette "customer/customer_create" do
             expect(subject.find_or_create.display_name).to eq "Spree Commerce"
+          end
+        end
+      end
+
+      context "Web Order as customer name" do
+        before do
+          config['quickbooks.web_orders_user'] = "true"
+        end
+
+        it "creates a new customer named Web Order" do
+          VCR.use_cassette "customer/web_order_user" do
+            expect(subject.find_or_create.display_name).to eq "Web Orders"
           end
         end
       end
