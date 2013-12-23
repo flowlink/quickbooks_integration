@@ -9,9 +9,37 @@ To get started, you will need to connect the hub to your Quickbooks Online (QBO)
 
 ## Services
 
+### Order Persist
+
+Imports Orders as SalesReceipts into Quickbooks. 
+
+Shipping, Tax, Coupon and Discount values from Spree will be treated as line-items and imported as Non-Inventory items.
+
+It's possible to provide a payment method mapping to translate the types of methods used in Spree to those of Quickbooks.
+
+Also supports the following option:
+
+ - **Web Order User:** Check if you want to use 'Web User' as customer for all SalesReceipts.
+
+#### Parameters
+
+| Name | Value | Example |
+| :----| :-----| :------ |
+| quickbooks.access_token | Quickbooks oAUTH Access Token |Aqws3958dhdjwb39|
+| quickbooks.access_secret | Quickbooks oAUTH Access Secret |dj20492dhjkdjeh2838w7|
+| quickbooks.realm | Quickbooks oAUTH Realm |82341|
+| quickbooks.deposit_to_account_name | Quickbooks account name to book the SalesReceipt in. |Sales|
+| quickbooks.payment_method_name | Mapping from Spree payment method names to Quickbooks payment method names |{ "visa" => "credit-card", "master-card" => "credit-card" }|
+| quickbooks.shipping_item | Quickbooks Item SKU to use for shipping line items | SKU-SHIPPING |
+| quickbooks.tax_item | Quickbooks Item SKU to use for tax line items |SKU-TAX|
+| quickbooks.coupon_item | Quickbooks Item SKU to use for coupon line items |SKU-COUPON|
+| quickbooks.discount_item | Quickbooks Item SKU to use for discount line items |SKU-DISCOUNT|
+| quickbooks.account_name | Quickbooks Income Account name for the items | Sales |
+| quickbooks.web_orders_users | Check to use 'Web User' as customer name for all SalesReceipts | false|
+
 ### Product Persist
 
-Exports products from Spree to Quickbooks supporting the following options:
+Imports Products as Items into Quickbooks supporting the following options:
 
  - **Inventory/Non-Inventory:** If you want to export products as Inventory items, enable this option and provide the *Cost of Goods Sold* and *Income* accounts.
  - **Import Variants as Sub-Items:** Spree products' variants can be imported as sub-items by Quickbooks, in order to mantain the hierarchical relationship.
@@ -59,7 +87,7 @@ Product was updated into Quickbooks:
 }
 ```
 
-Specified account was not found into Quickbooks:
+Specified account was not found on Quickbooks:
 ```json
 {
   "message_id":"52263b13b423957220e004c2b",
