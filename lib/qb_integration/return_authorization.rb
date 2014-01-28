@@ -1,5 +1,3 @@
-require 'pry'
-
 module QBIntegration
   class ReturnAuthorization < Base
     attr_reader :order, :ra
