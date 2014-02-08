@@ -30,7 +30,7 @@ class QuickbooksEndpoint < EndpointBase
     end
   end
 
-  post '/return_authorization_persist' do
+  post '/returns' do
     begin
       code, notification = QBIntegration::ReturnAuthorization.new(@message, @config).sync
       process_result code, notification
