@@ -63,7 +63,7 @@ module QBIntegration
           # TODO We need a check here. Users might want to just use the default
           # undeposit funds account. That should be the default behaviour which
           # we can accomplish by just not setting any account ref
-          sales_receipt.deposit_to_account_ref = account.id
+          # sales_receipt.deposit_to_account_ref = account.id
         end
 
         def shipments_tracking_number
