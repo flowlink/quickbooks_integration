@@ -13,7 +13,7 @@ class QuickbooksEndpoint < EndpointBase
     process_result code, notification
   end
 
-  post '/order_persist' do
+  post '/orders' do
     begin
       code, notification = QBIntegration::Order.new(@message, @config).sync
       process_result code, notification
