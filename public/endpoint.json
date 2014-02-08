@@ -6,29 +6,29 @@
   "icon_url": "quickbooks.png",
   "services": [
     {
-      "name": "order_persist",
-      "path": "/order_persist",
-      "description": "Import new order to a Quickbooks SalesReceipt or updates existing SalesReceipt.",
+      "name": "order_export",
+      "path": "/orders",
+      "description": "Enabling this would export orders to Quickbooks as Sales Receipts",
       "requires": {
         "parameters": [
           {
             "name": "access_token",
-            "description": "Quickbooks oAUTH Access Token",
+            "description": "Quickbooks OAuth Access Token",
             "data_type": "string"
           },
           {
             "name": "access_secret",
-            "description": "Quickbooks oAUTH Access Secret",
+            "description": "Quickbooks OAuth Access Secret",
             "data_type": "string"
           },
           {
             "name": "realm",
-            "description": "Quickbooks oAUTH Realm",
+            "description": "Quickbooks OAuth Realm",
             "data_type": "string"
           },
           {
             "name": "deposit_to_account_name",
-            "description": "Quickbooks account name to book the SalesReceipt in.",
+            "description": "Deposit Account for Sales Receipts in Quickbooks",
             "data_type": "string"
           },
           {
@@ -38,33 +38,23 @@
           },
           {
             "name": "shipping_item",
-            "description": "Quickbooks Item SKU to use for shipping line items",
+            "description": "Quickbooks Item to track Shipping",
             "data_type": "string"
           },
           {
             "name": "tax_item",
-            "description": "Quickbooks Item SKU to use for tax line items",
-            "data_type": "string"
-          },
-          {
-            "name": "coupon_item",
-            "description": "Quickbooks Item SKU to use for coupon line items",
+            "description": "Quickbooks item to track Taxes",
             "data_type": "string"
           },
           {
             "name": "discount_item",
-            "description": "Quickbooks Item SKU to use for discount line items",
-            "data_type": "string"
-          },
-          {
-            "name": "account_name",
-            "description": "Quickbooks Income Account name for the items, defaults to 'Sales'",
+            "description": "Quickbooks Item to track Discounts",
             "data_type": "string"
           },
           {
             "name": "web_orders_user",
-            "description": "Check to use 'Web Orders' as customer name for all QB transactions",
-            "data_type": "boolean"
+            "description": "Use \"Web Orders\" as customer name for transactions?",
+            "data_type": "checkbox"
           }
         ]
       },

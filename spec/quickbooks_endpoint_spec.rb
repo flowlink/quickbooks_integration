@@ -49,7 +49,7 @@ describe QuickbooksEndpoint do
           message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
           VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
-            post '/order_persist', message.to_json, auth
+            post '/orders', message.to_json, auth
             last_response.status.should eql 200
 
             response = JSON.parse(last_response.body)
@@ -75,7 +75,7 @@ describe QuickbooksEndpoint do
 
       it "updates sales receipt just fine" do
         VCR.use_cassette("sales_receipt/sync_updated_order_post") do
-          post '/order_persist', message.to_json, auth
+          post '/orders', message.to_json, auth
           last_response.status.should eql 200
 
           response = JSON.parse(last_response.body)
@@ -93,7 +93,7 @@ describe QuickbooksEndpoint do
         message[:payload][:order][:number] = "R4435534534"
 
         VCR.use_cassette("credit_memo/sync_order_credit_memo_post") do
-          post '/order_persist', message.to_json, auth
+          post '/orders', message.to_json, auth
           last_response.status.should eql 200
 
           response = JSON.parse(last_response.body)
