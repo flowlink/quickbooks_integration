@@ -7,9 +7,8 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
-  post '/product_persist' do
+  post '/products' do
     code, notification = QBIntegration::ProductImporter.new(@message, @config).import
-
     process_result code, notification
   end
 

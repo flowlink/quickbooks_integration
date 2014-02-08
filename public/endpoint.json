@@ -54,7 +54,7 @@
           {
             "name": "web_orders_user",
             "description": "Use \"Web Orders\" as customer name for transactions?",
-            "data_type": "checkbox"
+            "data_type": "boolean"
           }
         ]
       },
@@ -108,9 +108,9 @@
       }
     },
     {
-      "name": "product_persist",
-      "path": "/product_persist",
-      "description": "Enabling this would import all your products from the spree store into QuickBooks",
+      "name": "product_export",
+      "path": "/products",
+      "description": "Enabling this would export all products from storefront to Quickbooks",
       "requires": {
         "parameters": [
           {
@@ -153,11 +153,6 @@
             "description": "Income Account",
             "data_type": "string",
             "default": "Income Account"
-          },
-          {
-            "name": "variants_as_sub_items",
-            "description": "Selecting this would have every single variant of a product to be created as a separate item in QuickBooks and be a sub-item to the product of which the variant is",
-            "data_type": "boolean"
           }
         ]
       },
