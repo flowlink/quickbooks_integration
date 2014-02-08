@@ -119,7 +119,7 @@ describe QuickbooksEndpoint do
 
     it "generates a json response with an info notification" do
       VCR.use_cassette("credit_memo/sync_return_authorization_new") do
-        post '/return_authorization_persist', message.to_json, auth
+        post '/returns', message.to_json, auth
         last_response.status.should eql 200
         response = JSON.parse(last_response.body)
         response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
@@ -130,7 +130,7 @@ describe QuickbooksEndpoint do
       message[:payload][:return_authorization][:order][:number] = "imnotthereatall"
 
       VCR.use_cassette("credit_memo/return_authorization_non_sync_order") do
-        post '/return_authorization_persist', message.to_json, auth
+        post '/returns', message.to_json, auth
         last_response.status.should eql 500
         response = JSON.parse(last_response.body)
         response["notifications"].first["subject"].should match "Received return for order not sync"
@@ -142,7 +142,7 @@ describe QuickbooksEndpoint do
 
       it "updates existing return just fine" do
         VCR.use_cassette("credit_memo/sync_return_authorization_updated") do
-          post '/return_authorization_persist', message.to_json, auth
+          post '/returns', message.to_json, auth
           last_response.status.should eql 200
           response = JSON.parse(last_response.body)
           response["notifications"].first["subject"].should match "Updated Quickbooks Credit Memo"

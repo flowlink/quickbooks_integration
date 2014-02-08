@@ -73,9 +73,9 @@
       }
     },
     {
-      "name": "return_authorization_persist",
-      "path": "/return_authorization_persist",
-      "description": "Import order return authorizations to Quickbooks as a Credit Memo",
+      "name": "return_export",
+      "path": "/returns",
+      "description": "Enabling this would create credit memo's in Quickbooks for every return that is received",
       "requires": {
         "parameters": [
           {
@@ -94,8 +94,8 @@
             "data_type": "string"
           },
           {
-            "name": "deposit_to_account_name",
-            "description": "Quickbooks account name to book the SalesReceipt in.",
+            "name": "return_credit_memo_account",
+            "description": "Return Account for Credit Memos in Quickbooks",
             "data_type": "string"
           }
         ]
