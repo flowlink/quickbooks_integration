@@ -16,8 +16,8 @@ module QBIntegration
 
       [200, notifications]
 
-    rescue Exception => e
-      [200, {
+    rescue => e
+      [500, {
         'message_id' => @message_id,
         'notifications' => [{
           'level' => 'error',
@@ -47,6 +47,7 @@ module QBIntegration
         name: product[:sku],
         description: product[:description],
         unit_price: product[:price],
+        purchase_cost: product[:cost],
         income_account_ref: @income_account_id,
         type: 'Non Inventory'
       }
@@ -72,11 +73,9 @@ module QBIntegration
     def import_product(product)
       if item = item_service.find_by_sku(product[:sku])
         item_service.update(item, attributes(product))
-
         add_notification('update', product)
       else
         item_service.create(attributes(product))
-
         add_notification('create', product)
       end
     end

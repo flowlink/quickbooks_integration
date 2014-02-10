@@ -25,7 +25,7 @@ describe QBIntegration::ProductImporter do
         VCR.use_cassette "product_importer/missing_config" do
           code, notification = subject.import
 
-          expect(code).to eq 200
+          expect(code).to eq 500
           expect(notification["notifications"].count).to eq 1
           expect(notification["notifications"][0]["subject"]).to include "key not found"
         end
@@ -43,7 +43,7 @@ describe QBIntegration::ProductImporter do
         VCR.use_cassette "product_importer/missing_account" do
           code, notification = subject.import
 
-          expect(code).to eq 200
+          expect(code).to eq 500
           expect(notification["notifications"].count).to eq 1
           expect(notification["notifications"][0]["subject"]).to include "No Account"
         end
