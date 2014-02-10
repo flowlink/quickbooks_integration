@@ -14,8 +14,9 @@ module QBIntegration
       def find_or_create_by_sku(line_item, account = nil)
         params = {
           name: line_item[:sku],
-          description: line_item[:name],
+          description: line_item[:description],
           unit_price: line_item[:price],
+          purchase_cost: line_item[:cost_price],
           income_account_ref: account ? account.id : nil
         }
 
