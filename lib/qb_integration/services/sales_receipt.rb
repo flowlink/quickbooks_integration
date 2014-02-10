@@ -31,7 +31,11 @@ module QBIntegration
 
       def update(sales_receipt)
         build sales_receipt
-        sales_receipt.tracking_num = shipments_tracking_number.join(", ")
+        unless order[:shipments].empty?
+          sales_receipt.tracking_num = shipments_tracking_number.join(", ")
+          sales_receipt.ship_method_ref = order[:shipments].last[:shipping_method]
+          sales_receipt.ship_date = order[:shipments].last[:shipped_at]
+        end
         quickbooks.update sales_receipt
       end
 
