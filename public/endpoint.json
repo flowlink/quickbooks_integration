@@ -52,6 +52,12 @@
             "data_type": "string"
           },
           {
+            "name": "account_name",
+            "description": "Quickbooks Income Account name for items defaults to 'Sales'",
+            "data_type": "string",
+            "default": "Sales"
+          },
+          {
             "name": "web_orders_user",
             "description": "Use \"Web Orders\" as customer name for transactions?",
             "data_type": "boolean"

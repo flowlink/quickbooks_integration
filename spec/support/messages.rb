@@ -8,6 +8,7 @@ module Factories
         'quickbooks.realm'                 => "835973000",
         'quickbooks.inventory_costing'     => true,
         'quickbooks.inventory_account'     => "Inventory Asset",
+        'quickbooks.deposit_to_account_name' => "Inventory Asset",
         'quickbooks.cogs_account'          => "Cost of Goods Sold"
       }
     end
