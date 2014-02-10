@@ -46,7 +46,7 @@ module QBIntegration
         name: product[:sku],
         description: product[:description],
         unit_price: product[:price],
-        purchase_cost: product[:cost],
+        purchase_cost: product[:cost_price],
         income_account_ref: @income_account_id,
         type: 'Non Inventory'
       }
