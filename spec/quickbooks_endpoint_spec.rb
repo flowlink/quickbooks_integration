@@ -7,9 +7,9 @@ describe QuickbooksEndpoint do
 
   def parameters
     [
-      {:name => 'quickbooks.access_token', :value => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC" },
-      {:name => 'quickbooks.access_secret', :value => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX" },
-      {:name => 'quickbooks.realm', :value => "1014843225" },
+      {:name => 'quickbooks.access_token', :value => "123" },
+      {:name => 'quickbooks.access_secret', :value => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o" },
+      {:name => 'quickbooks.realm', :value => "1081126165" },
       {:name => "quickbooks.deposit_to_account_name", :value => "Undeposited Funds"},
       {:name => "quickbooks.payment_method_name", :value => [
         {
@@ -22,7 +22,6 @@ describe QuickbooksEndpoint do
       },
       {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
       {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
-      {:name => "quickbooks.coupon_item", :value => "Coupons"},
       {:name => "quickbooks.discount_item", :value => "Discount"},
       {:name => "quickbooks.account_name", :value => "Inventory Asset"},
       {:name => "quickbooks.web_orders_user", :value => "false"}
@@ -74,7 +73,7 @@ describe QuickbooksEndpoint do
       before { message[:message] = "order:updated" }
 
       it "updates sales receipt just fine" do
-        VCR.use_cassette("sales_receipt/sync_updated_order_post") do
+        VCR.use_cassette("sales_receipt/sync_updated_order_post", match_requests_on: [:body, :method]) do
           post '/orders', message.to_json, auth
           last_response.status.should eql 200
 
@@ -92,7 +91,7 @@ describe QuickbooksEndpoint do
         # change order number in case you want to persist a credit memo
         message[:payload][:order][:number] = "R4435534534"
 
-        VCR.use_cassette("credit_memo/sync_order_credit_memo_post") do
+        VCR.use_cassette("credit_memo/sync_order_credit_memo_post", match_requests_on: [:body, :method]) do
           post '/orders', message.to_json, auth
           last_response.status.should eql 200
 
@@ -118,7 +117,7 @@ describe QuickbooksEndpoint do
     end
 
     it "generates a json response with an info notification" do
-      VCR.use_cassette("credit_memo/sync_return_authorization_new") do
+      VCR.use_cassette("credit_memo/sync_return_authorization_new", match_requests_on: [:body, :method]) do
         post '/returns', message.to_json, auth
         last_response.status.should eql 200
         response = JSON.parse(last_response.body)
@@ -129,7 +128,7 @@ describe QuickbooksEndpoint do
     it "returns 500 if order return was not sync yet" do
       message[:payload][:return_authorization][:order][:number] = "imnotthereatall"
 
-      VCR.use_cassette("credit_memo/return_authorization_non_sync_order") do
+      VCR.use_cassette("credit_memo/return_authorization_non_sync_order", match_requests_on: [:body, :method]) do
         post '/returns', message.to_json, auth
         last_response.status.should eql 500
         response = JSON.parse(last_response.body)
@@ -141,7 +140,7 @@ describe QuickbooksEndpoint do
       before { message[:message] = "return_authorization:updated" }
 
       it "updates existing return just fine" do
-        VCR.use_cassette("credit_memo/sync_return_authorization_updated") do
+        VCR.use_cassette("credit_memo/sync_return_authorization_updated", match_requests_on: [:body, :method]) do
           post '/returns', message.to_json, auth
           last_response.status.should eql 200
           response = JSON.parse(last_response.body)

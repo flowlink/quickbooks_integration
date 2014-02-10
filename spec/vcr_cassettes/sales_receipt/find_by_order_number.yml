@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -16,9 +16,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="1USTKNxssE8F1FnGrIMm5vtqTsZ3KFvQFT4dG5k",
-        oauth_signature="FsLq8un1PpYOpfk7GujV3Ma%2FIGQ%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387318371", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="asmlChssRtXXOafYTjESTlxU7UyH2ItPSQhS4OYVI",
+        oauth_signature="6HKDS7hJCPANOldj%2F%2BCJE%2FAqQ%2Fc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392066081", oauth_token="123",
         oauth_version="1.0"
   response:
     status:
@@ -26,11 +26,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 17 Dec 2013 22:12:53 GMT
+      - Mon, 10 Feb 2014 21:01:23 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '69.135'
+      - '70.158'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
@@ -38,11 +38,11 @@ http_interactions:
       Content-Encoding:
       - gzip
       Intuit-Tid:
-      - b17896ea-873f-4b4e-a6df-8e71ae6874f5
+      - 92e6c806-cec4-4b29-908a-bc71940dff48
       Via:
-      - 1.1 ipp-gateway-ap05
+      - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '1436'
+      - '973'
       Connection:
       - close
       Content-Type:
@@ -50,38 +50,28 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
+        H4sIAAAAAAAAAO1W34/iNhD+V6w8F5KQpAHk9ZUfbUW1x+5C9uEevcnsYl1i
+        R7HZkv++4wQILCDdw10rnQoSZMafPTOfZyZDP+2KnLxDpYWSd47f9xwCMlWZ
+        kG93znPyR2/oEG24zHiuJNw5NWjnE6MLabbCrECXSmogeIjUd87GmHLsujrd
+        QMH7osH0U1W4r0JymYL7HjjEiALPGXh+2PMGPd9L/GDs+eNB0I9Gcc8bjj3P
+        YfRpC1V9PB89qMyj0sK0bjqk4Dtc3eZGW5HRNc9BryAFURqSqYILxD1NH9D7
+        klcaLb7yXAMiFxmLqIu/dF3LNFFfQbIBdTuBfgbD59xwRmcVcAMJesxOHR6M
+        o2AchK2z1D1B0XuuzXOZoZxd2xaNveO2j1DqdobnKl1uixeo2Mof+kMv9mPc
+        0WlpspOIbM4Pel7cC3D5oKP3QkITqO+3kVoF7mQoHh7pHHRaIVvIKFuXFQCZ
+        cg0vPM/JX5gPUKO9EwidFGorDQtG/dGQunsJTzFc5EldAmuuYGGgsCZavT3i
+        uE6vANBLlFfwSiS3abF+XPU8/OCV/oqut2uMPkthHiuRAvPR/Ii6nYI+mdre
+        n/2jCd/NVAZ2z/JhiYx0Mt7wNfNuy1XH2OCcscENxlbbl5ooSVZ4iv425iJ0
+        Pf5hzK0eWuZCp731b6Uu+H7UBefUBbeSbSPKEvvLDZb6tjZ+VHrtTZPZhldv
+        2Mra+77kKrrgyf9+PIXnPIX/83Sdp+icp+gGT0tVmQ2ZFIBOcIK8/BeEGWy8
+        pAESjLS3/OK09fAvUrYPzffD/ii6Hun2JVGG5zcDvVh3jzZmW20UctzFPK0E
+        l+RpK6R0bLGfIBidijyfZFl1kfE+i+MgIg95Rv4Ehcll1N/YRrPWjo+GBHIx
+        BbMBnXE81Yp0ZmOpava8Rs3++aBEr+fiXdgJxtLFPvOqznFiOSI/AihOEhhl
+        8zzwhta7Ew2+wvEtN8S3XBzGsX1NI4n3Sr6xXhz3vVE88q3WKqjbhWlLpgs4
+        +lkD7sJMKp5+xR5h63HBi8naVCj9QsIoGEQBfkP8CSPsG6dI2iTYpOjy9Kig
+        k7LMa0z6yauBai502iRwM7dhOl9dpFhG0tjq22q2BJykVKPBAE8W6O84D+YH
+        lDJrQMCprknXRoFeYHSgNdN2JvoNdrwoc7BTLPqwX2rvfY+f8tzOtgyby+GR
+        PvK6AGlwntuorKuYxm0cth2GhH7E2Eot7YibqEnaRNdtXMh3hKqqJhOtwTgs
+        aprcBfzQJ/aDMIpnczTK54M7+wfcJC0CAAwAAA==
     http_version: 
-  recorded_at: Tue, 17 Dec 2013 22:12:53 GMT
+  recorded_at: Mon, 10 Feb 2014 21:01:24 GMT
 recorded_with: VCR 2.4.0

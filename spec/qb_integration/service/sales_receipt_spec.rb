@@ -12,14 +12,15 @@ module QBIntegration
 
       let(:config) do
         {
-          'quickbooks.realm' => "1014843225",
-          'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
-          'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
+          'quickbooks.realm' => "1081126165",
+          'quickbooks.access_token' => "123",
+          'quickbooks.access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
           "quickbooks.payment_method_name" => [{ "visa" => "Discover" }],
           'quickbooks.account_name' => "Inventory Asset",
           "quickbooks.shipping_item" => "Shipping Charges",
           "quickbooks.tax_item" => "State Sales Tax-NY",
           "quickbooks.discount_item" => "Discount",
+          'quickbooks.deposit_to_account_name' => "Inventory Asset",
           "quickbooks.web_orders_user" => "false"
         }
       end
@@ -29,7 +30,6 @@ module QBIntegration
       it "persist new sales receipt" do
         VCR.use_cassette("sales_receipt/persist_new_receipt") do
           sales_receipt = subject.create
-
           expect(sales_receipt.doc_number).to eq Factories.order["number"]
         end
       end
