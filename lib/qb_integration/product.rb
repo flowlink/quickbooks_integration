@@ -29,7 +29,6 @@ module QBIntegration
 
     private
     def load_configs
-      @variants_as_sub_items = (@config.fetch("quickbooks.variants_as_sub_items").to_s == 'true')
       @income_account_id = account_id('quickbooks.income_account')
 
       if @inventory_costing = (@config.fetch("quickbooks.inventory_costing").to_s == 'true')
@@ -67,7 +66,7 @@ module QBIntegration
     end
 
     def import_as_sub_item?(product)
-      @variants_as_sub_items && (product[:sku] != @product[:sku])
+      product[:sku] != @product[:sku]
     end
 
     def import_product(product)

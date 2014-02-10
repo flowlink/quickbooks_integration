@@ -6,7 +6,6 @@ module Factories
         'quickbooks.access_secret'         => "yU7RtuM1Lot803jkkCfcyV9GePoNZGnZO8nRbBxo",
         'quickbooks.income_account'        => "Sales of Product Income",
         'quickbooks.realm'                 => "835973000",
-        'quickbooks.variants_as_sub_items' => true,
         'quickbooks.inventory_costing'     => true,
         'quickbooks.inventory_account'     => "Inventory Asset",
         'quickbooks.cogs_account'          => "Cost of Goods Sold"
