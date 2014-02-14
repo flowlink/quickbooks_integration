@@ -120,7 +120,7 @@ module QBIntegration
     end
 
     def time_now
-      Time.today.utc
+      Time.now.utc
     end
   end
 end
