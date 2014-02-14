@@ -39,7 +39,7 @@ module QBIntegration
           line.description = line_item["name"]
 
           line.sales_item! do |sales_item|
-            sales_item.item_ref = item_service.find_or_create_by_sku(line_item, account).id
+            sales_item.item_id = item_service.find_or_create_by_sku(line_item, account).id
             sales_item.quantity = line_item["quantity"]
             sales_item.unit_price = line_item["price"]
           end
@@ -63,7 +63,7 @@ module QBIntegration
           adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
-            sales_item.item_ref = item_service.find_or_create_by_sku(adjustment, account).id
+            sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
             sales_item.quantity = 1
             sales_item.unit_price = adjustment["amount"]
           end
@@ -86,7 +86,7 @@ module QBIntegration
           line.description = unit[:variant][:name]
 
           line.sales_item! do |sales_item|
-            sales_item.item_ref = item_service.find_or_create_by_sku(unit[:variant], account).id
+            sales_item.item_id = item_service.find_or_create_by_sku(unit[:variant], account).id
             sales_item.quantity = 1
             sales_item.unit_price = unit[:variant][:price]
           end

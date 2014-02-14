@@ -31,8 +31,7 @@ module QBIntegration
           [200, notification(text)]
         else
           raise AlreadyPersistedOrderException.new(
-            "Got 'order:canceled' message for order #{order[:number]} that already has no
-            sales receipt"
+            "Got 'order:canceled' message for order #{order[:number]} that has no sales receipt"
           )
         end
       end

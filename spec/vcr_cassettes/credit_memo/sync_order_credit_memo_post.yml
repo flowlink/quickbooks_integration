@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R4435534534'%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R681874717'%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -16,9 +16,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="XEHDuHEveg3PPMDQ83qhuOrTIs444ncr1woRatATI",
-        oauth_signature="CS4qo87J00CKWMzrelGJeGq0jOk%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1387337625", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="stnyZVNVQSOjc3uD0DV7SOqYrofok1OilK9dmeYkQ",
+        oauth_signature="Gtys5zY%2F1F0pvRUc7nYbH6FQ5BU%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392409331", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -26,11 +26,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 18 Dec 2013 03:33:48 GMT
+      - Fri, 14 Feb 2014 20:22:07 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '69.135'
+      - '70.166'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
@@ -38,11 +38,11 @@ http_interactions:
       Content-Encoding:
       - gzip
       Intuit-Tid:
-      - c8ad6f41-2ec3-42a4-8a7f-8d1e6f87df6b
+      - ee4326f9-e049-417f-aa56-06bca9679710
       Via:
-      - 1.1 ipp-gateway-ap03
+      - 1.1 ipp-gateway-ap01
       Content-Length:
-      - '946'
+      - '857'
       Connection:
       - close
       Content-Type:
@@ -50,64 +50,64 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAOVWbW/jNgz+K4K/J45j+5wEqm5Juh069PqSpAP2UbHZRpgs
-        GZbcxfv1o5wXO22CuwI7DNiCADapxyL5kJRIP29zSV6hNEKrKy/oDzwCKtWZ
-        UC9X3tPql97II8ZylXGpFVx5NRjvM6M3ylbCLsAUWhkguIkyV97G2mLi+ybd
-        QM77osH0U537z0JxlYL/GnrEihz3GQ6CsBcMe0GyCsaTMJxEo/4wSXqD0WQw
-        8Bh9rKCsj/ujB6V90EbYnZseyfkWVytpjRMZXXIJZgEpiMKSTOdcIO5xdo/e
-        F7w0aPGZSwOIvMlYHFEfH3RZq3Sl/wDFBtRvBfoVLL/mljM6L4FbWKHL7NTj
-        YTIJRztvqd9B0Vtu7FORoZx967O3UOq3hq91elflayjZIorCOA4j/FO/VdPV
-        ViG0Y2BE/YOOzquyxDwig89EcUf4rOR/CSm4Igvg0mOzxS063sLQc6GgoSfY
-        seNkNObEwyu9BpOWSDGmgS2LEoDMuIE1l5L8ikUENbrYgdBpritlWTjuj9G9
-        vYS7WC7kqi6ANXm7sZA7Ezu92+K4Ts8A0EmU29CWD4veAH9YBy6xuzVGn5Sw
-        D6VIgQVofkz9VkEfbc2G1HcPzPw5E/6OjiMpw1NShhdIWVTrmmgkGTcx30dO
-        jN4lP4ycxf2OnMhj8QfICT9ETnhKTnipYjaiKPBkucBD3zXFj6qRvWky3/Dy
-        BQ8x9uksG/E7JoIPMRGdMhH9f5mIT5mILzBxp0u7IdMc0A4nGPm/QYnFQ5M0
-        QLLi297d7x5L/nlS9t4HQdQfx+eDqdYrbbm8GMu7df9oY14Zq5HG7pHvjvvH
-        SijVNH8HwehMSDnNsrLJ1ahTtgFLkjAm9zIjX0BjhVj9J55n2c5OgIYExjsD
-        uwGTcdzViXTuYilr9rREzf79oESvr8WrcCPGXGfAvvKyljhSHJFvARSveoyy
-        eR8ORgF619HgFYs3yghvlCRKEneNIom3Wr2wXpL0B+NkHDitU1C/DdPVfRtw
-        /F8NuA3zi9R492A9z7lMK8n37WanRSGx19YSqH8WQ5sam+ZtqR4VFCtfWdcv
-        lWF3gIOLbjTob2eB/ozzlzygtF0CArq6pvoaBXYFOgvGMOPGiZ9gy/NCgpsa
-        sUP2S7s07vEzLt0s6Ua2wyt94HUOyuL4tNFZ2wC/CcM9dxu9XXdNV7hxcqWn
-        aepy0n50o14RqsuaTI0BiyfBJ9eE7+CHlt8PnSiezKwonw7J7G8caNg2bAsA
-        AA==
+        H4sIAAAAAAAAAN1WS2/bMAz+K4aBHRM/8nICVZvbbECBNm0ddzurNtsIsyVD
+        kov4349y4jjpEuzUy04WyU98fKQlka/bsnDeQWkuxZUbDH3XAZHJnIu3K/c5
+        /TGIXEcbJnJWSAFXbgPa/UrJrTA1NwnoSgoNDjoR+srdGFMtPE9nGyjZkLeY
+        YSZL75ULJjLw3keuY3iJfkI/GA/8cBCM0yBchOHCj4b+fDLwo4Xvu5Q81aCa
+        g3/MQJlHqbnZpek6JduitS6MtiIla1aATiADXhknlyXjiHu6fsDsK6Y0Rnxl
+        hQZE3uZ0PCEefsi6EVkqf4OgPvF6gdyDYUtmGCU3CpiBFFOmpxkH00UY7LIl
+        3hGK3DFtnqsc5fxf2z5CidcHXspsVZcvoGgyjYJoNp4FM+L1WpJuBSKP/ROv
+        05E7LqCtNNgVamXcaMVuSZagM4VsIaM0qV8aRwonYbzQToLNB+Wkg/WGK4NR
+        j5AkLmUtDA3mw/mceHsJnRncmjYV0LYTtwZKG2mnty4OdnIGgLminMCrI5id
+        juQhGfi+H0xcGmKUvZGSZ8HNo+IZdPF7BXkyja3PfkjKtjcyB7tn9bBCYnoZ
+        G30uvrej7EBceEpceIG4lVRm48QlYA7MmQz9LxfoGtqGfxJbWJ1jrS6NZufJ
+        +kSiRqdEjS4QhaNUVThX5+mZfCY9XeiOo+gsR5PP4mhfVTi5+MPUL6k0rLhY
+        4l927xDiptZG4vT11f6CF+dB5Xiiu7YZRwBKrnlRxHmudhM+6TsX0PgdRA07
+        twH65Vj5NZgN6JyhFyuSG5u6aujzGjX7dafEJJf8ndtrxJJD75lqCrw2DsiP
+        AILHORbVrkM/ssfXkQaPUUNH0XAe+fNwZo9K5OxOijc6mM3wopiOR/Y8bDXE
+        6+uyve4rnP43FfZ1taMQl4eBOsgkrqqiweGMXw2oJddZO2nttYdzd9ZIcNyF
+        WRtmak1XgPeQbDWY6ZGBfMfrtOhQ0qwBAce6drBaBWaBWYLWVFcK4BtsWVkV
+        YB8BmMPetGvYHn/NCvs0sDdwtySPrClBGLwNNzLvR/sn16wd6o92+ztV9nWQ
+        yjhrK+s33Qrsu5GqcWKtwbh0av+uv9Ddr7x/QqB48gJB+fTJQ/8AUR/F6ToJ
+        AAA=
     http_version: 
-  recorded_at: Wed, 18 Dec 2013 03:33:47 GMT
+  recorded_at: Fri, 14 Feb 2014 20:22:15 GMT
 - request:
     method: post
-    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/creditmemo
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/creditmemo
     body:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <CreditMemo xmlns="http://schema.intuit.com/finance/v3" sparse="false">
-        <DocNumber>R4435534534</DocNumber>
-        <TxnDate>2013-07-30T20:08:39Z</TxnDate>
+        <DocNumber>R681874717</DocNumber>
+        <TxnDate>2014-02-14T20:16:58.307Z</TxnDate>
         <Line>
         <Id>1</Id>
         <LineNum>1</LineNum>
-        <Description>Spree Baseball Jersey</Description>
-        <Amount>39.98</Amount>
+        <Description>Ruby on Rails Ringer T-Shirt</Description>
+        <Amount>19.99</Amount>
         <DetailType>SalesItemLineDetail</DetailType>
         <SalesItemLineDetail>
-        <ItemRef>4</ItemRef>
+        <ItemRef name="ROR-00015">29</ItemRef>
         <UnitPrice>19.99</UnitPrice>
         <RatePercent>0.0</RatePercent>
-        <Qty>2.0</Qty>
+        <Qty>1.0</Qty>
+        <TaxCodeRef>NON</TaxCodeRef>
         </SalesItemLineDetail>
         </Line>
         <Line>
         <Id>2</Id>
         <LineNum>2</LineNum>
-        <Description>Ruby on Rails Baseball Jersey</Description>
-        <Amount>59.97</Amount>
+        <Description>North America 5.0%</Description>
+        <Amount>1.0</Amount>
         <DetailType>SalesItemLineDetail</DetailType>
         <SalesItemLineDetail>
-        <ItemRef>5</ItemRef>
-        <UnitPrice>19.99</UnitPrice>
+        <ItemRef name="Tax Line">87</ItemRef>
+        <UnitPrice>1.0</UnitPrice>
         <RatePercent>0.0</RatePercent>
-        <Qty>3.0</Qty>
+        <Qty>1.0</Qty>
+        <TaxCodeRef>NON</TaxCodeRef>
         </SalesItemLineDetail>
         </Line>
         <Line>
@@ -117,63 +117,38 @@ http_interactions:
         <Amount>5.0</Amount>
         <DetailType>SalesItemLineDetail</DetailType>
         <SalesItemLineDetail>
-        <ItemRef>6</ItemRef>
+        <ItemRef name="Shipping Line">88</ItemRef>
         <UnitPrice>5.0</UnitPrice>
         <RatePercent>0.0</RatePercent>
         <Qty>1.0</Qty>
+        <TaxCodeRef>NON</TaxCodeRef>
         </SalesItemLineDetail>
         </Line>
         <Line>
-        <Id>4</Id>
-        <LineNum>4</LineNum>
-        <Description>Shipping</Description>
-        <Amount>5.0</Amount>
-        <DetailType>SalesItemLineDetail</DetailType>
-        <SalesItemLineDetail>
-        <ItemRef>6</ItemRef>
-        <UnitPrice>5.0</UnitPrice>
-        <RatePercent>0.0</RatePercent>
-        <Qty>1.0</Qty>
-        </SalesItemLineDetail>
-        </Line>
-        <Line>
-        <Id>5</Id>
-        <LineNum>5</LineNum>
-        <Description>North America 5.0</Description>
-        <Amount>5.0</Amount>
-        <DetailType>SalesItemLineDetail</DetailType>
-        <SalesItemLineDetail>
-        <ItemRef>7</ItemRef>
-        <UnitPrice>5.0</UnitPrice>
-        <RatePercent>0.0</RatePercent>
-        <Qty>1.0</Qty>
-        </SalesItemLineDetail>
-        </Line>
-        <Line>
-        <Amount>114.95</Amount>
+        <Amount>25.99</Amount>
         <DetailType>SubTotalLineDetail</DetailType>
         <SubTotalLineDetail>
         <UnitPrice>0.0</UnitPrice>
         <Qty>0.0</Qty>
         </SubTotalLineDetail>
         </Line>
-        <CustomerRef>5</CustomerRef>
+        <CustomerRef name="Web Orders">3</CustomerRef>
         <BillEmail>
         <Address>spree@example.com</Address>
         </BillEmail>
         <BillAddr>
-        <Id>84</Id>
-        <Line1>7735 Old Georgetown Rd</Line1>
+        <Id>25</Id>
+        <Line1>Avenue</Line1>
         <City>Bethesda</City>
         <Country>US</Country>
         <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
         <PostalCode>20814</PostalCode>
-        <Lat>38.987477</Lat>
-        <Long>-77.097917</Long>
+        <Lat>38.980927</Lat>
+        <Long>-77.0964317</Long>
         </BillAddr>
-        <DepositToAccountRef>76</DepositToAccountRef>
-        <PaymentMethodRef>3</PaymentMethodRef>
-        <TotalAmt>114.95</TotalAmt>
+        <DepositToAccountRef name="Inventory Asset">6</DepositToAccountRef>
+        <PaymentMethodRef name="Visa">3</PaymentMethodRef>
+        <TotalAmt>25.99</TotalAmt>
         </CreditMemo>
     headers:
       Content-Type:
@@ -185,11 +160,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '2313'
+      - '1902'
       Authorization:
-      - OAuth oauth_body_hash="S7ASrpoZlBbu1I1oGWXPO4tSSbA%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="AA0GtX94fjsAOTFvWLBTVnxEo1v30joHH8GplycLMw", oauth_signature="6dhLwPJ0FwQox41WTxe%2BOrmhQNA%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387337627", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+      - OAuth oauth_body_hash="soSiUdaviIbp0jAKHlwucctatvc%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="Oenf54bhpn4bUKcUL5AGaeh02rLaz2NMsGHZsvzg", oauth_signature="iOrJ4wTQ0ElKze4u5ezN1RGYlVA%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1392409335", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -197,11 +172,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 18 Dec 2013 03:33:49 GMT
+      - Fri, 14 Feb 2014 20:22:09 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '69.135'
+      - '70.166'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
@@ -209,11 +184,11 @@ http_interactions:
       Content-Encoding:
       - gzip
       Intuit-Tid:
-      - 0672f2dc-3e54-44fe-abbf-5160f6915b8f
+      - 6a6d2266-18df-463b-8bc1-758ada07e922
       Via:
-      - 1.1 ipp-gateway-ap01
+      - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '878'
+      - '770'
       Connection:
       - close
       Content-Type:
@@ -221,26 +196,24 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAOVWW4+rNhD+K4j3BAiwhJXXp0m2PdpqryT70EcHZjdWjY2w
-        2S7n13dMSEj2JGpX6lGlNooEM/6Yy+cZe8iX91I4b1BrruSVG4x91wGZq4LL
-        1yv3efXLaOo62jBZMKEkXLktaPcLJTfSNNxkoCslNThoROord2NMdel5Ot9A
-        yca8w4xzVXovXDKZg/cWuo7hJdqZ+EE4CiajIFkF6WUYXkbp+CKdjPzppe+7
-        lCxqKLi5g1I5hSoZx+Ce5g8YS8Vqjd+/MKEBcTcFjWPi4YMsW5mv1O8gqU+8
-        QSB3YNg1M6wzygysMAB6wv/WN/EOUOSWafNcFSgXf/XZRyjxBsfXKr9vyjXU
-        NIuiMI7DCP/EG9Rk9S4R2jvwk1GIFnc6smjqGnelzeDFkczSN6/ZNy44k04G
-        TLh0nt1i4AMMI+cSOnqCLTtWRmdW3L2Sa9B5zSuDe0+XVQ3gzJmGNRPC+RVL
-        AloM8QBCZqVqpKFhOk6nxOsltGIYF6u2ArpkAvSNgdK62Oqtif06OQHAIFEe
-        Uls+ZiMff4FLkaJ+jZJnyc1jzXOgAbpPiTcoyJNp6YR49oE7f8qFt6VjT8rk
-        mJTJGVKyZt06CklGI/rvkRNjdMkPIyd72JITuTT+BDnhp8gJj8kJz1XMhlcV
-        nhNneBjbpvhRNdK7dhYbVr/ikUQvTrIRf8dE8CkmomMmov8vE/ExE/EZJu5V
-        bTbOrAT0wxzM/N+gxOCh6XRAZ8XeR/e/uTT550npow+CaJzGp5Np1itlmDib
-        y3fr3t7HotFGIY2HR7497p8aLmXX/AcISuZciFlR1N1eTS+GzQpokoSx8yAK
-        5ysorBCj/sDzrNj6CdARx3znYDagC4ZWrUgWNpe6pc9L1PTvOyVGfc3fuB0Y
-        FqoAesfqVuCAsEd+BJBHhROE6N4n/jTALjrQ4BWLN8oUb5QkShJ7jSKJt0q+
-        0lGSjP00SQOrtQriDWnaut8nHEz+qwkPaX4VCu8erOcFE3kjWN9uZlZVAntt
-        LYB4JzGkq7FZOZTqXkGw8qWx/dJoeg84uKhOg/EeLJCfcf4SO5QyS0DAoa6r
-        vk6BXYHBgtZU23HiJ3hnZSXAzoDYIf3Sdht7/JwJOxnuY9vJJAM79eHJtp0E
-        94CP+m5e60dFFI4HU/onm98qq+AKAAA=
+        H4sIAAAAAAAAALVV227iMBD9lSjSPpIbUAIy7nLZlSq10IagfTbJUKxN7Cg2
+        qPz9jhNCaAvaJ57imTmey5mJhzx+5Jl1gFJxKca273i2BSKRKRfvY3sd/+6E
+        tqU0EynLpICxfQRlP1LyJPSe6whUIYUCC50INbZ3Whcj11XJDnLm8ArjJDJ3
+        t1wwkYB76NqW5jn6CTy/1/GCjt+L/WAUBCNv6IR+t+OFI8+zKZmVkHL9Arm0
+        Upkzjsm9TZeYS8FKhfe3LFOAuKeU9h6Iix+yOookln9BUI+4rUBeQLM506xy
+        yjTEmAD9Ft/36tjEvUCRZ6b0ukhRTv937SuUuG3guUwW+3wDJY0eQj8c9Ab+
+        gLitlsQfApGX/onb6MgzF1BV6teFGhkvGrE5kjmopOSFxjbSaL85WlJYEeOZ
+        siJsJZRW3FnteKkx6gWSTHK5F5r6Q2c4JO5JQmcar8bHAuiKZaCeNOQmUq03
+        Ls52cgWAuaIcwdYSzPQ6WkYdz/P8vk0DjHIyUrIWXL+WPIEmfqsgb/po6jMf
+        ErOPmUzB3FksF0hMK2Ojr8V3a8rOxAWfiQtuELeQpd5ZkxwwB2b1He/HDboc
+        0/A7sYXVWcZq03Bwnaw7EtX9TFT3BlE4SkWBc3Wdnv496WlCNxyFVznq34uj
+        U1VB/+YPs9/EUrPsZonf7O45xGyvtMTpa6v9AxtrWab4PtumGRcASqY8yyZp
+        WtYTPmg759PJAcQearc++uVY+RT0DlTK0IsRycykXh7peoWa07lRYpJzfuBm
+        KRhy6AsrjxkugTPyK4C8StwSWXUOvNA8XxcafEY17YbOMPSGJlEjkmcp3mln
+        MHC84UOva97DSkPctq6KqEl+pvssk0lRZEds3WSroZxzlVR9qJYCduWqkeAw
+        CL3STO8VXQC+0rLSYKYXBvILl03WoKReAQIudRXtlQKzwCxBKaqKEuAnfLC8
+        yMAsPMzhZKrLOeGnLDNrsCmnEUkEZsPhUNdbr7F/VVer6bQVUfi8g+k/MslR
+        gMsHAAA=
     http_version: 
-  recorded_at: Wed, 18 Dec 2013 03:33:49 GMT
+  recorded_at: Fri, 14 Feb 2014 20:22:17 GMT
 recorded_with: VCR 2.4.0
