@@ -98,6 +98,22 @@ describe QBIntegration::ProductImporter do
           expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
         end
       end
+
+      context "user check track inventory flag" do
+        it "sets product to track inventory" do
+          config['quickbooks.track_inventory'] = "true"
+          product_message[:payload][:product] = Factories.product('grilos')
+          subject.stub time_now: "2014-02-14 01:26:55 -0000"
+
+          VCR.use_cassette "product_importer/product_track_inventory", match_requests_on: [:method, :body] do
+            code, notification = subject.import
+            expect(code).to eq 200
+
+            attrs = subject.send :attributes, subject.product_payload
+            expect(attrs[:track_quantity_on_hand]).to be
+          end
+        end
+      end
     end
 
     context "product without variants" do

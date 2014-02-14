@@ -1,9 +1,11 @@
 module QBIntegration
   class ProductImporter < Base
+    attr_reader :product_payload
+
     def initialize(message = {}, config)
       super
 
-      @product = @payload[:product]
+      @product_payload = @product = @payload[:product]
       @notifications = []
     end
 
@@ -42,7 +44,7 @@ module QBIntegration
     end
 
     def attributes(product)
-      @attributes = {
+      attrs = {
         name: product[:sku],
         description: product[:description],
         unit_price: product[:price],
@@ -51,18 +53,26 @@ module QBIntegration
         type: 'Non Inventory'
       }
 
+      if config.fetch("quickbooks.track_inventory", false).to_s == "true"
+        attrs.merge!({
+          track_quantity_on_hand: true,
+          quantity_on_hand: 1,
+          inv_start_date: time_now
+        })
+      end
+
       if import_as_sub_item?(product)
-        @attributes[:sub_item] = true
-        @attributes[:parent_ref] = parent_ref
+        attrs[:sub_item] = true
+        attrs[:parent_ref] = parent_ref
       end
 
       if @inventory_costing
-        @attributes[:type] = 'Inventory'
-        @attributes[:asset_account_ref] = @inventory_account_id
-        @attributes[:expense_account_ref] = @cogs_account_id
+        attrs[:type] = 'Inventory'
+        attrs[:asset_account_ref] = @inventory_account_id
+        attrs[:expense_account_ref] = @cogs_account_id
       end
 
-      @attributes
+      attrs
     end
 
     def import_as_sub_item?(product)
@@ -107,6 +117,10 @@ module QBIntegration
         'create' => "Product %s imported to Quickbooks.",
         'update' => "Product %s updated on Quickbooks."
       }
+    end
+
+    def time_now
+      Time.now.utc
     end
   end
 end
