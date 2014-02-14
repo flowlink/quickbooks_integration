@@ -17,6 +17,13 @@ describe QBIntegration::Service::Item do
     end
   end
 
+  it "finds item which tracks inventory" do
+    VCR.use_cassette("item/find_item_track_inventory", match_requests_on: [:body, :method]) do
+      item = subject.find_by_sku "4553254352"
+      expect(item.quantity_on_hand.to_i).to eq 56
+    end
+  end
+
   it "creates an item with given attributes" do
     VCR.use_cassette("item/create") do
       item = subject.create({
