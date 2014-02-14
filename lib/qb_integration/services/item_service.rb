@@ -17,7 +17,7 @@ module QBIntegration
           description: line_item[:description],
           unit_price: line_item[:price],
           purchase_cost: line_item[:cost_price],
-          income_account_ref: account ? account.id : nil
+          income_account_id: account ? account.id : nil
         }
 
         find_by_sku(line_item[:sku]) || create(params)

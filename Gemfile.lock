@@ -1,11 +1,11 @@
 GIT
-  remote: git://github.com/ruckus/quickbooks-ruby.git
-  revision: c1cc46d170a686f28a190538995ff65a690c1759
-  branch: master
+  remote: git://github.com/huoxito/quickbooks-ruby.git
+  revision: 030fe30f88202ab2cbf7243b12b05ffc5eaed137
+  branch: shipmethodref
   specs:
-    quickbooks-ruby (0.0.2)
+    quickbooks-ruby (0.0.6)
       activemodel
-      nokogiri (~> 1.5.9)
+      nokogiri
       oauth
       roxml
 
@@ -70,6 +70,7 @@ GEM
     listen (0.7.3)
     lumberjack (1.0.3)
     method_source (0.8.1)
+    mini_portile (0.5.2)
     multi_json (1.8.2)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
@@ -78,7 +79,8 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    nokogiri (1.5.11)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     oauth (0.4.7)
     pry (0.9.12.1)
       coderay (~> 1.0.5)

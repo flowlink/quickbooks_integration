@@ -47,7 +47,7 @@ describe QuickbooksEndpoint do
           message[:payload][:order][:number] = "R4435534534"
           message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
-          VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post") do
+          VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post", match_requests_on: [:body, :method]) do
             post '/orders', message.to_json, auth
             last_response.status.should eql 200
 
@@ -85,12 +85,14 @@ describe QuickbooksEndpoint do
     end
 
     context "order canceled" do
-      before { message[:message] = "order:canceled" }
+      before do
+        message[:message] = "order:canceled"
+        order = Factories.new_credit_memo
+        message[:payload][:order] = order[:order]
+        message[:payload][:original] = order[:original]
+      end
 
       it "generates a json response with an info notification" do
-        # change order number in case you want to persist a credit memo
-        message[:payload][:order][:number] = "R4435534534"
-
         VCR.use_cassette("credit_memo/sync_order_credit_memo_post", match_requests_on: [:body, :method]) do
           post '/orders', message.to_json, auth
           last_response.status.should eql 200

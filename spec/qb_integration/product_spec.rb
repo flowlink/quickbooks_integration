@@ -102,8 +102,8 @@ describe QBIntegration::ProductImporter do
       context "user check track inventory flag" do
         it "sets product to track inventory" do
           config['quickbooks.track_inventory'] = "true"
-          product_message[:payload][:product] = Factories.product('grilos')
-          subject.stub time_now: "2014-02-14 01:26:55 -0000"
+          product_message[:payload][:product] = Factories.product('grilos-grilos')
+          subject.stub time_now: "2014-02-14"
 
           VCR.use_cassette "product_importer/product_track_inventory", match_requests_on: [:method, :body] do
             code, notification = subject.import

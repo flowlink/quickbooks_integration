@@ -49,7 +49,7 @@ module QBIntegration
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
-        income_account_ref: @income_account_id,
+        income_account_id: @income_account_id,
         type: 'Non Inventory'
       }
 
@@ -68,8 +68,8 @@ module QBIntegration
 
       if @inventory_costing
         attrs[:type] = 'Inventory'
-        attrs[:asset_account_ref] = @inventory_account_id
-        attrs[:expense_account_ref] = @cogs_account_id
+        attrs[:asset_account_id] = @inventory_account_id
+        attrs[:expense_account_id] = @cogs_account_id
       end
 
       attrs
@@ -120,7 +120,7 @@ module QBIntegration
     end
 
     def time_now
-      Time.now.utc
+      Time.today.utc
     end
   end
 end

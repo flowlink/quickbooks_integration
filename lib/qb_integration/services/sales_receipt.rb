@@ -50,8 +50,8 @@ module QBIntegration
           sales_receipt.ship_address = Address.build order["shipping_address"]
           sales_receipt.bill_address = Address.build order["billing_address"]
 
-          sales_receipt.payment_method_ref = payment_method_service.matching_payment.id
-          sales_receipt.customer_ref = customer_service.find_or_create.id
+          sales_receipt.payment_method_id = payment_method_service.matching_payment.id
+          sales_receipt.customer_id = customer_service.find_or_create.id
 
           # Associated as both DepositAccountRef and IncomeAccountRef
           #
@@ -70,7 +70,7 @@ module QBIntegration
           #   type of account for this transaction.
           #
           deposit_account = account_service.find_by_name config.fetch("quickbooks.deposit_to_account_name")
-          sales_receipt.deposit_to_account_ref = deposit_account.id
+          sales_receipt.deposit_to_account_id = deposit_account.id
         end
 
         def shipments_tracking_number
