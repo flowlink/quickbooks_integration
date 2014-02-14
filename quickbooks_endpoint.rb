@@ -47,4 +47,31 @@ class QuickbooksEndpoint < EndpointBase
       }
     end
   end
+
+  post '/monitor_stock' do
+    begin
+      results = { message_id: @message[:message_id] }
+      if item = QBIntegration::Stock.new(@message, @config).item
+        @messages = [{
+          message: 'stock:actual',
+          payload: { sku: item.name, quantity: item.quantity_on_hand.to_i }
+        }]
+
+        process_result 200, results.merge!({ messages: @messages })
+      else
+        process_result 200, results
+      end
+    rescue => exception
+      process_result 500, {
+        'message_id' => @message_id,
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
+    end
+  end
 end

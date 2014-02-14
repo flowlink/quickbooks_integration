@@ -5,8 +5,8 @@ module QBIntegration
         super("Item", config)
       end
 
-      def find_by_sku(sku)
-        response = @quickbooks.query("select * from Item where Name = '#{sku}'")
+      def find_by_sku(sku, fields = "*")
+        response = @quickbooks.query("select #{fields} from Item where Name = '#{sku}'")
         response.entries.first
       end
 

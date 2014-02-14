@@ -151,4 +151,33 @@ describe QuickbooksEndpoint do
       end
     end
   end
+
+  context "monitor stock" do
+    let(:message) do
+      {
+        :message_id => "abc",
+        :payload => { "sku" => "4553254352", "parameters" => parameters }
+      }.with_indifferent_access
+    end
+
+    it "returns message with item quantity" do
+      VCR.use_cassette("item/find_item_track_inventory", match_requests_on: [:body, :method]) do
+        post '/monitor_stock', message.to_json, auth
+
+        last_response.status.should eql 200
+        response = JSON.parse(last_response.body).with_indifferent_access
+        message = response[:messages].first
+        expect(message[:payload][:quantity]).to eq 56
+      end
+    end
+
+    it "just 200 if item not found" do
+      message[:payload][:sku] = "imreallynothere"
+
+      VCR.use_cassette("item/item_not_found", match_requests_on: [:body, :method]) do
+        post '/monitor_stock', message.to_json, auth
+        last_response.status.should eql 200
+      end
+    end
+  end
 end

@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/test/query?query=SELECT%20*%20FROM%20Item%20where%20Name%20=%20'imreallynothere'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="cQZxptDZHdaWJcwB45922vr8CVnaIuzA3Aa6DE4B3A",
+        oauth_signature="ExRKJPzXE0s2SftMDh4DahrER%2F0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392415582", oauth_token="test",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 14 Feb 2014 22:06:17 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '70.166'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 59257d98-29ce-47f3-bd23-58da6dc43375
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '167'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNTQqDMBBA4auE2ZsfG6qI0V2hyxZ7gBCnNaATMVHq7SuF
+        Lrp/fK9u39PINlyiD2RAcQkMyYXe08vAo7tkJbCYLPV2DIQGdozQNvWV0urT
+        HeMcKCI7EIoGhpTmSojoBpws99+GuzCJpydLDsV2Apb8dDi5VDqTeaZ0p3Ql
+        z5UquS6KTJaVlNDUtxWX/eeLphb/x+YDtw1aGrkAAAA=
+    http_version: 
+  recorded_at: Fri, 14 Feb 2014 22:06:25 GMT
+recorded_with: VCR 2.4.0

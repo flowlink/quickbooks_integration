@@ -9,10 +9,11 @@ require 'qb_integration/base'
 require 'qb_integration/product'
 require 'qb_integration/order'
 require 'qb_integration/return_authorization'
+require 'qb_integration/stock'
 
 require 'qb_integration/services/base'
-require 'qb_integration/services/account_service'
-require 'qb_integration/services/item_service'
+require 'qb_integration/services/account'
+require 'qb_integration/services/item'
 
 require 'qb_integration/address'
 require 'qb_integration/services/payment_method'
