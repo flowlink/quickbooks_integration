@@ -4,7 +4,7 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-      @item = item_service.find_by_sku message[:payload][:sku]
+      @item = item_service.find_by_sku message[:payload][:sku], "Name, QtyOnHand"
     end
   end
 end
