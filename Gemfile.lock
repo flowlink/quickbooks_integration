@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/huoxito/quickbooks-ruby.git
-  revision: 030fe30f88202ab2cbf7243b12b05ffc5eaed137
-  branch: shipmethodref
+  remote: git://github.com/ruckus/quickbooks-ruby.git
+  revision: eac585f1026591a790deffb4e77676548bc38800
   specs:
     quickbooks-ruby (0.0.6)
       activemodel
