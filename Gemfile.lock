@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/ruckus/quickbooks-ruby.git
-  revision: eac585f1026591a790deffb4e77676548bc38800
+  remote: git://github.com/huoxito/quickbooks-ruby.git
+  revision: 61420bf3e89835a0840a944760256386031a74e5
+  branch: item-unit-price
   specs:
     quickbooks-ruby (0.0.6)
       activemodel

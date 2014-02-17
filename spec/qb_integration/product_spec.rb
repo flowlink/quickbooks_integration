@@ -106,7 +106,7 @@ describe QBIntegration::Product do
           subject.stub time_now: "2014-02-14"
 
           VCR.use_cassette "product_importer/product_track_inventory", match_requests_on: [:method, :body] do
-            code, notification = subject.import
+            code, shit = subject.import
             expect(code).to eq 200
 
             attrs = subject.send :attributes, subject.product_payload
@@ -133,6 +133,18 @@ describe QBIntegration::Product do
 
           expect(code).to eq 200
           expect(notification["notifications"][0]["subject"]).to include "Product nine-inch-nails-cd imported"
+        end
+      end
+
+      it "ensures unit price is persisted" do
+        product_message[:payload][:product] = Factories.product_without_variants('First Thing')
+
+        VCR.use_cassette "product/price_check" do
+          code, notification = subject.import
+          expect(code).to eq 200
+
+          item = subject.item_service.find_by_sku "Monday First Thing"
+          expect(item.unit_price).to be > 0
         end
       end
     end
