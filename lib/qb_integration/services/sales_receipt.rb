@@ -69,8 +69,10 @@ module QBIntegration
           #   request: Business Validation Error: You need to select a different
           #   type of account for this transaction.
           #
-          deposit_account = account_service.find_by_name config.fetch("quickbooks.deposit_to_account_name")
-          sales_receipt.deposit_to_account_id = deposit_account.id
+          if config.fetch("quickbooks.deposit_account", false).to_s == "true"
+            deposit_account = account_service.find_by_name config.fetch("quickbooks.deposit_to_account_name")
+            sales_receipt.deposit_to_account_id = deposit_account.id
+          end
         end
 
         def shipments_tracking_number
