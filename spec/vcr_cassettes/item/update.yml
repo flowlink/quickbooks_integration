@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'T-SHIRT-PUGS-RULE'%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'NEW-SKU-HERE'%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -12,13 +12,13 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="lcoDRp6FPworLOjSitYCa1U0b8hyAlXm0HwVqANUI0",
-        oauth_signature="5dGvtg%2BPIaKZfkrQ5KbQeFUuCL8%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1386854970", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="7kpUYWj0uLSnszs8UrVTnRmKjw3HGwAMfw5d3HAFsI",
+        oauth_signature="Pznl5YLtCMyDGx9zl04ccmWiRhs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392662749", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -26,57 +26,66 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Dec 2013 13:29:32 GMT
+      - Mon, 17 Feb 2014 18:45:38 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '70.166'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 60b33d10-afa9-442c-b7d9-2cffe28ca9ec
+      - 193aea25-6c04-48e0-a632-05f930ef34b9
       Via:
-      - 1.1 ipp-gateway-ap04
+      - 1.1 ipp-gateway-ap06
       Content-Length:
-      - '469'
+      - '421'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:29:32.757-08:00"><QueryResponse
-        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>7</Id><SyncToken>4</SyncToken><MetaData><CreateTime>2013-12-09T12:16:19-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:14:25-08:00</LastUpdatedTime></MetaData><Name>T-SHIRT-PUGS-RULE</Name><Description>Pug
-        life chose me.</Description><Active>true</Active><FullyQualifiedName>T-SHIRT-PUGS-RULE</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>19.9</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIWS0W7bMAxFf8Xwuy0nTrfEYFRsbYoO29qkcdBnVmYWobZk
+        SHQW//3kdGuaosCehENekRck4fLQ1NGenNfWzONRmsURGWUrbX7N4015k0zj
+        yDOaCmtraB735ONLCd8Md5ofyLfWeIpCEePn8Y65LYTwakcNpvqoSZVtxFYb
+        NIrEPo8j1k2oM85GkyQbJ6PP5SgrJhdFPk0vJtMkmxZZFktYdeT61/rBgeOl
+        9ZpfbMZRg4eQ7Wr2AwZDTE1U2QZ1yK++3gfXLTofOm2x9jQoKjnOQYQH1r1R
+        pX0mIzMQJ4CfxHiNjBKuHCFTGazKd07zIv/04hLEGxX8QM+btgpc/e/beymI
+        U+M7DIG7xWOy/r5JbhcPCxDHEFyTV063wwDk2jbEu7Ci6Ldm7lMQb7PwRbHe
+        k2TXEYi/ADddXferDmu91VR90OYDAZR4wKea5HGGIP4hbIzmpdOK5GyWzkCc
+        GMq+Jbkmtw8UfgwEy86pHXq6sp6HkZ8xlA7V84r7e3Mb7uy113k0LC5sODxn
+        hzGEzy5R/gGVHSUY0QIAAA==
     http_version: 
-  recorded_at: Thu, 12 Dec 2013 13:29:32 GMT
+  recorded_at: Mon, 17 Feb 2014 18:45:51 GMT
 - request:
     method: post
-    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/item
     body:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
-        <Id>7</Id>
-        <SyncToken>4</SyncToken>
+        <Id>23</Id>
+        <SyncToken>0</SyncToken>
         <MetaData>
-        <CreateTime>2013-12-09T18:16:19-0200</CreateTime>
-        <LastUpdatedTime>2013-12-12T11:14:25-0200</LastUpdatedTime>
+        <CreateTime>2014-02-17T15:43:36-0300</CreateTime>
+        <LastUpdatedTime>2014-02-17T15:43:36-0300</LastUpdatedTime>
         </MetaData>
-        <Name>T-SHIRT-PUGS-RULE</Name>
+        <Name>NEW-SKU-HERE</Name>
         <Description>new description</Description>
         <Active>true</Active>
-        <UnitPrice>19.9</UnitPrice>
-        <Type>Service</Type>
+        <FullyQualifiedName>NEW-SKU-HERE</FullyQualifiedName>
         <Taxable>false</Taxable>
-        <IncomeAccountRef>6</IncomeAccountRef>
+        <UnitPrice>99.9</UnitPrice>
+        <Type>Service</Type>
         <PurchaseCost>0.0</PurchaseCost>
         <TrackQtyOnHand>false</TrackQtyOnHand>
+        <QtyOnHand>0.0</QtyOnHand>
         </Item>
     headers:
       Content-Type:
@@ -84,15 +93,15 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '562'
+      - '600'
       Authorization:
-      - OAuth oauth_body_hash="lz1ogl2B6CxLBJLKYVIurpeDwts%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="l23jDiWktAU7zvdajKrLSvZJ4qzAUhEOVJzFXdlkw", oauth_signature="8lK0R8F5zw61a5ala0aK4gKTLpA%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386854972", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_body_hash="A%2B3BEaw%2FKCd1qNaEjSgIfAkqYRM%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="1bdtRghDlJo1z6M2bqy7eKC2UAZHVDpEfhK8ELnIxKM", oauth_signature="dOk%2F6UbddfD9%2BbPSNKI68p4yl2g%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1392662751", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -100,32 +109,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Dec 2013 13:29:33 GMT
+      - Mon, 17 Feb 2014 18:45:39 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '70.166'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - e0e74211-d4f9-4764-ade2-dc1d40175282
+      - d632eab0-c727-4a89-89fd-44467028fb9c
       Via:
       - 1.1 ipp-gateway-ap04
       Content-Length:
-      - '412'
+      - '388'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:29:34.178-08:00"><Item
-        domain="QBO" sparse="false"><Id>7</Id><SyncToken>5</SyncToken><MetaData><CreateTime>2013-12-09T12:16:19-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:29:34-08:00</LastUpdatedTime></MetaData><Name>T-SHIRT-PUGS-RULE</Name><Description>new
-        description</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>19.9</UnitPrice><Type>Service</Type><IncomeAccountRef
-        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG2Sa2/qMAyG/0qV721aYBcqk+mcjWnTroyiffZJzSFam1ZJ
+        ytZ/P8MujIlP1uO8zuvYgbO3uorW5Lxp7ERkSSoisropjf0/EYviMj4VkQ9o
+        S6waSxPRkxdnCq5t6Ex4It821lPEl1g/EasQ2lxKr1dUY2K2mkQ3tVwai1aT
+        XA9FFEzN9wzSbBSngzg7KbI0Hx3lozQZHZ3E6WmepoINAtVR2dRouK3Z3wfu
+        okXnuXKJlaeNolSDIUgOMO+tLpoXsioDuQO4o4AXGFDBuSMMVLC1+uU8zIfH
+        H64gf6jgFn1YtCVzeahs0/BX2W8pyJ3xPXLifvocz28W8dX0aQpym4IL8tqZ
+        NvDclaXXqNwxyJ+H8EcHsyYVXEcgPwEuu6rqZx1WZmmoPOByQAAFvuG/itR2
+        hCC/EBbWhEdnNKnxOBmD3DEUfUtqTm7NxBUbgsfO6RV6Om98UPz+PYbCoX6Z
+        hf7BXvG3+fbaz/LeeMGbsPeR1DuERzc7kAIAAA==
     http_version: 
-  recorded_at: Thu, 12 Dec 2013 13:29:34 GMT
+  recorded_at: Mon, 17 Feb 2014 18:45:53 GMT
 recorded_with: VCR 2.4.0

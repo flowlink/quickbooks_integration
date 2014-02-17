@@ -8,7 +8,7 @@ describe QBIntegration::Service::Account do
   end
 
   it "finds account by name" do
-    VCR.use_cassette("account/find_by_name") do
+    VCR.use_cassette("account/find_by_name", match_requests_on: [:method, :body]) do
       account = subject.find_by_name "Inventory Asset"
 
       expect(account.id).to be

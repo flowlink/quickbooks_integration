@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/item
     body:
       encoding: UTF-8
       string: |-
@@ -12,6 +12,8 @@ http_interactions:
         <Description>Something witty.</Description>
         <UnitPrice>99.9</UnitPrice>
         <Type>Inventory</Type>
+        <PurchaseCost>0.0</PurchaseCost>
+        <QtyOnHand>0.0</QtyOnHand>
         </Item>
     headers:
       Content-Type:
@@ -19,15 +21,15 @@ http_interactions:
       Accept:
       - application/xml
       Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      - gzip, deflate
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '233'
+      - '293'
       Authorization:
-      - OAuth oauth_body_hash="A9L%2BwAG5Y37jmg%2FI8LVZeZ1nQcM%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="lIItqcIYU2PYrKMtIPiE5JRMHnZO8139eahE4JCBRE", oauth_signature="AIte2dRLXYjWTKuoYseYNYrwBbI%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386854451", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+      - OAuth oauth_body_hash="q8mIgrA35TMrMxcfdQyfb0cxg%2FQ%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="aigxLGQRyVuZO4hZSt8Vaus4hCLa3JljnnUw9sc", oauth_signature="TMZX0hUVVpFO7ylNBSLavVU9kkw%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1392662627", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -35,31 +37,39 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 12 Dec 2013 13:20:53 GMT
+      - Mon, 17 Feb 2014 18:43:36 GMT
       Server:
       - Apache/2.2.22 (Unix)
       Qbo-Version:
-      - '68.147'
+      - '70.166'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
       Intuit-Tid:
-      - 7ace9042-2f45-4057-8a24-33a65ccbae6e
+      - f44233d5-d4b8-4d8c-bf8b-fa67968f4f1e
       Via:
-      - 1.1 ipp-gateway-ap06
+      - 1.1 ipp-gateway-ap03
       Content-Length:
-      - '370'
+      - '388'
       Connection:
       - close
       Content-Type:
       - application/xml;charset=UTF-8
     body:
-      encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
-        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:20:54.428-08:00"><Item
-        domain="QBO" sparse="false"><Id>9</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T05:20:54-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:20:54-08:00</LastUpdatedTime></MetaData><Name>NEW-SKU-HERE</Name><Description>Something
-        witty.</Description><Active>true</Active><Taxable>false</Taxable><UnitPrice>99.9</UnitPrice><Type>Service</Type><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></IntuitResponse>
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIWSYU/jMAyG/0qV7226Fbht8oIOGOLEHTDW6T77Uo9FtEmV
+        uIP++8t2wBiadJ+sx3md17IN569NnWzIB+PsVAyyXCRktauMfZqKZXmdjkQS
+        GG2FtbM0FT0Fca7gh+XO8COF1tlASfzEhqlYM7cTKYNeU4OZ2Wky7Rq5Mhat
+        JrkpRMKmif8M88FJmg/TwbdykE9Oiklxlo2K0zQfTfJcRAOmJqlcgya2Nb+4
+        j1206EOsXGEdaKuo1LAAGQMseqtL90xW5SD3AL+I8QoZFVx6QqYyWqsjzv9c
+        QX5SwU8MvGyryNX/yr5KQe6N7zAm7ma/08XtMr2ZPc5A7lJwRUF703Kcu1q4
+        hngdR568GOY+A/n5Fb5rNhtS7DsC+QZw3dV1P++wNitD1RGbIwIo8RX/1KR2
+        MwT5jrC0hh+80aTG42wMcs9Q9i2pBflNpFixJXjovF5joEsXeDvyA4bSo36e
+        c39vb+LdfHgdZuPi4oa34eCS1F/nGa0RkQIAAA==
     http_version: 
-  recorded_at: Thu, 12 Dec 2013 13:20:54 GMT
+  recorded_at: Mon, 17 Feb 2014 18:43:50 GMT
 recorded_with: VCR 2.4.0
