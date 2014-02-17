@@ -22,7 +22,7 @@ describe QBIntegration::Product do
       let(:config) {{}}
 
       it "generates an error notification" do
-        VCR.use_cassette "product_importer/missing_config" do
+        VCR.use_cassette "product_importer/missing_config", match_requests_on: [:method, :body] do
           code, notification = subject.import
 
           expect(code).to eq 500
@@ -40,7 +40,7 @@ describe QBIntegration::Product do
       end
 
       it "generates an error notification" do
-        VCR.use_cassette "product_importer/missing_account" do
+        VCR.use_cassette "product/missing_account", match_requests_on: [:method, :body] do
           code, notification = subject.import
 
           expect(code).to eq 500
@@ -63,14 +63,14 @@ describe QBIntegration::Product do
     end
 
     it "updates the product" do
-      VCR.use_cassette "product_importer/product_update_variants" do
-        code, notification = subject.import
+      VCR.use_cassette "product/update_variants", match_requests_on: [:method, :body] do
+        code, note = subject.import
 
         expect(code).to eq 200
-        expect(notification["notifications"].count).to eq 3
-        expect(notification["notifications"][0]["subject"]).to include "Product ROR-TS updated"
-        expect(notification["notifications"][1]["subject"]).to include "Product ROR-TS-v-1 updated"
-        expect(notification["notifications"][2]["subject"]).to include "Product ROR-TS-v-2 updated"
+        expect(note["notifications"].count).to eq 3
+        expect(note["notifications"][0]["subject"]).to include "Product ROR-TS updated"
+        expect(note["notifications"][1]["subject"]).to include "Product ROR-TS-v-1 updated"
+        expect(note["notifications"][2]["subject"]).to include "Product ROR-TS-v-2 updated"
       end
     end
   end
@@ -82,20 +82,20 @@ describe QBIntegration::Product do
           message: "product:new",
           message_id: 123,
           payload: {
-            product: Factories.product('family-guy')
+            product: Factories.product('families')
           }
         }.with_indifferent_access
       end
 
       it "creates the product" do
-        VCR.use_cassette "product_importer/product_new_variants" do
+        VCR.use_cassette "product/new_variants", match_requests_on: [:method, :body] do
           code, notification = subject.import
 
           expect(code).to eq 200
           expect(notification["notifications"].count).to eq 3
-          expect(notification["notifications"][0]["subject"]).to include "family-guy"
-          expect(notification["notifications"][1]["subject"]).to include "family-guy-v-1"
-          expect(notification["notifications"][2]["subject"]).to include "family-guy-v-2"
+          expect(notification["notifications"][0]["subject"]).to include "families"
+          expect(notification["notifications"][1]["subject"]).to include "families-v-1"
+          expect(notification["notifications"][2]["subject"]).to include "families-v-2"
         end
       end
 
@@ -103,10 +103,10 @@ describe QBIntegration::Product do
         it "sets product to track inventory" do
           config['quickbooks.track_inventory'] = "true"
           product_message[:payload][:product] = Factories.product('grilos-grilos')
-          subject.stub time_now: "2014-02-14"
+          subject.stub time_now: "2014-02-17"
 
-          VCR.use_cassette "product_importer/product_track_inventory", match_requests_on: [:method, :body] do
-            code, shit = subject.import
+          VCR.use_cassette "product/track_inventory", match_requests_on: [:method, :body] do
+            code, note = subject.import
             expect(code).to eq 200
 
             attrs = subject.send :attributes, subject.product_payload
@@ -122,28 +122,28 @@ describe QBIntegration::Product do
           message: "product:new",
           message_id: 123,
           payload: {
-            product: Factories.product_without_variants('nine-inch-nails-cd')
+            product: Factories.product_without_variants('NIN')
           }
         }.with_indifferent_access
       end
 
       it "creates the product" do
-        VCR.use_cassette "product_importer/product_new_without_variants" do
+        VCR.use_cassette "product/new_without_variants", match_requests_on: [:method, :body] do
           code, notification = subject.import
 
           expect(code).to eq 200
-          expect(notification["notifications"][0]["subject"]).to include "Product nine-inch-nails-cd imported"
+          expect(notification["notifications"][0]["subject"]).to include "Product NIN imported"
         end
       end
 
       it "ensures unit price is persisted" do
-        product_message[:payload][:product] = Factories.product_without_variants('First Thing')
+        product_message[:payload][:product] = Factories.product_without_variants('Second Thing')
 
-        VCR.use_cassette "product/price_check" do
+        VCR.use_cassette "product/price_check", match_requests_on: [:method, :body] do
           code, notification = subject.import
           expect(code).to eq 200
 
-          item = subject.item_service.find_by_sku "Monday First Thing"
+          item = subject.item_service.find_by_sku "Second Thing"
           expect(item.unit_price).to be > 0
         end
       end

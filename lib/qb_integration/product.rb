@@ -9,6 +9,9 @@ module QBIntegration
       @notifications = []
     end
 
+    # TODO We should probably not rescue general exceptions here. Do it on the
+    # sinatra class instead. Rescueing here makes it confusing more difficult
+    # to track errors when running the specs for this class
     def import
       load_configs
 
@@ -53,6 +56,7 @@ module QBIntegration
         type: 'Non Inventory'
       }
 
+      # Test accounts do not support track_inventory feature
       if config.fetch("quickbooks.track_inventory", false).to_s == "true"
         attrs.merge!({
           track_quantity_on_hand: true,

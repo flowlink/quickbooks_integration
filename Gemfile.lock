@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/huoxito/quickbooks-ruby.git
-  revision: 61420bf3e89835a0840a944760256386031a74e5
+  revision: 6c33a6b2f6703373d1767d4b3f40e7ace81ded79
   branch: item-unit-price
   specs:
     quickbooks-ruby (0.0.6)
@@ -71,7 +71,7 @@ GEM
     lumberjack (1.0.3)
     method_source (0.8.1)
     mini_portile (0.5.2)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
