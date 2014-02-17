@@ -44,12 +44,11 @@ describe QuickbooksEndpoint do
       shared_context "persist new sales receipt" do
         it "generates a json response with an info notification" do
           # change order number in case you want to persist a new order
-          message[:payload][:order][:number] = "R4435534534"
+          message[:payload][:order][:number] = "R45245242545"
           message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
           VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post", match_requests_on: [:body, :method]) do
             post '/orders', message.to_json, auth
-            last_response.status.should eql 200
 
             response = JSON.parse(last_response.body)
             response["message_id"].should eql "abc"
