@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe QBIntegration::ProductImporter do
+describe QBIntegration::Product do
   subject do
     described_class.new(product_message, config)
   end

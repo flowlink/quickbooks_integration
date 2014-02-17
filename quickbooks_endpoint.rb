@@ -8,7 +8,7 @@ class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
   post '/products' do
-    code, notification = QBIntegration::ProductImporter.new(@message, @config).import
+    code, notification = QBIntegration::Product.new(@message, @config).import
     process_result code, notification
   end
 

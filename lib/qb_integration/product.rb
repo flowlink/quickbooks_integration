@@ -1,5 +1,5 @@
 module QBIntegration
-  class ProductImporter < Base
+  class Product < Base
     attr_reader :product_payload
 
     def initialize(message = {}, config)
