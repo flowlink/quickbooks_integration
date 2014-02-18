@@ -92,7 +92,7 @@ describe QuickbooksEndpoint do
       end
 
       it "generates a json response with an info notification" do
-        VCR.use_cassette("credit_memo/sync_order_credit_memo_post", match_requests_on: [:body, :method]) do
+        VCR.use_cassette("credit_memo/create_from_receipt", match_requests_on: [:body, :method]) do
           post '/orders', message.to_json, auth
           last_response.status.should eql 200
 
@@ -118,9 +118,8 @@ describe QuickbooksEndpoint do
     end
 
     it "generates a json response with an info notification" do
-      VCR.use_cassette("credit_memo/sync_return_authorization_new", match_requests_on: [:body, :method]) do
+      VCR.use_cassette("credit_memo/create_from_return", match_requests_on: [:method, :body]) do
         post '/returns', message.to_json, auth
-        last_response.status.should eql 200
         response = JSON.parse(last_response.body)
         response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
       end

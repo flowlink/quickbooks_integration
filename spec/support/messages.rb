@@ -9,7 +9,12 @@ module Factories
         'quickbooks.inventory_costing'     => true,
         'quickbooks.inventory_account'     => "Inventory Asset",
         'quickbooks.deposit_to_account_name' => "Inventory Asset",
-        'quickbooks.cogs_account'          => "Cost of Goods Sold"
+        'quickbooks.cogs_account'          => "Cost of Goods Sold",
+        'quickbooks.payment_method_name' => [{ "visa" => "Discover" }],
+        'quickbooks.account_name' => "Inventory Asset",
+        'quickbooks.shipping_item' => "Shipping Charges",
+        'quickbooks.tax_item' => "State Sales Tax-NY",
+        'quickbooks.discount_item' => "Discount"
       }
     end
 
@@ -721,7 +726,7 @@ module Factories
     end
 
     def return_authorization
-      JSON.parse IO.read("#{File.dirname(__FILE__)}/return_authorization.json")
+      JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/return_authorization.json")).with_indifferent_access[:return_authorization]
     end
 
     def new_credit_memo
