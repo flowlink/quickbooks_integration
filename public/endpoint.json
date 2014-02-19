@@ -1,76 +1,214 @@
 {
-    "name": "quickbooks",
-    "display": "Quickbooks",
-    "description": "Updates Quickbooks with completed order details",
-    "help": "http://guides.spreecommerce.com/integration/endpoints/quickbooks",
-    "consumers": [
-        {
-            "name": "import",
-            "path": "/import",
-            "description": "Import new order to Quickbooks.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "access_token",
-                        "description": "Quickbooks Access Token"
-                    },
-                    {
-                        "name": "access_secret",
-                        "description": "Quickbooks Access Secret"
-                    },
-                    {
-                        "name": "realm",
-                        "description": "Quickbooks Realm"
-                    }
-                ],
-                "humanizers": {}
-            },
-            "recommends": {
-                "keys": ["order:new"],
-                "event_key": {
-                    "order_number": "payload.order.actual.number"
-                },
-                "options": {
-                    "retries_allowed": true
-                }
-            },
-            "produces": {
-            }
-        },
-        {
-            "name": "updater",
-            "path": "/update",
-            "description": "Update already imported Order.",
-            "requires": {
-                "parameters": [
-                    {
-                        "name": "access_token",
-                        "description": "Quickbooks Access Token"
-                    },
-                    {
-                        "name": "access_secret",
-                        "description": "Quickbooks Access Secret"
-                    },
-                    {
-                        "name": "realm",
-                        "description": "Quickbooks Realm"
-                    }
-                ],
-                "humanizers": {}
-            },
-            "recommends": {
-                "keys": [
-                    "order:updated"
-                ],
-                "event_key": {
-                    "order_number": "payload.order.actual.number"
-                },
-                "options": {
-                    "allow_retries": true
-                }
-            },
-            "produces": {
-            }
+  "name": "quickbooks",
+  "display": "Quickbooks",
+  "description": "Updates Quickbooks with completed order details",
+  "help": "http://guides.spreecommerce.com/integration/quickbooks_integration.html",
+  "icon_url": "quickbooks.png",
+  "services": [
+    {
+      "name": "order_export",
+      "path": "/orders",
+      "description": "Enabling this would export orders to Quickbooks as Sales Receipts",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks OAuth Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks OAuth Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks OAuth Realm",
+            "data_type": "string"
+          },
+          {
+            "name": "deposit_account",
+            "description": "Set custom deposit account",
+            "data_type": "boolean",
+            "enables": ["deposit_to_account_name"]
+          },
+          {
+            "name": "deposit_to_account_name",
+            "description": "Deposit Account for Sales Receipts",
+            "data_type": "string"
+          },
+          {
+            "name": "payment_method_name",
+            "description": "Mapping from Spree payment method names to Quickbooks payment method names",
+            "data_type": "list"
+          },
+          {
+            "name": "shipping_item",
+            "description": "Quickbooks Item to track Shipping",
+            "data_type": "string"
+          },
+          {
+            "name": "tax_item",
+            "description": "Quickbooks item to track Taxes",
+            "data_type": "string"
+          },
+          {
+            "name": "discount_item",
+            "description": "Quickbooks Item to track Discounts",
+            "data_type": "string"
+          },
+          {
+            "name": "account_name",
+            "description": "Quickbooks Income Account name for items defaults to 'Sales'",
+            "data_type": "string",
+            "default": "Sales"
+          },
+          {
+            "name": "web_orders_user",
+            "description": "Use \"Web Orders\" as customer name for transactions?",
+            "data_type": "boolean"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["order:new", "order:updated", "order:canceled"],
+        "filters": [
+          {
+            "path": "payload.original.payment_state",
+            "operator": "eq",
+            "value": "paid"
+          }
+        ],
+        "options": {
+          "retries_allowed": true
         }
-    ]
+      }
+    },
+    {
+      "name": "return_export",
+      "path": "/returns",
+      "description": "Enabling this would create credit memo's in Quickbooks for every return that is received",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks oAUTH Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks oAUTH Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks oAUTH Realm",
+            "data_type": "string"
+          },
+          {
+            "name": "return_credit_memo_account",
+            "description": "Return Account for Credit Memos in Quickbooks",
+            "data_type": "string"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["return_authorization:new", "return_authorization:updated"],
+        "options": {
+          "retries_allowed": true
+        }
+      }
+    },
+    {
+      "name": "product_export",
+      "path": "/products",
+      "description": "Enabling this would export all products from storefront to Quickbooks",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks oAUTH Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks oAUTH Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks oAUTH Realm",
+            "data_type": "string"
+          },
+          {
+            "name": "track_inventory",
+            "description": "Create Products as inventory items",
+            "data_type": "boolean"
+          },
+          {
+            "name": "inventory_costing",
+            "description": "Inventory Costing",
+            "data_type": "boolean",
+            "enables": [
+              "inventory_account", "cogs_account"
+            ]
+          },
+          {
+            "name": "inventory_account",
+            "description": "Inventory Account",
+            "data_type": "string",
+            "default": "Inventory Account"
+          },
+          {
+            "name": "cogs_account",
+            "description": "COGS Account",
+            "data_type": "string",
+            "default": "COGS Account"
+          },
+          {
+            "name": "income_account",
+            "description": "Income Account",
+            "data_type": "string",
+            "default": "Income Account"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["product:new","product:updated"],
+        "options": {
+          "retries_allowed": true
+        }
+      }
+    },
+    {
+      "name": "monitor_stock",
+      "path": "/monitor_stock",
+      "description": "Enabling this would poll quickbooks for stock changes, and any changes will be updated to the store",
+      "requires": {
+        "parameters": [
+          {
+            "name": "access_token",
+            "description": "Quickbooks oAUTH Access Token",
+            "data_type": "string"
+          },
+          {
+            "name": "access_secret",
+            "description": "Quickbooks oAUTH Access Secret",
+            "data_type": "string"
+          },
+          {
+            "name": "realm",
+            "description": "Quickbooks oAUTH Realm",
+            "data_type": "string"
+          }
+        ]
+      },
+      "recommends": {
+        "messages": ["stock:query"],
+        "options": {
+          "retries_allowed": false
+        }
+      }
+    }
+  ]
 }

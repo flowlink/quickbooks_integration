@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'T-SHIRT-PUGS-RULE'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="GSKn0h4naIWpHSve6yXdS1hMujHqIxefFjZonf0",
+        oauth_signature="fWsYRMBrUGdb%2FY2QpqgsObop7Qg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386854193", oauth_token="qyprdhjEBfA2BI8sD7fWVPH4wL9esaKrYeWLosiPBir3pa5j",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 13:16:34 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 5078e293-a558-4e44-ad8d-3361a245c2b7
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '467'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T05:16:34.975-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>7</Id><SyncToken>4</SyncToken><MetaData><CreateTime>2013-12-09T12:16:19-08:00</CreateTime><LastUpdatedTime>2013-12-12T05:14:25-08:00</LastUpdatedTime></MetaData><Name>T-SHIRT-PUGS-RULE</Name><Description>Pug
+        life chose me.</Description><Active>true</Active><FullyQualifiedName>T-SHIRT-PUGS-RULE</FullyQualifiedName><Taxable>false</Taxable><UnitPrice>19.9</UnitPrice><Type>Service</Type><IncomeAccountRef
+        name="Inventory Asset">6</IncomeAccountRef><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 13:16:35 GMT
+recorded_with: VCR 2.4.0

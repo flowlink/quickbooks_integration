@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customer/v2/814984455
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <Name>Black Pete</Name>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '211'
+      Authorization:
+      - OAuth oauth_body_hash="Pvz%2BlLi%2FeAvcJgR5iT9l3wKLVd8%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="gsV6l0uLqZovfgML5m0l9D9ffj21hBABOnKntFXpPm4", oauth_signature="p1NHlAxzzSDaZrYgI37CmwS5dog%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1382539817", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 23 Oct 2013 14:50:19 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '67.142'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 9df74b3c-706a-4484-bb60-336b3356b6c6
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '443'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Customer xmlns="http://www.intuit.com/sb/cdm/v2"
+        xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id
+        idDomain="QBO">5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-23T07:50:20-07:00</CreateTime><LastUpdatedTime>2013-10-23T07:50:20-07:00</LastUpdatedTime></MetaData><Name>Black
+        Pete</Name><WebSite/><Email/><CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="StringTypeCustomField"><DefinitionId>Preferred Delivery Method</DefinitionId><Value>DONT</Value></CustomField><CustomField
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StringTypeCustomField"><DefinitionId>Resale
+        Number</DefinitionId></CustomField><CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="BooleanTypeCustomField"><DefinitionId>Bill With Parent</DefinitionId><Value>false</Value></CustomField><ShowAs>Black
+        Pete</ShowAs><OpenBalance><Amount>0</Amount></OpenBalance></Customer>
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 14:50:20 GMT
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customer/v2/814984455
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <Name>Black Pete</Name>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '211'
+      Authorization:
+      - OAuth oauth_body_hash="Pvz%2BlLi%2FeAvcJgR5iT9l3wKLVd8%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="2iAVPrKEZYasbULSv50J5samnrl0cIalaQUjflDMwk", oauth_signature="2O4iXqul43cknUVWP%2BGpDnyZqkY%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1382539820", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Wed, 23 Oct 2013 14:50:21 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Vary:
+      - Accept-Encoding
+      Intuit-Tid:
+      - 51c89693-179d-4dfe-911c-20cd6d4a087f
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '241'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><FaultInfo
+        xmlns=\"http://www.intuit.com/sb/cdm/baseexceptionmodel/xsd\"><Message>Another
+        $$customer$$ is already using this \nname. Please use a different name.</Message><ErrorCode>BAD_REQUEST</ErrorCode><Cause>-11202</Cause></FaultInfo>"
+    http_version: 
+  recorded_at: Wed, 23 Oct 2013 14:50:21 GMT
+recorded_with: VCR 2.4.0

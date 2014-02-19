@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20*%20from%20Item%20where%20Name%20=%20'test'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="WIxQx4EJHA1MTVCbiZZ302tW1RbmtI3PiJBCEhicN0",
+        oauth_signature="YqKIqwXc8QJiMd0n0m5u%2BO%2B3mjQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392413267", oauth_token="test",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 14 Feb 2014 21:27:42 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '70.166'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - daef9b89-57fb-45f5-b88b-eacde78732be
+      Via:
+      - 1.1 ipp-gateway-ap02
+      Content-Length:
+      - '498'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG1T7W7bMAx8FUH/E9mOvaYGo6Lr1q3A1iaL8wCazCxCbcmw
+        5CB++9FJ23wVMCAfeSRPJAV3u7piW2y9cXbG43HEGVrtSmP/zfiqeBxNOfNB
+        2VJVzuKM9+j5nYQnGzoT/qBvnPXIKIn1M74JocmF8HqDtRqbPWesXS3Wxiqr
+        UWwnnAVTU54kitNRlIzitIgneXKTp5NxdnsziqZ5FHEJiw7b/iM/KWjD3HkT
+        DjI5q9WOvF0V/ABJUMCala5WhvyLry+kulGtp0prVXkcGKWc3oKgA5a91YV7
+        RStjEEcAvzGobyooCQ8tqoAFSZWnSpM8vaXvoBLECQt+KR9WTUm4/CQsm+Zx
+        /B52SQVxLPysyJBm2STJ0kmWgNgb4F4Hs0UZ2g5BvAF47KqqX3SqMmuD5VXk
+        J24o1E79rVDumwLiHcLKmjBvjUZJ+o4Air5B+WS3aINrewoYME2fhor3WrvO
+        0hKsmVXDTJeqQs/cms1bV3Y6sAOPy5TafhEiYd61eqM8PjgfhqpnGL7vGqTJ
+        X9UYvEOJH86Vni1dVXKZgbiiU8u8x3AV/3EXtvdz+YX6ec6kW7dKvy5C/2J/
+        0ua/df3CCMffjHKcOKjEcthXGujpGgw9OHEQpJWl42zTB/PZ05L/AYIv0TWi
+        AwAA
+    http_version: 
+  recorded_at: Fri, 14 Feb 2014 21:27:50 GMT
+recorded_with: VCR 2.4.0

@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20Customer%20WHERE%20DisplayName%20=%20'Brian%20Quinn'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="VyS2UYXNRS2SnlECrMLDPx4Sm10vKUm5liOA1HM8",
+        oauth_signature="D%2F7rm3HuqwdTWYwm0wRFLWUQ4bM%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386875022", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 19:03:43 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - a8605132-47d4-4bbd-91c1-efd2f8ec35d4
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '648'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T11:03:44.003-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Customer domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T10:40:46-08:00</CreateTime><LastUpdatedTime>2013-12-12T10:40:46-08:00</LastUpdatedTime></MetaData><GivenName>Brian</GivenName><FamilyName>Quinn</FamilyName><FullyQualifiedName>Brian
+        Quinn</FullyQualifiedName><DisplayName>Brian Quinn</DisplayName><PrintOnCheckName>Brian
+        Quinn</PrintOnCheckName><Active>true</Active><PrimaryEmailAddr><Address>spree@example.com</Address></PrimaryEmailAddr><Taxable>false</Taxable><BillAddr><Id>11</Id><Line1>7735
+        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></BillAddr><ShipAddr><Id>12</Id><Line1>7735
+        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></ShipAddr><Job>false</Job><BillWithParent>false</BillWithParent><Balance>0</Balance><BalanceWithJobs>0</BalanceWithJobs><CurrencyRef
+        name="Brazilian Real">BRL</CurrencyRef><PreferredDeliveryMethod>Email</PreferredDeliveryMethod></Customer></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 19:03:44 GMT
+recorded_with: VCR 2.4.0

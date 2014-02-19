@@ -1,10 +1,15 @@
 source 'https://www.rubygems.org'
 
-gem 'endpoint_base', :git=> 'git@github.com:spree/endpoint_base.git'
+gem 'endpoint_base', :github => 'spree/endpoint_base'
 gem 'thin'
-gem 'quickeebooks', :git => 'git://github.com/GeekOnCoffee/quickeebooks.git'
+gem 'quickbooks-ruby', github: 'huoxito/quickbooks-ruby', branch: 'item-unit-price'
 gem 'tzinfo'
 gem 'capistrano'
+
+group :development do
+  gem "rake"
+  gem "pry"
+end
 
 group :test do
   gem 'vcr'
@@ -14,6 +19,7 @@ group :test do
   gem 'terminal-notifier-guard'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
+  gem 'simplecov'
 end
 
 group :production do

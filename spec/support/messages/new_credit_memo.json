@@ -1,0 +1,380 @@
+{
+  "order": {
+    "number": "R681874717",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-02-14T20:15:12.164Z",
+    "updated_at": "2014-02-14T20:16:58.307Z",
+    "status": "canceled",
+    "totals": {
+      "item": 19.99,
+      "adjustment": 6.0,
+      "tax": 1.0,
+      "shipping": 5.0,
+      "payment": 25.99,
+      "order": 25.99
+    },
+    "line_items": [
+      {
+        "name": "Ruby on Rails Ringer T-Shirt",
+        "sku": "ROR-00015",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 19.99,
+        "variant_id": 5,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "North America 5.0",
+        "value": 1.0
+      },
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 6,
+        "status": "completed",
+        "amount": 0.0,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 5,
+        "status": "completed",
+        "amount": 25.99,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H77663751488",
+        "cost": 5.0,
+        "status": "canceled",
+        "stock_location": null,
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Ruby on Rails Ringer T-Shirt",
+            "sku": "ROR-00015",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 19.99,
+            "variant_id": 5,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 4,
+    "number": "R681874717",
+    "item_total": "19.99",
+    "total": "25.99",
+    "ship_total": "5.0",
+    "state": "canceled",
+    "adjustment_total": "6.0",
+    "user_id": 1,
+    "created_at": "2014-02-14T20:14:35.472Z",
+    "updated_at": "2014-02-14T20:16:58.307Z",
+    "completed_at": "2014-02-14T20:15:12.164Z",
+    "payment_total": "25.99",
+    "shipment_state": "canceled",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "1.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 7,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 8,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 4,
+        "quantity": 1,
+        "price": "19.99",
+        "variant_id": 5,
+        "created_at": "2014-02-14T20:14:35.500Z",
+        "updated_at": "2014-02-14T20:14:35.500Z",
+        "single_display_amount": "$19.99",
+        "display_amount": "$19.99",
+        "total": "19.99",
+        "variant": {
+          "id": 5,
+          "name": "Ruby on Rails Ringer T-Shirt",
+          "sku": "ROR-00015",
+          "price": "19.99",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "17.0",
+          "permalink": "ruby-on-rails-ringer-t-shirt",
+          "product_created_at": "2014-02-14T02:08:44.497Z",
+          "product_updated_at": "2014-02-14T20:16:57.963Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+              {
+                "id": 7,
+                "parent_id": 5,
+                "position": 0,
+                "name": "T-Shirts",
+                "permalink": "categories/clothing/t-shirts",
+                "taxonomy_id": 1,
+                "description": null,
+                "created_at": "2014-02-14T02:08:45.499Z",
+                "updated_at": "2014-02-14T02:08:45.499Z"
+              },
+              {
+                "id": 11,
+                "parent_id": 2,
+                "position": 0,
+                "name": "Rails",
+                "permalink": "brand/rails",
+                "taxonomy_id": 2,
+                "description": null,
+                "created_at": "2014-02-14T02:08:45.639Z",
+                "updated_at": "2014-02-14T02:08:45.639Z"
+              }
+            ]
+          },
+          "product_id": 5,
+          "images": [
+            {
+              "id": 29,
+              "position": 1,
+              "attachment_content_type": "image/jpeg",
+              "attachment_file_name": "ror_ringer.jpeg",
+              "type": "Spree::Image",
+              "attachment_updated_at": "2014-02-14T02:08:59.860Z",
+              "attachment_width": 360,
+              "attachment_height": 360,
+              "alt": null,
+              "viewable_type": "Spree::Variant",
+              "viewable_id": 5,
+              "mini_url": "/spree/products/29/mini/ror_ringer.jpeg?1392343739",
+              "small_url": "/spree/products/29/small/ror_ringer.jpeg?1392343739",
+              "product_url": "/spree/products/29/product/ror_ringer.jpeg?1392343739",
+              "large_url": "/spree/products/29/large/ror_ringer.jpeg?1392343739"
+            },
+            {
+              "id": 30,
+              "position": 2,
+              "attachment_content_type": "image/jpeg",
+              "attachment_file_name": "ror_ringer_back.jpeg",
+              "type": "Spree::Image",
+              "attachment_updated_at": "2014-02-14T02:09:00.364Z",
+              "attachment_width": 360,
+              "attachment_height": 360,
+              "alt": null,
+              "viewable_type": "Spree::Variant",
+              "viewable_id": 5,
+              "mini_url": "/spree/products/30/mini/ror_ringer_back.jpeg?1392343740",
+              "small_url": "/spree/products/30/small/ror_ringer_back.jpeg?1392343740",
+              "product_url": "/spree/products/30/product/ror_ringer_back.jpeg?1392343740",
+              "large_url": "/spree/products/30/large/ror_ringer_back.jpeg?1392343740"
+            }
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 6,
+        "amount": "0.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      },
+      {
+        "id": 5,
+        "amount": "25.99",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 4,
+        "tracking": null,
+        "number": "H77663751488",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "canceled",
+        "order_id": "R681874717",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 16,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 4,
+            "shipping_method_id": 1
+          },
+          {
+            "id": 17,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 4,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 18,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 4,
+            "shipping_method_id": 3
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 4,
+            "variant_id": 5,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 11,
+        "amount": "1.0",
+        "label": "North America 5.0",
+        "mandatory": null,
+        "eligible": true,
+        "originator_type": "Spree::TaxRate",
+        "adjustable_type": "Spree::Order"
+      },
+      {
+        "id": 12,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 3,
+        "month": "6",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-003205",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  }
+}

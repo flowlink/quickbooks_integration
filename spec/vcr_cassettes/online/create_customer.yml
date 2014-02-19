@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qbo.sbfinance.intuit.com/resource/customer/v2/814984455
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns:ns2="http://www.intuit.com/sb/cdm/qbo" xmlns="http://www.intuit.com/sb/cdm/v2" xmlns:ns3="http://www.intuit.com/sb/cdm">
+        <Name>Brian Quinn</Name>
+        <Address>
+        <Line1>Brian Quinn</Line1>
+        <Line2>7735 Old Georgetown Rd</Line2>
+        <Line3/>
+        <City>Bethesda</City>
+        <PostalCode>20814</PostalCode>
+        <Tag>Billing</Tag>
+        </Address>
+        <Address>
+        <Line1>Brian Quinn</Line1>
+        <Line2>7735 Old Georgetown Rd</Line2>
+        <Line3/>
+        <City>Bethesda</City>
+        <PostalCode>20814</PostalCode>
+        <Tag>Shipping</Tag>
+        </Address>
+        <Email>
+        <Address>spree@example.com</Address>
+        </Email>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '601'
+      Authorization:
+      - OAuth oauth_body_hash="nrhZ%2BfKfEsPvnZ37rO2g7D%2BKYf0%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="V6SSb1bbWQYLcVPFqh2lH2uSzSSZc01CK9CrMh4", oauth_signature="I%2FmLI1rh9eJzQxjZewgGwDrYodk%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1382696022", oauth_token="lvprdxUq2lBxg6fkHo2ysylwa3554G4ygDrJd7Dk9iopQOVj",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Oct 2013 10:13:43 GMT
+      Server:
+      - Apache/2.2.3 (Red Hat)
+      Qbo-Version:
+      - '67.150'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - f1fdd4e4-184c-4a99-a073-fb08a7a49146
+      Via:
+      - 1.1 ipp-gateway-.net
+      Content-Length:
+      - '586'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Customer xmlns="http://www.intuit.com/sb/cdm/v2"
+        xmlns:qbp="http://www.intuit.com/sb/cdm/qbopayroll/v1" xmlns:qbo="http://www.intuit.com/sb/cdm/qbo"><Id
+        idDomain="QBO">7</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-10-25T03:13:45-07:00</CreateTime><LastUpdatedTime>2013-10-25T03:13:45-07:00</LastUpdatedTime></MetaData><Name>Brian
+        Quinn</Name><Address><Line1>Brian Quinn</Line1><Line2>7735 Old Georgetown
+        Rd</Line2><City>Bethesda</City><PostalCode>20814</PostalCode><GeoCode>LAT=39.0069662,LNG=-77.1119614</GeoCode><Tag>Billing</Tag></Address><Address><Line1>Brian
+        Quinn</Line1><Line2>7735 Old Georgetown Rd</Line2><City>Bethesda</City><PostalCode>20814</PostalCode><GeoCode>LAT=39.0069662,LNG=-77.1119614</GeoCode><Tag>Shipping</Tag></Address><WebSite/><Email><Address>spree@example.com</Address></Email><CustomField
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StringTypeCustomField"><DefinitionId>Preferred
+        Delivery Method</DefinitionId><Value>EMAIL</Value></CustomField><CustomField
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="StringTypeCustomField"><DefinitionId>Resale
+        Number</DefinitionId></CustomField><CustomField xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:type="BooleanTypeCustomField"><DefinitionId>Bill With Parent</DefinitionId><Value>false</Value></CustomField><ShowAs>Brian
+        Quinn</ShowAs><OpenBalance><Amount>0</Amount></OpenBalance></Customer>
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 10:13:45 GMT
+recorded_with: VCR 2.4.0

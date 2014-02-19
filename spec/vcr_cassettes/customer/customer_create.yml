@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/customer
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <GivenName>Brian</GivenName>
+        <FamilyName>Quinn</FamilyName>
+        <DisplayName>Spree Commerce</DisplayName>
+        <PrimaryEmailAddr>
+        <Address>spree@example.com</Address>
+        </PrimaryEmailAddr>
+        <BillAddr>
+        <Line1>7735 Old Georgetown Rd</Line1>
+        <Line2/>
+        <City>Bethesda</City>
+        <Country>US</Country>
+        <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
+        <PostalCode>20814</PostalCode>
+        </BillAddr>
+        <ShipAddr>
+        <Line1>7735 Old Georgetown Rd</Line1>
+        <Line2/>
+        <City>Bethesda</City>
+        <Country>US</Country>
+        <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
+        <PostalCode>20814</PostalCode>
+        </ShipAddr>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '704'
+      Authorization:
+      - OAuth oauth_body_hash="BTYSsBPn%2F%2B3peBck9LTFaAZ0H%2Bc%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="jGqVG3EzhCPWoDbRI7WbNY1yNURXN2YEWLhvTlZZQU", oauth_signature="5keSYxjUo5n4eGH7y940zS18Pqg%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1386875047", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 12 Dec 2013 19:04:09 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - c511a75c-6d5c-4bbf-923f-7b15586e9b48
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Length:
+      - '626'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T11:04:09.770-08:00"><Customer
+        domain="QBO" sparse="false"><Id>6</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T11:04:10-08:00</CreateTime><LastUpdatedTime>2013-12-12T11:04:10-08:00</LastUpdatedTime></MetaData><GivenName>Brian</GivenName><FamilyName>Quinn</FamilyName><FullyQualifiedName>Spree
+        Commerce</FullyQualifiedName><DisplayName>Spree Commerce</DisplayName><PrintOnCheckName>Brian
+        Quinn</PrintOnCheckName><Active>true</Active><PrimaryEmailAddr><Address>spree@example.com</Address></PrimaryEmailAddr><Taxable>false</Taxable><BillAddr><Id>13</Id><Line1>7735
+        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></BillAddr><ShipAddr><Id>14</Id><Line1>7735
+        Old Georgetown Rd</Line1><City>Bethesda</City><Country>US</Country><CountrySubDivisionCode>Maryland</CountrySubDivisionCode><PostalCode>20814</PostalCode><Lat>38.987477</Lat><Long>-77.097917</Long></ShipAddr><Job>false</Job><BillWithParent>false</BillWithParent><Balance>0</Balance><BalanceWithJobs>0</BalanceWithJobs><CurrencyRef
+        name="Brazilian Real">BRL</CurrencyRef><PreferredDeliveryMethod>Email</PreferredDeliveryMethod></Customer></IntuitResponse>
+    http_version: 
+  recorded_at: Thu, 12 Dec 2013 19:04:10 GMT
+recorded_with: VCR 2.4.0
