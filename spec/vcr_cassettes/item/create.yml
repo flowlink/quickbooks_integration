@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/item
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Name>NEW-SKU-HERE</Name>
+        <Description>Something witty.</Description>
+        <UnitPrice>99.9</UnitPrice>
+        <Type>Inventory</Type>
+        <PurchaseCost>0.0</PurchaseCost>
+        <QtyOnHand>0.0</QtyOnHand>
+        </Item>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '293'
+      Authorization:
+      - OAuth oauth_body_hash="q8mIgrA35TMrMxcfdQyfb0cxg%2FQ%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="aigxLGQRyVuZO4hZSt8Vaus4hCLa3JljnnUw9sc", oauth_signature="TMZX0hUVVpFO7ylNBSLavVU9kkw%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1392662627", oauth_token="test",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 17 Feb 2014 18:43:36 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '70.166'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - f44233d5-d4b8-4d8c-bf8b-fa67968f4f1e
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '388'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIWSYU/jMAyG/0qV7226Fbht8oIOGOLEHTDW6T77Uo9FtEmV
+        uIP++8t2wBiadJ+sx3md17IN569NnWzIB+PsVAyyXCRktauMfZqKZXmdjkQS
+        GG2FtbM0FT0Fca7gh+XO8COF1tlASfzEhqlYM7cTKYNeU4OZ2Wky7Rq5Mhat
+        JrkpRMKmif8M88FJmg/TwbdykE9Oiklxlo2K0zQfTfJcRAOmJqlcgya2Nb+4
+        j1206EOsXGEdaKuo1LAAGQMseqtL90xW5SD3AL+I8QoZFVx6QqYyWqsjzv9c
+        QX5SwU8MvGyryNX/yr5KQe6N7zAm7ma/08XtMr2ZPc5A7lJwRUF703Kcu1q4
+        hngdR568GOY+A/n5Fb5rNhtS7DsC+QZw3dV1P++wNitD1RGbIwIo8RX/1KR2
+        MwT5jrC0hh+80aTG42wMcs9Q9i2pBflNpFixJXjovF5joEsXeDvyA4bSo36e
+        c39vb+LdfHgdZuPi4oa34eCS1F/nGa0RkQIAAA==
+    http_version: 
+  recorded_at: Mon, 17 Feb 2014 18:43:50 GMT
+recorded_with: VCR 2.4.0

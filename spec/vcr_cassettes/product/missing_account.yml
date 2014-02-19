@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Not%20to%20be%20found'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="wILT48mezRTV7pix2YqDRzl0BpMIGwqgTuQ1XEwqc",
+        oauth_signature="tSTr9%2FuAY0TgD3FO%2FIhDI6FXeEE%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1392661063", oauth_token="test",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 17 Feb 2014 18:17:31 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '70.166'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - ac4e76e1-dc0a-42fd-bdae-4f3bfba431db
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '167'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNTQ6CMBBA4as0s4f+YASbFnYmLjV4AIKjNKFTQguR20tM
+        XLh/+Z5p3n5kK87RBbIgcwEMqQ8PRy8L9/acVcBi6ujRjYHQwoYRmtpcKC0u
+        3TBOgSKyHaFoYUhp0pzHfkDf5e7b5H3w/Omoox75WgBLzu+OEvKQCZXJspVC
+        y1IXKlenYyYqLQTU5rrgvP18Xhv+f6w/BHFmL7kAAAA=
+    http_version: 
+  recorded_at: Mon, 17 Feb 2014 18:17:45 GMT
+recorded_with: VCR 2.4.0

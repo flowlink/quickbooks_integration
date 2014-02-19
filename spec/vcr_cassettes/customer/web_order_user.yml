@@ -1,0 +1,129 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=SELECT%20*%20FROM%20Customer%20WHERE%20DisplayName%20=%20'Web%20Orders'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="NJEjnWP8s15sAM2hL10DlinWY6SQTcJN4N8c0XRQtKc",
+        oauth_signature="IHLo42ZZgMjyKaobACodWH39DCs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1387577136", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 20 Dec 2013 22:05:38 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - a99cad94-a7d9-42e2-99ca-19b5c23cf278
+      Via:
+      - 1.1 ipp-gateway-ap04
+      Content-Length:
+      - '167'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNQQqDMBBA0auE2cdEU8FKortCly32AEGnNWAmYqLU21cK
+        XXT/eV+3bz+xDZfoAhnIMwkMqQ+Do5eBR3fhFbCYLA12CoQGdozQNvpKaXXp
+        jnEOFJEdCEUDY0pzLUTsR/Q2c98m64MXT0eWehSbApacP5xC5ornBS9kl59q
+        WdbqnJVKcVnVUkKjbysu+88XjRb/x+YDGhN1lLkAAAA=
+    http_version: 
+  recorded_at: Fri, 20 Dec 2013 22:05:39 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/customer
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <DisplayName>Web Orders</DisplayName>
+        <Balance>0.0</Balance>
+        <BalanceWithJobs>0.0</BalanceWithJobs>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '220'
+      Authorization:
+      - OAuth oauth_body_hash="jWpMvpUap7aO8ENzftddtlES32A%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="zQvcwf2m9J8H1xQwnICpbwjbYzAVg2NJricdatUeyw", oauth_signature="VTQgQhZQg%2Bho5NVDvT2lGkQ8w8U%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1387577139", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 20 Dec 2013 22:05:40 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '69.135'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 24499d36-ac05-45da-ab7d-466f425ee0e4
+      Via:
+      - 1.1 ipp-gateway-ap03
+      Content-Length:
+      - '422'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVS227bMAz9FcPview0w4qAUTE3K9ChW9rMRZ8Zi56FypIh
+        KUG9rx/d1kvWBNiLQPIcHV7h6qU1yZ580M4u03yapQnZyiltfy3Tx/Jmcpkm
+        IaJVaJylZdpTSK8k3Nq403FDoXM2UMIiNizTJsZuIUSoGmpxql8508q1otYW
+        bUVif5EmUbesM8vyi0k+m8yyMp8vsk+L+WyazfNJdrnIslTC9S5E15JPlGtR
+        c2kPxZor6dAH/l2jCcSsWyU/g+AXfva2Kt0zWZmBODjwnSKuMCIresJIJWeX
+        Z5K/JQZxxII7DPGxU+yr/337SAVxSHyzM6Z/2KHRtSb1Axl+om2y9orHDuIM
+        DCsdOoP9Cfc4DveeJ7y21w1VzyfMExC+VFHvSUa/IxDvDpT4gltD8nWgIEYX
+        vrntGBtMKLQxTzo29+jJxhH6EIUCzbDmYQWjOcYGGiuFI+xviJftWaDqN1Qn
+        FofzKDz+1kajTTaEJpXF5o53c6AN3VNN7KsVGW7F9zzwxin5lc/FDP2fhweV
+        t8ti898rln8AMRwcAQ0DAAA=
+    http_version: 
+  recorded_at: Fri, 20 Dec 2013 22:05:42 GMT
+recorded_with: VCR 2.4.0

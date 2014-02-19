@@ -1,48 +1,77 @@
 require "sinatra/base"
 require "sinatra/json"
 require "endpoint_base"
-require "./lib/client.rb"
-Dir['./lib/**/*.rb'].each { |f| require f }
+
+require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase
   helpers Sinatra::JSON
 
-  post '/import' do
-    order_import = OrderImporter.new(@message[:payload], @message[:message_id], @config)
-    begin
-      result = order_import.consume
-      code = 200
-    rescue Exception => e
-      code = 500
-      result = {"error" => e.message, "backtrace" => e.backtrace.inspect}
-    end
-    process_result code, result
+  post '/products' do
+    code, notification = QBIntegration::Product.new(@message, @config).import
+    process_result code, notification
   end
 
-  post '/update' do
-    order_update = OrderUpdater.new(@message[:payload], @message[:message_id], @config)
+  post '/orders' do
     begin
-      result = order_update.consume
-      code = 200
-    rescue Exception => e
-      code = 500
-      result = {"error" => e.message, "backtrace" => e.backtrace.inspect}
+      code, notification = QBIntegration::Order.new(@message, @config).sync
+      process_result code, notification
+    rescue Exception => exception
+      process_result 500, {
+        'message_id' => @message_id,
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
     end
-    process_result code, result
-
   end
 
-  post '/status/:id_domain/:id' do
-    order_status = StatusChecker.new(@message[:payload], @message[:message_id], @config)
-    order_status.id = params[:id]
-    order_status.idDomain = params[:id_domain]
+  post '/returns' do
     begin
-      result = order_status.consume
-      code = 200
-    rescue Exception => e
-      code = 500
-      result = {"error" => e.message}
+      code, notification = QBIntegration::ReturnAuthorization.new(@message, @config).sync
+      process_result code, notification
+    rescue Exception => exception
+      process_result 500, {
+        'message_id' => @message_id,
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
     end
-    process_result code, result
+  end
+
+  post '/monitor_stock' do
+    begin
+      results = { message_id: @message[:message_id] }
+      if item = QBIntegration::Stock.new(@message, @config).item
+        @messages = [{
+          message: 'stock:actual',
+          payload: { sku: item.name, quantity: item.quantity_on_hand.to_i }
+        }]
+
+        process_result 200, results.merge!({ messages: @messages })
+      else
+        process_result 200, results
+      end
+    rescue => exception
+      process_result 500, {
+        'message_id' => @message_id,
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
+    end
   end
 end

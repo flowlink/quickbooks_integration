@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'SPR-00001'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="jdWRllnpcunyLOyUjdrghcENE5WDM7iwvgYB4XUTPpY",
+        oauth_signature="dcoz8iSXqlGN719XXQm5niBTOxo%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386901546", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 02:25:47 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - 196ca6de-e281-4d33-beaa-56bf41828707
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '439'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T18:25:47.586-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>4</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:03:28-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:03:28-08:00</LastUpdatedTime></MetaData><Name>SPR-00001</Name><Description>Spree
+        Baseball Jersey</Description><Active>true</Active><FullyQualifiedName>SPR-00001</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>19.99</UnitPrice><Type>Service</Type><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 02:25:48 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1014843225/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-00004'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="lAOe9r5EWT7pL3N1z17gsWlDzAyxhf4xUaMAZilVPik",
+        oauth_signature="B8LDTCDEiQ0JnDPKDqfvKd5BzD0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1386901548", oauth_token="qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 13 Dec 2013 02:25:48 GMT
+      Server:
+      - Apache/2.2.22 (Unix)
+      Qbo-Version:
+      - '68.147'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Intuit-Tid:
+      - eacd6140-47a2-465a-914b-128c98216844
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Content-Length:
+      - '445'
+      Connection:
+      - close
+      Content-Type:
+      - application/xml;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><IntuitResponse
+        xmlns="http://schema.intuit.com/finance/v3" time="2013-12-12T18:25:48.706-08:00"><QueryResponse
+        startPosition="1" maxResults="1"><Item domain="QBO" sparse="false"><Id>5</Id><SyncToken>0</SyncToken><MetaData><CreateTime>2013-12-12T18:03:31-08:00</CreateTime><LastUpdatedTime>2013-12-12T18:03:31-08:00</LastUpdatedTime></MetaData><Name>ROR-00004</Name><Description>Ruby
+        on Rails Baseball Jersey</Description><Active>true</Active><FullyQualifiedName>ROR-00004</FullyQualifiedName><Taxable>false</Taxable><SalesTaxIncluded>false</SalesTaxIncluded><UnitPrice>19.99</UnitPrice><Type>Service</Type><PurchaseTaxIncluded>false</PurchaseTaxIncluded><PurchaseCost>0</PurchaseCost><TrackQtyOnHand>false</TrackQtyOnHand></Item></QueryResponse></IntuitResponse>
+    http_version: 
+  recorded_at: Fri, 13 Dec 2013 02:25:49 GMT
+recorded_with: VCR 2.4.0
