@@ -1,6 +1,6 @@
 source 'https://www.rubygems.org'
 
-gem 'endpoint_base', :github => 'spree/endpoint_base'
+gem 'endpoint_base', github: 'spree/endpoint_base', branch: 'master'
 gem 'thin'
 gem 'quickbooks-ruby', github: 'huoxito/quickbooks-ruby', branch: 'item-unit-price'
 gem 'tzinfo'
