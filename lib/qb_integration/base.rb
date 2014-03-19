@@ -2,7 +2,7 @@ module QBIntegration
   class Base
     include Helper
 
-    attr_accessor :payload, :original, :message_name, :message_id, :config
+    attr_accessor :payload, :message_name, :message_id, :config
 
     def initialize(payload = {}, config)
       @config = config

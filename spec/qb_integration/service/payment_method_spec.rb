@@ -5,8 +5,7 @@ module QBIntegration
     describe PaymentMethod do
       let(:payload) do
         {
-          "order" => Factories.order,
-          "original" => Factories.original
+          "order" => Factories.order
         }.with_indifferent_access
       end
 
@@ -26,12 +25,12 @@ module QBIntegration
 
       context ".augury_name" do
         it "picks credit card if provided" do
-          message[:payload][:original][:credit_cards][0][:cc_type] = "Visa"
+          message[:payload][:order][:payments][0][:payment_method] = "Visa"
           expect(subject.augury_name).to eq "Visa"
         end
 
         it "picks payment method name if credit card not provided" do
-          message[:payload][:original][:credit_cards] = []
+          message[:payload][:order][:credit_cards] = []
           expect(subject.augury_name).to eq payload[:order][:payments].first[:payment_method]
         end
       end

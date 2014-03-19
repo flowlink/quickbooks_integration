@@ -69,7 +69,6 @@ describe QuickbooksEndpoint do
         message[:message] = "order:canceled"
         order = Factories.new_credit_memo
         message[:payload][:order] = order[:order]
-        message[:payload][:original] = order[:original]
       end
 
       it "generates a json response with an info notification" do

@@ -159,13 +159,13 @@ module Factories
                   "number"=> 6,
                   "status"=> "completed",
                   "amount"=> 5,
-                  "payment_method"=> "Check"
+                  "payment_method"=> "visa"
               },
               {
                   "number"=> 5,
                   "status"=> "completed",
                   "amount"=> 109.95,
-                  "payment_method"=> "Credit Card"
+                  "payment_method"=> "visa"
               }
           ],
           "shipments"=> [
