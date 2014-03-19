@@ -1,70 +1,51 @@
 require 'spec_helper'
 
 describe QuickbooksEndpoint do
-  def auth
-    { 'HTTP_X_AUGURY_TOKEN' => 'x123', 'Content-Type' => 'application/json' }
-  end
-
   def parameters
-    [
-      {:name => 'quickbooks.access_token', :value => "123" },
-      {:name => 'quickbooks.access_secret', :value => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o" },
-      {:name => 'quickbooks.realm', :value => "1081126165" },
-      {:name => "quickbooks.deposit_to_account_name", :value => "Undeposited Funds"},
-      {:name => "quickbooks.payment_method_name", :value => [
+    { 
+      'quickbooks_access_token' => "123",
+      'quickbooks_access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
+      'quickbooks_realm' => "1081126165",
+      "quickbooks_deposit_to_account_name" => "Undeposited Funds",
+      "quickbooks_payment_method_name" => [
         {
           "master" => "MasterCard",
           "visa" => "Visa",
           "american_express" => "AmEx",
           "discover" => "Discover",
           "PayPal" => "PayPal"
-        }]
-      },
-      {:name => "quickbooks.shipping_item", :value => "Shipping Charges"},
-      {:name => "quickbooks.tax_item", :value => "State Sales Tax-NY"},
-      {:name => "quickbooks.discount_item", :value => "Discount"},
-      {:name => "quickbooks.account_name", :value => "Inventory Asset"},
-      {:name => "quickbooks.web_orders_user", :value => "false"}
-    ]
+        }
+      ],
+      "quickbooks_shipping_item" => "Shipping Charges",
+      "quickbooks_tax_item" => "State Sales Tax-NY",
+      "quickbooks_discount_item" => "Discount",
+      "quickbooks_account_name" => "Inventory Asset",
+      "quickbooks_web_orders_user" => "false"
+    }
   end
 
   describe "order sync" do
     let(:message) {
       {
-        :message_id => "abc",
-        :payload => {
-          "order" => Factories.order,
-          "original" => Factories.original,
-          "parameters" => parameters
-        }
+        "order" => Factories.order,
+        "parameters" => parameters
       }.with_indifferent_access
     }
 
     context "new sales receipt" do
-      shared_context "persist new sales receipt" do
+      context "persist new sales receipt" do
         it "generates a json response with an info notification" do
           # change order number in case you want to persist a new order
-          message[:payload][:order][:number] = "R45245242545"
-          message[:payload][:order][:placed_on] = "2013-12-18 14:51:18 -0300"
+          message[:order][:number] = "R45245242545"
+          message[:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
           VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post", match_requests_on: [:body, :method]) do
             post '/orders', message.to_json, auth
 
             response = JSON.parse(last_response.body)
-            response["message_id"].should eql "abc"
             response["notifications"].first["subject"].should match "Created Quickbooks Sales Receipt"
           end
         end
-      end
-
-      context "with order:new" do
-        before { message[:message] = "order:new" }
-        include_context "persist new sales receipt"
-      end
-
-      context "with order:updated" do
-        before { message[:message] = "order:updated" }
-        include_context "persist new sales receipt"
       end
     end
 

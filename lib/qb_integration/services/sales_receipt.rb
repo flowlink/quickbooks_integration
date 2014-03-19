@@ -57,7 +57,7 @@ module QBIntegration
           #
           # Quickbooks might return an weird error if the name here is already used
           # by other, I think, quickbooks account
-          income_account = account_service.find_by_name config.fetch("quickbooks.account_name")
+          income_account = account_service.find_by_name config.fetch("quickbooks_account_name")
 
           sales_receipt.line_items = line_service.build_lines income_account
 
@@ -69,8 +69,8 @@ module QBIntegration
           #   request: Business Validation Error: You need to select a different
           #   type of account for this transaction.
           #
-          if config.fetch("quickbooks.deposit_account", false).to_s == "true"
-            deposit_account = account_service.find_by_name config.fetch("quickbooks.deposit_to_account_name")
+          if config.fetch("quickbooks_deposit_account", false).to_s == "true"
+            deposit_account = account_service.find_by_name config.fetch("quickbooks_deposit_to_account_name")
             sales_receipt.deposit_to_account_id = deposit_account.id
           end
         end

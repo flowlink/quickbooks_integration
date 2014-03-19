@@ -1,5 +1,6 @@
 require "sinatra"
 require "endpoint_base"
+require "pry"
 
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
@@ -11,7 +12,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/orders' do
     begin
-      code, notification = QBIntegration::Order.new(@message, @config).sync
+      code, notification = QBIntegration::Order.new(@payload, @config).sync
       process_result code, notification
     rescue Exception => exception
       process_result 500, {

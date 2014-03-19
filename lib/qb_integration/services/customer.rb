@@ -49,7 +49,7 @@ module QBIntegration
 
       private
         def use_web_orders?
-          config.fetch('quickbooks.web_orders_user') == "true"
+          config.fetch('quickbooks_web_orders_user') == "true"
         end
     end
   end

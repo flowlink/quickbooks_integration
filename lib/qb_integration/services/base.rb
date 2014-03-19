@@ -28,7 +28,7 @@ module QBIntegration
       def create_service
         service = "Quickbooks::Service::#{@model_name}".constantize.new
         service.access_token = access_token
-        service.company_id = @config.fetch('quickbooks.realm')
+        service.company_id = @config.fetch('quickbooks_realm')
         service
       end
 
@@ -39,8 +39,8 @@ module QBIntegration
 
       def access_token
         @access_token ||= QBIntegration::Auth.new(
-          token: @config.fetch("quickbooks.access_token"),
-          secret: @config.fetch("quickbooks.access_secret")
+          token: @config.fetch("quickbooks_access_token"),
+          secret: @config.fetch("quickbooks_access_secret")
         ).access_token
       end
     end

@@ -11,7 +11,7 @@ module QBIntegration
         }.with_indifferent_access
       end
 
-      let(:config) { Factories.config }
+      include_examples "request parameters"
 
       subject { Line.new config, payload }
 
@@ -45,7 +45,7 @@ module QBIntegration
       context "returns the adjustments without originator_type" do
         it "returns as discount if amount < 0.0" do
           adjustment = { amount: "-5.0", originator_type: nil }
-          expect(subject.map_adjustment_sku adjustment).to eq config.fetch("quickbooks.discount_item")
+          expect(subject.map_adjustment_sku adjustment).to eq config.fetch("quickbooks_discount_item")
         end
       end
     end

@@ -12,16 +12,16 @@ module QBIntegration
 
       let(:config) do
         {
-          'quickbooks.realm' => "1081126165",
-          'quickbooks.access_token' => "123",
-          'quickbooks.access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
-          "quickbooks.payment_method_name" => [{ "visa" => "Discover" }],
-          'quickbooks.account_name' => "Inventory Asset",
-          "quickbooks.shipping_item" => "Shipping Charges",
-          "quickbooks.tax_item" => "State Sales Tax-NY",
-          "quickbooks.discount_item" => "Discount",
-          'quickbooks.deposit_to_account_name' => "Inventory Asset",
-          "quickbooks.web_orders_user" => "false"
+          'quickbooks_realm' => "1081126165",
+          'quickbooks_access_token' => "123",
+          'quickbooks_access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
+          "quickbooks_payment_method_name" => [{ "visa" => "Discover" }],
+          'quickbooks_account_name' => "Inventory Asset",
+          "quickbooks_shipping_item" => "Shipping Charges",
+          "quickbooks_tax_item" => "State Sales Tax-NY",
+          "quickbooks_discount_item" => "Discount",
+          'quickbooks_deposit_to_account_name' => "Inventory Asset",
+          "quickbooks_web_orders_user" => "false"
         }
       end
 
