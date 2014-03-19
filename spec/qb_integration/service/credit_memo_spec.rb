@@ -10,8 +10,7 @@ module QBIntegration
       context "order message" do
         let(:payload) do
           {
-            "order" => Factories.new_credit_memo[:order],
-            "original" => Factories.new_credit_memo[:original]
+            "order" => Factories.new_credit_memo[:order]
           }.with_indifferent_access
         end
 
@@ -28,8 +27,7 @@ module QBIntegration
         let(:payload) do
           {
             return_authorization: Factories.return_authorization,
-            order: Factories.return_authorization["order"],
-            original: Factories.return_authorization
+            order: Factories.return_authorization["order"]
           }.with_indifferent_access
         end
 

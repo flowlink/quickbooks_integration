@@ -1,18 +1,17 @@
 module QBIntegration
   module Service
     class PaymentMethod < Base
-      attr_reader :order, :original
+      attr_reader :order
 
       def initialize(config, payload)
         super("PaymentMethod", config)
 
         @order = payload[:order]
-        @original = payload[:original]
       end
 
       def augury_name
-        if original.has_key?("credit_cards") && !original["credit_cards"].empty?
-          original["credit_cards"].first["cc_type"]
+        if order.has_key?("credit_cards") && !order["credit_cards"].empty?
+          order["credit_cards"].first["cc_type"]
         elsif order["payments"]
           order["payments"].first["payment_method"]
         else

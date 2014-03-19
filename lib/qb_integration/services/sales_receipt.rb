@@ -8,7 +8,6 @@ module QBIntegration
         super("SalesReceipt", config)
 
         @order = payload[:order]
-        @original = payload[:original]
 
         if options[:dependencies]
           @payment_method_service = PaymentMethod.new config, payload

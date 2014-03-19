@@ -5,8 +5,7 @@ module QBIntegration
     describe SalesReceipt do
       let(:payload) do
         {
-          "order" => Factories.order,
-          "original" => Factories.original
+          "order" => Factories.order
         }.with_indifferent_access
       end
 

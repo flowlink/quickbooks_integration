@@ -13,7 +13,7 @@ module QBIntegration
         @model_name = "Line"
         @order = payload[:order] || {}
         @line_items = order[:line_items] || []
-        @adjustments = payload[:original][:adjustments]
+        @adjustments = payload[:order][:adjustments]
         @return_authorization = payload[:return_authorization] || {}
         @inventory_units = return_authorization[:inventory_units] || []
 
@@ -49,7 +49,7 @@ module QBIntegration
       end
 
       def build_from_adjustments(account = nil)
-        eligible_adjustments.each do |adjustment|
+        adjustments.each do |adjustment|
           line = create_model
 
           sku = map_adjustment_sku(adjustment)
@@ -115,10 +115,6 @@ module QBIntegration
         else
           "Manual Charge"
         end
-      end
-
-      def eligible_adjustments
-        adjustments.select { |a| a["eligible"] }
       end
     end
   end
