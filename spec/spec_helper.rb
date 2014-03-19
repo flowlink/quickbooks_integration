@@ -6,6 +6,8 @@ require 'rubygems'
 require 'bundler'
 require "pstore"
 
+require 'spree/testing_support/controllers'
+
 Bundler.require(:default, :test)
 
 ENV['ENDPOINT_KEY'] = 'x123'
@@ -28,5 +30,5 @@ end
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
-  config.include Sinatra::IntegratorUtils::Helpers
+  config.include Spree::TestingSupport::Controllers
 end
