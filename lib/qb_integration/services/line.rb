@@ -101,14 +101,14 @@ module QBIntegration
       def map_adjustment_sku(adjustment)
         case adjustment[:originator_type]
         when "Spree::ShippingMethod"
-          config.fetch("quickbooks.shipping_item")
+          config.fetch("quickbooks_shipping_item")
         when "Spree::TaxRate"
-          config.fetch("quickbooks.tax_item")
+          config.fetch("quickbooks_tax_item")
         when "Spree::PromotionAction"
-          config.fetch("quickbooks.discount_item")
+          config.fetch("quickbooks_discount_item")
         when nil
           if adjustment[:amount].to_f < 0.0
-            config.fetch("quickbooks.discount_item")
+            config.fetch("quickbooks_discount_item")
           elsif adjustment[:amount].to_f > 0.0
             "Manual Charge"
           end

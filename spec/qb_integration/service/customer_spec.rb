@@ -16,10 +16,10 @@ module QBIntegration
 
       let(:config) do
         {
-          'quickbooks.realm' => "1014843225",
-          'quickbooks.access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
-          'quickbooks.access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
-          'quickbooks.web_orders_user' => "false"
+          'quickbooks_realm' => "1014843225",
+          'quickbooks_access_token' => "qyprdINz6x1Qccyyj7XjELX7qxFBE9CSTeNLmbPYb7oMoktC",
+          'quickbooks_access_secret' => "wiCLZbYVDH94UgmJDdDWxpYFG2CAh30v0sOjOsDX",
+          'quickbooks_web_orders_user' => "false"
         }
       end
 
@@ -46,7 +46,7 @@ module QBIntegration
 
       context "Web Order as customer name" do
         before do
-          config['quickbooks.web_orders_user'] = "true"
+          config['quickbooks_web_orders_user'] = "true"
         end
 
         it "creates a new customer named Web Order" do

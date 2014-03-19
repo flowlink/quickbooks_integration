@@ -4,13 +4,9 @@ module QBIntegration
 
     attr_accessor :payload, :original, :message_name, :message_id, :config
 
-    def initialize(message = {}, config)
+    def initialize(payload = {}, config)
       @config = config
-
-      @payload = message[:payload]
-      @original = payload[:original]
-      @message_name = message[:message]
-      @message_id = message[:message_id]
+      @payload = payload
     end
 
     def item_service

@@ -16,9 +16,9 @@ module QBIntegration
 
       let(:config) do
         {
-          'quickbooks.realm' => "123",
-          'quickbooks.access_token' => "123",
-          'quickbooks.access_secret' => "123"
+          'quickbooks_realm' => "123",
+          'quickbooks_access_token' => "123",
+          'quickbooks_access_secret' => "123"
         }
       end
 
@@ -38,7 +38,7 @@ module QBIntegration
 
       context ".matching_payment" do
         before do
-          config["quickbooks.payment_method_name"] = [{ "visa" => "Discover" }]
+          config["quickbooks_payment_method_name"] = [{ "visa" => "Discover" }]
         end
 
         it "maps qb_name and store names properly" do

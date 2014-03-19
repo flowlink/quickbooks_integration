@@ -34,11 +34,11 @@ module QBIntegration
 
     private
     def load_configs
-      @income_account_id = account_id('quickbooks.income_account')
+      @income_account_id = account_id('quickbooks_income_account')
 
-      if @inventory_costing = (@config.fetch("quickbooks.inventory_costing").to_s == 'true')
-        @inventory_account_id = account_id('quickbooks.inventory_account')
-        @cogs_account_id = account_id('quickbooks.cogs_account')
+      if @inventory_costing = (@config.fetch("quickbooks_inventory_costing").to_s == 'true')
+        @inventory_account_id = account_id('quickbooks_inventory_account')
+        @cogs_account_id = account_id('quickbooks_cogs_account')
       end
     end
 
@@ -57,7 +57,7 @@ module QBIntegration
       }
 
       # Test accounts do not support track_inventory feature
-      if config.fetch("quickbooks.track_inventory", false).to_s == "true"
+      if config.fetch("quickbooks_track_inventory", false).to_s == "true"
         attrs.merge!({
           track_quantity_on_hand: true,
           quantity_on_hand: 1,

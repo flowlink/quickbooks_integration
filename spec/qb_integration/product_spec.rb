@@ -5,16 +5,12 @@ describe QBIntegration::Product do
     described_class.new(product_message, config)
   end
 
-  let(:config) { Factories.config }
+  include_examples "request parameters"
 
   context "error handling" do
     let(:product_message) do
       {
-        message: "product:new",
-        message_id: 123,
-        payload: {
-          product: Factories.product
-        }
+        product: Factories.product
       }.with_indifferent_access
     end
 
@@ -54,11 +50,7 @@ describe QBIntegration::Product do
   context "product already exists" do
     let(:product_message) do
       {
-        message: "product:new",
-        message_id: 123,
-        payload: {
-          product: Factories.product
-        }
+        product: Factories.product
       }.with_indifferent_access
     end
 
@@ -79,11 +71,7 @@ describe QBIntegration::Product do
     context "product with variants" do
       let(:product_message) do
         {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product('families')
-          }
+          product: Factories.product('families')
         }.with_indifferent_access
       end
 
@@ -102,7 +90,7 @@ describe QBIntegration::Product do
       context "user check track inventory flag" do
         it "sets product to track inventory" do
           config['quickbooks.track_inventory'] = "true"
-          product_message[:payload][:product] = Factories.product('grilos-grilos')
+          product_message[:product] = Factories.product('grilos-grilos')
           subject.stub time_now: "2014-02-17"
 
           VCR.use_cassette "product/track_inventory", match_requests_on: [:method, :body] do
@@ -119,11 +107,7 @@ describe QBIntegration::Product do
     context "product without variants" do
       let(:product_message) do
         {
-          message: "product:new",
-          message_id: 123,
-          payload: {
-            product: Factories.product_without_variants('NIN')
-          }
+          product: Factories.product_without_variants('NIN')
         }.with_indifferent_access
       end
 
@@ -137,7 +121,7 @@ describe QBIntegration::Product do
       end
 
       it "ensures unit price is persisted" do
-        product_message[:payload][:product] = Factories.product_without_variants('Second Thing')
+        product_message[:product] = Factories.product_without_variants('Second Thing')
 
         VCR.use_cassette "product/price_check", match_requests_on: [:method, :body] do
           code, notification = subject.import

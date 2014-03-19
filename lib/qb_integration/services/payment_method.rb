@@ -21,7 +21,7 @@ module QBIntegration
       end
 
       def qb_name
-        payment_method_name_mapping = config.fetch("quickbooks.payment_method_name")
+        payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
         lookup_value!(payment_method_name_mapping.first, augury_name)
       end
 
