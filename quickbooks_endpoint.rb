@@ -1,12 +1,9 @@
-require "sinatra/base"
-require "sinatra/json"
+require "sinatra"
 require "endpoint_base"
 
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
-class QuickbooksEndpoint < EndpointBase
-  helpers Sinatra::JSON
-
+class QuickbooksEndpoint < EndpointBase::Sinatra::Base 
   post '/products' do
     code, notification = QBIntegration::Product.new(@message, @config).import
     process_result code, notification

@@ -1,6 +1,10 @@
 source 'https://www.rubygems.org'
 
-gem 'endpoint_base', github: 'spree/endpoint_base', branch: 'master'
+gem 'sinatra'
+gem 'tilt', '~> 1.4.1'
+gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
+gem 'endpoint_base', :github => 'spree/endpoint_base'
+
 gem 'thin'
 gem 'quickbooks-ruby', github: 'huoxito/quickbooks-ruby', branch: 'item-unit-price'
 gem 'tzinfo'
