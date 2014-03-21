@@ -41,10 +41,10 @@ module QBIntegration
         end
       end
 
-      context "returns the adjustments without originator_type" do
+      context "returns the adjustments name" do
         it "returns as discount if amount < 0.0" do
-          adjustment = { amount: "-5.0", originator_type: nil }
-          expect(subject.map_adjustment_sku adjustment).to eq config.fetch("quickbooks_discount_item")
+          adjustment = { amount: "-5.0", name: "Discount" }
+          expect(subject.map_adjustment_sku adjustment).to eq "Discount"
         end
       end
     end
