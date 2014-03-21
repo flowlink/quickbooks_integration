@@ -121,15 +121,19 @@ module Factories
           "adjustments"=> [
               {
                   "name"=> "Shipping",
-                  "value"=> 5
+                  # drop this key once cassets are replayed
+                  "originator_type"=> "Spree::ShippingMethod",
+                  "value"=> "5.0"
               },
               {
                   "name"=> "Shipping",
-                  "value"=> 5
+                  "originator_type"=> "Spree::ShippingMethod",
+                  "value"=> "5.0"
               },
               {
                   "name"=> "North America 5.0",
-                  "value"=> 5
+                  "originator_type"=> "Spree::TaxRate",
+                  "value"=> "5.0"
               }
           ],
           "shipping_address"=> {
