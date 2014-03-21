@@ -35,30 +35,12 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
-  post '/monitor_stock' do
-    begin
-      results = { message_id: @message[:message_id] }
-      if item = QBIntegration::Stock.new(@message, @config).item
-        @messages = [{
-          message: 'stock:actual',
-          payload: { sku: item.name, quantity: item.quantity_on_hand.to_i }
-        }]
-
-        process_result 200, results.merge!({ messages: @messages })
-      else
-        process_result 200, results
-      end
-    rescue => exception
-      process_result 500, {
-        'message_id' => @message_id,
-        'notifications' => [
-          {
-            "level" => "error",
-            "subject" => exception.message,
-            "description" => exception.backtrace.join("\n")
-          }
-        ]
-      }
+  post '/get_inventory' do
+    if item = QBIntegration::Stock.new(@payload, @config).item
+      add_object :inventory, { sku: item.name, quantity: item.quantity_on_hand.to_i }
+      result 200
+    else
+      result 200
     end
   end
 end
