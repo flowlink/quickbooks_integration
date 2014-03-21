@@ -77,31 +77,27 @@ describe QuickbooksEndpoint do
   describe "return authorizations" do
     let(:message) do
       {
-        message: "return_authorization:new",
-        payload: {
-          return_authorization: Factories.return_authorization,
-          original: Factories.return_authorization,
-          parameters: parameters
-        }
+        return_authorization: Factories.return_authorization,
+        parameters: parameters
       }.with_indifferent_access
     end
 
     it "generates a json response with an info notification" do
       VCR.use_cassette("credit_memo/create_from_return", match_requests_on: [:method, :body]) do
-        post '/returns', message.to_json, auth
-        response = JSON.parse(last_response.body)
-        response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
+        post '/add_return', message.to_json, auth
+        last_response.status.should eql 200
+
+        expect(json_response[:summary]).to match "Created Quickbooks Credit Memo"
       end
     end
 
     it "returns 500 if order return was not sync yet" do
-      message[:payload][:return_authorization][:order][:number] = "imnotthereatall"
+      message[:return_authorization][:order][:number] = "imnotthereatall"
 
       VCR.use_cassette("credit_memo/return_authorization_non_sync_order", match_requests_on: [:body, :method]) do
-        post '/returns', message.to_json, auth
+        post '/add_return', message.to_json, auth
         last_response.status.should eql 500
-        response = JSON.parse(last_response.body)
-        response["notifications"].first["subject"].should match "Received return for order not sync"
+        expect(json_response[:summary]).to match "Received return for order not sync"
       end
     end
 
@@ -110,10 +106,10 @@ describe QuickbooksEndpoint do
 
       it "updates existing return just fine" do
         VCR.use_cassette("credit_memo/sync_return_authorization_updated", match_requests_on: [:body, :method]) do
-          post '/returns', message.to_json, auth
+          post '/update_return', message.to_json, auth
+
           last_response.status.should eql 200
-          response = JSON.parse(last_response.body)
-          response["notifications"].first["subject"].should match "Updated Quickbooks Credit Memo"
+          expect(json_response[:summary]).to match "Updated Quickbooks Credit Memo"
         end
       end
     end

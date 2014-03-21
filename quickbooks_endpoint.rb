@@ -25,22 +25,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
-  post '/returns' do
-    begin
-      code, notification = QBIntegration::ReturnAuthorization.new(@message, @config).sync
-      process_result code, notification
-    rescue => exception
-      process_result 500, {
-        'message_id' => @message_id,
-        'notifications' => [
-          {
-            "level" => "error",
-            "subject" => exception.message,
-            "description" => exception.backtrace.join("\n")
-          }
-        ]
-      }
-    end
+  post '/add_return' do
+    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).create
+    result code, summary
+  end
+
+  post '/update_return' do
+    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).update
+    result code, summary
   end
 
   post '/monitor_stock' do
