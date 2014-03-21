@@ -111,11 +111,7 @@ module QBIntegration
         when "Spree::PromotionAction"
           config.fetch("quickbooks_discount_item")
         when nil
-          if adjustment[:amount].to_f < 0.0
-            config.fetch("quickbooks_discount_item")
-          elsif adjustment[:amount].to_f > 0.0
-            "Manual Charge"
-          end
+          adjustment[:name]
         else
           "Manual Charge"
         end
