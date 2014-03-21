@@ -22,7 +22,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/update_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).update
-    process_result code, summary
+    result code, summary
   end
 
   post '/cancel_order' do
