@@ -18,7 +18,7 @@ module QBIntegration
       end
 
       def find_by_order_number
-        query = "SELECT * FROM SalesReceipt WHERE DocNumber = '#{order[:number]}'"
+        query = "SELECT * FROM SalesReceipt WHERE DocNumber = '#{order_number}'"
         quickbooks.query(query).entries.first
       end
 
@@ -30,7 +30,7 @@ module QBIntegration
 
       def update(sales_receipt)
         build sales_receipt
-        unless order[:shipments].empty?
+        if order[:shipments] && !order[:shipments].empty?
           sales_receipt.tracking_num = shipments_tracking_number.join(", ")
           sales_receipt.ship_method_ref = order[:shipments].last[:shipping_method]
           sales_receipt.ship_date = order[:shipments].last[:shipped_at]
@@ -39,8 +39,12 @@ module QBIntegration
       end
 
       private
+        def order_number
+          order[:number] || order[:id]
+        end
+
         def build(sales_receipt)
-          sales_receipt.doc_number = order["number"]
+          sales_receipt.doc_number = order_number
           sales_receipt.email = order["email"]
           sales_receipt.total = order['totals']['order']
 
