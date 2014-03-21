@@ -10,29 +10,26 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     process_result code, notification
   end
 
-  post '/orders' do
-    begin
-      code, notification = QBIntegration::Order.new(@payload, @config).sync
-      process_result code, notification
-    rescue Exception => exception
-      process_result 500, {
-        'message_id' => @message_id,
-        'notifications' => [
-          {
-            "level" => "error",
-            "subject" => exception.message,
-            "description" => exception.backtrace.join("\n")
-          }
-        ]
-      }
-    end
+  post '/add_order' do
+    code, summary = QBIntegration::Order.new(@payload, @config).create
+    result code, summary
+  end
+
+  post '/update_order' do
+    code, summary = QBIntegration::Order.new(@payload, @config).update
+    process_result code, summary
+  end
+
+  post '/cancel_order' do
+    code, summary = QBIntegration::Order.new(@payload, @config).cancel
+    result code, summary
   end
 
   post '/returns' do
     begin
       code, notification = QBIntegration::ReturnAuthorization.new(@message, @config).sync
       process_result code, notification
-    rescue Exception => exception
+    rescue => exception
       process_result 500, {
         'message_id' => @message_id,
         'notifications' => [

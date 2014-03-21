@@ -40,45 +40,35 @@ describe QuickbooksEndpoint do
           message[:order][:placed_on] = "2013-12-18 14:51:18 -0300"
 
           VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post", match_requests_on: [:body, :method]) do
-            post '/orders', message.to_json, auth
-
-            response = JSON.parse(last_response.body)
-            response["notifications"].first["subject"].should match "Created Quickbooks Sales Receipt"
+            post '/add_order', message.to_json, auth
+            expect(json_response[:summary]).to match "Created Quickbooks Sales Receipt"
           end
         end
       end
     end
 
-    context "existing sales receipt with order:updated" do
-      before { message[:message] = "order:updated" }
-
+    context "existing sales receipt" do
       it "updates sales receipt just fine" do
         VCR.use_cassette("sales_receipt/sync_updated_order_post", match_requests_on: [:body, :method]) do
-          post '/orders', message.to_json, auth
+          post '/update_order', message.to_json, auth
           last_response.status.should eql 200
 
-          response = JSON.parse(last_response.body)
-          response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should match "Updated Quickbooks Sales Receipt"
+          expect(json_response[:summary]).to match "Updated Quickbooks Sales Receipt"
         end
       end
     end
 
     context "order canceled" do
       before do
-        message[:message] = "order:canceled"
-        order = Factories.new_credit_memo
-        message[:payload][:order] = order[:order]
+        message[:order] = Factories.new_credit_memo[:order]
       end
 
       it "generates a json response with an info notification" do
         VCR.use_cassette("credit_memo/create_from_receipt", match_requests_on: [:body, :method]) do
-          post '/orders', message.to_json, auth
+          post '/cancel_order', message.to_json, auth
           last_response.status.should eql 200
 
-          response = JSON.parse(last_response.body)
-          response["message_id"].should eql "abc"
-          response["notifications"].first["subject"].should match "Created Quickbooks Credit Memo"
+          expect(json_response[:summary]).to match "Created Quickbooks Credit Memo"
         end
       end
     end
@@ -88,7 +78,6 @@ describe QuickbooksEndpoint do
     let(:message) do
       {
         message: "return_authorization:new",
-        message_id: "abc",
         payload: {
           return_authorization: Factories.return_authorization,
           original: Factories.return_authorization,
@@ -133,7 +122,6 @@ describe QuickbooksEndpoint do
   context "monitor stock" do
     let(:message) do
       {
-        :message_id => "abc",
         :payload => { "sku" => "4553254352", "parameters" => parameters }
       }.with_indifferent_access
     end
