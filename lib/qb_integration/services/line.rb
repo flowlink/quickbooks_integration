@@ -52,20 +52,23 @@ module QBIntegration
         adjustments.each do |adjustment|
           line = create_model
 
+          # TODO Drop this method once all vcr cassetes are replayed 
+          # Lets use "label" as sku. Previous originator_type is too
+          # much Spree specific
           sku = map_adjustment_sku(adjustment)
 
-          line.amount = adjustment["amount"]
-          line.description = adjustment["label"]
+          line.amount = adjustment["value"]
+          line.description = adjustment["name"]
 
           # make an adjustment look like a line_item
-          adjustment[:price] = adjustment["amount"]
-          adjustment[:name] = adjustment["label"]
+          adjustment[:price] = adjustment["value"]
+          adjustment[:name] = adjustment["name"]
           adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
             sales_item.quantity = 1
-            sales_item.unit_price = adjustment["amount"]
+            sales_item.unit_price = adjustment["value"]
           end
 
           lines.push line
@@ -98,6 +101,7 @@ module QBIntegration
       end
 
       # NOTE Watch out for Spree >= 2.2
+      # TODO Drop this method once all vcr cassetes are replayed 
       def map_adjustment_sku(adjustment)
         case adjustment[:originator_type]
         when "Spree::ShippingMethod"
