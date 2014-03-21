@@ -139,4 +139,16 @@ describe QuickbooksEndpoint do
       end
     end
   end
+
+  context "products" do
+    context "account not found" do
+      let(:config) do
+        c = Factories.config
+        c["quickbooks_income_account"] = "Not to be found"
+        c
+      end
+
+      it "generates an error notification"
+    end
+  end
 end
