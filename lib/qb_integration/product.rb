@@ -6,30 +6,14 @@ module QBIntegration
       super
 
       @product_payload = @product = @payload[:product]
-      @notifications = []
     end
 
-    # TODO We should probably not rescue general exceptions here. Do it on the
-    # sinatra class instead. Rescueing here makes it confusing more difficult
-    # to track errors when running the specs for this class
     def import
       load_configs
-
       import_product(@product)
-
       @product.fetch(:variants, []).collect {|variant| import_product(variant)}
 
-      [200, notifications]
-
-    rescue => e
-      [500, {
-        'message_id' => @message_id,
-        'notifications' => [{
-          'level' => 'error',
-          'subject' => e.message,
-          'description' => e.backtrace.join('\n')
-        }]
-      }]
+      [200, @notification]
     end
 
     private
@@ -97,23 +81,8 @@ module QBIntegration
       @parent_ref ||= item_service.find_by_sku(@product[:sku]).id
     end
 
-    def notifications
-      notifications_json = @notifications.map do |text|
-        {
-          'level' => 'info',
-          'subject' => text,
-          'description' => text
-        }
-      end
-
-      {
-        'message_id' => @message_id,
-        'notifications' => notifications_json
-      }
-    end
-
     def add_notification(operation, product)
-      @notifications.push(text[operation] % product[:sku])
+      @notification = text[operation] % product[:sku]
     end
 
     def text

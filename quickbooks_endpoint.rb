@@ -5,9 +5,14 @@ require "pry"
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base 
-  post '/products' do
-    code, notification = QBIntegration::Product.new(@message, @config).import
-    process_result code, notification
+  post '/add_product' do
+    code, summary = QBIntegration::Product.new(@payload, @config).import
+    result code, summary
+  end
+
+  post '/update_product' do
+    code, summary = QBIntegration::Product.new(@payload, @config).import
+    result code, summary
   end
 
   post '/add_order' do

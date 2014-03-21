@@ -5,45 +5,13 @@ describe QBIntegration::Product do
     described_class.new(product_message, config)
   end
 
-  include_examples "request parameters"
+  let(:config) { Factories.config }
 
   context "error handling" do
     let(:product_message) do
       {
         product: Factories.product
       }.with_indifferent_access
-    end
-
-    context "missing parameters" do
-      let(:config) {{}}
-
-      it "generates an error notification" do
-        VCR.use_cassette "product_importer/missing_config", match_requests_on: [:method, :body] do
-          code, notification = subject.import
-
-          expect(code).to eq 500
-          expect(notification["notifications"].count).to eq 1
-          expect(notification["notifications"][0]["subject"]).to include "key not found"
-        end
-      end
-    end
-
-    context "account not found" do
-      let(:config) do
-        c = Factories.config
-        c["quickbooks.income_account"] = "Not to be found"
-        c
-      end
-
-      it "generates an error notification" do
-        VCR.use_cassette "product/missing_account", match_requests_on: [:method, :body] do
-          code, notification = subject.import
-
-          expect(code).to eq 500
-          expect(notification["notifications"].count).to eq 1
-          expect(notification["notifications"][0]["subject"]).to include "No Account"
-        end
-      end
     end
   end
 
@@ -57,14 +25,11 @@ describe QBIntegration::Product do
     it "updates the product" do
       VCR.use_cassette "product/update_variants", match_requests_on: [:method, :body] do
         code, note = subject.import
-
         expect(code).to eq 200
-        expect(note["notifications"].count).to eq 3
-        expect(note["notifications"][0]["subject"]).to include "Product ROR-TS updated"
-        expect(note["notifications"][1]["subject"]).to include "Product ROR-TS-v-1 updated"
-        expect(note["notifications"][2]["subject"]).to include "Product ROR-TS-v-2 updated"
       end
     end
+
+    it "what about variants"
   end
 
   context "products doesnt exist" do
@@ -78,18 +43,13 @@ describe QBIntegration::Product do
       it "creates the product" do
         VCR.use_cassette "product/new_variants", match_requests_on: [:method, :body] do
           code, notification = subject.import
-
           expect(code).to eq 200
-          expect(notification["notifications"].count).to eq 3
-          expect(notification["notifications"][0]["subject"]).to include "families"
-          expect(notification["notifications"][1]["subject"]).to include "families-v-1"
-          expect(notification["notifications"][2]["subject"]).to include "families-v-2"
         end
       end
 
       context "user check track inventory flag" do
         it "sets product to track inventory" do
-          config['quickbooks.track_inventory'] = "true"
+          config['quickbooks_track_inventory'] = "true"
           product_message[:product] = Factories.product('grilos-grilos')
           subject.stub time_now: "2014-02-17"
 
@@ -116,7 +76,7 @@ describe QBIntegration::Product do
           code, notification = subject.import
 
           expect(code).to eq 200
-          expect(notification["notifications"][0]["subject"]).to include "Product NIN imported"
+          expect(notification).to match "Product NIN imported"
         end
       end
 
