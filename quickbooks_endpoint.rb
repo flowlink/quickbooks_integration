@@ -1,6 +1,6 @@
 require "sinatra"
 require "endpoint_base"
-require "pry"
+# require "pry"
 
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
