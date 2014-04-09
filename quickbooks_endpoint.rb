@@ -1,10 +1,11 @@
 require "sinatra"
 require "endpoint_base"
-# require "pry"
 
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base 
+  endpoint_key ENV["ENDPOINT_KEY"]
+
   post '/add_product' do
     code, summary = QBIntegration::Product.new(@payload, @config).import
     result code, summary
