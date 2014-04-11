@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/endpoint_base.git
-  revision: 3f60269d2dce35d628928bd1b5573d0a375d3995
+  revision: fa81866f36c9ba584a1e81d581af1bf96b455193
   specs:
     endpoint_base (0.3)
       activesupport
@@ -57,9 +57,9 @@ GEM
       guard (>= 0.10.0)
     highline (1.6.19)
     i18n (0.6.9)
-    jbuilder (2.0.4)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
+    jbuilder (2.0.6)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
     json (1.8.1)
     kgio (2.8.0)
     listen (0.7.3)
