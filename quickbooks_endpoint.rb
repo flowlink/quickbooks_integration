@@ -4,30 +4,22 @@ require "endpoint_base"
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base 
-  endpoint_key ENV["ENDPOINT_KEY"]
-
   post '/add_product' do
     begin
       code, summary = QBIntegration::Product.new(@payload, @config).import
       result code, summary
     rescue => e
-      set_summary e.message
-
-      process_result 500, {
-        'notifications' => [
-          {
-            "level" => "error",
-            "subject" => exception.message,
-            "description" => exception.backtrace.join("\n")
-          }
-        ]
-      }
+      result 500, e.message
     end
   end
 
   post '/update_product' do
-    code, summary = QBIntegration::Product.new(@payload, @config).import
-    result code, summary
+    begin
+      code, summary = QBIntegration::Product.new(@payload, @config).import
+      result code, summary
+    rescue => e
+      result 500, e.message
+    end
   end
 
   post '/add_order' do
@@ -35,28 +27,26 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Order.new(@payload, @config).create
       result code, summary
     rescue => e
-      set_summary e.message
-
-      process_result 500, {
-        'notifications' => [
-          {
-            "level" => "error",
-            "subject" => exception.message,
-            "description" => exception.backtrace.join("\n")
-          }
-        ]
-      }
+      result 500, e.message
     end
   end
 
   post '/update_order' do
-    code, summary = QBIntegration::Order.new(@payload, @config).update
-    result code, summary
+    begin
+      code, summary = QBIntegration::Order.new(@payload, @config).update
+      result code, summary
+    rescue => e
+      result 500, e.message
+    end
   end
 
   post '/cancel_order' do
-    code, summary = QBIntegration::Order.new(@payload, @config).cancel
-    result code, summary
+    begin
+      code, summary = QBIntegration::Order.new(@payload, @config).cancel
+      result code, summary
+    rescue => e
+      result 500, e.message
+    end
   end
 
   post '/add_return' do
