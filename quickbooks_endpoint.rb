@@ -7,8 +7,22 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   endpoint_key ENV["ENDPOINT_KEY"]
 
   post '/add_product' do
-    code, summary = QBIntegration::Product.new(@payload, @config).import
-    result code, summary
+    begin
+      code, summary = QBIntegration::Product.new(@payload, @config).import
+      result code, summary
+    rescue => e
+      set_summary e.message
+
+      process_result 500, {
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
+    end
   end
 
   post '/update_product' do
@@ -21,7 +35,17 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Order.new(@payload, @config).create
       result code, summary
     rescue => e
-      result 500, e.message
+      set_summary e.message
+
+      process_result 500, {
+        'notifications' => [
+          {
+            "level" => "error",
+            "subject" => exception.message,
+            "description" => exception.backtrace.join("\n")
+          }
+        ]
+      }
     end
   end
 
