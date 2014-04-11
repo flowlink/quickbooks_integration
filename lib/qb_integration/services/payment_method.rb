@@ -1,3 +1,4 @@
+require 'pry'
 module QBIntegration
   module Service
     class PaymentMethod < Base
@@ -20,7 +21,16 @@ module QBIntegration
       end
 
       def qb_name
-        payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
+        # NOTE due to bug which might send the mapping as a string. e.g.
+        #
+        #   "[{\"visa\":\"credit-card\",\"master-card\":\"credit-card\"}]"
+        #
+        if config.fetch("quickbooks_payment_method_name").is_a? String
+          payment_method_name_mapping = JSON.parse(config.fetch("quickbooks_payment_method_name"))
+        else
+          payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
+        end
+
         lookup_value!(payment_method_name_mapping.first, augury_name)
       end
 
