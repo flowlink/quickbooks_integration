@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 module QBIntegration
   module Service
     class PaymentMethod < Base
