@@ -78,7 +78,7 @@ describe QuickbooksEndpoint do
   describe "return authorizations" do
     let(:message) do
       {
-        return_authorization: Factories.return_authorization,
+        return: Factories.return_authorization,
         parameters: parameters
       }.with_indifferent_access
     end
@@ -93,7 +93,7 @@ describe QuickbooksEndpoint do
     end
 
     it "returns 500 if order return was not sync yet" do
-      message[:return_authorization][:order][:number] = "imnotthereatall"
+      message[:return][:order_id] = "imnotthereatall"
 
       VCR.use_cassette("credit_memo/return_authorization_non_sync_order", match_requests_on: [:body, :method]) do
         post '/add_return', message.to_json, auth

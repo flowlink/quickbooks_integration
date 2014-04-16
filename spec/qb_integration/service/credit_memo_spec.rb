@@ -26,8 +26,8 @@ module QBIntegration
       context "return authorization message" do
         let(:payload) do
           {
-            return_authorization: Factories.return_authorization,
-            order: Factories.return_authorization["order"]
+            return: Factories.return_authorization,
+            order: { id: Factories.return_authorization[:order_id] }
           }.with_indifferent_access
         end
 

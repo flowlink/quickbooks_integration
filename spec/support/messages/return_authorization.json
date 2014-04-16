@@ -1,632 +1,81 @@
 {
-  "return_authorization": {
-    "id": 2,
-    "number": "RMA025887824",
-    "state": "received",
-    "amount": "129.0",
-    "order_id": 13,
-    "reason": "",
-    "created_at": "2014-02-18T00:59:41.885Z",
-    "updated_at": "2014-02-18T00:59:49.022Z",
-    "inventory_units": [
-      {
-        "id": 21,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
-      },
-      {
-        "id": 20,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
-      },
-      {
-        "id": 19,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
-      }
-    ],
-    "order": {
-      "id": 13,
-      "number": "R841544811",
-      "item_total": "220.0",
-      "total": "96.0",
-      "ship_total": "5.0",
+  "id": 2,
+  "number": "RMA025887824",
+  "state": "received",
+  "amount": "129.0",
+  "order_id": "R841544811",
+  "reason": "",
+  "created_at": "2014-02-18T00:59:41.885Z",
+  "updated_at": "2014-02-18T00:59:49.022Z",
+  "inventory_units": [
+    {
+      "id": 21,
       "state": "returned",
-      "adjustment_total": "-124.0",
-      "user_id": 1,
-      "created_at": "2014-02-18T00:56:57.063Z",
-      "updated_at": "2014-02-18T00:59:49.211Z",
-      "completed_at": "2014-02-18T00:57:12.175Z",
-      "payment_total": "225.0",
-      "shipment_state": "shipped",
-      "payment_state": "credit_owed",
-      "email": "spree@example.com",
-      "special_instructions": null,
-      "channel": "spree",
-      "tax_total": "0.0",
-      "currency": "USD",
-      "bill_address": {
-        "id": 25,
-        "firstname": "Luis",
-        "lastname": "Braga",
-        "full_name": "Luis Braga",
-        "address1": "Avenue",
-        "address2": "",
-        "city": "Bethesda",
-        "zipcode": "20814",
-        "phone": "555 123-4567",
-        "company": null,
-        "alternative_phone": null,
-        "country_id": 49,
-        "state_id": 26,
-        "state_name": null,
-        "country": {
-          "id": 49,
-          "iso_name": "UNITED STATES",
-          "iso": "US",
-          "iso3": "USA",
-          "name": "United States",
-          "numcode": 840
-        },
-        "state": {
-          "id": 26,
-          "name": "Maryland",
-          "abbr": "MD",
-          "country_id": 49
-        }
-      },
-      "ship_address": {
-        "id": 26,
-        "firstname": "Luis",
-        "lastname": "Braga",
-        "full_name": "Luis Braga",
-        "address1": "Avenue",
-        "address2": "",
-        "city": "Bethesda",
-        "zipcode": "20814",
-        "phone": "555 123-4567",
-        "company": null,
-        "alternative_phone": null,
-        "country_id": 49,
-        "state_id": 26,
-        "state_name": null,
-        "country": {
-          "id": 49,
-          "iso_name": "UNITED STATES",
-          "iso": "US",
-          "iso3": "USA",
-          "name": "United States",
-          "numcode": 840
-        },
-        "state": {
-          "id": 26,
-          "name": "Maryland",
-          "abbr": "MD",
-          "country_id": 49
-        }
-      },
-      "line_items": [
-        {
-          "id": 13,
-          "quantity": 5,
-          "price": "44.0",
-          "variant_id": 29,
-          "created_at": "2014-02-18T00:56:57.102Z",
-          "updated_at": "2014-02-18T00:56:57.102Z",
-          "single_display_amount": "$44.00",
-          "display_amount": "$220.00",
-          "total": "220.0",
-          "variant": {
-            "id": 29,
-            "name": "Friday products!!!",
-            "sku": "rwgwergr45432",
-            "price": "44.0",
-            "weight": "0.0",
-            "height": null,
-            "width": null,
-            "depth": null,
-            "is_master": true,
-            "cost_price": null,
-            "permalink": "friday-products",
-            "product_created_at": "2014-02-14T22:26:50.688Z",
-            "product_updated_at": "2014-02-18T00:59:49.136Z",
-            "options_text": "",
-            "option_values": [
-
-            ],
-            "product": {
-              "taxons": [
-
-              ]
-            },
-            "product_id": 19,
-            "images": [
-
-            ]
-          }
-        }
-      ],
-      "payments": [
-        {
-          "id": 15,
-          "amount": "225.0",
-          "state": "completed",
-          "payment_method_id": 1,
-          "payment_method": {
-            "id": 1,
-            "name": "Credit Card",
-            "environment": "development"
-          }
-        }
-      ],
-      "shipments": [
-        {
-          "id": 13,
-          "tracking": null,
-          "number": "H81482518448",
-          "cost": "5.0",
-          "shipped_at": "2014-02-18T00:57:41.104Z",
-          "state": "shipped",
-          "order_id": "R841544811",
-          "stock_location_name": "default",
-          "shipping_rates": [
-            {
-              "id": 44,
-              "cost": "10.0",
-              "selected": false,
-              "shipment_id": 13,
-              "shipping_method_id": 2
-            },
-            {
-              "id": 45,
-              "cost": "15.0",
-              "selected": false,
-              "shipment_id": 13,
-              "shipping_method_id": 3
-            },
-            {
-              "id": 43,
-              "cost": "5.0",
-              "selected": true,
-              "shipment_id": 13,
-              "shipping_method_id": 1
-            }
-          ],
-          "shipping_method": {
-            "name": "UPS Ground (USD)",
-            "tracking_url": null
-          },
-          "inventory_units": [
-            {
-              "id": 18,
-              "variant_id": 29,
-              "state": "shipped"
-            },
-            {
-              "id": 17,
-              "variant_id": 29,
-              "state": "shipped"
-            },
-            {
-              "id": 21,
-              "variant_id": 29,
-              "state": "returned"
-            },
-            {
-              "id": 20,
-              "variant_id": 29,
-              "state": "returned"
-            },
-            {
-              "id": 19,
-              "variant_id": 29,
-              "state": "returned"
-            }
-          ]
-        }
-      ],
-      "adjustments": [
-        {
-          "id": 22,
-          "amount": "5.0",
-          "label": "Shipping",
-          "mandatory": true,
-          "eligible": true,
-          "originator_type": "Spree::ShippingMethod",
-          "adjustable_type": "Spree::Order"
-        },
-        {
-          "id": 23,
-          "amount": "-129.0",
-          "label": "RMA Credit",
-          "mandatory": null,
-          "eligible": true,
-          "originator_type": null,
-          "adjustable_type": "Spree::Order"
-        }
-      ],
-      "credit_cards": [
-        {
-          "id": 12,
-          "month": "6",
-          "year": "2016",
-          "cc_type": "visa",
-          "last_digits": "1111",
-          "first_name": "Luis",
-          "last_name": "Braga",
-          "gateway_customer_profile_id": "BGS-021522",
-          "gateway_payment_profile_id": null
-        }
-      ]
-    }
-  },
-  "original": {
-    "id": 2,
-    "number": "RMA025887824",
-    "state": "received",
-    "amount": "129.0",
-    "order_id": 13,
-    "reason": "",
-    "created_at": "2014-02-18T00:59:41.885Z",
-    "updated_at": "2014-02-18T00:59:49.022Z",
-    "inventory_units": [
-      {
-        "id": 21,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
-      },
-      {
-        "id": 20,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
-      },
-      {
-        "id": 19,
-        "state": "returned",
-        "variant_id": 29,
-        "order_id": 13,
-        "shipment_id": 13,
-        "return_authorization_id": 2,
-        "variant": {
-          "id": 29,
-          "name": "Friday products!!!",
-          "sku": "rwgwergr45432",
-          "price": "44.0",
-          "weight": "0.0",
-          "height": null,
-          "width": null,
-          "depth": null,
-          "is_master": true,
-          "cost_price": null,
-          "permalink": "friday-products",
-          "product_created_at": "2014-02-14T22:26:50.688Z",
-          "product_updated_at": "2014-02-18T00:59:49.136Z"
-        }
+      "variant_id": 29,
+      "order_id": 13,
+      "shipment_id": 13,
+      "return_authorization_id": 2,
+      "variant": {
+        "id": 29,
+        "name": "Friday products!!!",
+        "sku": "rwgwergr45432",
+        "price": "44.0",
+        "weight": "0.0",
+        "height": null,
+        "width": null,
+        "depth": null,
+        "is_master": true,
+        "cost_price": null,
+        "permalink": "friday-products",
+        "product_created_at": "2014-02-14T22:26:50.688Z",
+        "product_updated_at": "2014-02-18T00:59:49.136Z"
       }
-    ],
-    "order": {
-      "id": 13,
-      "number": "R841544811",
-      "item_total": "220.0",
-      "total": "96.0",
-      "ship_total": "5.0",
+    },
+    {
+      "id": 20,
       "state": "returned",
-      "adjustment_total": "-124.0",
-      "user_id": 1,
-      "created_at": "2014-02-18T00:56:57.063Z",
-      "updated_at": "2014-02-18T00:59:49.211Z",
-      "completed_at": "2014-02-18T00:57:12.175Z",
-      "payment_total": "225.0",
-      "shipment_state": "shipped",
-      "payment_state": "credit_owed",
-      "email": "spree@example.com",
-      "special_instructions": null,
-      "channel": "spree",
-      "tax_total": "0.0",
-      "currency": "USD",
-      "bill_address": {
-        "id": 25,
-        "firstname": "Luis",
-        "lastname": "Braga",
-        "full_name": "Luis Braga",
-        "address1": "Avenue",
-        "address2": "",
-        "city": "Bethesda",
-        "zipcode": "20814",
-        "phone": "555 123-4567",
-        "company": null,
-        "alternative_phone": null,
-        "country_id": 49,
-        "state_id": 26,
-        "state_name": null,
-        "country": {
-          "id": 49,
-          "iso_name": "UNITED STATES",
-          "iso": "US",
-          "iso3": "USA",
-          "name": "United States",
-          "numcode": 840
-        },
-        "state": {
-          "id": 26,
-          "name": "Maryland",
-          "abbr": "MD",
-          "country_id": 49
-        }
-      },
-      "ship_address": {
-        "id": 26,
-        "firstname": "Luis",
-        "lastname": "Braga",
-        "full_name": "Luis Braga",
-        "address1": "Avenue",
-        "address2": "",
-        "city": "Bethesda",
-        "zipcode": "20814",
-        "phone": "555 123-4567",
-        "company": null,
-        "alternative_phone": null,
-        "country_id": 49,
-        "state_id": 26,
-        "state_name": null,
-        "country": {
-          "id": 49,
-          "iso_name": "UNITED STATES",
-          "iso": "US",
-          "iso3": "USA",
-          "name": "United States",
-          "numcode": 840
-        },
-        "state": {
-          "id": 26,
-          "name": "Maryland",
-          "abbr": "MD",
-          "country_id": 49
-        }
-      },
-      "line_items": [
-        {
-          "id": 13,
-          "quantity": 5,
-          "price": "44.0",
-          "variant_id": 29,
-          "created_at": "2014-02-18T00:56:57.102Z",
-          "updated_at": "2014-02-18T00:56:57.102Z",
-          "single_display_amount": "$44.00",
-          "display_amount": "$220.00",
-          "total": "220.0",
-          "variant": {
-            "id": 29,
-            "name": "Friday products!!!",
-            "sku": "rwgwergr45432",
-            "price": "44.0",
-            "weight": "0.0",
-            "height": null,
-            "width": null,
-            "depth": null,
-            "is_master": true,
-            "cost_price": null,
-            "permalink": "friday-products",
-            "product_created_at": "2014-02-14T22:26:50.688Z",
-            "product_updated_at": "2014-02-18T00:59:49.136Z",
-            "options_text": "",
-            "option_values": [
-
-            ],
-            "product": {
-              "taxons": [
-
-              ]
-            },
-            "product_id": 19,
-            "images": [
-
-            ]
-          }
-        }
-      ],
-      "payments": [
-        {
-          "id": 15,
-          "amount": "225.0",
-          "state": "completed",
-          "payment_method_id": 1,
-          "payment_method": {
-            "id": 1,
-            "name": "Credit Card",
-            "environment": "development"
-          }
-        }
-      ],
-      "shipments": [
-        {
-          "id": 13,
-          "tracking": null,
-          "number": "H81482518448",
-          "cost": "5.0",
-          "shipped_at": "2014-02-18T00:57:41.104Z",
-          "state": "shipped",
-          "order_id": "R841544811",
-          "stock_location_name": "default",
-          "shipping_rates": [
-            {
-              "id": 44,
-              "cost": "10.0",
-              "selected": false,
-              "shipment_id": 13,
-              "shipping_method_id": 2
-            },
-            {
-              "id": 45,
-              "cost": "15.0",
-              "selected": false,
-              "shipment_id": 13,
-              "shipping_method_id": 3
-            },
-            {
-              "id": 43,
-              "cost": "5.0",
-              "selected": true,
-              "shipment_id": 13,
-              "shipping_method_id": 1
-            }
-          ],
-          "shipping_method": {
-            "name": "UPS Ground (USD)",
-            "tracking_url": null
-          },
-          "inventory_units": [
-            {
-              "id": 18,
-              "variant_id": 29,
-              "state": "shipped"
-            },
-            {
-              "id": 17,
-              "variant_id": 29,
-              "state": "shipped"
-            },
-            {
-              "id": 21,
-              "variant_id": 29,
-              "state": "returned"
-            },
-            {
-              "id": 20,
-              "variant_id": 29,
-              "state": "returned"
-            },
-            {
-              "id": 19,
-              "variant_id": 29,
-              "state": "returned"
-            }
-          ]
-        }
-      ],
-      "adjustments": [
-        {
-          "id": 22,
-          "amount": "5.0",
-          "label": "Shipping",
-          "mandatory": true,
-          "eligible": true,
-          "originator_type": "Spree::ShippingMethod",
-          "adjustable_type": "Spree::Order"
-        },
-        {
-          "id": 23,
-          "amount": "-129.0",
-          "label": "RMA Credit",
-          "mandatory": null,
-          "eligible": true,
-          "originator_type": null,
-          "adjustable_type": "Spree::Order"
-        }
-      ],
-      "credit_cards": [
-        {
-          "id": 12,
-          "month": "6",
-          "year": "2016",
-          "cc_type": "visa",
-          "last_digits": "1111",
-          "first_name": "Luis",
-          "last_name": "Braga",
-          "gateway_customer_profile_id": "BGS-021522",
-          "gateway_payment_profile_id": null
-        }
-      ]
+      "variant_id": 29,
+      "order_id": 13,
+      "shipment_id": 13,
+      "return_authorization_id": 2,
+      "variant": {
+        "id": 29,
+        "name": "Friday products!!!",
+        "sku": "rwgwergr45432",
+        "price": "44.0",
+        "weight": "0.0",
+        "height": null,
+        "width": null,
+        "depth": null,
+        "is_master": true,
+        "cost_price": null,
+        "permalink": "friday-products",
+        "product_created_at": "2014-02-14T22:26:50.688Z",
+        "product_updated_at": "2014-02-18T00:59:49.136Z"
+      }
+    },
+    {
+      "id": 19,
+      "state": "returned",
+      "variant_id": 29,
+      "order_id": 13,
+      "shipment_id": 13,
+      "return_authorization_id": 2,
+      "variant": {
+        "id": 29,
+        "name": "Friday products!!!",
+        "sku": "rwgwergr45432",
+        "price": "44.0",
+        "weight": "0.0",
+        "height": null,
+        "width": null,
+        "depth": null,
+        "is_master": true,
+        "cost_price": null,
+        "permalink": "friday-products",
+        "product_created_at": "2014-02-14T22:26:50.688Z",
+        "product_updated_at": "2014-02-18T00:59:49.136Z"
+      }
     }
-  }
+  ]
 }

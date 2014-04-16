@@ -50,13 +50,21 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_return' do
-    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).create
-    result code, summary
+    begin
+      code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).create
+      result code, summary
+    rescue => e
+      result 500, "#{e.message} #{e.backtrace.join("\n")}"
+    end
   end
 
   post '/update_return' do
-    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).update
-    result code, summary
+    begin
+      code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).update
+      result code, summary
+    rescue => e
+      result 500, "#{e.message} #{e.backtrace.join("\n")}"
+    end
   end
 
   post '/get_inventory' do
