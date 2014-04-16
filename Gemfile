@@ -6,7 +6,7 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', :github => 'spree/endpoint_base'
 
 gem 'thin'
-gem 'quickbooks-ruby', github: 'huoxito/quickbooks-ruby', branch: 'item-unit-price'
+gem 'quickbooks-ruby', github: 'ruckus/quickbooks-ruby'
 gem 'tzinfo'
 gem 'capistrano'
 

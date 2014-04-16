@@ -1,9 +1,8 @@
 GIT
-  remote: git://github.com/huoxito/quickbooks-ruby.git
-  revision: 6c33a6b2f6703373d1767d4b3f40e7ace81ded79
-  branch: item-unit-price
+  remote: git://github.com/ruckus/quickbooks-ruby.git
+  revision: ab380e8fbd45e3e9ae99321163ee409823c6fb88
   specs:
-    quickbooks-ruby (0.0.6)
+    quickbooks-ruby (0.1.1)
       activemodel
       nokogiri
       oauth
@@ -65,7 +64,7 @@ GEM
     listen (0.7.3)
     lumberjack (1.0.3)
     method_source (0.8.1)
-    mini_portile (0.5.2)
+    mini_portile (0.5.3)
     multi_json (1.9.2)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
