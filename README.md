@@ -33,12 +33,12 @@ Also supports the following option:
 
 | Name | Value | Example |
 | :----| :-----| :------ |
-| quickbooks_deposit_to_account_name | Quickbooks account name to book the SalesReceipt in. |Sales|
+| quickbooks_deposit_to_account_name | Quickbooks account name to book the SalesReceipt in. | Prepaid Expenses |
 | quickbooks_payment_method_name | Mapping from Spree payment method names to Quickbooks payment method names |{ "visa" => "credit-card", "master-card" => "credit-card" }|
 | quickbooks_shipping_item | Quickbooks Item SKU to use for shipping line items | SKU-SHIPPING |
 | quickbooks_tax_item | Quickbooks Item SKU to use for tax line items |SKU-TAX|
 | quickbooks_discount_item | Quickbooks Item SKU to use for discount line items |SKU-DISCOUNT|
-| quickbooks_account_name | Quickbooks Income Account name for the items | Sales |
+| quickbooks_account_name | Quickbooks Income Account name for the items | Sales of Product Income |
 | quickbooks_web_orders_users | Check to use 'Web User' as customer name for all SalesReceipts | false|
 
 ### Product webhooks
