@@ -68,17 +68,26 @@ describe QBIntegration::Product do
 
     context "product without variants" do
       let(:product_message) do
-        {
-          product: Factories.product_without_variants('NIN')
-        }.with_indifferent_access
+        { product: Factories.add_product }.with_indifferent_access
       end
 
       it "creates the product" do
-        VCR.use_cassette "product/new_without_variants", match_requests_on: [:method, :body] do
+        VCR.use_cassette "product/create", match_requests_on: [:method, :body] do
           code, notification = subject.import
 
           expect(code).to eq 200
-          expect(notification).to match "Product NIN imported"
+          expect(notification).to match "imported to Quickbooks"
+        end
+      end
+
+      it "updates the product" do
+        product_message[:product][:description] = "Eeeedddie!"
+
+        VCR.use_cassette "product/update", match_requests_on: [:method, :body] do
+          code, notification = subject.import
+
+          expect(code).to eq 200
+          expect(notification).to match "updated on Quickbooks"
         end
       end
 

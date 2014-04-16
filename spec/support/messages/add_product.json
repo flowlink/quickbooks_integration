@@ -1,0 +1,45 @@
+{
+  "id": 1,
+  "parent_id": 11,
+  "name": "01134-sku-sku-huhu",
+  "sku": "001323453453",
+  "description": "Shirt",
+  "price": 35,
+  "cost_price": 22.33,
+  "available_on": "2014-01-29T14:01:28.000Z",
+  "permalink": "spree-tshirt",
+  "meta_description": null,
+  "meta_keywords": null,
+  "shipping_category": "Default",
+  "taxons": [
+    [
+      "Categories",
+      "Clothes",
+      "T-Shirts"
+    ],
+    [
+      "Brands",
+      "Spree"
+    ],
+    [
+      "Brands",
+      "Open Source"
+    ]
+  ],
+  "options": {
+    "color": "GREY",
+    "size": "S"
+  },
+  "images": [
+    {
+      "url": "http://emaple.com/p/1/v/4/image.jpg",
+      "position": 1,
+      "title": "Spree T-Shirt - Grey Small",
+      "type": "thumbnail",
+      "dimensions": {
+        "height": 220,
+        "width": 100
+      }
+    }
+  ]
+}

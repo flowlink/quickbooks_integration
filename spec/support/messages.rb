@@ -736,5 +736,9 @@ module Factories
     def new_credit_memo
       JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/new_credit_memo.json")).with_indifferent_access
     end
+
+    def add_product
+      JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/add_product.json")).with_indifferent_access
+    end
   end
 end
