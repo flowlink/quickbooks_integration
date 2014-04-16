@@ -58,6 +58,7 @@ The specified accounts must exist in Quickbooks.
 | quickbooks_inventory_account | Inventory Account | Inventory Asset |
 | quickbooks_cogs_account | Cost of Goods Sold Account | Cost Of Goods Sold |
 | quickbooks_income_account | Income Account | Sales of Product Income |
+| quickbooks_track_inventory | Track inventory | false |
 
 ## Contributing
 
