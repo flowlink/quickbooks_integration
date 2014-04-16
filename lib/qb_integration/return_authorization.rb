@@ -4,8 +4,8 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-      @ra = payload[:return_authorization]
-      @order = payload[:return_authorization][:order]
+      @ra = payload[:return]
+      @order = { id: payload[:return][:order_id] }
 
       # for compatibility with sales receipt service
       payload[:order] = @order

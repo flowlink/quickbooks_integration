@@ -730,7 +730,7 @@ module Factories
     end
 
     def return_authorization
-      JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/return_authorization.json")).with_indifferent_access[:return_authorization]
+      JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/return_authorization.json")).with_indifferent_access
     end
 
     def new_credit_memo

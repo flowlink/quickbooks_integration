@@ -60,6 +60,10 @@ The specified accounts must exist in Quickbooks.
 | quickbooks_income_account | Income Account | Sales of Product Income |
 | quickbooks_track_inventory | Track inventory | false |
 
+### Return webhooks
+
+Creates a credit memo on github. No specific parameters needed.
+
 ## Contributing
 
 1. Fork it
