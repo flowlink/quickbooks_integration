@@ -9,7 +9,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Product.new(@payload, @config).import
       result code, summary
     rescue => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.join("\n")}"
     end
   end
 
@@ -18,7 +18,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Product.new(@payload, @config).import
       result code, summary
     rescue => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.join("\n")}"
     end
   end
 
@@ -45,7 +45,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Order.new(@payload, @config).cancel
       result code, summary
     rescue => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.join("\n")}"
     end
   end
 
