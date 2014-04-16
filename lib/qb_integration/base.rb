@@ -38,9 +38,9 @@ module QBIntegration
     end
   end
 
-  class InvalidPlatformException < Exception; end
-  class LookupValueNotFoundException < Exception; end
-  class UnsupportedException < Exception; end
-  class AlreadyPersistedOrderException < Exception; end
-  class NoReceiptForOrderException < Exception; end
+  class InvalidPlatformException < StandardError; end
+  class LookupValueNotFoundException < StandardError; end
+  class UnsupportedException < StandardError; end
+  class AlreadyPersistedOrderException < StandardError; end
+  class NoReceiptForOrderException < StandardError; end
 end
