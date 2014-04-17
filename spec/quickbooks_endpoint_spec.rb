@@ -36,8 +36,9 @@ describe QuickbooksEndpoint do
       context "persist new sales receipt" do
         it "generates a json response with an info notification" do
           # change order number in case you want to persist a new order
-          message[:order][:number] = "R45245242545"
-          message[:order][:placed_on] = "2013-12-18 14:51:18 -0300"
+          message[:order][:number] = "QB-EWEWF-78766"
+          message[:order][:placed_on] = "2014-04-17 17:51:18 -0300"
+          message[:parameters] = Factories.config
 
           VCR.use_cassette("sales_receipt/sync_order_sales_receipt_post", match_requests_on: [:body, :method]) do
             post '/add_order', message.to_json, auth
