@@ -33,29 +33,26 @@ Also supports the following option:
 
 | Name | Value | Example |
 | :----| :-----| :------ |
-| quickbooks_deposit_to_account_name | Quickbooks account name to book the SalesReceipt in. | Prepaid Expenses |
-| quickbooks_payment_method_name | Mapping from Spree payment method names to Quickbooks payment method names |{ "visa" => "credit-card", "master-card" => "credit-card" }|
-| quickbooks_shipping_item | Quickbooks Item SKU to use for shipping line items | SKU-SHIPPING |
-| quickbooks_tax_item | Quickbooks Item SKU to use for tax line items |SKU-TAX|
-| quickbooks_discount_item | Quickbooks Item SKU to use for discount line items |SKU-DISCOUNT|
-| quickbooks_account_name | Quickbooks Income Account name for the items | Sales of Product Income |
-| quickbooks_web_orders_users | Check to use 'Web User' as customer name for all SalesReceipts | false|
+| quickbooks_deposit_to_account_name | Default to Undeposited Funds Account (not required) | Prepaid Expenses |
+| quickbooks_shipping_item | Quickbooks Item SKU to use for shipping line items (required) | SKU-SHIPPING |
+| quickbooks_tax_item | Quickbooks Item SKU to use for tax line items (required) | SKU-TAX |
+| quickbooks_discount_item | Quickbooks Item SKU to use for discount line items (required) | SKU-DISCOUNT |
+| quickbooks_account_name | Quickbooks Income Account name for the items (required) | false |
+| quickbooks_web_orders_users | Check to use 'Web User' as customer name for all SalesReceipts | false |
+| quickbooks_payment_method_name | Mapping from store payment method names to Quickbooks payment method names (required) |{ "visa" => "credit-card", "master-card" => "credit-card" }|
 
 ### Product webhooks
 
-Push Products as Items into Quickbooks supporting the following options:
+Push Products as Items into Quickbooks.
 
- - **Inventory/Non-Inventory:** If you want to export products as Inventory items, enable this option and provide the *Cost of Goods Sold* and *Income* accounts.
- - **Import Variants as Sub-Items:** Spree products' variants can be imported as sub-items by Quickbooks, in order to mantain the hierarchical relationship.
-
-The specified accounts must exist in Quickbooks.
+By setting `quickbooks_track_inventory` `true` you need to provide a valid
+Income Account and Cost of Goods Sold account.
 
 #### Parameters
 
 | Name | Value | Example |
 | :----| :-----| :------ |
-| quickbooks_inventory_costing | Inventory/Non-Inventory Item Option | true |
-| quickbooks_inventory_account | Inventory Account | Inventory Asset |
+| quickbooks_inventory_account | Inventory Account (required) | Inventory Asset |
 | quickbooks_cogs_account | Cost of Goods Sold Account | Cost Of Goods Sold |
 | quickbooks_income_account | Income Account | Sales of Product Income |
 | quickbooks_track_inventory | Track inventory | false |
