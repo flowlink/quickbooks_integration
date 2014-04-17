@@ -37,7 +37,7 @@ Also supports the following option:
 | quickbooks_shipping_item | Quickbooks Item SKU to use for shipping line items (required) | SKU-SHIPPING |
 | quickbooks_tax_item | Quickbooks Item SKU to use for tax line items (required) | SKU-TAX |
 | quickbooks_discount_item | Quickbooks Item SKU to use for discount line items (required) | SKU-DISCOUNT |
-| quickbooks_account_name | Quickbooks Income Account name for the items (required) | false |
+| quickbooks_account_name | Quickbooks Income Account name for the items (required) | Sales of Product Income |
 | quickbooks_web_orders_users | Check to use 'Web User' as customer name for all SalesReceipts | false |
 | quickbooks_payment_method_name | Mapping from store payment method names to Quickbooks payment method names (required) |{ "visa" => "credit-card", "master-card" => "credit-card" }|
 
