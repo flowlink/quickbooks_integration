@@ -12,7 +12,7 @@ describe QBIntegration::Service::Account do
       account = subject.find_by_name "Inventory Asset"
 
       expect(account.id).to be
-      expect(account.active).to be
+      expect(account).to be_active
       expect(account.name).to eq "Inventory Asset"
     end
   end
