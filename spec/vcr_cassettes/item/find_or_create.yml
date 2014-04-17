@@ -2,18 +2,16 @@
 http_interactions:
 - request:
     method: post
-    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/item
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/item
     body:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <Item xmlns="http://schema.intuit.com/finance/v3" sparse="false">
-        <Name>T-SHIRT-PUGS-RULE</Name>
+        <Name>T-SHIRT-PUGS-RUUUUULEE</Name>
         <UnitPrice>19.99</UnitPrice>
         <Type>Inventory</Type>
         <IncomeAccountRef/>
-        <PurchaseCost>0.0</PurchaseCost>
-        <QtyOnHand>0.0</QtyOnHand>
         </Item>
     headers:
       Content-Type:
@@ -25,11 +23,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '275'
+      - '220'
       Authorization:
-      - OAuth oauth_body_hash="PgCMhEMPJI2zAB2PhL8Uabro6Yc%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
-        oauth_nonce="CXFFbmno0vSUZR1pA3LFqoRxsfI7c5OwQahoHANldxQ", oauth_signature="qp%2Bsoi42c9SEE8yUeYsgbENjl40%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1392662913", oauth_token="test",
+      - OAuth oauth_body_hash="ZgsI%2Bj4wico%2F69IdX52o5xybHa0%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="7JIRNDhAJGfe0uFlRBrLUNXPYfYRkyQLBxixji6otU", oauth_signature="%2BNBeqP3Vi%2F6mD7LDd%2FkfN2BGZTo%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1397761735", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -37,39 +35,35 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 17 Feb 2014 18:48:22 GMT
-      Server:
-      - Apache/2.2.22 (Unix)
+      - Thu, 17 Apr 2014 19:08:57 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '370'
+      Intuit-Tid:
+      - fecbab84-a417-468c-b5e5-29f2b1f7e3c3
+      Via:
+      - 1.1 ipp-gateway-.net
       Qbo-Version:
-      - '70.166'
+      - '72.190'
       Cache-Control:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
       Content-Encoding:
       - gzip
-      Intuit-Tid:
-      - 2adc8e40-cb8b-4349-a7ec-9e4edce515fc
-      Via:
-      - 1.1 ipp-gateway-ap06
-      Content-Length:
-      - '365'
-      Connection:
-      - close
-      Content-Type:
-      - application/xml;charset=UTF-8
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAIVS227CMAz9lSrvbVKGNEAm0+4gsY1L+gFeaka0Nq2aFNG/
-        X2AXxrRpT9Y5OsfHsg0Xu7KIttQ4U9kxSxPBIrK6yo19GbNM3cUDFjmPNsei
-        sjRmHTl2IWFqfWv8klxdWUdRaGLdmG28r0ecO72hEhNz0CS6KvnaWLSa+PaM
-        Rd6UoU9PpP1Y9OL0XKVi1B+MemeJ6KexGIyEYCHAUxnlVYkmjLW4egpT1Ni4
-        4Fxj4WivyGWvDzwUWHVWq+qVrBTAjwAeyOMNepRw3RB6UiFa/pL8ngr8mwpm
-        6HxW5wHn/9l+SoEfgx8xECpeTaZLFc+z+1W8zGa3wA88XGpvtiR90xLwDwB3
-        bVF0ixYLszaU/9XgFxUo3OFzQfKwIuCfEDJr/LwxmmQ6TIZD4EcCVFeTXFGz
-        DShY9gjmbaM36Oi6cn6/0hMMqkH9uvDdk52Ev/gKO2XDYcIF9+XkU+QbbfKI
-        XHECAAA=
+        H4sIAAAAAAAAAIVS207DMAz9lSrvbdrBtIu8IO6bNGCX9ANM6rGINq2adFr/
+        nnQCxgBBXqzjHJ9j2YaLfZEHO6qtLs2EJVHMAjKqzLR5mbBU3oVDFliHJsO8
+        NDRhLVl2IWBmXKPdimxVGkuBFzF2wrbOVWPOrdpSgZE+cCJVFnyjDRpFfHfG
+        AqcLr9OLk/MwPg+TgUx643g47g+iUX8YxoNxHDNv4KgIsrJA7dtaXj35Liqs
+        ra/cYG6pY2Qi6fWB+wjr1ihZvpIRMfAjgAdyeIMOBVzXhI6k9xY/rd9tgX9h
+        wRytS6vM4+y/su9U4EfjR/QJGa6ns5UMF+n9Olyl3Zvf3gI/fMKlcnpHwtUN
+        AX8HcNfkebtsMNcbTdmfKr9QQeIen3MSh2kB/4CQGu0WtVYkklE0GgE/JkC2
+        FYk11TuPfEmHYNHUaouWrkvruuGeYJA1qtela5/M1J/Ip9lp1q/IL7MLJ0cj
+        3gCTle+mfAIAAA==
     http_version: 
-  recorded_at: Mon, 17 Feb 2014 18:48:36 GMT
+  recorded_at: Thu, 17 Apr 2014 19:08:58 GMT
 recorded_with: VCR 2.4.0
