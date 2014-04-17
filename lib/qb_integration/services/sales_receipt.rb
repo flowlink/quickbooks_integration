@@ -72,7 +72,7 @@ module QBIntegration
           #   request: Business Validation Error: You need to select a different
           #   type of account for this transaction.
           #
-          if config.fetch("quickbooks_deposit_account", false).to_s == "true"
+          if config["quickbooks_deposit_to_account_name"].present?
             deposit_account = account_service.find_by_name config.fetch("quickbooks_deposit_to_account_name")
             sales_receipt.deposit_to_account_id = deposit_account.id
           end
