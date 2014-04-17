@@ -7,19 +7,9 @@ describe QBIntegration::Product do
 
   let(:config) { Factories.config }
 
-  context "error handling" do
-    let(:product_message) do
-      {
-        product: Factories.product
-      }.with_indifferent_access
-    end
-  end
-
   context "product already exists" do
     let(:product_message) do
-      {
-        product: Factories.product
-      }.with_indifferent_access
+      { product: Factories.legacy_product }
     end
 
     it "updates the product" do
@@ -28,16 +18,15 @@ describe QBIntegration::Product do
         expect(code).to eq 200
       end
     end
-
-    it "what about variants"
   end
 
   context "products doesnt exist" do
     context "product with variants" do
       let(:product_message) do
-        {
-          product: Factories.product('families')
-        }.with_indifferent_access
+        product = Factories.legacy_product
+        product[:sku] = "C & A - Oasis"
+
+        { product: product }
       end
 
       it "creates the product" do
@@ -48,11 +37,15 @@ describe QBIntegration::Product do
       end
 
       context "user check track inventory flag" do
-        it "sets product to track inventory" do
-          pending "replay it, probably failing to some payload change hard to find"
+        let(:product_message) do
+          product = Factories.add_product
+          product[:sku] = "Slide Away - Oasis"
+          { product: product }
+        end
 
-          config['quickbooks_track_inventory'] = "true"
-          product_message[:product] = Factories.product('grilos-grilos')
+        before { config['quickbooks_track_inventory'] = "true" }
+
+        it "sets product to track inventory" do
           subject.stub time_now: "2014-02-17"
 
           VCR.use_cassette "product/track_inventory", match_requests_on: [:method, :body] do
@@ -68,7 +61,9 @@ describe QBIntegration::Product do
 
     context "product without variants" do
       let(:product_message) do
-        { product: Factories.add_product }.with_indifferent_access
+        product = Factories.add_product
+        product[:sku] = "sliiiiide awwaaaaaaay"
+        { product: product }.with_indifferent_access
       end
 
       it "creates the product" do
@@ -92,7 +87,9 @@ describe QBIntegration::Product do
       end
 
       it "ensures unit price is persisted" do
-        product_message[:product] = Factories.product_without_variants('Second Thing')
+        product_message[:product] = Factories.legacy_product
+        product_message[:product][:sku] = 'Second Thing'
+        product_message[:product].delete :variants
 
         VCR.use_cassette "product/price_check", match_requests_on: [:method, :body] do
           code, notification = subject.import
