@@ -1,0 +1,23 @@
+{
+  "id": "ROR-TS",
+  "name": "Ruby on Rails T-Shirt",
+  "description": "Some description text for the product.",
+  "available_on": "2012-11-20T00:00:00-05:00",
+  "sku": "ROR-TS",
+  "price": 31,
+  "cost_price": 21,
+  "variants": [
+    {
+      "name": "Ruby on Rails T-Shirt XL",
+      "sku": "ROR-TS-v-1",
+      "price": 35,
+      "cost_price": 22
+    },
+    {
+      "name": "Ruby on Rails T-Shirt SML",
+      "sku": "ROR-TS-v-2",
+      "price": 35,
+      "cost_price": 22
+    }
+  ]
+}
