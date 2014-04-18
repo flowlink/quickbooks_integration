@@ -10,6 +10,12 @@ module QBIntegration
         response.entries.first
       end
 
+      def find_by_updated_at
+        filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
+        response = @quickbooks.query "select Name, QtyOnHand from Item #{filter} Order By Metadata.LastUpdatedTime"
+        response.entries
+      end
+
       # NOTE what if a product is given?
       def find_or_create_by_sku(line_item, account = nil)
         name = line_item[:sku] || line_item[:product_id]

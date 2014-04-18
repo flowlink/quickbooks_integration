@@ -24,6 +24,14 @@ describe QBIntegration::Service::Item do
     end
   end
 
+  it "finds by updated at" do
+    VCR.use_cassette("item/find_by_updated_at", match_requests_on: [:body, :method]) do
+      items = subject.find_by_updated_at
+      expect(items.first).to respond_to :name
+      expect(items.first).to respond_to :quantity_on_hand
+    end
+  end
+
   it "creates an item with given attributes" do
     new_sku = "given"
     VCR.use_cassette("item/create", match_requests_on: [:method, :body]) do
