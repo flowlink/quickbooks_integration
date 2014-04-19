@@ -11,6 +11,8 @@ module QBIntegration
       end
 
       def find_by_updated_at
+        raise MissingTimestampParam unless config["quickbooks_poll_stock_timestamp"].present?
+
         filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
         order = "Order By Metadata.LastUpdatedTime"
         response = quickbooks.query "select Name, QtyOnHand, Metadata.LastUpdatedTime from Item #{filter} #{order}"

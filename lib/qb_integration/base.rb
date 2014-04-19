@@ -43,4 +43,10 @@ module QBIntegration
   class UnsupportedException < StandardError; end
   class AlreadyPersistedOrderException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
+
+  class MissingTimestampParam < StandardError
+    def message
+      "Parameter quickbooks_poll_stock_timestamp should be a valid date. e.g 2014-04-13T18:48:56.001Z"
+    end
+  end
 end
