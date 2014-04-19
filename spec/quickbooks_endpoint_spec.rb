@@ -159,6 +159,14 @@ describe QuickbooksEndpoint do
         last_response.status.should eql 200
       end
     end
+
+    it "friendly message when timestamp is missing" do
+      parameters['quickbooks_poll_stock_timestamp'] = ""
+
+      post '/get_inventory', { parameters: parameters }.to_json, auth
+      expect(last_response).to_not be_ok
+      expect(json_response[:summary]).to match 'quickbooks_poll_stock_timestamp should be a valid date'
+    end
   end
 
   context "products" do
