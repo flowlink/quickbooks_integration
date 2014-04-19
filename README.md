@@ -61,6 +61,12 @@ Income Account and Cost of Goods Sold account.
 
 Creates a credit memo on github. No specific parameters needed.
 
+### Inventory webhook
+
+| Name | Value | Example |
+| :----| :-----| :------ |
+| quickbooks_poll_stock_timestamp | Stock polling timestamp | 2014-01-29T03:14:07+00:00 |
+
 ## Contributing
 
 1. Fork it
