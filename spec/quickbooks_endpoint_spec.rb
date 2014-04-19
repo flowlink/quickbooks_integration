@@ -116,10 +116,10 @@ describe QuickbooksEndpoint do
   end
 
   context "monitor stock" do
+    let(:parameters) { Factories.config }
+
     let(:message) do
-      {
-        "sku" => "4553254352", "parameters" => parameters
-      }.with_indifferent_access
+      { "sku" => "4553254352", "parameters" => parameters }
     end
 
     it "returns message with item quantity" do
@@ -132,11 +132,30 @@ describe QuickbooksEndpoint do
       end
     end
 
+    it "returns a inventory collection" do
+      VCR.use_cassette("item/find_by_updated_at", match_requests_on: [:body, :method]) do
+        post '/get_inventory', { parameters: parameters }.to_json, auth
+        last_response.status.should eql 200
+
+        expect(json_response[:inventories]).to be_present
+        expect(json_response[:parameters]).to have_key 'quickbooks_poll_stock_timestamp'
+      end
+    end
+
     it "just 200 if item not found" do
       message[:sku] = "imreallynothere"
 
       VCR.use_cassette("item/item_not_found", match_requests_on: [:body, :method]) do
         post '/get_inventory', message.to_json, auth
+        last_response.status.should eql 200
+      end
+    end
+
+    it "just 200 if collection is empty" do
+      QBIntegration::Stock.any_instance.stub items: nil
+
+      VCR.use_cassette("item/find_by_updated_at", match_requests_on: [:body, :method]) do
+        post '/get_inventory', { parameters: parameters }.to_json, auth
         last_response.status.should eql 200
       end
     end
