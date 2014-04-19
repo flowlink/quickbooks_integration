@@ -19,7 +19,7 @@ module QBIntegration
         {
           id: "qbs-#{inventory.name}",
           product_id: inventory.name,
-          quantity: inventory.quantity_on_hand
+          quantity: inventory.quantity_on_hand.to_i
         }
       end
     end
