@@ -15,7 +15,7 @@ module QBIntegration
     end
 
     def inventories
-      items.each do |inventory|
+      items.map do |inventory|
         {
           id: "qbs-#{inventory.name}",
           product_id: inventory.name,
@@ -25,7 +25,7 @@ module QBIntegration
     end
 
     def last_modified_date
-      items.last.meta_data.last_updated_time
+      items.last.meta_data.last_updated_time.utc.iso8601
     end
   end
 end
