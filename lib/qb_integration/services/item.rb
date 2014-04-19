@@ -6,13 +6,15 @@ module QBIntegration
       end
 
       def find_by_sku(sku, fields = "*")
-        response = @quickbooks.query("select #{fields} from Item where Name = '#{sku}'")
+        response = quickbooks.query("select #{fields} from Item where Name = '#{sku}'")
         response.entries.first
       end
 
       def find_by_updated_at
         filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
-        response = @quickbooks.query "select Name, QtyOnHand from Item #{filter} Order By Metadata.LastUpdatedTime"
+        order = "Order By Metadata.LastUpdatedTime"
+        response = quickbooks.query "select Name, QtyOnHand, Metadata.LastUpdatedTime from Item #{filter} #{order}"
+
         response.entries
       end
 

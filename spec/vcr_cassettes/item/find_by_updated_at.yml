@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20Name,%20QtyOnHand%20from%20Item%20Where%20Metadata.LastUpdatedTime%20%3E%20'2014-04-13T18:48:56.001Z'%20Order%20By%20Metadata.LastUpdatedTime%20STARTPOSITION%201%20MAXRESULTS%2020
+    uri: https://qb.sbfinance.intuit.com/v3/company/835973000/query?query=select%20Name,%20QtyOnHand,%20Metadata.LastUpdatedTime%20from%20Item%20Where%20Metadata.LastUpdatedTime%20%3E%20'2014-04-13T18:48:56.001Z'%20Order%20By%20Metadata.LastUpdatedTime%20STARTPOSITION%201%20MAXRESULTS%2020
     body:
       encoding: US-ASCII
       string: ''
@@ -16,9 +16,9 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="8y6hTsclTkX0vKxocjPv8eWsZs4Yd0q97zFQn0C7z0",
-        oauth_signature="PhOS%2BTnlwb9L8c3gHDgm%2BnI9Ikc%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1397858812", oauth_token="test",
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="qpo9NABvMj25nq1L2njJ1xKSv5cpO5B0LD4PYkVNeU",
+        oauth_signature="K2hnnOHF67HGEjIhhRiSK8fEFrg%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1397866605", oauth_token="test",
         oauth_version="1.0"
   response:
     status:
@@ -26,15 +26,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 18 Apr 2014 22:06:53 GMT
+      - Sat, 19 Apr 2014 00:16:48 GMT
       Content-Type:
       - application/xml;charset=UTF-8
       Content-Length:
-      - '449'
+      - '617'
       Intuit-Tid:
-      - 059b6e94-84e3-4660-a76a-77112f0ef57a
-      Content-Encoding:
-      - gzip
+      - 4fd1a29e-3fd8-42a8-8c5c-f991f6f9745f
       Via:
       - 1.1 ipp-gateway-.net
       Qbo-Version:
@@ -43,19 +41,25 @@ http_interactions:
       - max-age=0, no-cache, no-store, must-revalidate, private
       Expires:
       - '0'
+      Content-Encoding:
+      - gzip
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAJ2U/27bIBCAXwXxPzFg3PyQ40qdsi3TNGVO8gDMvjZsNkSA
-        o+bthzttwlVVsViWkc58n4C7o7x/7jt0AeuU0WvMZhQj0I1plX5a4+PhI1lg
-        5LzUreyMhjW+gsP3VbnVflC+Bnc22gEKEu3W+OT9eZVlrjlBL2fqZc6sMX32
-        qLTUDWSXHCOv+uDhlAlCBWGLAytW9G5V5LPlYk7ofEUprsrvA9jrP39YgfU7
-        45T/s0yMevkc/g6dd6MrAFsPPXJnaV2wezvAGGsrRu/KLIzlN9lDtd/Vmw05
-        kP3nbR2+ZfYSDRMC/I5iHikYuVGyiCXyVssysuQiFzd6GH3tSUdZhFJK2Ygn
-        wyKCH2WvOgWOXAhL5Yu3eZ7K52/wqeykkqAxukWHU2iUVJ5PDo7lPBfF+Kby
-        cRnW4AerkWx/Ds73oD3qlIZUU1yLD7L59R+bWE6zTxnhgou8EIkCHpcPp19A
-        aocejPHow+BTHXH1sh839gDn71hSHWKaU8aINp54Gw6VKH0JiTH2Ss7WtEOT
-        vL24SJ9UkKSCcXf8PY7d8dOe1Mfx+brZvDJlk3t2DE8u9uo34rVZeCAGAAA=
+        H4sIAAAAAAAAAL3XbW/aMBAA4L8S5buJ3/IyK1CpG9uYuolB+AFe4pZsxEGx
+        g8q/36Wo3doP05kPQwgkkxyPON+dKW8eu0N0MoNrezuP2YzGkbF137T2YR7v
+        qo+kiCPntW30obdmHp+Ni28W5cr6sfUb4469dSaCINbN4733R5Ukrt6bTs/a
+        p2tmdd8l963VtjbJScSRbzuIwymThErCiorlimVKFjPBYSlXlMaL8vtohvNL
+        fBAMft271l+YcdTpR/h0PHg3xYIbVt50kTvqwUF0P4xmWmsWjGZlAu/lV+P1
+        B+31orzTzu+OjfamqcCyeKGkFaNKZoqmF0aZvL20TP6E+aZhYbveLJekItvP
+        qw28lsnTKnwjaP5hygNNhRIF2sTIlaoCrcoqwIhCMYZX6WtZ7wJYjCnBVJqh
+        WUIKeSWM0RAYV4IHw/AWFmKRsMXVc7EhLJRSNnnQGhmm4aliHK251117aI0j
+        J8KwoDQchE/VXyCOBYn/AcJi8C3ygslUik/X1tS9baJqDyMFC+JhIAHNKA/Y
+        zUxwIdPpiQXhGzaAsildHP8LbYwfBxvp5ufofGesjw6tNVhaSNeGUQuVLwWa
+        dqvrXwF5C2rVkLSguqdTGyJccilSiRRxfF/MKyqn6S/xdcbpF6Oti2773kfv
+        R49F4QcHoCBfUqX4lLEfV84zjq86YGWQOsWvZ2FR+FGST9OfBfUm2FBwhLG9
+        J36AnU5ae4Ly64czOQ59M9bojOLbeT4dBSgPaecPLaiwEvyku0gKleKPls9b
+        ar37tCWb3fS4Wy7f0JJXZ/dp+dWfhcVvTP371XQMAAA=
     http_version: 
-  recorded_at: Fri, 18 Apr 2014 22:06:54 GMT
+  recorded_at: Sat, 19 Apr 2014 00:16:48 GMT
 recorded_with: VCR 2.4.0

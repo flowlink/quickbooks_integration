@@ -68,11 +68,21 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/get_inventory' do
-    if item = QBIntegration::Stock.new(@payload, @config).item
-      add_object :inventory, { sku: item.name, quantity: item.quantity_on_hand.to_i }
-      result 200
-    else
-      result 200
+    begin
+      stock = QBIntegration::Stock.new(@payload, @config)
+
+      if stock.name.present? && stock.item
+        add_object :inventory, { sku: stock.item.name, quantity: stock.item.quantity_on_hand.to_i }
+        result 200
+      elsif stock.items.present?
+        stock.inventories.each { |item| add_object :inventory, item }
+        add_parameter 'quickbooks_poll_stock_timestamp', stock.last_modified_date
+        result 200
+      else
+        result 200
+      end
+    rescue => e
+      result 500, "#{e.message}"
     end
   end
 end
