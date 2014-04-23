@@ -231,6 +231,10 @@ module Factories
       JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/add_product.json")).with_indifferent_access
     end
 
+    def add_order
+      JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/add_order.json")).with_indifferent_access
+    end
+
     def legacy_product
       JSON.parse(IO.read("#{File.dirname(__FILE__)}/messages/legacy_product.json")).with_indifferent_access
     end

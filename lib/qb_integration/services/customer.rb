@@ -15,7 +15,10 @@ module QBIntegration
       end
 
       def fetch_by_display_name(name = nil)
-        query = "SELECT * FROM Customer WHERE DisplayName = '#{name || display_name}'"
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("DisplayName", "=", name || display_name)
+
+        query = "SELECT * FROM Customer WHERE #{clause}"
         quickbooks.query(query).entries.first
       end
 
@@ -26,7 +29,7 @@ module QBIntegration
       #
       # Maybe add another custom field to better sync customers?
       def display_name
-        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}".gsub("'", %q(\\\'))
+        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}"
       end
 
       def create
@@ -35,8 +38,8 @@ module QBIntegration
         if use_web_orders?
           new_customer.display_name = "Web Orders"
         else
-          new_customer.given_name = order["billing_address"]["firstname"].gsub("'", %q(\\\'))
-          new_customer.family_name = order["billing_address"]["lastname"].gsub("'", %q(\\\'))
+          new_customer.given_name = order["billing_address"]["firstname"]
+          new_customer.family_name = order["billing_address"]["lastname"]
           new_customer.display_name = display_name
           new_customer.email_address = order[:email]
 
