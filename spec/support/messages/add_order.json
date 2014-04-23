@@ -1,0 +1,55 @@
+{
+  "id": "QB-RGRE-34R",
+  "status": "complete",
+  "channel": "spree",
+  "email": "mickey-mouse@gmail.com",
+  "currency": "USD",
+  "placed_on": "2014-04-23T15:58:51Z",
+  "totals": {
+    "item": 950,
+    "adjustment": 0,
+    "tax": 0,
+    "shipping": 0,
+    "payment": 950,
+    "order": 950
+  },
+  "line_items": [
+    {
+      "product_id": "WHO-01-GRY-5",
+      "name": "The Who",
+      "quantity": 1,
+      "price": 950
+    }
+  ],
+  "adjustments": [],
+  "payments": [
+    {
+      "number": "ERGERG",
+      "status": "completed",
+      "amount": 950,
+      "payment_method": "visa"
+    }
+  ],
+  "shipping_address": {
+    "firstname": "Mickey",
+    "lastname": "O'Neil",
+    "address1": "1312 Grandview Drive",
+    "address2": "",
+    "zipcode": "37215",
+    "city": "Bethesda",
+    "state": "Maryland",
+    "country": "US",
+    "phone": "999-999-9999"
+  },
+  "billing_address": {
+    "firstname": "Mickey",
+    "lastname": "O'Neil",
+    "address1": "1312 Grandview Drive",
+    "address2": "",
+    "zipcode": "37215",
+    "city": "Bethesda",
+    "state": "Maryland",
+    "country": "US",
+    "phone": "999-999-9999"
+  }
+}
