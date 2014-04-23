@@ -26,7 +26,7 @@ module QBIntegration
       #
       # Maybe add another custom field to better sync customers?
       def display_name
-        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}"
+        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}".gsub("'", %q(\\\'))
       end
 
       def create
@@ -35,8 +35,8 @@ module QBIntegration
         if use_web_orders?
           new_customer.display_name = "Web Orders"
         else
-          new_customer.given_name = order["billing_address"]["firstname"]
-          new_customer.family_name = order["billing_address"]["lastname"]
+          new_customer.given_name = order["billing_address"]["firstname"].gsub("'", %q(\\\'))
+          new_customer.family_name = order["billing_address"]["lastname"].gsub("'", %q(\\\'))
           new_customer.display_name = display_name
           new_customer.email_address = order[:email]
 
