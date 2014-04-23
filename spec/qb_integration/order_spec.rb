@@ -14,7 +14,7 @@ module QBIntegration
 
     context "quotes on customer name" do
       it "handles it just fine" do
-        VCR.use_cassette("sales_receipt/quotes_involved", match_requests_on: [:body, :method]) do
+        VCR.use_cassette("sales_receipt/quotes_involved") do
           subject.create
         end
       end

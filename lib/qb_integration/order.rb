@@ -4,7 +4,7 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-      @order = payload['order']
+      @order = payload[:order]
     end
 
     def create
