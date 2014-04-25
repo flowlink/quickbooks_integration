@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler'
-Bundler.setup
 
+Bundler.require(:default)
 require "./quickbooks_endpoint"
 run QuickbooksEndpoint
