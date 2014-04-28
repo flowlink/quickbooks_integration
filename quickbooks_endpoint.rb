@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base
+  set :logging, true
 
   Honeybadger.configure do |config|
     config.api_key = ENV['HONEYBADGER_KEY']
