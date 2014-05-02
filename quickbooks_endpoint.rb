@@ -47,7 +47,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     stock = QBIntegration::Stock.new(@payload, @config)
 
     if stock.name.present? && stock.item
-      add_object :inventory, { sku: stock.item.name, quantity: stock.item.quantity_on_hand.to_i }
+      add_object :inventory, stock.inventory
       result 200
     elsif stock.items.present?
       stock.inventories.each { |item| add_object :inventory, item }
