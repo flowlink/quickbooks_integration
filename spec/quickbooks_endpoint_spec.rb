@@ -46,6 +46,19 @@ describe QuickbooksEndpoint do
           end
         end
       end
+
+      context "sales receipt already exists" do
+        before do
+          QBIntegration::Service::SalesReceipt.any_instance.stub find_by_order_number: double("SalesOrder", id: 1)
+        end
+
+        it "500" do
+          post '/add_order', message.to_json, auth
+
+          last_response.status.should eql 500
+          expect(json_response[:summary]).to match "already has a sales receipt"
+        end
+      end
     end
 
     context "existing sales receipt" do
