@@ -24,6 +24,14 @@ module QBIntegration
       end
     end
 
+    def inventory
+      {
+        id: "qbs-#{item.name}",
+        product_id: item.name,
+        quantity: item.quantity_on_hand.to_i
+      }
+    end
+
     def last_modified_date
       items.last.meta_data.last_updated_time.utc.iso8601
     end
