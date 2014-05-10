@@ -8,6 +8,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     config.environment_name = ENV['RACK_ENV']
   end
 
+  error Quickbooks::ServiceUnavailable do
+    result 500, "Quickbooks API appears to be inaccessible HTTP 503 returned."
+  end
+
+  error Quickbooks::IntuitRequestException do
+    result 500, env['sinatra.error'].message
+  end
+
   post '/add_product' do
     code, summary = QBIntegration::Product.new(@payload, @config).import
     result code, summary

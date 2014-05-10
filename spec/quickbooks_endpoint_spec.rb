@@ -24,6 +24,16 @@ describe QuickbooksEndpoint do
     }
   end
 
+  describe "quickbooks api errors" do
+    it "" do
+      expect(QBIntegration::Order).to receive(:new).and_raise Quickbooks::ServiceUnavailable
+
+      post '/add_order', {}.to_json, auth
+      last_response.status.should eql 500
+      expect(json_response[:summary]).to match "Quickbooks API appears to be inaccessible"
+    end
+  end
+
   describe "order sync" do
     let(:message) {
       {
