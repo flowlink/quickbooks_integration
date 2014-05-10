@@ -17,7 +17,7 @@ end
 
 group :test do
   gem 'vcr'
-  gem 'rspec', '2.11.0'
+  gem 'rspec', '~> 2.14'
   gem 'webmock'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
