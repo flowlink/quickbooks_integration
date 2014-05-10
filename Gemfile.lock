@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/endpoint_base.git
-  revision: f6c1859af1175bd4e29aa36823c8b02a2bb722c2
+  revision: 9aa893ed9462397fa4d35cc1d008f93a79113aeb
   specs:
     endpoint_base (0.3)
       activesupport
@@ -56,7 +56,7 @@ GEM
     honeybadger (1.13.0)
       json
     i18n (0.6.9)
-    jbuilder (2.0.6)
+    jbuilder (2.0.7)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.1)
@@ -65,7 +65,7 @@ GEM
     lumberjack (1.0.3)
     method_source (0.8.1)
     mini_portile (0.5.3)
-    multi_json (1.9.2)
+    multi_json (1.10.0)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
