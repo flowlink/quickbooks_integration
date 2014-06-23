@@ -25,12 +25,20 @@ describe QuickbooksEndpoint do
   end
 
   describe "quickbooks api errors" do
-    it "" do
+    it "rescues ServiceUnavailable error" do
       expect(QBIntegration::Order).to receive(:new).and_raise Quickbooks::ServiceUnavailable
 
       post '/add_order', {}.to_json, auth
       last_response.status.should eql 500
       expect(json_response[:summary]).to match "Quickbooks API appears to be inaccessible"
+    end
+
+    it "rescues look up error" do
+      expect(QBIntegration::Order).to receive(:new).and_raise QBIntegration::LookupValueNotFoundException.new("look up error")
+
+      post '/add_order', {}.to_json, auth
+      last_response.status.should eql 500
+      expect(json_response[:summary]).to match "look up error"
     end
   end
 
