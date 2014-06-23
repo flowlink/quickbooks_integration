@@ -13,7 +13,7 @@ module QBIntegration
       def augury_name
         if order.has_key?("credit_cards") && !order["credit_cards"].empty?
           order["credit_cards"].first["cc_type"]
-        elsif order["payments"]
+        elsif order["payments"] && order["payments"].first.is_a?(Hash)
           order["payments"].first["payment_method"]
         else
           "None"
