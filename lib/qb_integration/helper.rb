@@ -9,8 +9,7 @@ module QBIntegration
         value = hash[key]
       end
 
-      raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping") unless value
-      value
+      value || (raise LookupValueNotFoundException.new("Can't find the key '#{key}' in the provided mapping"))
     end
 
     def self.payment_method_names service

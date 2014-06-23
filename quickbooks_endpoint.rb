@@ -16,6 +16,10 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result 500, env['sinatra.error'].message
   end
 
+  error QBIntegration::LookupValueNotFoundException do
+    result 500, env['sinatra.error'].message
+  end
+
   post '/add_product' do
     code, summary = QBIntegration::Product.new(@payload, @config).import
     result code, summary
