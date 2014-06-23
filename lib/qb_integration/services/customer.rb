@@ -15,7 +15,9 @@ module QBIntegration
       end
 
       def fetch_by_display_name(name = nil)
-        query = "SELECT * FROM Customer WHERE DisplayName = '#{name || display_name}'"
+        condition = clause "DisplayName", "=", name || display_name
+
+        query = "SELECT * FROM Customer WHERE #{condition}"
         quickbooks.query(query).entries.first
       end
 
@@ -50,6 +52,14 @@ module QBIntegration
       private
         def use_web_orders?
           config.fetch('quickbooks.web_orders_user') == "true"
+        end
+
+        # Quickbooks::Util::QueryBuilder
+        # From an upstream version of quickbooks-ruby
+        def clause(field, operator, value)
+          # escape single quotes with an escaped backslash
+          value = value.gsub("'", "\\\\'")
+          "#{field} #{operator} '#{value}'"
         end
     end
   end
