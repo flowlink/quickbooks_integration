@@ -38,6 +38,7 @@ module QBIntegration
     end
   end
 
+  class RecordNotFound < StandardError; end
   class InvalidPlatformException < StandardError; end
   class LookupValueNotFoundException < StandardError; end
   class UnsupportedException < StandardError; end

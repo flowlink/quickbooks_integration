@@ -40,6 +40,14 @@ describe QuickbooksEndpoint do
       last_response.status.should eql 500
       expect(json_response[:summary]).to match "look up error"
     end
+
+    it "rescues not found record error" do
+      expect(QBIntegration::Order).to receive(:new).and_raise QBIntegration::RecordNotFound.new("not found record")
+
+      post '/add_order', {}.to_json, auth
+      last_response.status.should eql 500
+      expect(json_response[:summary]).to match "not found record"
+    end
   end
 
   describe "order sync" do

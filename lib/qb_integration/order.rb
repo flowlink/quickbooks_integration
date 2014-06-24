@@ -21,7 +21,7 @@ module QBIntegration
 
     def update
       unless sales_receipt = sales_receipt_service.find_by_order_number
-        raise "Quickbooks Sales Receipt not found for order #{order[:number]}"
+        raise RecordNotFound.new "Quickbooks Sales Receipt not found for order #{order[:number]}"
       end
 
       sales_receipt = sales_receipt_service.update sales_receipt
@@ -30,7 +30,7 @@ module QBIntegration
 
     def cancel
       unless sales_receipt = sales_receipt_service.find_by_order_number
-        raise "Quickbooks Sales Receipt not found for order #{order[:number]}"
+        raise RecordNotFound.new "Quickbooks Sales Receipt not found for order #{order[:number]}"
       end
 
       credit_memo = credit_memo_service.create_from_receipt sales_receipt
