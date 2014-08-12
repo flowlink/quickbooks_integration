@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe QuickbooksEndpoint do
   def parameters
-    { 
+    {
       'quickbooks_access_token' => "123",
       'quickbooks_access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
       'quickbooks_realm' => "1081126165",
