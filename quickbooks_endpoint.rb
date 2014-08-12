@@ -8,20 +8,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     config.environment_name = ENV['RACK_ENV']
   end
 
-  error Quickbooks::ServiceUnavailable do
-    result 500, "Quickbooks API appears to be inaccessible HTTP 503 returned."
-  end
-
-  error Quickbooks::IntuitRequestException do
-    result 500, env['sinatra.error'].message
-  end
-
-  error QBIntegration::LookupValueNotFoundException do
-    result 500, env['sinatra.error'].message
-  end
-
-  error QBIntegration::RecordNotFound do
-    result 500, env['sinatra.error'].message
+  error do
+    result 500, lookup_error_message
   end
 
   post '/add_product' do
@@ -75,6 +63,17 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       result 200
     else
       result 200
+    end
+  end
+
+  def lookup_error_message
+    case env['sinatra.error'].class.to_s
+    when "Quickbooks::AuthorizationFailure"
+      "Authorization failure. Please check your Quickbooks credentials"
+    when "Quickbooks::ServiceUnavailable"
+      "Quickbooks API appears to be inaccessible HTTP 503 returned."
+    else
+      env['sinatra.error'].message
     end
   end
 end
