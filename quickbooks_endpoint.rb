@@ -8,6 +8,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     config.environment_name = ENV['RACK_ENV']
   end
 
+  set :show_exceptions, false
+
   error do
     result 500, lookup_error_message
   end
