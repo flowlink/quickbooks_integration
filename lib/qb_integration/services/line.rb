@@ -42,6 +42,8 @@ module QBIntegration
             sales_item.item_id = item_service.find_or_create_by_sku(line_item, account).id
             sales_item.quantity = line_item["quantity"]
             sales_item.unit_price = line_item["price"]
+
+            sales_item.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
           end
 
           lines.push line
