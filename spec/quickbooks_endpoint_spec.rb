@@ -16,9 +16,6 @@ describe QuickbooksEndpoint do
           "PayPal" => "PayPal"
         }
       ],
-      "quickbooks_shipping_item" => "Shipping Charges",
-      "quickbooks_tax_item" => "State Sales Tax-NY",
-      "quickbooks_discount_item" => "Discount",
       "quickbooks_account_name" => "Inventory Asset",
       "quickbooks_web_orders_user" => "false"
     }

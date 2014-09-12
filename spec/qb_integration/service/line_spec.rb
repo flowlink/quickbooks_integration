@@ -24,7 +24,10 @@ module QBIntegration
 
       it ".build_from_adjustments" do
         VCR.use_cassette("line/build_from_adjustments", match_requests_on: [:body, :method]) do
-          expect(subject.build_from_adjustments(account).count).to eq payload[:order][:adjustments].count
+          items = subject.build_from_adjustments(account)
+          expect(items.count).to eq payload[:order][:adjustments].count
+          expect(items.select{|i|i['sku'] == 'Shipping'}.count).to eq(2)
+
         end
       end
 
@@ -38,13 +41,6 @@ module QBIntegration
         VCR.use_cassette("line/build_them_all", match_requests_on: [:body, :method]) do
           total = payload[:order][:adjustments].count + payload[:order][:line_items].count
           expect(subject.build_lines.count).to eq total
-        end
-      end
-
-      context "returns the adjustments name" do
-        it "returns as discount if amount < 0.0" do
-          adjustment = { amount: "-5.0", name: "Discount" }
-          expect(subject.map_adjustment_sku adjustment).to eq "Discount"
         end
       end
     end

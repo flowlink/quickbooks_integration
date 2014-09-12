@@ -10,10 +10,7 @@ shared_context "request parameters" do
       'quickbooks_deposit_to_account_name' => "Inventory Asset",
       'quickbooks_cogs_account'          => "Cost of Goods Sold",
       'quickbooks_payment_method_name' => [{ "visa" => "Discover" }],
-      'quickbooks_account_name' => "Inventory Asset",
-      'quickbooks_shipping_item' => "Shipping Charges",
-      'quickbooks_tax_item' => "State Sales Tax-NY",
-      'quickbooks_discount_item' => "Discount"
+      'quickbooks_account_name' => "Inventory Asset"
     }
   end
 end
