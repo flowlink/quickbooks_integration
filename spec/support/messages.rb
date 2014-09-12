@@ -11,9 +11,6 @@ module Factories
         'quickbooks_cogs_account'          => "Cost of Goods Sold",
         'quickbooks_payment_method_name' => [{ "visa" => "Discover" }],
         'quickbooks_account_name' => "Inventory Asset",
-        'quickbooks_shipping_item' => "Shipping Charges",
-        'quickbooks_tax_item' => "State Sales Tax-NY",
-        'quickbooks_discount_item' => "Discount",
         'quickbooks_poll_stock_timestamp' => '2014-04-13T18:48:56.001Z'
       }
     end

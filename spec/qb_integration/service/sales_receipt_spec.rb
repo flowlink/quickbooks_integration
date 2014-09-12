@@ -16,9 +16,6 @@ module QBIntegration
           'quickbooks_access_secret' => "OLDrgtlzvffzyH1hMDtW5PF6exayVlaCDxFjMd0o",
           "quickbooks_payment_method_name" => [{ "visa" => "Discover" }],
           'quickbooks_account_name' => "Inventory Asset",
-          "quickbooks_shipping_item" => "Shipping Charges",
-          "quickbooks_tax_item" => "State Sales Tax-NY",
-          "quickbooks_discount_item" => "Discount",
           'quickbooks_deposit_to_account_name' => "Inventory Asset",
           "quickbooks_web_orders_user" => "false"
         }
