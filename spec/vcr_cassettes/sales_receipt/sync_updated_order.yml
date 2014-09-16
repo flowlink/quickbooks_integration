@@ -18,8 +18,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Ki3DzlrcMeyhyXEwyIbeDh2lyeDaqypxMABwqE0314",
         oauth_signature="eQHEklbyTw2sJ6P9Vh9Hz%2BDBH7o%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065649", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065649", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -71,7 +70,7 @@ http_interactions:
         JxPsZ+zpsgNK2zUg4NTX1F3jQBZIE4zhxjU2P8FO5EUGrhNFDvup9gPu8TOR
         uf7U9YGHIXsQdQ7KYk+21WlX+g1tbJg9jsq8x7gjV7g2daOnSZNdt/BWvSFU
         lzWZGgPW41FzW32AHw78vplF86wXRvu8+eZ/AZwjhNvECwAA
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:11 GMT
 - request:
     method: get
@@ -91,8 +90,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="qh4TmCvN9cDyRlfLafUse6vFk0VXfGWpz9AeHawFgwg",
         oauth_signature="8AvC9AACfqCt%2F0AzNgfkhFfytU4%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065651", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065651", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -131,7 +129,7 @@ http_interactions:
         ity+o5EC+AXAu6hMkZKwbFER5j6y/E4sxnkcpyORDkbntMB/qeBeOdo2pefy
         v29/pcAvgx+VL2TaFdYfB/gJYVGQPqCktkPgXwB536Bcbm6zVf66XGwy4KcK
         8KuVeL5aqefrG8oPGFNx4QsCAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:12 GMT
 - request:
     method: get
@@ -151,8 +149,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="G418OEMobupEw6jh4RzNRGyD2YAsIQhT9PgGakMY7E",
         oauth_signature="%2FeN%2FbvHssaL%2FjXqvMRgULyWeO8s%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065652", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065652", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -197,7 +194,7 @@ http_interactions:
         R4fj/mScjtLUz4dDTKtX2kvTfjxJJ4lHPUCirsx1Lsqu4OH/WnBX5k/90nbd
         m03HfwuXPzIDyrXUCUrmTPr14596a7aYl2Eke8R9QjiwsAVjgC9B4gSbGh9p
         rjltRtEP5t9p/CWHbYTml0WG/tfNSd8BOgDvaIEFAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:13 GMT
 - request:
     method: get
@@ -217,8 +214,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="LZioqGs5TAUi4QI64KaB4DaAqh1nPuXZJBFmqGOU",
         oauth_signature="zxGVV4HvYEEN4B3q8OmaXHhTPPY%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065653", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065653", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -260,7 +256,7 @@ http_interactions:
         3mPLsd8tMNLouY8v5i7YeMIHlWdpzosjkiSNvmbY/j49wX5pOF7nEf5TNaUG
         kRLX7UCsPG/n3mr8MmQH+IECWTtjpKdiv1uPWj0sLrbx7W5hMb7/Q8Q/1f1H
         c2kDAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:14 GMT
 - request:
     method: get
@@ -280,8 +276,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="816YFckxwW4wQnqtYymj2t7Y57wSbh5cJvuVpQhrU",
         oauth_signature="WBWmPETjdikCybV%2FSiPhNpX4%2Bwk%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065654", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065654", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -325,7 +320,7 @@ http_interactions:
         UtdZwxV8gLb7LG6469wTG8VAXNx+XWRqNOSleJOr5CwFvYGIFz6Sqj7K4sgg
         r3Yd8l7+323/JHNBAfT9nPa37htP8aUPx1bWyUvOv6O30ZuPHqP6C08CR7vU
         AwAA
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:15 GMT
 - request:
     method: get
@@ -345,8 +340,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="L2P6KfkOPjp11yo8rJEEIXNjvPCxxWVHLHW3xHdX6AU",
         oauth_signature="RUGOCCsfgKIzG1lMYx5zdiWs%2BKE%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065655", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065655", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -387,7 +381,7 @@ http_interactions:
         Cch3hL2ztAnW4PQfF4Bq7FC9YBiYWD4RT54HiitjfO94AQ6J09M8n92AjnwY
         k1WMSELdc6lbrYJNH8xRR3z0kaZmVwxV0OZ1S+PafeWN+7B5HeWyPGu+rlZk
         Cl/tpPoNrX0GeNsCAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:16 GMT
 - request:
     method: get
@@ -407,8 +401,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="19SzxtioX7E7FZNBi2u5I3Xs4N8jxF30xRe2twhNHI",
         oauth_signature="Z71B%2BXAuXKptVB%2ByeYGaTryJLEk%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065656", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065656", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -449,7 +442,7 @@ http_interactions:
         +Lsmc/wg0G8QNt7xKjpLw++cAJR9K9IU94KEPiDJgZyXFtaGzksctpnH4boP
         fk+eQ+yzRUrEylyL1CXXwKqLdoeJliHxsOwMQxnRvqy5f/TfJH/vNs+7IiuX
         l3IWmKF9llDzB6ZqINvpAgAA
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:17 GMT
 - request:
     method: get
@@ -469,8 +462,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="ocX85kRE1hVSB9eVPPtVCo1a1siBAU3i68Ojxdu01VU",
         oauth_signature="VBfgY2v84X2G8Z%2Fn3WmcIS%2BmUic%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065657", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065657", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -511,7 +503,7 @@ http_interactions:
         8EdD5vhBoH9D2HjHT9FZGn/nBKAaOpGmuBck9BFJDuS8tLQ29F7isM08jtd9
         8HvyHOKQLVMiVuZGpC65Bp76aHeYaBUSj8vOMFQR7euah0f/WfL3bvO8K7Jy
         eSlngRnbZwk1PwHLzbD06QIAAA==
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:19 GMT
 - request:
     method: get
@@ -531,8 +523,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="U8e3BvvpIbVA0U4wqNc2DTaYgUTfaoYpLPH3Vrrq0",
         oauth_signature="nVJhNvVSbCxxTywFEaIYdp4pMwc%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065659", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065659", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -573,7 +564,7 @@ http_interactions:
         OfOjRn0cEqjfELbe0So6i+OETgDKoWVzjD0jlo+Ib4FXjEtrQ+f5JHbCm3HD
         j75HTyEOYpkSktTXbHWp1bDqot2bhPch0djsDEMZjX1Z0/DsP/MNvsc8r7It
         b5+fs6MZy2dXqn8B/V7Gau0CAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:20 GMT
 - request:
     method: get
@@ -593,8 +584,7 @@ http_interactions:
       Authorization:
       - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="SeZ8XU7y4i6srOuw5IQsrz4OKoWELyXsiFjXnj2uE",
         oauth_signature="LCVDsy8taBecHwaiLm8h4kQMujM%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1392065660", oauth_token="123",
-        oauth_version="1.0"
+        oauth_timestamp="1392065660", oauth_token="123", oauth_version="1.0"
   response:
     status:
       code: 200
@@ -636,7 +626,7 @@ http_interactions:
         sORY75owstFzH5/NnWnjDRtUnoXuFofHcRI8pFj+Fp7Q/ig4Xubh/5M1ZQ0i
         Ba7bgRjRbefeKHwZsgN8IE/WVmvhKN/v1qNWT+Zn23i6WViMb/8Q/g+NaYC1
         aQMAAA==
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:22 GMT
 - request:
     method: post
@@ -801,6 +791,764 @@ http_interactions:
         76RbCYZ1pGC/YgdY7FHargABx7I2SVsBeoExgTF82zVjvzipa0PRhZ2mO+wd
         fCYK15xyrCj7IbsXTQnKYgO30Xl/TVqvsVv2XGPxHuOuZ6WNtGs9zdrg+oU3
         6hWhum7I1BiwHk/ayvYBvi8Ou84Xp6edNv8LlXrLZ7ELAAA=
-    http_version: 
+    http_version:
   recorded_at: Mon, 10 Feb 2014 20:54:23 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20'R181807170'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="A0ppDWE6lzCYxYaYotNZcCdWV2DlSKYspMz2oPC9g",
+        oauth_signature="Bxx5dqVxMDkZcSZ7h%2Bf1gOhmZtE%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:33 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '1056'
+      Intuit-Tid:
+      - 081b3615-25a5-4bad-a858-a54eb14c786b
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Qbo-Version:
+      - '77.333'
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAO1Zf2/iOBD9KlH+h8SElB9yvQft7amnXdoC/QBuMl2sS+wo
+        drjm2+84BBJa0G136e3eiapS4vHYM/M8fnkS9MNzmjhryLVQ8tIlXd91QEYq
+        FvLLpfuw/NgZuo42XMY8URIu3RK0+4HRG2kKYeagMyU1OLiJ1Jfuyphs7Hk6
+        WkHKu6Ly6UYq9Z6E5DICbx24jhEp7tPzSb/jjzokXBIy7g3xvxuEg44/GPu+
+        y+h9AXm52x8zyM2d0sJs0nSdlD/jbJEYDNtH/wVPQM8hApEZJ1YpF+h3P73F
+        7DOea4z4xBMN6HkTs4AE1MMnXZQyWqq/QDKfes2AfgbDr7nhjF7lwA0sMWf2
+        OuU6Xeq1vOgnrs1DFuM4/qdlL12p1wS+VtGsSB8hZ3MyJEN/QAa4orHS5bNE
+        z/b+1Nva6CchoSqVbAq1Y1xoh9tXeg06yhEuhJQtshzAmXINjzxJnD+xIaDE
+        cC0XOklVIQ0LRt3RkHr1CHcxXCTLMgNWncGNgdSG2NjtFrt5esABk8TxHJ4c
+        yW1fLO7mHR//iMsCe0ibSUYfpDB3uYiAEYw/ol5joPemZD3q2Qdd8ucrFYNd
+        M7udISLNGE/4UHxvg9UOsd4+Yr0jiM2Lx9JR0pnjJvrbkAsx88G7ITe/tciR
+        8ebp+3gryMUbEAxOhmCwj2BwrOdWIsuQZ46A1bU35L26rA6NEPn9gxiFr/Ah
+        J8Onv49P/4zPPj7hPj7hEXxmKjcrZ5IC5sAdxOMnAPUqBxf5OPx3EatLI6Tf
+        HYWHKy0el8rw5Gihr+a9XQz8pGA+28CVG47t93L3Xn13Wk5XhTYKIWlgmuaC
+        S+e+EFK6DD8eLQ9GpyJJJnGcb+7GxUVz+oQNBkHo3Cax8weo/AsY9TcybrzJ
+        jWAkgfhNwaxAxxy3tUN6ZevPS/awQEv9vjVipddiLazasRCzzzwvE1Q3O8+X
+        DhRVB5ZZvff8IcHb0LJQr0ne3plWGYP/VBlN8tWpTtKmn3YGOsmypMRznjwZ
+        yK+FjqpGq3QVtt3BSYrtLs3CcFNoNgPUOaqyYPjWBP0d9Vqy9VJmAejQtlU9
+        UhkwC0wTtGbaSpbf4JmnWQJWZWIO9dTmWGr/KU+s9rQdu32ld7xMQRpUWysV
+        N21apY1i2GV4ei997I3KrARdqklUVdcsvJFrdFV56Uy0BuOyC3vBXnlvr3Ot
+        U9+oWi++T7MGHdLrELIkvXFAxj6Kz+G3aNZjy06lWev9/xeaFfI1krp2q8zP
+        ivV9cTuRTq1rGo1+kY/mjmbrjH4N2j3AncdZ8EHGmzmInY+FjO3BkncgwvDH
+        idAfB99DhO1lZyI8E+GZCM9E+BOJsP/DRNgj4zB4OxHuLTsT4ZkIz0R4JsLT
+        EqG39wsQjvd/cmJfASxYoP26GgAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:33 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=SELECT%20*%20FROM%20PaymentMethod%20WHERE%20Name%20=%20'Discover'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="ehNUVflht1crgeq4ogQPjoqEf8JrgIZg7tyLbS5EQ",
+        oauth_signature="%2BCea2wuSLQglFiSWZ91MzXJ4%2Br0%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:35 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '338'
+      Intuit-Tid:
+      - 646ea6a5-04bf-4b35-bdbc-6769c955f14f
+      Content-Encoding:
+      - gzip
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIWRb2vCMBDGv0rJ+zapnajlGnF2A2F/1NXXI7TnDGuT0qRi
+        v/1ubsy5N4MQ8rs8d/dwB/NTUwdH7Jy2JmNxJFiAprSVNm8Z2xX34ZQFzitT
+        qdoazNiAjs0lrIzvtd+ia61xGFAR4zJ28L5NOXflARsV6bMmKm3D99ooUyI/
+        JizwuqE6IxHfhGIWxuMijtPRNE1EJJJZKCapEEzCpsdu+KlPDjq/tk77L5ss
+        aNSJfvvau0+UsFZDg8Y/oj/YKqhsozQJN7fPZL9VnaOWe1U7JOmqkhPgdMPL
+        YMrCvqORAvgFgKqoXHklYdmh8liQZUmOkzCO6RSC7I5TEYf0EJT6SwUPyvld
+        WxFX/6X9lQK/NH5SFMi1Ky0tB/gZYVF6fUTpux6BfwMUQ4tyub3LV8XrcrHN
+        gZ8jwK9GQnw1UuLrHcoPecDIeAsCAAA=
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:34 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=SELECT%20*%20FROM%20Customer%20WHERE%20DisplayName%20=%20'Brian%20Quinn'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="N24b16YraT3MUfkc8mtKv1STDsu4kLCJo5eSz3IRE",
+        oauth_signature="jIA1KaL0Hl1pCJ%2FwP%2BnjKwQw69w%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:36 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '634'
+      Intuit-Tid:
+      - ccfc2b89-af3c-42ad-a970-9acf0c64c1ed
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAN1UUXPaMAz+K7m8hyRAl8AZdwXWXnftKCW9PbtYNL46ds52
+        GPn3U1LSUNgv2EtO+r7PshTJIteHQnp7MFZoNfPjQeR7oLaaC/U281+y2yD1
+        PeuY4kxqBTO/ButfU3KvXCXcM9hSKwseBlF25ufOldMwtNscCjYQrWaw1UW4
+        E4qpLYT7ke85UWCcYRSPg2gSxFdZHE+H6XQ0HEQRQsk0inxK1hWY+jM+ZmDc
+        k7bCfaTpewU7IFtJZxuXkkVlnS7AeFwXTKBmPV9h5iUzFm/bMWkBVfecpiTE
+        L9nUapvpd1A0ImHvkEdwbMkcw4gGmIMMs6UfyY6DOMniEeY3jYYfiZLwREUe
+        mHUvJUefnxxLgyjOUD3+dnLsXErC/uI7sQf1iyE6N4IpEvYAuWWFkHVrryuh
+        kDxByG0lZb2umBQ7AbwP4XXaS54shS0lqy/FpwR5MtjNlVrksH2/lF6w5Gbr
+        MGnqTAUkPDpNkIKZ+gc2SN5wblCGX7CW2tIAfIcDK0oJzcTgoSPVRj87lrED
+        e5VA27aSsHPJXMijAls8OXb6QSiIaZKMrryV5N4daPMGTv9R3jPHRrQsWQhX
+        0zm4HCxn2NXGJQtdKWdq+rJB5Gh34KZ6XYq9aJ7NQnOgj5ihxGfyqTwXEBxf
+        x2RrD6M0HmNhPYKz4+goHUzSZJwkzXw4xLR6o0GSDKJJMokbtAFI2Je5yUXZ
+        Fzz5Xwvuy/ypX7uuN2bb8d/C5U/MgHIddYaSOZPN+qHBVTRoXl/nd0SjxXD2
+        XPCJ4+jCDowBvgSJs2xqfK655rSd/GZE/03jzznuJTS/rDT0v+5Q+he1h/ht
+        iwUAAA==
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:37 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="Xz5w0nz1BT5tWckZnNRfNlwRDNA0b9bZPjJzOOhH8",
+        oauth_signature="uJeCFAzJ7V9qY%2BEzSctrLnHAmsU%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:39 GMT
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 5f3a204b-8ec6-4b86-a569-a9aee84261d1
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Length:
+      - '462'
+      Qbo-Version:
+      - '77.333'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAHVT0Y6bMBD8FcvvYAhpS5Dj012ikyK1vaYh6rMLTmPV2Mhe
+        ouPvu+EguUTXF+TZHc/Orhf+8NoYclI+aGeXNI0TSpStXK3tnyXdl89RTkkA
+        aWtpnFVL2qtAHwTfWOg0/FShdTYogiI2LOkRoC0YC9VRNTLWAyeuXMMO2kpb
+        KXbKKAHdoM4sSedRsojST2WaFrO8yLJ4MV9EyZciSajg2075/qKPDjz8cEHD
+        m01KGvmK2c5AOEPBH6vKdRZI7RqpkbJ9ekHjrfQBix2kCQpJm1p85gy/fNfb
+        qnR/lRUJZ1fAvymQawlS8JVXElSJZgV6zaI0HbzOinlW4DnJ0Sdn71j8qwyw
+        b2vE9XTttsXZ2B5n91TOroW/Swxs7ElZcL4njyEo4GyI8l33e2xUDD2h92uE
+        P3fG9NtOGn3Qqv5Y5wMOzg70SQnwHQqOgK+MDAFJlTzPXIzX76LT2Mu+VeIF
+        jsqTVec9lpzqvSdMbPQ84Iu5C23K8FHlSZrz3ogsy+Z5nOdo4DZxR/yl4Xid
+        SPjvvXveKFPhxh2IlecF3VuNr0N2gI8UyNoZIz0V+9160hrI4mIdTzc7i/j2
+        JxH/AEhnEONsAwAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:38 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'SPR-00001'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="VnLmEvcWD6QkaRYpE5r4slElY2u78FvGaTvMoxS0Sw",
+        oauth_signature="X5bSsfoFNLzKf9aTPBB8vdapRGw%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:41 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '654'
+      Intuit-Tid:
+      - d1fa0c67-cc8e-4698-950b-9e53b8f7042e
+      Content-Encoding:
+      - gzip
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG1UV3LbMBC9yg7/xSK6SBoIHsclyUwSq9AHgMFVjDEI0Cge
+        6fZZSLZVHP1Abwve2wKyq3Wn4Q2dV9ZMsyovM0AjbavM32n22NwPRhn4IEwr
+        tDU4zTbosyvOfpoQVVig763xCHSJ8dPsOYR+UhRePmMncrWNyaXtipUywkgs
+        3uoMguronmFZnQ3K8aA6b6pqMhxN6ou8HpPpclKWGWfziG7zeT8pcGFmvQo7
+        mRl0Yk3eqINPkAQF7KC1nVDkn397INW9cJ6YVkJ7TBEtr2tW0MGWGyMb+4KG
+        15es2CP2G4O4FUFwduNQBGxIKyep9aAaDqqLpionVT0ZkswRyWTFQRT7JXx4
+        7FvC7UfacYXD8a46VpyGsmJP/EeQYTlbDEr6VazYYnaLXjrVp/L5tVavUbVg
+        rAEalKWytXUIGBIM8Bptm8Od9TRXo0RHhyYzksGuVkoqARi7HBYoo0+TRXDY
+        o9YigMeW8tVT9O0uEfz2RsrxoldoAoLwPTojQnQ5zKOiZBd3saSgs5rIEsW6
+        R1IjcrjdyvMgWtUrLxUoA8KoToGhqlQ0AWh4vXWJNnHlrDisl13LoN6QBxeR
+        Fe+A3UetN/MotFopbE+79h8va8RaPGnk24VgxQdkj0aFmVMSOY1mD1iz6ZH/
+        NNTEYN2GEhKmzaeFxmspLQlf4AqMSPu8FBpTf2HmbBtlgF1cxs9o5U5SOJtF
+        J5+FxxvrA6+I9sjA7qh3tPZfSJI3cXy3tvWwtLrN+DkrvoRTy7zH8CX/sxjY
+        +jN+Qf08jqSynZAv87B5MD9oOd67fmJk+79juuPAQRTL9FhpmT+ewGhQnqcm
+        HDgI0sjpOHrmyXz0XeH/ABQwVRGfBAAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:41 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'ROR-00004'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="mHL0Bgv675ebYrnfBThrayHdaDo1xDFxLzUzN2Qcs",
+        oauth_signature="9vxJY1JoHZf6fSFHz0aS2wSCppo%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:43 GMT
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - 8549bc3c-a9ca-42d3-9e72-8cda75250aa5
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Length:
+      - '548'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG1T7W7bMAx8FUH/HVlJsyQGo6Lr1q3AtiSN8wCqzaxCbSmw
+        5CB++9HOl5vOMGAfeRSPFAn3h7Jge6y8cXbO5SDmDG3mcmP/zvkmfYqmnPmg
+        ba4LZ3HOG/T8XsGzDbUJL+h3znpkdIj1c/4Wwi4RwmdvWOqB6TiDzJVia6y2
+        GYr9iLNgSjpnGMu7KJ5FcpxKmQynyWg6GI7HUTxJ4pgrWNVYNZfzSUEVls6b
+        cJTJWakP5K2L4FtIggKWLHelNuRffV2Q6p2uPGXa6sJjy8iV/AKCPrBubJa6
+        d7RK3oG4IviNQX/TQSt4rFAHTEmrIqmjSA7pTeUkuZslMcmckkwQPRb80j5s
+        djnh/Bz2scLh7FgdiFsqiGviP5oML4uXKKaH1HUYHrJg9qhCVSOIE4B1/dqW
+        fbKeESx1hZbuZsusblt9PIyaNJyCuDhJMO6xUJLkdD/wVBdFs6p1YbYG854O
+        mfT0/IcFqT7o1wJV12oQZwgba8KyMhkqORvMZiCuBkibHapnuyc1rmooqMU0
+        VzQu+JBlru6XsNYFeua2bFm5vM4CO/K4IkG3IdSAusretMdH54OSEyq6b4Dv
+        hx3SUH1K0nrbHD+cyz1buyLnagziE51uw3sMn+IvxbDOzxVN2w2Tyq509r4K
+        zcL+pKU6Xd2NEa6/EQnoOSjFul0FGpXzgNFcTtom9BwEu0EQH5aoNX/YWvUP
+        +j6DNP0DAAA=
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:43 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'Shipping'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="4NliKcyINAhjJqlIPBCYkmfl1shjEjTVVSXv9ZI6o",
+        oauth_signature="elxpCIfcoE3ddbye9M7phYiLeWI%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:45 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '434'
+      Intuit-Tid:
+      - e407d5a2-3868-4359-94c3-fcf117273172
+      Content-Encoding:
+      - gzip
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG1S0W7bMAz8FUPvjqQ4WVODUdF1KzZgW5PV+QBNZhahtmRI
+        chD//ei0aZpgT8KRR/LEI9wd2ibbY4jWuyWTE8EydMbX1v1dsk31mC9YFpN2
+        tW68wyUbMLI7Bd9d6m36jbHzLmJGTVxcsl1KXcl5NDts9cQeORPjW761TjuD
+        fF+wLNmW+kyFnOXiNpfzSspyuihnYiI+yVzclEIwBesew/DenxSEtPLRpleZ
+        LGv1gbJ9k+IISVDCNqt9qy3l15+fSHWnQ6RJW91EHBm1kmIGnF54Hpyp/As6
+        JYGfAfzEpL/opBU8BNQJK9KqXqUW+VRWsihFUco3mcA/sOCHjmnT1YTrD2U3
+        +XReCfreopTFqeyaCvw8+JemwPPOdh1ZAPwI4d4ku0eVQo/A3wA89k0zrHvd
+        2K3F+qruP0mo9EH/aVAdNwL8BGHjbFoFa1DNgZ8BVENHLTHsCRF9RGQ8+Yn3
+        xvjekf/bzOnRztPg7OuhQzfu+5Y2fcVVsOqD2emIDz4mRYu4wFAFbV7WaXhy
+        3+jg3mVeRqktWU3PxYWM4YuTVP8AIBj6ItoCAAA=
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:44 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'Shipping'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="53UJohmRHS4nQbQZu4YLYiVwXLh6LFQd6tHzsD89p9w",
+        oauth_signature="MSAFlwFLpoE7ouDopPrS%2FxhrH5M%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:46 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '435'
+      Intuit-Tid:
+      - 6543b7c9-0a7d-4da2-921f-dd64c1c22a69
+      Content-Encoding:
+      - gzip
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAG1S7W7bMAx8FUP/HUn5aFODUdF2KzZgW5PVeQBNZhqhtmRI
+        chC//ehkaZpgv4Qjj+SJR7jfN3W2wxCtdwsmR4Jl6IyvrHtbsHX5nM9ZFpN2
+        la69wwXrMbJ7Bd9d6mz6jbH1LmJGTVxcsG1KbcF5NFts9MgeOCPjG76xTjuD
+        fDdhWbIN9RkLOc3FXS5npZTFeF5M5ehG3OTithCCKVh1GPqP/qQgpKWPNh1l
+        sqzRe8p2dYoDJEEJm6zyjbaUXz2+kOpWh0iTNrqOODAqJcUUOL3w2jtT+nd0
+        SgI/A/iJSX/RSSt4CqgTlqRVHaVO8rEs5aQQk0LKo0zgn1jwQ8e0bivC1aey
+        23w8KwV9b17Iyansmgr8PPiXpsDr1rYtWQD8AOHBJLtDlUKHwP8BeO7qul91
+        urYbi9VV3X+SUOq9/lOjOmwE+AnC2tm0DNagmgE/Ayj7llpi2BEi+oDIePIT
+        H4zxnSP/N5nTg52nwdnXfYtu2PcdbfqKq2DZBbPVEZ98TIoWcYGhDNq8r1L/
+        4r7RwX3IvIxSW7KanosLGcIXJ6n+AqmoYFjaAgAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:46 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Item%20where%20Name%20=%20'North%20America%205.0'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="vxiXlSFd2VAcmAcFg5aTDbjLqOQqv8yuGmtIn0zKI",
+        oauth_signature="NT3tU3%2FCiX5ADLs00d6g0i1L6Jc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:48 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '429'
+      Intuit-Tid:
+      - 09b1d9cf-16e0-42b7-9fef-99eacc2acf75
+      Content-Encoding:
+      - gzip
+      Via:
+      - 1.1 ipp-gateway-ap05
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVS0W7bMAz8FUHvsR0n6TJDUZF1KFZga5PV+QBOZhahtmRI
+        tBH//eh0a5piRZ+Eo47HA3nq+tjUoscQrXcrOU0yKdAZX1n3eyV35e1kKUUk
+        cBXU3uFKDhjltVZ3jjpLPzG23kUULOLiSh6I2iJNozlgA4k9cRLjm3RvHTiD
+        aT+TgmzDOnk2nU+yz5PpopxOi3xZzGdJvryaZJ+KLJNabTsMw4s+Owi08dHS
+        s00pGjjyb1dTHCEbImxE5Ruw/L/98sCuWwiRJ+2hjjgyKp1nC5Xyqx4HZ0r/
+        hE5nKj0D9QMJvgKBVjcBgbBkr/q11ayY5UU+f7ap0lcs9R0i7dqKcfVR21uq
+        Ss+D74EL9z7QQawbDNaAWCTcc6qrtSHbo6bQoUr/AnXb1fWw7aC2e4vVewL/
+        YakSjvCrRn3akUr/QbVzljbcipoXdgaqHFrUjxh6RkwfEUeBL4xrY3znOBF7
+        4WA88J3r0ZEPg1jHiCT1Fa/+DVWrTRfMASLe+EjjLS6wKgOYpy0ND+4bJ/DF
+        5WWVZfn2/FxEZixfZFT/AZ5zmsbrAgAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:48 GMT
+- request:
+    method: get
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/query?query=select%20*%20from%20Account%20where%20Name%20=%20'Inventory%20Asset'%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH", oauth_nonce="M1tDcMndEQvdJqTFgHoHLaXtNJao3qQ7iZdB7FzxU",
+        oauth_signature="eKvtswvQqULSiQeNfNdyHusSlsM%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:49 GMT
+      Intuit-Tid:
+      - 5ee25c51-5856-41c0-8afd-c21ef938f0c7
+      Content-Length:
+      - '462'
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Encoding:
+      - gzip
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAHVTXW/bMAz8K4Le/e1urqGoaBMUCLCtS+Ngz5qtLMJkyZDo
+        oP73Y1w7aYLuxdCRp+ORotnDW6vJUTqvrFnQJIwpkaa2jTJ/FnRXPQcFJR6E
+        aYS2Ri7oID194GxtoFfwKn1njZcERYxf0ANAV0aRrw+yFaEaOWFt22ivjDC1
+        jI4ZJaBa1EnjJA/i+yC5q5KkTIsyz8MivQvir2UcU842vXTDWR8dOPhpvYJ3
+        m5S04g2zvQZ/gpw91rXtDZDGtkIhZfP0gsY74TwW2wvtJZLWDf/CIvyy7WDq
+        yv6VhscsugD2XYJYCRCcLZ0UICs0y9FrFiTJ6DUt86zEc1ygTxZ9YLFvwsOu
+        axA387XrFtP79/ZYdEtl0aXwD4GBtTlKA9YN5NF7CSwao2zb/54a5WNP6P0S
+        Yc+91sOmF1rtlWw+1/mEg7MDdZQcXI+CE2BLLbxHUi1OM+fT9ZvoPPZq6CR/
+        gYN0ZNk7hyXneh8JMxs9j/hs7kybM2xSeRL6tDc8y7K8CIsCDVwnboi/FBwu
+        E/H/vXfLm2Rq3Lg9MeK0oDuj8HXIFvCRPFlZrYWjfLddzVojmZ+t4+lqZxFf
+        /yT8H48Gfz5sAwAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:49 GMT
+- request:
+    method: post
+    uri: https://qb.sbfinance.intuit.com/v3/company/1081126165/salesreceipt
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <SalesReceipt xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Id>313</Id>
+        <SyncToken>0</SyncToken>
+        <MetaData>
+        <CreateTime>2014-09-15T15:28:27-0300</CreateTime>
+        <LastUpdatedTime>2014-09-15T15:28:27-0300</LastUpdatedTime>
+        </MetaData>
+        <DocNumber>R181807170</DocNumber>
+        <TxnDate>2014-09-15 15:28:31 -0300</TxnDate>
+        <Line>
+        <Description>Spree Baseball Jersey</Description>
+        <Amount>39.98</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>33</ItemRef>
+        <UnitPrice>19.99</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>2.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <Line>
+        <Description>Ruby on Rails Baseball Jersey</Description>
+        <Amount>59.97</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>16</ItemRef>
+        <UnitPrice>19.99</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>3.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <Line>
+        <Description>Shipping</Description>
+        <Amount>5.0</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>104</ItemRef>
+        <UnitPrice>5.0</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <Line>
+        <Description>Shipping</Description>
+        <Amount>5.0</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>104</ItemRef>
+        <UnitPrice>5.0</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <Line>
+        <Description>North America 5.0</Description>
+        <Amount>5.0</Amount>
+        <DetailType>SalesItemLineDetail</DetailType>
+        <SalesItemLineDetail>
+        <ItemRef>205</ItemRef>
+        <UnitPrice>5.0</UnitPrice>
+        <RatePercent>0.0</RatePercent>
+        <Qty>1.0</Qty>
+        </SalesItemLineDetail>
+        </Line>
+        <CustomerRef>8</CustomerRef>
+        <BillEmail>
+        <Address>updated@mail.com</Address>
+        </BillEmail>
+        <BillAddr>
+        <Line1>7735 Old Georgetown Rd</Line1>
+        <Line2/>
+        <City>Bethesda</City>
+        <Country>US</Country>
+        <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
+        <PostalCode>20814</PostalCode>
+        </BillAddr>
+        <ShipAddr>
+        <Line1>7735 Old Georgetown Rd</Line1>
+        <Line2/>
+        <City>Bethesda</City>
+        <Country>US</Country>
+        <CountrySubDivisionCode>Maryland</CountrySubDivisionCode>
+        <PostalCode>20814</PostalCode>
+        </ShipAddr>
+        <ShipMethodRef>UPS Ground (USD)</ShipMethodRef>
+        <TrackingNum>, 4532535354353452</TrackingNum>
+        <PaymentMethodRef>7</PaymentMethodRef>
+        <DepositToAccountRef>6</DepositToAccountRef>
+        <TotalAmt>114.95</TotalAmt>
+        </SalesReceipt>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '2419'
+      Authorization:
+      - OAuth oauth_body_hash="3eCKaaue3AoQkFNREUDt6HMINQs%3D", oauth_consumer_key="qyprdcG20NCyjy5jd7tKal9ivdOcbH",
+        oauth_nonce="RSNeyPyFtbE4DofOEdZMRQB2QQaOzTxmIXk9m4vk0", oauth_signature="lUJUoUaiT0YLzCQzlmIr4OeMMjs%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1410805711", oauth_token="123", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 15 Sep 2014 18:28:51 GMT
+      Content-Encoding:
+      - gzip
+      Intuit-Tid:
+      - fee7cc80-6af9-4e59-afac-1ce13f9f240f
+      Via:
+      - 1.1 ipp-gateway-ap06
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Qbo-Version:
+      - '77.333'
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      Expires:
+      - '0'
+      Content-Length:
+      - '939'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAO1W227jNhD9FUJPLVBboiXFFzDc2nG7SLHrOL58ACNN1sRK
+        pCDS2ejvO5RsS05soAV2WxRoDESc4eFcDofksA+veUZeoDRSq1uP9gOPgEp0
+        KtWXW2+7+b038oixQqUi0wpuvQqM94Gze2X30q7AFFoZIGhEmVtvZ20x8X2T
+        7CAXfVlj+onO/WephErAfwk9YmWOdgYBjXrBuEfjDaWTwWgS3fSjQdwLhpMg
+        8DhbiwzMChKQhSWpzoXE8B5nDxhNIUqDFp5FZgCR9ykPach8/LJ1pZKN/gqK
+        U+a3AvsMVsyFFZzdlSAsbDAG/i6EwbBxz/wOin0Sxm6LFOX08rJ4cFz2Fsr8
+        1vFcJ4t9/gQlX9ERHQVDOsQVrZZtXhUiu/aZf9SxT1JBnepNk6iTcaFL8zhk
+        czBJiXThTvJ1UQKQmTDwJLKM/IEbDBW660DYNNd7ZXk47o9HzD9IaMUKmW2q
+        Ani9B/cWcuei0TsTp3l2AYBBoryCZ6KE2+f1ctUL8I96PHSb1ExytlXSLkuZ
+        AKfof8z8VsEebcUHzHcfthGvdzoFt2bxsEBGWhl3+JJ/v+HqxNjwnLHBFcZW
+        +6eKaEVWaMT8NeZijHz4w5hbPTjm6KT5BkHkcXrzNxgMvxuDo3MGw2s1t5NF
+        gffGFbL67oT8qCo7uEaKgugiR/E7fuh342d8zk/0Pz/n/NDgnKD4CkELXdod
+        meaAQQiChPwLTL2LwcMLOf5nKTukRmnUH8eXM90/bbQV2dVE3837Jx/4pmA8
+        R8c1DGWOlJ7G9cPTAd3tjdVISUvTrJRCkce9VMpz90MHwdlMZtk0Tct686Ob
+        zpNF+XAYxuQhS8lH0OUXsPobXrlpExtFTxL5m4HdgUkFmnUiu3P5lxXfrlFz
+        GB+VmOlcvkjXvjiK+WdRVhm2KyfkWwBbauxnsno8CEYUj0NHw/w2eHdoOmkM
+        /1NptMG7EbYhO52227ddrsnHEi2n5Kftev6zx99qGgundVgopUi+4hXiTu0v
+        JIrDQRziL8J/UYyPane+qapp3tbwScGmRZFVWFvTZwvlXJqkLu66mcNSvzjJ
+        8Igpu7bC7g1fADZXutZgyp0J9hs2idkRpe0aENDV1XVZKzAKpAaM4fumW/vV
+        aV2niiEcZppKOMBnInP9qzskxyFbiioHZd9SW0eNDbXnGo+3GHeIC22k3ehp
+        UifXLrxXLwjVZUWmxoD1XKt3AX28QQ69MYrnvTj/E1xr/e/TCwAA
+    http_version:
+  recorded_at: Mon, 15 Sep 2014 18:28:52 GMT
 recorded_with: VCR 2.4.0

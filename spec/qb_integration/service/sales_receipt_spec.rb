@@ -3,9 +3,12 @@ require 'spec_helper'
 module QBIntegration
   module Service
     describe SalesReceipt do
+      let(:order) { Factories.order }
       let(:payload) do
+        order[:placed_on] = Time.now.to_s(:iso8601)
+
         {
-          "order" => Factories.order
+          "order" => order
         }.with_indifferent_access
       end
 
@@ -20,6 +23,7 @@ module QBIntegration
           "quickbooks_web_orders_user" => "false"
         }
       end
+
 
       subject { SalesReceipt.new(config, payload) }
 
