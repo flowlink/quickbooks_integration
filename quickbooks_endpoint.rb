@@ -1,10 +1,21 @@
-require File.expand_path(File.dirname(__FILE__) + '/lib/qb_integration')
+require_relative 'lib/qb_integration'
+
+if File.exists? File.join(File.expand_path(File.dirname(__FILE__)), '.env')
+  # TODO check an ENV variable i.e. RACK_ENV
+  begin
+    require 'dotenv'
+    Dotenv.load
+  rescue => e
+    puts e.message
+    puts e.backtrace.join("\n")
+  end
+end
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
   Honeybadger.configure do |config|
-    config.api_key = ENV['HONEYBADGER_KEY']
+    config.api_key          = ENV['HONEYBADGER_KEY']
     config.environment_name = ENV['RACK_ENV']
   end
 

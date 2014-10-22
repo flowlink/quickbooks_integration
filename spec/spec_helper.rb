@@ -14,6 +14,7 @@ require 'spree/testing_support/controllers'
 Bundler.require(:default, :test)
 
 ENV['ENDPOINT_KEY'] = 'x123'
+ENV['RACK_ENV']     = 'test'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/qb_integration.rb')
 require File.join(File.dirname(__FILE__), '..', 'quickbooks_endpoint')
