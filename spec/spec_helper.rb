@@ -6,6 +6,9 @@ require 'rubygems'
 require 'bundler'
 require "pstore"
 
+require 'dotenv'
+Dotenv.load
+
 require 'spree/testing_support/controllers'
 
 Bundler.require(:default, :test)
@@ -26,6 +29,9 @@ VCR.configure do |c|
   # c.allow_http_connections_when_no_cassette = true
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
+
+  c.filter_sensitive_data('oauth_consumer_key') { |_| ENV['QB_CONSUMER_KEY'] }
+  c.filter_sensitive_data('oauth_token')        { |_| ENV['QB_CONSUMER_SECRET'].gsub('@','%40') }
 end
 
 RSpec.configure do |config|
