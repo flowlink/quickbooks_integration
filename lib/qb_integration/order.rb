@@ -10,7 +10,7 @@ module QBIntegration
     def create
       if sales_receipt = sales_receipt_service.find_by_order_number
         raise AlreadyPersistedOrderException.new(
-          "Order #{order[:number]} already has a sales receipt with id: #{sales_receipt.id}"
+          "Order #{order[:id]} already has a sales receipt with id: #{sales_receipt.id}"
         )
       end
 
