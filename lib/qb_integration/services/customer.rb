@@ -29,7 +29,7 @@ module QBIntegration
       #
       # Maybe add another custom field to better sync customers?
       def display_name
-        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}"
+        "#{order["billing_address"]["firstname"]} #{order["billing_address"]["lastname"]}".strip
       end
 
       def create
