@@ -68,6 +68,8 @@ module QBIntegration
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
             sales_item.quantity = 1
             sales_item.unit_price = adjustment["value"]
+
+            sales_item.tax_code_id = adjustment["tax_code_id"] if adjustment["tax_code_id"]
           end
 
           lines.push line

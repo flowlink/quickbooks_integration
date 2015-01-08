@@ -11,8 +11,9 @@ gem 'tzinfo'
 gem 'capistrano'
 
 group :development do
-  gem "rake"
-  gem "pry"
+  gem 'rake'
+  gem 'pry-byebug'
+  gem 'shotgun'
 end
 
 group :test do
