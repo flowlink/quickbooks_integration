@@ -20,12 +20,17 @@ module QBIntegration
     end
 
     def update
-      unless sales_receipt = sales_receipt_service.find_by_order_number
-        raise RecordNotFound.new "Quickbooks Sales Receipt not found for order #{order[:number]}"
-      end
+      sales_receipt = sales_receipt_service.find_by_order_number
 
-      sales_receipt = sales_receipt_service.update sales_receipt
-      [200, "Updated Quickbooks Sales Receipt #{sales_receipt.doc_number}"]
+      if !sales_receipt.present? && config[:quickbooks_create_or_update].to_s == "1"
+        sales_receipt = sales_receipt_service.create
+        [200, "Created Quickbooks Sales Receipt #{sales_receipt.doc_number}"]
+      elsif !sales_receipt.present?
+        raise RecordNotFound.new "Quickbooks Sales Receipt not found for order #{order[:number]}"
+      else
+        sales_receipt = sales_receipt_service.update sales_receipt
+        [200, "Updated Quickbooks Sales Receipt #{sales_receipt.doc_number}"]
+      end
     end
 
     def cancel
