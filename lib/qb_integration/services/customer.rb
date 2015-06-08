@@ -52,7 +52,7 @@ module QBIntegration
 
       private
         def use_web_orders?
-          config.fetch('quickbooks_web_orders_user', false).to_s == "true"
+          config['quickbooks_web_orders_users'].to_s == "1"
         end
     end
   end
