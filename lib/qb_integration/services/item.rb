@@ -5,8 +5,13 @@ module QBIntegration
         super("Item", config)
       end
 
-      def find_by_sku(sku, fields = "*")
+      def find_by_name(sku, fields = "*")
         response = quickbooks.query("select #{fields} from Item where Name = '#{sku}'")
+        response.entries.first
+      end
+
+      def find_by_sku(sku, fields = "*")
+        response = quickbooks.query("select #{fields} from Item where Sku = '#{sku}'")
         response.entries.first
       end
 
@@ -32,7 +37,7 @@ module QBIntegration
           income_account_id: account ? account.id : nil
         }
 
-        find_by_sku(name) || create(params)
+        find_by_name(name) || find_by_sku(name) || create(params)
       end
     end
   end
