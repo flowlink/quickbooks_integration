@@ -37,7 +37,7 @@ module QBIntegration
           income_account_id: account ? account.id : nil
         }
 
-        find_by_name(name) || find_by_sku(name) || create(params)
+        find_by_sku(name) || find_by_name(name) || create(params)
       end
     end
   end
