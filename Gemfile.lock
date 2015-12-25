@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/flowlink/endpoint_base.git
+  revision: b3077af5b54ba18ed47bdbef01395b0027ad6637
+  specs:
+    endpoint_base (0.3)
+      activesupport
+      jbuilder
+      json
+
+GIT
   remote: git://github.com/ruckus/quickbooks-ruby.git
   revision: 585812a9403d8cc2dabf332b24f5e22d148f7840
   specs:
@@ -8,15 +17,6 @@ GIT
       nokogiri
       oauth (= 0.4.7)
       roxml (= 3.3.1)
-
-GIT
-  remote: git://github.com/spree/endpoint_base.git
-  revision: b3077af5b54ba18ed47bdbef01395b0027ad6637
-  specs:
-    endpoint_base (0.3)
-      activesupport
-      jbuilder
-      json
 
 GEM
   remote: https://www.rubygems.org/
@@ -62,7 +62,7 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.2.3)
-    honeybadger (2.3.1)
+    honeybadger (2.3.2)
     i18n (0.7.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
@@ -82,7 +82,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    nokogiri (1.6.7)
+    nokogiri (1.6.7.1)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.0.8)
       nenv (~> 0.1)
@@ -146,7 +146,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    vcr (3.0.0)
+    vcr (3.0.1)
     webmock (1.22.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -180,4 +180,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.11.0
+   1.10.6
