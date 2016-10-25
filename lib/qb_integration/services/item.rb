@@ -29,12 +29,21 @@ module QBIntegration
       def find_or_create_by_sku(line_item, account = nil)
         name = line_item[:sku] || line_item[:product_id]
 
+        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
+        track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
+        if track_inventory
+          type = Quickbooks::Model::Item::INVENTORY_TYPE
+        else
+          type = Quickbooks::Model::Item::NON_INVENTORY_TYPE
+        end
+
         params = {
           name: name,
           description: line_item[:description],
           unit_price: line_item[:price],
           purchase_cost: line_item[:cost_price],
-          income_account_id: account ? account.id : nil
+          income_account_id: account ? account.id : nil,
+          type: type
         }
 
         find_by_sku(name) || find_by_name(name) || create(params)

@@ -30,3 +30,21 @@ If your having problems with it, this transform should help:
 //nomustache
 payload.order.number = payload.order.number.substring(0, 21);
 ```
+
+## Development
+
+### Generate OAuth Keys
+
+Create an app here: https://developer.intuit.com/v2/ui#/app/dashboard and generate your oauth keys.
+
+### Environment Variables
+
+Copy "sample.env" to ".env" and fill out the following variables:
+
+`QB_CONSUMER_KEY` - OAuth consumer key
+
+`QB_CONSUMER_KEY` - OAuth token
+
+# Starting Application
+
+`bundle exec unicorn` -- Starts application on port 8080
