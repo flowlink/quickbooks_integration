@@ -40,7 +40,8 @@ module QBIntegration
 
     def attributes(product)
       attrs = {
-        name: product[:sku],
+        name: product[:name],
+        sku: product[:sku],
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
