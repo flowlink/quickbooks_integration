@@ -11,7 +11,9 @@ module QBIntegration
       end
 
       def find_by_sku(sku, fields = "*")
-        response = quickbooks.query("select #{fields} from Item where Sku = '#{sku}'")
+        util = Quickbooks::Util::QueryBuilder.new
+        clause1 = util.clause('Sku', '=', sku)
+        response = quickbooks.query("select #{fields} from Item where #{clause1}")
         response.entries.first
       end
 
