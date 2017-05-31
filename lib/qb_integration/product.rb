@@ -18,6 +18,9 @@ module QBIntegration
         if variant[:description].to_s.empty?
           variant[:description] = @product[:description]
         end
+        if variant[:name].to_s.empty?
+          variant[:name] = @product[:name] + " " + index.to_s
+        end
         import_product(variant)
       }
 
