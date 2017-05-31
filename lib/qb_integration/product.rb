@@ -11,7 +11,18 @@ module QBIntegration
     def import
       load_configs
       import_product(@product)
-      @product.fetch(:variants, []).collect {|variant| import_product(variant)}
+      @product.fetch(:variants, []).collect.with_index {|variant, index|
+        if variant[:sku].to_s.empty?
+          variant[:sku] = @product[:sku] + "_" + index.to_s
+        end
+        if variant[:description].to_s.empty?
+          variant[:description] = @product[:description]
+        end
+        if variant[:name].to_s.empty?
+          variant[:name] = @product[:name] + " " + index.to_s
+        end
+        import_product(variant)
+      }
 
       [200, @notification]
     end
@@ -32,12 +43,13 @@ module QBIntegration
 
     def attributes(product)
       attrs = {
-        name: product[:sku],
+        name: product[:name],
+        sku: product[:sku],
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
         income_account_id: @income_account_id,
-        type: 'Non Inventory'
+        type: Quickbooks::Model::Item::NON_INVENTORY_TYPE
       }
 
       # Test accounts do not support track_inventory feature
@@ -55,7 +67,7 @@ module QBIntegration
       end
 
       if @inventory_costing
-        attrs[:type] = 'Inventory'
+        attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
         attrs[:asset_account_id] = @inventory_account_id
         attrs[:expense_account_id] = @cogs_account_id
       end
@@ -82,7 +94,7 @@ module QBIntegration
     end
 
     def add_notification(operation, product)
-      @notification = text[operation] % product[:sku]
+      @notification = @notification.to_s + text[operation] % product[:sku] + " "
     end
 
     def text
