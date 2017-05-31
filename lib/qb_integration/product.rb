@@ -94,7 +94,7 @@ module QBIntegration
     end
 
     def add_notification(operation, product)
-      @notification = text[operation] % product[:sku]
+      @notification = @notification.to_s + text[operation] % product[:sku] + " "
     end
 
     def text
