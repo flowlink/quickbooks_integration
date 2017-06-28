@@ -9,6 +9,7 @@ gem 'honeybadger'
 gem 'quickbooks-ruby', github: 'ruckus/quickbooks-ruby'
 gem 'tzinfo'
 gem 'capistrano'
+gem 'unicorn'
 
 group :development do
   gem 'rake'
@@ -33,5 +34,4 @@ end
 
 group :production do
   gem 'foreman'
-  gem 'unicorn'
 end

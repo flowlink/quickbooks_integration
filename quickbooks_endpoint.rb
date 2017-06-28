@@ -14,11 +14,6 @@ end
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
-  Honeybadger.configure do |config|
-    config.api_key          = ENV['HONEYBADGER_KEY']
-    config.environment_name = ENV['RACK_ENV']
-  end
-
   set :show_exceptions, false
 
   error do
