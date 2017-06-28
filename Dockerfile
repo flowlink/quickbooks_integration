@@ -1,5 +1,5 @@
-FROM rlister/ruby:2.1.6
-MAINTAINER Ric Lister <ric@spreecommerce.com>
+FROM rlister/ruby:2.4.0
+MAINTAINER NuRelm <development@nurelm.com>
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
