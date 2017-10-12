@@ -22,7 +22,7 @@ module QBIntegration
 
         filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
         order = "Order By Metadata.LastUpdatedTime"
-        response = quickbooks.query "select Name, QtyOnHand, Metadata.LastUpdatedTime from Item #{filter} #{order}"
+        response = quickbooks.query "select * from Item #{filter} #{order}"
 
         response.entries
       end
