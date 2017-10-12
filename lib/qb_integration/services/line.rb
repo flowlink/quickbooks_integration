@@ -56,18 +56,21 @@ module QBIntegration
 
           sku = adjustment[:name]
 
-          line.amount = adjustment["value"]
+          # Discounts will be counted as negative
+          multiplier = (adjustment['name'] == 'Discounts') ? -1 : 1
+
+          line.amount = adjustment["value"] * multiplier
           line.description = adjustment["name"]
 
           # make an adjustment look like a line_item
-          adjustment[:price] = adjustment["value"]
+          adjustment[:price] = adjustment["value"] * multiplier
           adjustment[:name] = adjustment["name"]
           adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
             sales_item.quantity = 1
-            sales_item.unit_price = adjustment["value"]
+            sales_item.unit_price = adjustment["value"] * multiplier
 
             sales_item.tax_code_id = adjustment["tax_code_id"] if adjustment["tax_code_id"]
           end
