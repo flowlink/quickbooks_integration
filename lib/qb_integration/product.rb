@@ -30,8 +30,9 @@ module QBIntegration
     private
     def load_configs
       @income_account_id = account_id('quickbooks_income_account')
+      @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
 
-      if @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == 'true')
+      if @inventory_costing
         @inventory_account_id = account_id('quickbooks_inventory_account')
         @cogs_account_id = account_id('quickbooks_cogs_account')
       end
@@ -41,35 +42,33 @@ module QBIntegration
       account_service.find_by_name(@config.fetch(account_name)).id
     end
 
-    def attributes(product)
+    def attributes(product, is_update = false)
       attrs = {
         name: product[:name],
         sku: product[:sku],
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
-        income_account_id: @income_account_id,
-        type: Quickbooks::Model::Item::NON_INVENTORY_TYPE
+        income_account_id: @income_account_id
       }
 
+      if !@inventory_costing && !is_update
+        attrs[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
+      end
+
       # Test accounts do not support track_inventory feature
-      if config.fetch("quickbooks_track_inventory", false).to_s == "true"
-        attrs.merge!({
-          track_quantity_on_hand: true,
-          quantity_on_hand: 1,
-          inv_start_date: time_now
-        })
+      if @inventory_costing && !is_update
+        attrs[:track_quantity_on_hand] = true
+        attrs[:quantity_on_hand] = 1
+        attrs[:inv_start_date] = time_now
+        attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
+        attrs[:asset_account_id] = @inventory_account_id
+        attrs[:expense_account_id] = @cogs_account_id
       end
 
       if import_as_sub_item?(product)
         attrs[:sub_item] = true
         attrs[:parent_ref] = parent_ref
-      end
-
-      if @inventory_costing
-        attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
-        attrs[:asset_account_id] = @inventory_account_id
-        attrs[:expense_account_id] = @cogs_account_id
       end
 
       attrs
@@ -81,10 +80,10 @@ module QBIntegration
 
     def import_product(product)
       if item = item_service.find_by_sku(product[:sku])
-        item_service.update(item, attributes(product))
+        item_service.update(item, attributes(product, true))
         add_notification('update', product)
       else
-        item_service.create(attributes(product))
+        item_service.create(attributes(product, false))
         add_notification('create', product)
       end
     end
