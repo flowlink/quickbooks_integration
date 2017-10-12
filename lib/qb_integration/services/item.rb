@@ -22,14 +22,16 @@ module QBIntegration
 
         filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
         order = "Order By Metadata.LastUpdatedTime"
-        response = quickbooks.query "select Name, QtyOnHand, Metadata.LastUpdatedTime from Item #{filter} #{order}"
+        response = quickbooks.query "select * from Item #{filter} #{order}"
 
         response.entries
       end
 
       # NOTE what if a product is given?
       def find_or_create_by_sku(line_item, account = nil)
-        name = line_item[:sku] || line_item[:product_id]
+        name = line_item[:sku] unless !line_item[:sku].to_s.empty?
+        name = line_item[:product_id] unless !name.to_s.empty?
+        name = line_item[:name] unless !name.to_s.empty?
 
         quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"

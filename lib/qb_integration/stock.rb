@@ -8,7 +8,7 @@ module QBIntegration
       @name = message[:sku] || message[:product_id]
 
       if name.present?
-        @item = item_service.find_by_sku name, "Name, QtyOnHand"
+        @item = item_service.find_by_sku name
       else
         @items = item_service.find_by_updated_at
       end
@@ -18,7 +18,7 @@ module QBIntegration
       items.map do |inventory|
         {
           id: "qbs-#{inventory.name}",
-          product_id: inventory.name,
+          product_id: inventory.sku,
           quantity: inventory.quantity_on_hand.to_i
         }
       end
@@ -27,7 +27,7 @@ module QBIntegration
     def inventory
       {
         id: "qbs-#{item.name}",
-        product_id: item.name,
+        product_id: item.sku,
         quantity: item.quantity_on_hand.to_i
       }
     end
