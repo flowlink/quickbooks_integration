@@ -54,7 +54,7 @@ module QBIntegration
         adjustments.each do |adjustment|
           line = create_model
 
-          sku = adjustment[:name]
+          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config
 
           # Discounts will be counted as negative
           multiplier = (adjustment['name'] == 'Discounts') ? -1 : 1

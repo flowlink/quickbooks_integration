@@ -10,7 +10,7 @@ module QBIntegration
 
     def import
       load_configs
-      import_product(@product)
+      #import_product(@product)
       @product.fetch(:variants, []).collect.with_index {|variant, index|
         if variant[:sku].to_s.empty?
           variant[:sku] = @product[:sku] + "_" + index.to_s
@@ -72,8 +72,8 @@ module QBIntegration
       end
 
       if import_as_sub_item?(product)
-        attrs[:sub_item] = true
-        attrs[:parent_ref] = parent_ref
+        #attrs[:sub_item] = true
+        #attrs[:parent_ref] = parent_ref
       end
 
       attrs
