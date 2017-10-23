@@ -29,9 +29,12 @@ module QBIntegration
 
       # NOTE what if a product is given?
       def find_or_create_by_sku(line_item, account = nil)
-        name = line_item[:sku] unless !line_item[:sku].to_s.empty?
-        name = line_item[:product_id] unless !name.to_s.empty?
-        name = line_item[:name] unless !name.to_s.empty?
+        name = line_item[:sku] if line_item[:sku].to_s.empty?
+        name = line_item[:product_id] if name.to_s.empty?
+        name = line_item[:name] if name.to_s.empty?
+
+        sku = line_item[:product_id] if line_item[:sku].to_s.empty?
+        sku = line_item[:sku] if sku.to_s.empty?
 
         quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
@@ -43,6 +46,7 @@ module QBIntegration
 
         params = {
           name: name,
+          sku: sku,
           description: line_item[:description],
           unit_price: line_item[:price],
           purchase_cost: line_item[:cost_price],
@@ -50,7 +54,7 @@ module QBIntegration
           type: type
         }
 
-        find_by_sku(name) || find_by_name(name) || create(params)
+        find_by_sku(sku) || find_by_name(name) || create(params)
       end
     end
   end
