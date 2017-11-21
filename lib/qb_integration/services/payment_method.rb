@@ -34,8 +34,6 @@ module QBIntegration
           payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
         end
         puts payment_method_name_mapping
-        first_payment_method_name_mapping = payment_method_name_mapping.first
-        puts first_payment_method_name_mapping
         puts payment_method_name_mapping[0]
         lookup_value!(payment_method_name_mapping.first, augury_name)
       end
