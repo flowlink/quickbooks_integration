@@ -29,14 +29,12 @@ module QBIntegration
         #
         if config.fetch("quickbooks_payment_method_name").is_a? String
           puts "About to Parse";
+          puts config.fetch("quickbooks_payment_method_name")
           payment_method_name_mapping = JSON.parse(config.fetch("quickbooks_payment_method_name"))
         else
           payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
         end
         puts payment_method_name_mapping
-        payment_method_name_mapping.each do |x|
-          puts x
-        end
         lookup_value!(payment_method_name_mapping.first, augury_name)
       end
 
