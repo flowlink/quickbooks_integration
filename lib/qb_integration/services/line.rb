@@ -52,9 +52,15 @@ module QBIntegration
 
       def build_from_adjustments(account = nil)
         adjustments.each do |adjustment|
-          line = create_model
 
+          # Get sku of adjustment, and move on if empty
           sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config
+          puts 'Sku is: ' + sku.to_s
+          if sku.to_s.empty?
+            next
+          end
+
+          line = create_model
 
           # Discounts will be counted as negative
           multiplier = (adjustment['name'] == 'Discounts') ? -1 : 1
@@ -65,7 +71,8 @@ module QBIntegration
           # make an adjustment look like a line_item
           adjustment[:price] = adjustment["value"] * multiplier
           adjustment[:name] = adjustment["name"]
-          adjustment[:sku] = sku
+          adjustment[:sku] = adjustment['name'].downcase == "tax" ? "" : sku
+          puts 'Sku now is: ' + adjustment[:sku].to_s
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
