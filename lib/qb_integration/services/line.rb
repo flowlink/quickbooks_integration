@@ -57,7 +57,11 @@ module QBIntegration
           sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config
           puts 'Sku is: ' + sku.to_s
           if sku.to_s.empty?
-            next
+            if !adjustment[:name].to_s.empty?
+              sku = adjustment[:name]
+            else
+              next
+            end
           end
 
           line = create_model
