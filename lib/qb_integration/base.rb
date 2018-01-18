@@ -44,6 +44,7 @@ module QBIntegration
   class UnsupportedException < StandardError; end
   class AlreadyPersistedOrderException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
+  class NoSkuForOrderException < StandardError; end
 
   class MissingTimestampParam < StandardError
     def message
