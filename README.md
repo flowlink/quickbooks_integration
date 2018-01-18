@@ -35,11 +35,17 @@ Copy "sample.env" to ".env" and fill out the following variables:
 
 `QB_CONSUMER_KEY` - OAuth consumer key
 
-`QB_CONSUMER_KEY` - OAuth token
+`QB_CONSUMER_SECRET` - OAuth token
 
 # Starting Application
 
 `bundle exec unicorn` -- Starts application on port 8080
+
+```sh
+$ docker rm -f quickbooks-integration-container
+$ docker build -t quickbooks-integration .
+$ docker run -t -e VIRTUAL_HOST=quickbooks_integration.flowlink.io -e RAILS_ENV=development -v $PWD:/app -p 3001:5000 -e QB_CONSUMER_KEY=qyprd5ViUa4HUra00S2Y5Zv098f9Ah -e QB_CONSUMER_SECRET=fc44axqkmC9bf8yzeRvFBFJkCqilyIuW132rPkdz --name quickbooks-integration-container quickbooks-integration
+```
 
 # About FlowLink
 
