@@ -5,13 +5,52 @@ module QBIntegration
     def initialize(message = {}, config)
       super
 
-      @name = message[:sku] || message[:product_id]
+      @name = message[:sku] || message[:product_id] || message[:inventory][:product_id]
 
-      if name.present?
+      if message[:inventory]
         @item = item_service.find_by_sku name
+        @amount = message[:inventory][:quantity]
+        @id = message[:inventory][:id]
       else
-        @items = item_service.find_by_updated_at
+        if name.present?
+          @item = item_service.find_by_sku name
+        else
+          @items = item_service.find_by_updated_at
+        end
       end
+    end
+
+    def set
+      set_inventory(item, @amount, @id)
+
+      [200, @notification]
+    end
+
+    def set_inventory(item, amount, id)
+      item_service.update(item, attributes(amount, true))
+      @notification = "Product %s updated on Quickbooks." % id
+    end
+
+    def attributes(amount, is_update = false)
+      attrs = {
+        sku: name,
+      }
+
+      quantity = 1
+      if !amount.nil? && !amount.blank?
+        quantity = amount.to_i
+      end
+      attrs[:quantity_on_hand] = quantity
+
+      attrs[:track_quantity_on_hand] = true
+      attrs[:inv_start_date] = time_now
+      attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
+
+      puts "AAAAAAAAAA"
+      attrs.each do |a|
+        puts a
+      end
+      attrs
     end
 
     def inventories
@@ -30,6 +69,10 @@ module QBIntegration
         product_id: item.sku,
         quantity: item.quantity_on_hand.to_i
       }
+    end
+
+    def time_now
+      Time.now.utc
     end
 
     def last_modified_date
