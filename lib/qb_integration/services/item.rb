@@ -12,6 +12,9 @@ module QBIntegration
 
       def find_by_sku(sku, fields = "*")
         util = Quickbooks::Util::QueryBuilder.new
+        unless sku
+          raise NoSkuForOrderException.new('Error: SKU cannot be empty')
+        end
         clause1 = util.clause('Sku', '=', sku)
         response = quickbooks.query("select #{fields} from Item where #{clause1}")
         response.entries.first
@@ -53,10 +56,6 @@ module QBIntegration
           income_account_id: account ? account.id : nil,
           type: type
         }
-        puts 'XXXXXXXXXXXXXXXXXXXX'
-        puts params.to_s
-        puts 'XXXXXXXXXXXXXXXXXXXX'
-        
         find_by_sku(sku) || find_by_name(name) || create(params)
       end
     end
