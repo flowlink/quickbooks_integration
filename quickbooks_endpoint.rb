@@ -31,7 +31,6 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_journal_entry' do
-    puts "HERE"
     code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
     result code, summary
   end

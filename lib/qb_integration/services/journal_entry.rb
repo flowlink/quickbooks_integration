@@ -24,13 +24,16 @@ module QBIntegration
       def create
         journal = create_model
         build journal
-        puts journal.inspect
         quickbooks.create journal
       end
 
       def update(journal)
         build journal
         quickbooks.update journal
+      end
+
+      def delete(journal)
+        quickbooks.delete journal
       end
 
       private

@@ -20,10 +20,18 @@ module QBIntegration
     end
 
     def update
+      journal_entry_service.update journal_entry_payload
+      add_notification('update', @journal_entry)
+      [200, @notification]
     end
 
     def delete
-      deleted = journal_entry_service.delete(@journal_entry)
+      unless journal = journal_entry_service.find_by_id
+        raise RecordNotFound.new "Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
+      end
+      journal_entry_service.delete journal
+      add_notification('delete', @journal_entry)
+      [200, @notification]
     end
 
     private
@@ -31,18 +39,15 @@ module QBIntegration
       account_service.find_by_name(account_name).id
     end
 
-    def parent_ref
-      @parent_ref ||= item_service.find_by_sku(@product[:sku]).id
-    end
-
     def add_notification(operation, product)
-      @notification = @notification.to_s + text[operation] % @journal_entry[:id] + " "
+      @notification = @notification.to_s + text[operation] % @journal_entry[:id] + ""
     end
 
     def text
       @text ||= {
-        'create' => "Journal Entry %s imported to Quickbooks.",
-        'update' => "Journal Entry %s updated on Quickbooks."
+        'create' => "Journal Entry %s added to Quickbooks.",
+        'update' => "Journal Entry %s updated on Quickbooks.",
+        'delete' => "Journal Entry %s deleted on Quickbooks."
       }
     end
 
