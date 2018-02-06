@@ -20,7 +20,10 @@ module QBIntegration
     end
 
     def update
-      journal_entry_service.update journal_entry_payload
+      unless journal = journal_entry_service.find_by_id
+        raise RecordNotFound.new "Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
+      end
+      journal_entry_service.update journal
       add_notification('update', @journal_entry)
       [200, @notification]
     end
