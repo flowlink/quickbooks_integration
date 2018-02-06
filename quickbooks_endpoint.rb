@@ -31,19 +31,20 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_journal_entry' do
-    code, summary = QBIntegration::Product.new(@payload, @config).import
+    puts "HERE"
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
     result code, summary
   end
 
   post '/update_journal_entry' do
-    code, summary = QBIntegration::Product.new(@payload, @config).import
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
     result code, summary
   end
 
   post '/delete_journal_entry' do
-    code, summary = QBIntegration::JournalEntry.new(@payload, @config)
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
     result code, summary
-  EndpointBase
+  end
 
   post '/add_order' do
     begin
