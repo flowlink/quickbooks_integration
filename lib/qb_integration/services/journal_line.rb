@@ -38,17 +38,17 @@ module QBIntegration
             journal_item.posting_type = type
 
             # Assume the Customer/Account exists, because we don't have enough info to create a customer
-            unless customer = customer_service.fetch_by_display_name(journal_entry['description'])
-              raise RecordNotFound.new "Quickbooks Customer #{journal_entry[:description]} not found"
+            unless customer = customer_service.fetch_by_display_name(line_item['description'])
+              raise RecordNotFound.new "Quickbooks Customer #{line_item[:description]} not found"
             end
             entity = Quickbooks::Model::Entity.new(type: 'Customer')
             entity.entity_id = customer["id"]
             journal_item.entity = entity
             account = account_service.find_by_name(line_item["accountDescription"])
             journal_item.account_id = account["id"]
-            if journal_entry["class"]
-              unless qb_class_id = class_service.find_by_name(journal_entry["class"]).id
-                raise RecordNotFound.new "Quickbooks Class #{journal_entry[:class]} not found"
+            if line_item["class"]
+              unless qb_class_id = class_service.find_by_name(line_item["class"]).id
+                raise RecordNotFound.new "Quickbooks Class #{line_item[:class]} not found"
               end
               journal_item.class_id = qb_class_id
             end
