@@ -30,11 +30,11 @@ module QBIntegration
             amount = line_item["debit"]
           end
           line.amount = amount
-          line.description = line_item["accountDescription"]
+          line.description = line_item["account_description"]
           line.id = line_number
 
           line.journal_entry! do |journal_item|
-            journal_item.account_id = line_item["accountNumber"]
+            journal_item.account_id = line_item["account_number"]
             journal_item.posting_type = type
 
             # Assume the Customer/Account exists, because we don't have enough info to create a customer
@@ -44,7 +44,7 @@ module QBIntegration
             entity = Quickbooks::Model::Entity.new(type: 'Customer')
             entity.entity_id = customer["id"]
             journal_item.entity = entity
-            account = account_service.find_by_name(line_item["accountDescription"])
+            account = account_service.find_by_name(line_item["account_description"])
             journal_item.account_id = account["id"]
             if line_item["class"]
               unless qb_class_id = class_service.find_by_name(line_item["class"]).id

@@ -43,7 +43,7 @@ module QBIntegration
 
         def build(journal)
           journal.doc_number = id
-          journal.txn_date = journal_entry['journalDate']
+          journal.txn_date = journal_entry['journal_date']
           journal.line_items = journal_line_service.build_from_line_items
           journal
         end
