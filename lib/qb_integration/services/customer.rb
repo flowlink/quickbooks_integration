@@ -6,7 +6,7 @@ module QBIntegration
       def initialize(config, payload)
         super("Customer", config)
 
-        @order = payload[:order]
+        @order = payload[:order] || {}
       end
 
       def find_or_create

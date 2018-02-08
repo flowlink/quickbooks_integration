@@ -30,6 +30,21 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/add_journal_entry' do
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
+    result code, summary
+  end
+
+  post '/update_journal_entry' do
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
+    result code, summary
+  end
+
+  post '/delete_journal_entry' do
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
+    result code, summary
+  end
+
   post '/add_order' do
     begin
       code, summary = QBIntegration::Order.new(@payload, @config).create

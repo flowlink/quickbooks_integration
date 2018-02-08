@@ -10,6 +10,7 @@ gem 'quickbooks-ruby', github: 'ruckus/quickbooks-ruby'
 gem 'tzinfo'
 gem 'capistrano'
 gem 'unicorn'
+gem 'builder'
 
 group :development do
   gem 'rake'
