@@ -34,7 +34,6 @@ module QBIntegration
           line.id = line_number
 
           line.journal_entry! do |journal_item|
-            journal_item.account_id = line_item["account_number"]
             journal_item.posting_type = type
 
             # Assume the Customer/Account exists, because we don't have enough info to create a customer
@@ -44,6 +43,9 @@ module QBIntegration
             entity = Quickbooks::Model::Entity.new(type: 'Customer')
             entity.entity_id = customer["id"]
             journal_item.entity = entity
+
+            # We use the account_description field to hold the name of the account
+            # We find the account using the name, not a passed in ID
             account = account_service.find_by_name(line_item["account_description"])
             journal_item.account_id = account["id"]
             if line_item["class"]
