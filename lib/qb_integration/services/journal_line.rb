@@ -30,24 +30,33 @@ module QBIntegration
             amount = line_item["debit"]
           end
           line.amount = amount
-          line.description = line_item["account_description"]
+          line.description = line_item["description"]
           line.id = line_number
 
           line.journal_entry! do |journal_item|
             journal_item.posting_type = type
 
-            # Assume the Customer/Account exists, because we don't have enough info to create a customer
-            unless customer = customer_service.fetch_by_display_name(line_item['description'])
-              raise RecordNotFound.new "Quickbooks Customer #{line_item[:description]} not found"
-            end
-            entity = Quickbooks::Model::Entity.new(type: 'Customer')
-            entity.entity_id = customer["id"]
-            journal_item.entity = entity
-
             # We use the account_description field to hold the name of the account
             # We find the account using the name, not a passed in ID
             account = account_service.find_by_name(line_item["account_description"])
             journal_item.account_id = account["id"]
+            # If the account type is Accounts Recievable, a customer is required
+            if account.account_type == "Accounts Receivable" || line_item['customer']
+              # First, check if there is a customer name on the line item, otherwise QBO will
+              # autopopulate with "NotProvided NotProvided"
+              unless line_item['customer']
+                raise RecordNotFound.new "Error: No customer on this line item -> QB requires Accounts Receivable to have a customer"
+              end
+              # Then check if customer actually exists in QB already
+              unless customer = customer_service.fetch_by_display_name(line_item['customer'])
+                raise RecordNotFound.new "Quickbooks Customer #{line_item[:customer]} not found"
+              end
+              entity = Quickbooks::Model::Entity.new(type: 'Customer')
+              entity.entity_id = customer["id"]
+              journal_item.entity = entity
+            end
+
+            # Class is not required
             if line_item["class"]
               unless qb_class_id = class_service.find_by_name(line_item["class"]).id
                 raise RecordNotFound.new "Quickbooks Class #{line_item[:class]} not found"
