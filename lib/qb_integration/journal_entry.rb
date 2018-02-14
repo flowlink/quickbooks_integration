@@ -11,7 +11,7 @@ module QBIntegration
     def add
       if journal_entry = journal_entry_service.find_by_id
         raise AlreadyPersistedJournalEntryException.new(
-          "Journal Entry #{journal_entry[:id]} already has a journal entry with id: #{journal_entry.id}"
+          "Journal Entry #{@journal_entry[:id]} already has a journal entry in QB with id: #{journal_entry.id}"
         )
       end
       journal_entry_service.create
@@ -20,12 +20,16 @@ module QBIntegration
     end
 
     def update
-      unless journal = journal_entry_service.find_by_id
-        raise RecordNotFound.new "Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
+      if journal = journal_entry_service.find_by_id
+        journal_entry_service.update journal
+        add_notification('update', @journal_entry)
+        [200, @notification]
+      else
+        journal_entry_service.create
+        add_notification('create', @journal_entry)
+        [200, @notification]
       end
-      journal_entry_service.update journal
-      add_notification('update', @journal_entry)
-      [200, @notification]
+
     end
 
     def delete
