@@ -54,6 +54,18 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+
+  post '/handle_journal_entry' do
+    if @payload['journal_entry']['action'] == "ADD"
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
+    elsif @payload['journal_entry']['action'] == "INSERT"
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
+    elsif @payload['journal_entry']['action'] == "DELETE"
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
+    end
+    result code, summary
+  end
+
   post '/update_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).update
     result code, summary
