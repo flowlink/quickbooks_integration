@@ -1,3 +1,5 @@
+require 'time'
+
 module QBIntegration
   module Service
     class JournalEntry < Base
@@ -43,6 +45,7 @@ module QBIntegration
 
         def build(journal)
           journal.doc_number = id
+          # TODO: Set a default date in case the journal_date isn't set
           journal.txn_date = journal_entry['journal_date']
           journal.line_items = journal_line_service.build_from_line_items
           journal
