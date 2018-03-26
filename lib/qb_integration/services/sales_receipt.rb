@@ -55,12 +55,14 @@ module QBIntegration
 
           sales_receipt.payment_method_id = payment_method_service.matching_payment.id
           sales_receipt.customer_id = customer_service.find_or_create.id
-
           # Associated as both DepositAccountRef and IncomeAccountRef
           #
           # Quickbooks might return an weird error if the name here is already used
           # by other, I think, quickbooks account
-          income_account = account_service.find_by_name config.fetch("quickbooks_account_name")
+          income_account = nil
+          if config["quickbooks_account_name"].present?
+            income_account = account_service.find_by_name config.fetch("quickbooks_account_name")
+          end
 
           sales_receipt.line_items = line_service.build_lines income_account
 

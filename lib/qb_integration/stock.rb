@@ -46,10 +46,6 @@ module QBIntegration
       attrs[:inv_start_date] = time_now
       attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
 
-      puts "AAAAAAAAAA"
-      attrs.each do |a|
-        puts a
-      end
       attrs
     end
 
