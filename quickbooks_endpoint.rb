@@ -30,17 +30,17 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
-  # post '/add_journal_entry' do
-  #   code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
-  #   result code, summary
-  # end
+  post '/add_journal' do
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
+    result code, summary
+  end
 
-  post '/update_journal_entry' do
+  post '/update_journal' do
     code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
     result code, summary
   end
 
-  post '/delete_journal_entry' do
+  post '/delete_journal' do
     code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
     result code, summary
   end
@@ -57,11 +57,17 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
+      puts 'ADD'
       code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
-    elsif @payload['journal_entry']['action'] == "INSERT"
+    elsif @payload['journal_entry']['action'] == "UPDATE"
+      puts 'UPDATE'
       code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
     elsif @payload['journal_entry']['action'] == "DELETE"
+      puts 'DELETE'
       code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
+    else
+      code = 200
+      summary = "No Valid Action Given"
     end
     result code, summary
   end
