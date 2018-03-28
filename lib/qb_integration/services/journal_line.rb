@@ -23,11 +23,11 @@ module QBIntegration
           line = create_model
 
           if line_item["credit"] != 0
-            type = 'Credit'
-            amount = line_item["credit"]
+            type = line_item["credit"] < 0 ? 'Debit' : 'Credit'
+            amount = line_item["credit"] < 0 ? line_item["credit"] * -1 : line_item["credit"]
           else
-            type = 'Debit'
-            amount = line_item["debit"]
+            type = line_item["debit"] < 0 ? 'Credit' : 'Debit'
+            amount = line_item["debit"] < 0 ? line_item["debit"] * -1 : line_item["debit"]
           end
           line.amount = amount
           line.description = line_item["description"]
