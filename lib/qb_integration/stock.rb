@@ -4,10 +4,10 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-
-      @name = message[:sku] || message[:product_id] || message[:inventory][:product_id]
+      @name = message[:sku] || message[:product_id]
 
       if message[:inventory]
+        @name = message[:inventory][:product_id] || message[:inventory][:sku]
         @item = item_service.find_by_sku name
         @amount = message[:inventory][:quantity]
         @id = message[:inventory][:id]
