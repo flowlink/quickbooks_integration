@@ -39,7 +39,12 @@ module QBIntegration
           line.description = line_item["name"]
 
           line.sales_item! do |sales_item|
-            sales_item.item_id = item_service.find_or_create_by_sku(line_item, account).id
+            unless item_found = item_service.find_or_create_by_sku(line_item, account)
+              sku = line_item[:product_id] if line_item[:sku].to_s.empty?
+              sku = line_item[:sku] if sku.to_s.empty?
+              raise RecordNotFound.new "Quickbooks record not found for product: #{sku}"
+            end
+            sales_item.item_id = item_found.id
             sales_item.quantity = line_item["quantity"]
             sales_item.unit_price = line_item["price"]
 
