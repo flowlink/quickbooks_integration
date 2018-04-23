@@ -58,10 +58,10 @@ module QBIntegration
 
             # Class is not required
             if line_item["class"]
-              unless qb_class_id = class_service.find_by_name(line_item["class"]).id
+              unless qb_class = class_service.find_by_name(line_item["class"])
                 raise RecordNotFound.new "Quickbooks Class #{line_item[:class]} not found"
               end
-              journal_item.class_id = qb_class_id
+              journal_item.class_id = qb_class.id
             end
             # TODO: Build out a Location Service to find and set a location on Journal Entry
           end
