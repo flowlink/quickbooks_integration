@@ -58,7 +58,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
       puts 'ADD'
-      code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
     elsif @payload['journal_entry']['action'] == "UPDATE"
       puts 'UPDATE'
       code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
