@@ -8,7 +8,7 @@ module QBIntegration
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("Name", "=", account_name)
         account = @quickbooks.query("select * from Account where #{clause}").entries.first
-        raise "No Account '#{account_name}' defined in service" unless account
+        raise "005 - No Account '#{account_name}' defined in service" unless account
 
         account
       end

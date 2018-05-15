@@ -41,6 +41,13 @@ Copy "sample.env" to ".env" and fill out the following variables:
 
 `bundle exec unicorn` -- Starts application on port 8080
 
+# Error Codes:
+001 - Quickbooks Journal Entry not found
+002 - Customer field cannot be empty on Accounts Receivable Journal Entry
+003 - Customer field was not empty in Journal Entry, but Customer was not found in QuickBooks
+004 - Class field was not empty in Journal Entry, but Class was not found in Quickbooks
+005 - No Account was found in QuickBooks for the given Account Name
+
 # About FlowLink
 
 [FlowLink](http://flowlink.io/) allows you to connect to your own custom integrations.

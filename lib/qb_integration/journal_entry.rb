@@ -34,7 +34,7 @@ module QBIntegration
 
     def delete
       unless journal = journal_entry_service.find_by_id
-        raise RecordNotFound.new "Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
+        raise RecordNotFound.new "001 - Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
       end
       journal_entry_service.delete journal
       add_notification('delete', @journal_entry)
