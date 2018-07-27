@@ -39,6 +39,10 @@ module QBIntegration
         params['quickbooks_shipping_item']
       elsif is_adjustment_tax?(adjustment_name)
         params['quickbooks_tax_item']
+      else
+        # Optional additional adjustments will be unmapped, i.e. the
+        # adjustment_name is the sku
+        adjustment_name
       end
     end
 
