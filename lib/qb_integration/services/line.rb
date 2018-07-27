@@ -13,7 +13,11 @@ module QBIntegration
         @model_name = "Line"
         @order = payload[:order] || {}
         @line_items = order[:line_items] || []
-        @adjustments = payload[:order][:adjustments] || []
+        if !payload[:order].nil?
+          @adjustments = payload[:order][:adjustments] || []
+        else
+          @adjustments = []
+        end
         @return_authorization = payload[:return] || {}
         @inventory_units = return_authorization[:inventory_units] || []
 
