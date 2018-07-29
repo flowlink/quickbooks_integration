@@ -7,7 +7,7 @@ module QBIntegration
       def initialize(config, payload, options = { dependencies: true })
         super("SalesReceipt", config)
 
-        @order = payload[:order]
+        @order = payload[:order] || payload[:return] || payload[:refund]
 
         if options[:dependencies]
           @payment_method_service = PaymentMethod.new config, payload
