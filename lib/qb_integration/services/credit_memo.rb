@@ -63,7 +63,7 @@ module QBIntegration
 
           # Check if it's necessary to add extra line to adjust and match return
           # authorization amount
-          difference = return_authorization[:amount].to_f - lines.map(&:amount).map(&:to_f).inject(:+)
+          difference = return_authorization[:totals][:refund].to_f - (lines.map(&:amount).map(&:to_f).inject(:+) || 0.0)
           if difference != 0
             lines += [return_adjust_line(difference)]
           end

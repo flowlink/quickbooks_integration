@@ -13,9 +13,13 @@ module QBIntegration
         @model_name = "Line"
         @order = payload[:order] || {}
         @line_items = order[:line_items] || []
-        @adjustments = payload[:order][:adjustments] || []
-        @return_authorization = payload[:return] || {}
-        @inventory_units = return_authorization[:inventory_units] || []
+        if !payload[:order].nil?
+          @adjustments = payload[:order][:adjustments] || []
+        else
+          @adjustments = []
+        end
+        @return_authorization = payload[:return] || payload[:refund] || {}
+        @inventory_units = return_authorization[:refund_line_items] || []
 
         @lines = []
         @item_service = Item.new(config)
@@ -101,13 +105,13 @@ module QBIntegration
         inventory_units.each do |unit|
           line = create_model
 
-          line.amount = unit[:variant][:price]
-          line.description = unit[:variant][:name]
+          line.amount = unit[:subtotal]
+          line.description = unit[:name]
 
           line.sales_item! do |sales_item|
-            sales_item.item_id = item_service.find_or_create_by_sku(unit[:variant], account).id
-            sales_item.quantity = 1
-            sales_item.unit_price = unit[:variant][:price]
+            sales_item.item_id = item_service.find_or_create_by_sku(unit, account).id
+            sales_item.quantity = unit[:quantity]
+            sales_item.unit_price = unit[:subtotal].to_f / unit[:quantity]
           end
 
           lines.push line

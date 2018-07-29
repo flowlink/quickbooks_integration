@@ -4,11 +4,7 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-      @ra = payload[:return]
-      @order = { id: payload[:return][:order_id] }
-
-      # for compatibility with sales receipt service
-      payload[:order] = @order
+      @ra = payload[:return] || payload[:refund]
     end
 
     def create
