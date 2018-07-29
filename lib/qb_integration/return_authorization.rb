@@ -4,7 +4,7 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-      @ra = payload[:return]
+      @ra = payload[:return] || payload[:refund]
     end
 
     def create
