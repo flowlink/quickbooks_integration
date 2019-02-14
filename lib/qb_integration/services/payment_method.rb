@@ -38,7 +38,7 @@ module QBIntegration
 
       def matching_payment
         quickbooks.fetch_by_name(qb_name) ||
-          (raise Exception.new("No PaymentMethod '#{qb_name}' defined in Quickbooks"))
+          (raise Exception.new("No PaymentMethod '#{qb_name}' defined in QuickBooks"))
       end
     end
   end

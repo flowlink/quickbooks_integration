@@ -103,8 +103,8 @@ module QBIntegration
 
     def text
       @text ||= {
-        'create' => "Product %s imported to Quickbooks.",
-        'update' => "Product %s updated on Quickbooks."
+        'create' => "Product %s imported to QuickBooks.",
+        'update' => "Product %s updated on QuickBooks."
       }
     end
 
