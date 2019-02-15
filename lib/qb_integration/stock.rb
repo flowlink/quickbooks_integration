@@ -28,7 +28,7 @@ module QBIntegration
 
     def set_inventory(item, amount, id)
       item_service.update(item, attributes(amount, true))
-      @notification = "Product %s updated on Quickbooks." % id
+      @notification = "Product %s updated on QuickBooks." % id
     end
 
     def attributes(amount, is_update = false)

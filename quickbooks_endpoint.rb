@@ -115,9 +115,9 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"
-      "Authorization failure. Please check your Quickbooks credentials"
+      "Authorization failure. Please check your QuickBooks credentials"
     when "Quickbooks::ServiceUnavailable"
-      "Quickbooks API appears to be inaccessible HTTP 503 returned."
+      "QuickBooks API appears to be inaccessible HTTP 503 returned."
     else
       env['sinatra.error'].message
     end

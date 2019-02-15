@@ -1,8 +1,8 @@
-# Quickbooks Online Integration
+# QuickBooks Online Integration
 
 ## Overview
 
-[Quickbooks](http://quickbooks.intuit.com) is an accounting software package developed and marketed by [Intuit](http://www.intuit.com). This implementation uses the [Quickbooks v3 API](https://developer.intuit.com/apiexplorer?apiname=V3QBO) through the [quickbooks-ruby](https://github.com/ruckus/quickbooks-ruby) gem.
+[QuickBooks](http://quickbooks.intuit.com) is an accounting software package developed and marketed by [Intuit](http://www.intuit.com). This implementation uses the [QuickBooks v3 API](https://developer.intuit.com/apiexplorer?apiname=V3QBO) through the [quickbooks-ruby](https://github.com/ruckus/quickbooks-ruby) gem.
 
 Please visit the [wiki](https://github.com/flowlink/quickbooks_integration/wiki)
 for further info on how to connect this integration.
@@ -10,10 +10,10 @@ for further info on how to connect this integration.
 This is a fully hosted and supported integration for use with the [FlowLink](http://flowlink.io/)
 product. With this integration you can perform the following functions:
 
-* Send orders to Quickbooks as Sales Receipts
-* Send products to Quickbooks as Items
-* Send returns to Quickbooks as Credit Memo
-* Poll for inventory stock levels in Quickbooks
+* Send orders to QuickBooks as Sales Receipts
+* Send products to QuickBooks as Items
+* Send returns to QuickBooks as Credit Memo
+* Poll for inventory stock levels in QuickBooks
 
 ### 21 Character limit on Order numbers.
 
@@ -42,10 +42,10 @@ Copy "sample.env" to ".env" and fill out the following variables:
 `bundle exec unicorn` -- Starts application on port 8080
 
 # Error Codes:
-001 - Quickbooks Journal Entry not found
+001 - QuickBooks Journal Entry not found
 002 - Customer field cannot be empty on Accounts Receivable Journal Entry
 003 - Customer field was not empty in Journal Entry, but Customer was not found in QuickBooks
-004 - Class field was not empty in Journal Entry, but Class was not found in Quickbooks
+004 - Class field was not empty in Journal Entry, but Class was not found in QuickBooks
 005 - No Account was found in QuickBooks for the given Account Name
 
 # About FlowLink

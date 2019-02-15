@@ -46,7 +46,7 @@ module QBIntegration
             unless item_found = item_service.find_or_create_by_sku(line_item, account)
               sku = line_item[:product_id] if line_item[:sku].to_s.empty?
               sku = line_item[:sku] if sku.to_s.empty?
-              raise RecordNotFound.new "Quickbooks record not found for product: #{sku}"
+              raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
             end
             sales_item.item_id = item_found.id
             sales_item.quantity = line_item["quantity"]
