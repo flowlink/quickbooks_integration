@@ -11,7 +11,7 @@ gem 'tzinfo'
 gem 'capistrano'
 gem 'unicorn'
 gem 'builder'
-gem 'dotenv'
+# gem 'dotenv'
 
 group :development do
   gem 'rake'

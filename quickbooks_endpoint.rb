@@ -1,15 +1,15 @@
 require_relative 'lib/qb_integration'
 
-if File.exists? File.join(File.expand_path(File.dirname(__FILE__)), '.env')
-  # TODO check an ENV variable i.e. RACK_ENV
-  begin
-    require 'dotenv'
-    Dotenv.load
-  rescue => e
-    puts e.message
-    puts e.backtrace.join("\n")
-  end
-end
+# if File.exists? File.join(File.expand_path(File.dirname(__FILE__)), '.env')
+#   # TODO check an ENV variable i.e. RACK_ENV
+#   begin
+#     require 'dotenv'
+#     Dotenv.load
+#   rescue => e
+#     puts e.message
+#     puts e.backtrace.join("\n")
+#   end
+# end
 
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   set :logging, true

@@ -31,7 +31,7 @@ Create an app here: https://developer.intuit.com/v2/ui#/app/dashboard and genera
 
 ### Environment Variables
 For Production
-Copy "sample.env" to ".env" and fill out the following variables:
+Copy "sample.env" to "prod.env" and fill out the following variables:
 
 `QB_CONSUMER_KEY` - OAuth consumer key for production
 `QB_CONSUMER_SECRET` -  OAuth token for production

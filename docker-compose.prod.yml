@@ -6,7 +6,7 @@ services:
     build: .
     image: quickbooks-integration
     env_file:
-      - ./.env
+      - ./prod.env
     environment:
       - VIRTUAL_HOST=quickbooks_integration.flowlink.io
     restart: always
