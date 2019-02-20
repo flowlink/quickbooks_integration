@@ -34,11 +34,11 @@ module QBIntegration
 
     def self.adjustment_product_from_qb(adjustment_name, params)
       if is_adjustment_discount?(adjustment_name)
-        params['quickbooks_discount_item']
+        params['QuickBooks_discount_item']
       elsif is_adjustment_shipping?(adjustment_name)
-        params['quickbooks_shipping_item']
+        params['QuickBooks_shipping_item']
       elsif is_adjustment_tax?(adjustment_name)
-        params['quickbooks_tax_item']
+        params['QuickBooks_tax_item']
       else
         # Optional additional adjustments will be unmapped, i.e. the
         # adjustment_name is the sku

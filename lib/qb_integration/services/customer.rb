@@ -59,7 +59,7 @@ module QBIntegration
 
       private
         def use_web_orders?
-          config['quickbooks_web_orders_users'].to_s == "1"
+          config['QuickBooks_web_orders_users'].to_s == "1"
         end
     end
   end

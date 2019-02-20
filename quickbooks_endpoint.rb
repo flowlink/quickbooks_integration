@@ -105,7 +105,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       result 200
     elsif stock.items.present?
       stock.inventories.each { |item| add_object :inventory, item }
-      add_parameter 'quickbooks_poll_stock_timestamp', stock.last_modified_date
+      add_parameter 'QuickBooks_poll_stock_timestamp', stock.last_modified_date
       result 200
     else
       result 200

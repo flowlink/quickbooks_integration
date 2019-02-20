@@ -30,16 +30,68 @@ payload.order.number = payload.order.number.substring(0, 21);
 Create an app here: https://developer.intuit.com/v2/ui#/app/dashboard and generate your oauth keys.
 
 ### Environment Variables
-
+For Production
 Copy "sample.env" to ".env" and fill out the following variables:
 
-`QB_CONSUMER_KEY` - OAuth consumer key
+`QB_CONSUMER_KEY` - OAuth consumer key for production
+`QB_CONSUMER_SECRET` -  OAuth token for production
 
-`QB_CONSUMER_KEY` - OAuth token
+For Development
+Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
+
+`QB_CONSUMER_KEY` - OAuth consumer key for development
+`QB_CONSUMER_SECRET` -  OAuth token for development
 
 # Starting Application
 
 `bundle exec unicorn` -- Starts application on port 8080
+
+## Connection Parameters
+```
+"QuickBooks_access_secret": "",
+"QuickBooks_realm": "",
+"QuickBooks_access_token": ""
+```
+- QuickBooks_access_secret: Secret from Intuit
+- QuickBooks_realm: QuickBooks realm
+- QuickBooks_access_token: Access token from Intuit
+
+## Endpoints
+/get_inventory
+- QuickBooks_poll_stock_timestamp
+
+/add_product
+- QuickBooks_income_account
+- QuickBooks_track_inventory
+- QuickBooks_inventory_account
+- QuickBooks_cogs_account
+
+/update_product
+- QuickBooks_income_account
+- QuickBooks_track_inventory
+- QuickBooks_inventory_account
+- QuickBooks_cogs_account
+
+/add_order
+- QuickBooks_discount_item
+- QuickBooks_shipping_item
+- QuickBooks_tax_item
+- QuickBooks_web_orders_users
+- QuickBooks_track_inventory
+- QuickBooks_payment_method_name
+- QuickBooks_account_name
+- QuickBooks_deposit_to_account_name
+
+/update_order
+- QuickBooks_create_or_update
+- QuickBooks_discount_item
+- QuickBooks_shipping_item
+- QuickBooks_tax_item
+- QuickBooks_web_orders_users
+- QuickBooks_track_inventory
+- QuickBooks_payment_method_name
+- QuickBooks_account_name
+- QuickBooks_deposit_to_account_name
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found

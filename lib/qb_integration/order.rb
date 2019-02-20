@@ -22,7 +22,7 @@ module QBIntegration
     def update
       sales_receipt = sales_receipt_service.find_by_order_number
 
-      if !sales_receipt.present? && config[:quickbooks_create_or_update].to_s == "1"
+      if !sales_receipt.present? && config[:QuickBooks_create_or_update].to_s == "1"
         sales_receipt = sales_receipt_service.create
         [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}"]
       elsif !sales_receipt.present?

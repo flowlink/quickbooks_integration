@@ -1,0 +1,17 @@
+version: '3'
+services:
+  quickbooks-integration:
+    build: .
+    network_mode: bridge    
+    image: quickbooks-integration
+    container_name: qb-dev-integration-container
+    env_file:
+      - ./dev.env
+    environment:
+      - VIRTUAL_HOST=qb_dev_integration.flowlink.io
+    restart: always
+    ports:
+      - 3001:5000
+    network_mode: bridge
+    volumes:
+      - .:/app

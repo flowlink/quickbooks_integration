@@ -21,9 +21,9 @@ module QBIntegration
       end
 
       def find_by_updated_at
-        raise MissingTimestampParam unless config["quickbooks_poll_stock_timestamp"].present?
+        raise MissingTimestampParam unless config["QuickBooks_poll_stock_timestamp"].present?
 
-        filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
+        filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("QuickBooks_poll_stock_timestamp")}'"
         order = "Order By Metadata.LastUpdatedTime"
         response = quickbooks.query "select * from Item #{filter} #{order}"
 
@@ -39,7 +39,7 @@ module QBIntegration
         sku = line_item[:product_id] if line_item[:sku].to_s.empty?
         sku = line_item[:sku] if sku.to_s.empty?
 
-        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
+        quickbooks_track_inventory = config.fetch("QuickBooks_track_inventory", false).to_s
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
         if track_inventory
           type = Quickbooks::Model::Item::INVENTORY_TYPE

@@ -39,7 +39,7 @@ module QBIntegration
           price = line_item["price"]
           quantity = line_item["quantity"]
 
-          line.amount = (quantity * price)
+          line.amount = (quantity.to_f * price.to_f)
           line.description = line_item["name"]
 
           line.sales_item! do |sales_item|

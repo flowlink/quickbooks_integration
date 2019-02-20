@@ -27,10 +27,10 @@ module QBIntegration
         #   "[{\"PayPal\":\"PayPal\",\"None\":\"Cash\",\"Online Credit Card\":\"Credit Card\"}]"
         #   "[{\"PayPal\":\"PayPal\",\"Mastercard\":\"Mastercard\",\"Visa\":\"Visa\",\"Discover\":\"Discover\",\"American Express\":\"American Express\",\"None\":\"Cash\",\"Online Credit Card\":\"Credit Card\"}]"
         #
-        if config.fetch("quickbooks_payment_method_name").is_a? String
-          payment_method_name_mapping = JSON.parse(config.fetch("quickbooks_payment_method_name"))
+        if config.fetch("QuickBooks_payment_method_name").is_a? String
+          payment_method_name_mapping = JSON.parse(config.fetch("QuickBooks_payment_method_name"))
         else
-          payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
+          payment_method_name_mapping = config.fetch("QuickBooks_payment_method_name")
         end
         puts payment_method_name_mapping
         lookup_value!(payment_method_name_mapping.first, augury_name)

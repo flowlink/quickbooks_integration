@@ -29,12 +29,12 @@ module QBIntegration
 
     private
     def load_configs
-      @income_account_id = account_id('quickbooks_income_account')
-      @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
+      @income_account_id = account_id('QuickBooks_income_account')
+      @inventory_costing = (@config.fetch("QuickBooks_track_inventory", false).to_s == '1')
 
       if @inventory_costing
-        @inventory_account_id = account_id('quickbooks_inventory_account')
-        @cogs_account_id = account_id('quickbooks_cogs_account')
+        @inventory_account_id = account_id('QuickBooks_inventory_account')
+        @cogs_account_id = account_id('QuickBooks_cogs_account')
       end
     end
 
