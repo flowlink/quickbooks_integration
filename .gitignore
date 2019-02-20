@@ -6,4 +6,5 @@ log/*.*
 coverage
 .bundle/
 .env
+dev.env
 .idea/
