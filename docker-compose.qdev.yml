@@ -3,6 +3,7 @@ services:
   qbdev-integration:
     build: .
     network_mode: bridge
+    image: qbdev-integration
     container_name: qb-dev-integration-container
     env_file:
       - ./dev.env
