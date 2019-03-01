@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    container_name: quickbooks-integration-container
+    network_mode: bridge
+    build: .
+    env_file:
+      - ./prod.env
+    environment:
+      - VIRTUAL_HOST=quickbooks_integration.flowlink.io
+    restart: always
+    network_mode: bridge
+    volumes:
+      - .:/app
+    logging:
+      driver: gcplogs
