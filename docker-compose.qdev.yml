@@ -1,0 +1,16 @@
+version: '3'
+services:
+  qbdev-integration:
+    build: .
+    network_mode: bridge
+    container_name: qb-dev-integration-container
+    env_file:
+      - ./dev.env
+    restart: always
+    ports:
+      - 3001:5000
+    network_mode: bridge
+    volumes:
+      - .:/app
+    logging:
+      driver: gcplogs
