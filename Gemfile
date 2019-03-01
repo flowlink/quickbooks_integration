@@ -29,10 +29,6 @@ group :test do
   gem 'simplecov'
 end
 
-group :test, :development do
-  gem 'dotenv'
-end
-
 group :production do
   gem 'foreman'
 end
