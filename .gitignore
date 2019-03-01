@@ -7,3 +7,4 @@ coverage
 .bundle/
 .env
 .idea/
+dev.env
