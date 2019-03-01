@@ -30,16 +30,68 @@ payload.order.number = payload.order.number.substring(0, 21);
 Create an app here: https://developer.intuit.com/v2/ui#/app/dashboard and generate your oauth keys.
 
 ### Environment Variables
+For Production
+Copy "sample.env" to "prod.env" and fill out the following variables:
 
-Copy "sample.env" to ".env" and fill out the following variables:
+`QB_CONSUMER_KEY` - OAuth consumer key for production
+`QB_CONSUMER_SECRET` -  OAuth token for production
 
-`QB_CONSUMER_KEY` - OAuth consumer key
+For Development
+Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 
-`QB_CONSUMER_KEY` - OAuth token
+`QB_CONSUMER_KEY` - OAuth consumer key for development
+`QB_CONSUMER_SECRET` -  OAuth token for development
 
 # Starting Application
 
 `bundle exec unicorn` -- Starts application on port 8080
+
+## Connection Parameters
+```
+"quickbooks_access_secret": "",
+"quickbooks_realm": "",
+"quickbooks_access_token": ""
+```
+- quickbooks_access_secret: Secret from Intuit
+- quickbooks_realm: QuickBooks realm
+- quickbooks_access_token: Access token from Intuit
+
+## Endpoints
+/get_inventory
+- quickbooks_poll_stock_timestamp
+
+/add_product
+- quickbooks_income_account
+- quickbooks_track_inventory
+- quickbooks_inventory_account
+- quickbooks_cogs_account
+
+/update_product
+- quickbooks_income_account
+- quickbooks_track_inventory
+- quickbooks_inventory_account
+- quickbooks_cogs_account
+
+/add_order
+- quickbooks_discount_item
+- quickbooks_shipping_item
+- quickbooks_tax_item
+- quickbooks_web_orders_users
+- quickbooks_track_inventory
+- quickbooks_payment_method_name
+- quickbooks_account_name
+- quickbooks_deposit_to_account_name
+
+/update_order
+- quickbooks_create_or_update
+- quickbooks_discount_item
+- quickbooks_shipping_item
+- quickbooks_tax_item
+- quickbooks_web_orders_users
+- quickbooks_track_inventory
+- quickbooks_payment_method_name
+- quickbooks_account_name
+- quickbooks_deposit_to_account_name
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found

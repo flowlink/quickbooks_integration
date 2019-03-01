@@ -1,16 +1,5 @@
 require_relative 'lib/qb_integration'
 
-if File.exists? File.join(File.expand_path(File.dirname(__FILE__)), '.env')
-  # TODO check an ENV variable i.e. RACK_ENV
-  begin
-    require 'dotenv'
-    Dotenv.load
-  rescue => e
-    puts e.message
-    puts e.backtrace.join("\n")
-  end
-end
-
 class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   set :logging, true
 
@@ -18,6 +7,15 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   error do
     result 500, lookup_error_message
+  end
+
+  post '/validate_token'do
+    token = QBIntegration::Service::Token.new(@config)
+    if token.valid?
+      result 200
+    else
+      result 401
+    end
   end
 
   post '/add_product' do
