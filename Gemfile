@@ -11,6 +11,7 @@ gem 'tzinfo'
 gem 'capistrano'
 gem 'unicorn'
 gem 'builder'
+# gem 'dotenv'
 
 group :development do
   gem 'rake'
@@ -27,10 +28,6 @@ group :test do
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'rack-test'
   gem 'simplecov'
-end
-
-group :test, :development do
-  gem 'dotenv'
 end
 
 group :production do
