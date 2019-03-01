@@ -7,8 +7,6 @@ services:
     env_file:
       - ./dev.env
     restart: always
-    ports:
-      - 3001:5000
     network_mode: bridge
     volumes:
       - .:/app
