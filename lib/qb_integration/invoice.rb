@@ -9,11 +9,11 @@ module QBIntegration
 
     def create
       if qb_invoice = invoice_service.find_by_invoice_number
-        raise AlreadyPersistedOrderException.new("Invoice #{flowlink_invoice[:id]} already exists")
+        raise AlreadyPersistedOrderException.new("FlowLink Invoice #{flowlink_invoice[:id]} already exists - QuickBooks Invoice #{qb_invoice.id}")
       end
 
       invoice = invoice_service.create
-      text = "Created Quickbooks Invoice #{invoice.doc_number}"
+      text = "Created QuickBooks Invoice #{invoice.doc_number}"
       [200, text]
     end
 
@@ -22,12 +22,12 @@ module QBIntegration
 
       if !qb_invoice.present? && config[:quickbooks_create_or_update].to_s == "1"
         invoice = invoice_service.create
-        [200, "Created Quickbooks Invoice #{invoice.doc_number}"]
+        [200, "Created QuickBooks Invoice #{invoice.doc_number}"]
       elsif !qb_invoice.present?
-        raise RecordNotFound.new "Quickbooks invoice not found for invoice #{invoice[:number] || invoice[:id]}"
+        raise RecordNotFound.new "QuickBooks invoice not found for invoice #{invoice[:number] || invoice[:id]}"
       else
         invoice = invoice_service.update qb_invoice
-        [200, "Updated Quickbooks invoice #{invoice.doc_number}"]
+        [200, "Updated QuickBooks invoice #{invoice.doc_number}"]
       end
     end
   end
