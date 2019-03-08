@@ -43,16 +43,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
-  post '/add_order' do
-    begin
-      code, summary = QBIntegration::Order.new(@payload, @config).create
-      result code, summary
-    rescue QBIntegration::AlreadyPersistedOrderException => e
-      result 500, e.message
-    end
-  end
-
-
+  ### ACCOUNTTECH SPECIFIC ENDPOINT ###
+  # Use the above journal endpoints for general use
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
       puts 'ADD'
@@ -69,6 +61,16 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
     result code, summary
   end
+  # End of Specific Endpoint
+
+  post '/add_order' do
+    begin
+      code, summary = QBIntegration::Order.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
 
   post '/update_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).update
@@ -77,6 +79,20 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/cancel_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).cancel
+    result code, summary
+  end
+
+  post '/add_invoice' do
+    begin
+      code, summary = QBIntegration::Invoice.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedInvoiceException => e
+      result 500, e.message
+    end
+  end
+
+  post '/update_invoice' do
+    code, summary = QBIntegration::Invoice.new(@payload, @config).update
     result code, summary
   end
 

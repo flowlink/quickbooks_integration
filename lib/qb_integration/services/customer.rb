@@ -6,12 +6,20 @@ module QBIntegration
       def initialize(config, payload)
         super("Customer", config)
 
-        @order = payload[:order] || {}
+        @order = payload[:order] || payload[:invoice] || {}
       end
 
       def find_or_create
         name = use_web_orders? ? "Web Orders" : nil
-        fetch_by_display_name(name) || create
+        unless customer = fetch_by_display_name(name)
+          if create_new_customers? || use_web_orders?
+            customer = create
+          else 
+            raise RecordNotFound.new "Quickbooks record not found for customer: #{display_name}"
+          end
+        end
+
+        customer
       end
 
       def fetch_by_display_name(name = nil)
@@ -22,12 +30,9 @@ module QBIntegration
         quickbooks.query(query).entries.first
       end
 
-      # This has a unique constraint in Quickbooks api
-      # see https://developer.intuit.com/docs/0025_quickbooksapi/0050_data_services/030_entity_services_reference/customer
-      # So in case someone changes the display name via Quickbooks ui we
+      # If someone changes the display name via Quickbooks ui we
       # will probably lose track of this customer and create another one
-      #
-      # Maybe add another custom field to better sync customers?
+      # Client's now have ability to run a customer sync and configure automatic customer creation as well
       def display_name
         name = 'NotProvided NotProvided'
         unless order['billing_address'].nil?
@@ -39,7 +44,6 @@ module QBIntegration
 
       def create
         new_customer = create_model
-
         if use_web_orders?
           new_customer.display_name = "Web Orders"
         else
@@ -60,6 +64,11 @@ module QBIntegration
       private
         def use_web_orders?
           config['quickbooks_web_orders_users'].to_s == "1"
+        end
+
+        # Default this to true for backwards compatibility with QBO integration users
+        def create_new_customers?
+          config['quickbooks_create_new_customers'] ? config['quickbooks_create_new_customers'].to_s == "1" : true
         end
     end
   end
