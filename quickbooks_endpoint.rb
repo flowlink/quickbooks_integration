@@ -61,6 +61,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
     result code, summary
   end
+  # End of Specific Endpoint
 
   post '/add_order' do
     begin

@@ -81,6 +81,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_payment_method_name
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
+- quickbooks_create_new_customers
 
 /update_order
 - quickbooks_create_or_update
@@ -92,6 +93,28 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_payment_method_name
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
+- quickbooks_create_new_customers
+
+/add_invoice
+- quickbooks_discount_item
+- quickbooks_shipping_item
+- quickbooks_tax_item
+- quickbooks_web_orders_users
+- quickbooks_track_inventory
+- quickbooks_account_name
+- quickbooks_deposit_to_account_name
+- quickbooks_create_new_customers
+
+/update_invoice
+- quickbooks_create_or_update
+- quickbooks_discount_item
+- quickbooks_shipping_item
+- quickbooks_tax_item
+- quickbooks_web_orders_users
+- quickbooks_track_inventory
+- quickbooks_account_name
+- quickbooks_deposit_to_account_name
+- quickbooks_create_new_customers
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found

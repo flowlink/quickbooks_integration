@@ -32,10 +32,10 @@ module QBIntegration
 
         # Will there ever be shipments on an invoice???
 
-        # if order[:shipments] && !order[:shipments].empty?
-        #   sales_receipt.tracking_num = shipments_tracking_number.join(", ")
-        #   sales_receipt.ship_method_ref = order[:shipments].last[:shipping_method]
-        #   sales_receipt.ship_date = order[:shipments].last[:shipped_at]
+        # if flowlink_invoice[:shipments] && !flowlink_invoice[:shipments].empty?
+        #   invoice.tracking_num = shipments_tracking_number.join(", ")
+        #   invoice.ship_method_ref = flowlink_invoice[:shipments].last[:shipping_method]
+        #   invoice.ship_date = flowlink_invoice[:shipments].last[:shipped_at]
         # end
 
         quickbooks.update invoice
@@ -54,15 +54,15 @@ module QBIntegration
           invoice.total = flowlink_invoice['grand_total']
           invoice.tracking_num = shipments_tracking_number.join(", ")
 
-          # Does this need to be set?
+          # TODO: Confirm if this needs to be set?
           invoice.bill_email = flowlink_invoice['email']
 
           # If ShipAddr, BillAddr, or both are not provided, 
           # the appropriate customer address from Customer is used to fill those values.
           invoice.shipping_address = Address.build flowlink_invoice['shipping_address']
           invoice.billing_address = Address.build flowlink_invoice['billing_address']
-          addAccounts(invoice)
           
+          addAccounts(invoice)
           
           # Used when creating a new product
           income_account = nil
