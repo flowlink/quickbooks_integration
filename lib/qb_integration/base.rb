@@ -48,6 +48,14 @@ module QBIntegration
     def journal_line_service
       @journal_line_service ||= Service::JournalLine.new(config, payload)
     end
+
+    def invoice_service
+      @invoice_service ||= Service::Invoice.new(config, payload)
+    end
+
+    def invoice_line_service
+      @invoice_line_service ||= Service::InvoiceLine.new(config, payload)
+    end
   end
 
   class RecordNotFound < StandardError; end
@@ -55,6 +63,7 @@ module QBIntegration
   class LookupValueNotFoundException < StandardError; end
   class UnsupportedException < StandardError; end
   class AlreadyPersistedOrderException < StandardError; end
+  class AlreadyPersistedInvoiceException < StandardError; end
   class AlreadyPersistedJournalEntryException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end

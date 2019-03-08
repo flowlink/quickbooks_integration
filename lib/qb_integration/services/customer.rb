@@ -6,12 +6,20 @@ module QBIntegration
       def initialize(config, payload)
         super("Customer", config)
 
-        @order = payload[:order] || {}
+        @order = payload[:order] || payload[:invoice] || {}
       end
 
       def find_or_create
         name = use_web_orders? ? "Web Orders" : nil
-        fetch_by_display_name(name) || create
+        unless customer = fetch_by_display_name(name)
+          if create_new_customers? || use_web_orders?
+            customer = create
+          else 
+            raise RecordNotFound.new "Quickbooks record not found for customer: #{display_name}"
+          end
+        end
+
+        customer
       end
 
       def fetch_by_display_name(name = nil)
@@ -39,7 +47,6 @@ module QBIntegration
 
       def create
         new_customer = create_model
-
         if use_web_orders?
           new_customer.display_name = "Web Orders"
         else
@@ -60,6 +67,10 @@ module QBIntegration
       private
         def use_web_orders?
           config['quickbooks_web_orders_users'].to_s == "1"
+        end
+
+        def create_new_customers?
+          config['quickbooks_create_new_customers'].to_s == "1"
         end
     end
   end
