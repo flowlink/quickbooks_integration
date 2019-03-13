@@ -139,6 +139,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/get_customers' do
+    qbo_customer = QBIntegration::Customer.new(@payload, @config)
+    summary, page, since, code = qbo_customer.get()
+
+    qbo_customer.customers.each do |customer|
+      add_object :customer, qbo_customer.build_customer(customer)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+
+    result code, summary
+  end
+
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"

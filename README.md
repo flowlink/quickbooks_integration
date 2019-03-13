@@ -60,6 +60,10 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 /get_inventory
 - quickbooks_poll_stock_timestamp
 
+/get_customers
+- quickbooks_since
+- quickbooks_page_num
+
 /add_product
 - quickbooks_income_account
 - quickbooks_track_inventory

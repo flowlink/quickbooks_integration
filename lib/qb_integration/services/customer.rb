@@ -3,10 +3,24 @@ module QBIntegration
     class Customer < Base
       attr_reader :order
 
+      PER_PAGE_AMOUNT = 50
+
       def initialize(config, payload)
         super("Customer", config)
 
         @order = payload[:order] || payload[:invoice] || {}
+      end
+
+      def find_by_updated_at(page_num)
+        raise MissingTimestampParam unless config["quickbooks_since"].present?
+
+        filter = "Where Metadata.LastUpdatedTime>'#{config.fetch("quickbooks_since")}'"
+        order_by = "Order By Metadata.LastUpdatedTime"
+        query = "Select * from Customer #{filter} #{order_by}"
+        response = quickbooks.query(query, :page => page_num, :per_page => PER_PAGE_AMOUNT)
+
+        new_page = response.count == PER_PAGE_AMOUNT ? page_num.to_i + 1 : 1
+        [response.entries, new_page]
       end
 
       def find_or_create
