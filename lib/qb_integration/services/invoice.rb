@@ -4,6 +4,8 @@ module QBIntegration
       attr_reader :flowlink_invoice, :payload
       attr_reader :invoice_line_service, :account_service, :customer_service
 
+      PER_PAGE_AMOUNT = 50
+
       def initialize(config, payload, options = { dependencies: true })
         super("Invoice", config)
 
@@ -19,6 +21,18 @@ module QBIntegration
       def find_by_invoice_number
         query = "SELECT * FROM Invoice WHERE DocNumber = '#{invoice_number}'"
         quickbooks.query(query).entries.first
+      end
+
+      def find_by_updated_at(page_num)
+        raise MissingTimestampParam unless config["quickbooks_since"].present?
+      
+        filter = "Where Metadata.LastUpdatedTime>'#{config.fetch("quickbooks_since")}'"
+        order_by = "Order By Metadata.LastUpdatedTime"
+        query = "Select * from Invoice #{filter} #{order_by}"
+        response = quickbooks.query(query, :page => page_num, :per_page => PER_PAGE_AMOUNT)
+      
+        new_page = response.count == PER_PAGE_AMOUNT ? page_num.to_i + 1 : 1
+        [response.entries, new_page]
       end
 
       def create

@@ -96,6 +96,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/get_invoices' do
+    qbo_invoice = QBIntegration::Invoice.new(@payload, @config)
+    summary, page, since, code = qbo_invoice.get()
+  
+    qbo_invoice.invoices.each do |invoice|
+      add_object :invoice, qbo_invoice.build_invoice(invoice)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+  
+    result code, summary
+  end
+
   post '/add_return' do
     code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).create
     result code, summary

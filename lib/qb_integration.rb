@@ -29,3 +29,6 @@ require 'qb_integration/services/credit_memo'
 require 'qb_integration/services/token'
 require 'qb_integration/services/invoice'
 require 'qb_integration/services/invoice_line'
+
+require 'qb_integration/processors/invoice'
+require 'qb_integration/processors/invoice_line'

@@ -17,8 +17,8 @@ module QBIntegration
       @account_service ||= Service::Account.new(@config)
     end
 
-    def sales_receipt_service
-      @receipt_service ||= Service::SalesReceipt.new(config, payload)
+    def sales_receipt_service(options = { dependencies: true })
+      @receipt_service ||= Service::SalesReceipt.new(config, payload, options)
     end
 
     def journal_entry_service
@@ -49,8 +49,8 @@ module QBIntegration
       @journal_line_service ||= Service::JournalLine.new(config, payload)
     end
 
-    def invoice_service
-      @invoice_service ||= Service::Invoice.new(config, payload)
+    def invoice_service(options = { dependencies: true })
+      @invoice_service ||= Service::Invoice.new(config, payload, options)
     end
 
     def invoice_line_service
