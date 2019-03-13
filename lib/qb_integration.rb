@@ -33,3 +33,5 @@ require 'qb_integration/services/invoice_line'
 
 require 'qb_integration/processors/invoice'
 require 'qb_integration/processors/invoice_line'
+require 'qb_integration/processors/customer'
+require 'qb_integration/processors/processor_helper'
