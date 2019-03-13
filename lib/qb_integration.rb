@@ -12,6 +12,7 @@ require 'qb_integration/order'
 require 'qb_integration/invoice'
 require 'qb_integration/return_authorization'
 require 'qb_integration/stock'
+require 'qb_integration/customer'
 
 require 'qb_integration/services/base'
 require 'qb_integration/services/account'
