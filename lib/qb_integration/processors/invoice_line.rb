@@ -1,6 +1,7 @@
 module QBIntegration
   module Processor
     class InvoiceLine
+      include Helper
       attr_reader :line
 
       def initialize(line)
@@ -24,7 +25,7 @@ module QBIntegration
         if line.sales_item?
           build_sales_line
         elsif line.group_line_detail?
-          raise FeatureNotAvailableYet.new("Group Line Not available. Please contact FlowLink support for more detail")
+          raise FeatureNotYetAvailable.new("Group Line Not available. Please contact FlowLink support for more detail")
           # build_group_line
         elsif line.sub_total_item?
           build_sub_total_line
@@ -72,14 +73,9 @@ module QBIntegration
         build_ref(item[name])
       end
   
-      def build_ref(ref)
-        return {} unless ref
-        { name: ref["name"],id: ref["value"] }
-      end
-  
     end
   end
 
-  class FeatureNotAvailableYet < StandardError; end
+  class FeatureNotYetAvailable < StandardError; end
 
 end
