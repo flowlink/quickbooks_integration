@@ -1,10 +1,10 @@
 module QBIntegration
   class Invoice < Base
-    attr_accessor :flowlink_invoice
+    attr_accessor :flowlink_invoice, :invoices, :new_page_number
 
     def initialize(message = {}, config)
       super
-      @flowlink_invoice = payload[:invoice]
+      @flowlink_invoice = payload[:invoice] ? payload[:invoice] : {}
     end
 
     def create
@@ -29,6 +29,31 @@ module QBIntegration
         invoice = invoice_service.update qb_invoice
         [200, "Updated QuickBooks invoice #{invoice.doc_number}"]
       end
+    end
+
+    def get
+      @invoices, @new_page_number = invoice_service({ dependencies: false }).find_by_updated_at(page_number)
+      summary = "Retrieved #{@invoices.count} invoices from QuickBooks Online"
+
+      [summary, new_page_number, since, code]
+    end
+
+    def build_invoice(invoice)
+      Processor::Invoice.new(invoice).as_flowlink_hash
+    end
+
+    private
+
+    def page_number
+      config.fetch("quickbooks_page_num") || 1
+    end
+
+    def since
+      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    end
+
+    def code
+      new_page_number == 1 ? 200 : 206
     end
   end
 end
