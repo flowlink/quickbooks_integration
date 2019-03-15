@@ -52,13 +52,15 @@ module QBIntegration
         income_account_id: @income_account_id
       }
 
+
+      # TODO: Need to add support for item creation as a SERVICE_TYPE
       if !@inventory_costing && !is_update
         attrs[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
       end
 
       # Test accounts do not support track_inventory feature
       if @inventory_costing && !is_update
-        quantity = 1
+        quantity = 0
         if !product[:quantity].nil? && !product[:quantity].blank?
           quantity = product[:quantity].to_i
         end

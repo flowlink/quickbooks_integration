@@ -20,14 +20,21 @@ module QBIntegration
         response.entries.first
       end
 
-      def find_by_updated_at
+      def find_by_updated_at(page_num = nil)
         raise MissingTimestampParam unless config["quickbooks_poll_stock_timestamp"].present?
 
         filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
         order = "Order By Metadata.LastUpdatedTime"
-        response = quickbooks.query "select * from Item #{filter} #{order}"
-
-        response.entries
+        query = "select * from Item #{filter} #{order}"
+        
+        if page_num
+          response = quickbooks.query(query, :page => page_num, :per_page => PER_PAGE_AMOUNT)
+          new_page = response.count == PER_PAGE_AMOUNT ? page_num.to_i + 1 : 1
+          [response.entries, new_page]
+        else
+          response = quickbooks.query(query)
+          response.entries
+        end        
       end
 
       # NOTE what if a product is given?

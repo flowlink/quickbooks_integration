@@ -4,8 +4,6 @@ module QBIntegration
       attr_reader :flowlink_invoice, :payload
       attr_reader :invoice_line_service, :account_service, :customer_service
 
-      PER_PAGE_AMOUNT = 50
-
       def initialize(config, payload, options = { dependencies: true })
         super("Invoice", config)
 

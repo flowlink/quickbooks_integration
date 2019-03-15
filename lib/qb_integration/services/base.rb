@@ -5,6 +5,8 @@ module QBIntegration
 
       attr_reader :quickbooks, :model_name, :config
 
+      PER_PAGE_AMOUNT = 50
+
       def initialize(model_name, config)
         @model_name = model_name
         @config = config
