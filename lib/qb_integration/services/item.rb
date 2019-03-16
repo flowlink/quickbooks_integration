@@ -5,8 +5,18 @@ module QBIntegration
         super("Item", config)
       end
 
+      def find_by_id(id, fields = "*")
+        response = quickbooks.query("select #{fields} from Item where Id = '#{id}'")
+        response.entries.first
+      end
+
       def find_by_name(sku, fields = "*")
         response = quickbooks.query("select #{fields} from Item where Name = '#{sku}'")
+        response.entries.first
+      end
+
+      def find_category_by_name(name, fields = "*")
+        response = quickbooks.query("select #{fields} from Item where Name = '#{name}' and Type='Category'")
         response.entries.first
       end
 
@@ -67,7 +77,7 @@ module QBIntegration
       end
 
       def create_new_product(params)
-        create = config.fetch("quickbooks_create_new_product")
+        create = config["quickbooks_create_new_product"]
         return unless create && create.to_s == "1"
         create(params)
       end

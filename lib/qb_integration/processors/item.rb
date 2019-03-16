@@ -28,7 +28,7 @@ module QBIntegration
           purchase_desc: item.purchase_desc,
           level: item.level,
           purchase_cost: item.purchase_cost,
-          quantity_on_hand: item.quantity_on_hand,
+          quantity_on_hand: item.quantity_on_hand.to_f,
           inv_start_date: item.inv_start_date,
           sub_item: item.sub_item?,
           income_account_ref: build_ref(item.income_account_ref),
