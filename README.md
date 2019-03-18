@@ -64,6 +64,10 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_since
 - quickbooks_page_num
 
+/get_products
+- quickbooks_since
+- quickbooks_page_num
+
 /add_product
 - quickbooks_income_account
 - quickbooks_track_inventory
@@ -75,6 +79,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_track_inventory
 - quickbooks_inventory_account
 - quickbooks_cogs_account
+- quickbooks_create_or_update
 
 /add_order
 - quickbooks_discount_item
@@ -86,6 +91,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
 - quickbooks_create_new_customers
+- quickbooks_create_new_product
 
 /update_order
 - quickbooks_create_or_update
@@ -98,6 +104,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
 - quickbooks_create_new_customers
+- quickbooks_create_new_product
 
 /add_invoice
 - quickbooks_discount_item
@@ -108,6 +115,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
 - quickbooks_create_new_customers
+- quickbooks_create_new_product
 
 /update_invoice
 - quickbooks_create_or_update
@@ -119,6 +127,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_account_name
 - quickbooks_deposit_to_account_name
 - quickbooks_create_new_customers
+- quickbooks_create_new_product
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found

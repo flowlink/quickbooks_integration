@@ -59,9 +59,15 @@ module QBIntegration
         quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
         if track_inventory
+          inventory_account = account_service.find_by_name config.fetch("quickbooks_inventory_account")
           type = Quickbooks::Model::Item::INVENTORY_TYPE
         else
           type = Quickbooks::Model::Item::NON_INVENTORY_TYPE
+        end
+
+        expense_account = nil
+        if config["quickbooks_cogs_account"].present?
+          expense_account = account_service.find_by_name config.fetch("quickbooks_cogs_account")
         end
 
         params = {
@@ -71,6 +77,7 @@ module QBIntegration
           unit_price: line_item[:price],
           purchase_cost: line_item[:cost_price],
           income_account_id: account ? account.id : nil,
+          expense_account_id: expense_account ? expense_account.id : nil,
           type: type
         }
         find_by_sku(sku) || find_by_name(name) || create_new_product(params)
