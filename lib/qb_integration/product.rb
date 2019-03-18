@@ -56,13 +56,12 @@ module QBIntegration
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
-        taxable?: product[:taxable],
-        sales_tax_included?: product[:sales_tax_included],
         purchase_desc: product[:purchase_description],
-        purchase_tax_included?: product[:purchase_tax_included],
+        # purchase_tax_included?: product[:purchase_tax_included],
+        # taxable?: product[:taxable],
+        # sales_tax_included?: product[:sales_tax_included],
         income_account_id: @income_account_id
       }
-
 
       # TODO: Need to add support for item creation as a SERVICE_TYPE
       if !@inventory_costing && !is_update

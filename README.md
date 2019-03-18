@@ -122,6 +122,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_inventory_account - Name of the account used for your inventory tracking (usually Inventory Asset) **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which payments from Invoices should be deposited (normally Undeposited Funds)
+- quickbooks_ar_account_name - The Account Name used for your Accounts Receivable account in QuickBooks Online
 
 /update_invoice
 - quickbooks_create_or_update - Boolean used to determine if FlowLink should create the Invoice if it is not found in QuickBooks **Required**
@@ -136,6 +137,7 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_inventory_account - Name of the account used for your inventory tracking (usually Inventory Asset) **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which payments from Invoices should be deposited (normally Undeposited Funds)
+- quickbooks_ar_account_name - The Account Name used for your Accounts Receivable account in QuickBooks Online
 
 
 # Error Codes:
