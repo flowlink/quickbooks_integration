@@ -42,7 +42,9 @@ module QBIntegration
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
 
-          if item_found.type = "Group"
+          puts "Item type is #{item_found.type}"
+
+          if item_found.type == "Group"
             # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
             raise UnsupportedException.new "Bundled Item Present: FlowLink does not support adding bundled items to Sales Receipts at this time. Please contatct a FlowLink representative for more information."
             
@@ -67,6 +69,9 @@ module QBIntegration
             #   end
             # end
           else
+            unless line_item["price"] && line_item["quantity"]
+              raise UnsupportedException.new "Line Items must have a valid price and quantity"
+            end
             line.amount = (line_item["quantity"].to_i * line_item["price"].to_f)
             line.description = line_item["name"]
 

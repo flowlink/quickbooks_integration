@@ -29,7 +29,7 @@ module QBIntegration
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
           
-          if item_found.type = "Group"
+          if item_found.type == "Group"
             line.group_line_detail! do |detail|
               detail.id = item_found.id
               detail.group_item_ref = Quickbooks::Model::BaseReference.new(item_found.name, value: item_found.id)
@@ -53,6 +53,10 @@ module QBIntegration
           else      
             price = line_item["price"]
             quantity = line_item["quantity"]
+
+            unless price && quantity
+              raise UnsupportedException.new "Line Items must have a valid price and quantity"
+            end
 
             line.amount = quantity * price
             line.description = line_item["name"]

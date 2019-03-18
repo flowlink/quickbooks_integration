@@ -56,37 +56,46 @@ module QBIntegration
         sku = line_item[:product_id] if line_item[:sku].to_s.empty?
         sku = line_item[:sku] if sku.to_s.empty?
 
-        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
-        track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
-        if track_inventory
-          inventory_account = account_service.find_by_name config.fetch("quickbooks_inventory_account")
-          type = Quickbooks::Model::Item::INVENTORY_TYPE
-        else
-          type = Quickbooks::Model::Item::NON_INVENTORY_TYPE
-        end
+        find_by_sku(sku) || find_by_name(name) || create_new_product(line_item, sku, name, account)
+      end
 
-        expense_account = nil
-        if config["quickbooks_cogs_account"].present?
-          expense_account = account_service.find_by_name config.fetch("quickbooks_cogs_account")
-        end
+      def create_new_product(line_item, sku, name, account)
+        create = config["quickbooks_create_new_product"]
+        return unless create && create.to_s == "1"
 
+        account_service = Account.new config
         params = {
           name: name,
           sku: sku,
           description: line_item[:description],
           unit_price: line_item[:price],
           purchase_cost: line_item[:cost_price],
-          income_account_id: account ? account.id : nil,
-          expense_account_id: expense_account ? expense_account.id : nil,
-          type: type
+          income_account_id: account ? account.id : nil
         }
-        find_by_sku(sku) || find_by_name(name) || create_new_product(params)
+
+        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
+        track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
+        if track_inventory
+          unless config["quickbooks_inventory_account"].present? && config["quickbooks_cogs_account"].present?
+            raise RecordNotFound.new "Workflow parameter missing for Inventory items: quickbooks_inventory_account or quickbooks_cogs_account"            
+          end
+
+          params[:quantity_on_hand] = line_item[:quantity] ? line_item[:quantity] : 0
+
+          params[:track_quantity_on_hand] = true
+          params[:inv_start_date] = time_now
+          params[:asset_account_id] = account_service.find_by_name(config.fetch("quickbooks_inventory_account")).id
+          params[:expense_account_id] = account_service.find_by_name(config.fetch("quickbooks_cogs_account")).id
+          params[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
+        else
+          params[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
+        end
+
+        create(params)
       end
 
-      def create_new_product(params)
-        create = config["quickbooks_create_new_product"]
-        return unless create && create.to_s == "1"
-        create(params)
+      def time_now
+        Time.now.utc
       end
     end
   end
