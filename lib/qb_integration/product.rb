@@ -4,30 +4,37 @@ module QBIntegration
 
     def initialize(message = {}, config)
       super
-
       @product_payload = @product = @payload[:product]
     end
 
     def import
       load_configs
-      #import_product(@product)
-      @product.fetch(:variants, []).collect.with_index {|variant, index|
-        if variant[:sku].to_s.empty?
-          variant[:sku] = @product[:sku] + "_" + index.to_s
-        end
-        if variant[:description].to_s.empty?
-          variant[:description] = @product[:description]
-        end
-        if variant[:name].to_s.empty?
-          variant[:name] = @product[:name] + " " + index.to_s
-        end
-        import_product(variant)
-      }
-
+      if @product['variants'] && !@product['variants'].empty?
+        @product.fetch(:variants, []).collect.with_index {|variant, index|
+          # TODO: Set up better way for clients to specify how to handle sku/name of variant's without a sku/name
+          if variant[:sku].to_s.empty?
+            variant[:sku] = @product[:sku] + "_" + index.to_s
+          end
+          if variant[:description].to_s.empty?
+            variant[:description] = @product[:description]
+          end
+          if variant[:name].to_s.empty?
+            variant[:name] = @product[:name] + " " + index.to_s
+          end
+          import_product(variant)
+        }
+      else
+        import_product(@product)
+      end
       [200, @notification]
     end
 
     private
+
+    def use_quickbooks_categories?
+      @config.fetch('use_product_categories').to_s == '1'
+    end
+
     def load_configs
       @income_account_id = account_id('quickbooks_income_account')
       @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
@@ -49,16 +56,21 @@ module QBIntegration
         description: product[:description],
         unit_price: product[:price],
         purchase_cost: product[:cost_price],
+        purchase_desc: product[:purchase_description],
+        # purchase_tax_included?: product[:purchase_tax_included],
+        # taxable?: product[:taxable],
+        # sales_tax_included?: product[:sales_tax_included],
         income_account_id: @income_account_id
       }
 
+      # TODO: Need to add support for item creation as a SERVICE_TYPE
       if !@inventory_costing && !is_update
         attrs[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
       end
 
       # Test accounts do not support track_inventory feature
       if @inventory_costing && !is_update
-        quantity = 1
+        quantity = 0
         if !product[:quantity].nil? && !product[:quantity].blank?
           quantity = product[:quantity].to_i
         end
@@ -76,11 +88,35 @@ module QBIntegration
         #attrs[:parent_ref] = parent_ref
       end
 
+      if use_category?(product)
+        attrs[:sub_item] = true
+        attrs[:parent_ref] = category_id(product)
+      end
+
       attrs
     end
 
     def import_as_sub_item?(product)
       product[:sku] != @product[:sku]
+    end
+
+    def use_category?(product)
+      # Check on field specifying category or not
+      product[:parent_name] && product[:parent_name] != ''
+    end
+
+    def category_id(product)
+      unless category = item_service.find_category_by_name(product[:parent_name])
+        # NOTE: We only support creating top level categories right now. Nested categories is a future update
+        cat = {
+          SubItem: false, 
+          Type: Quickbooks::Model::Item::CATEGORY_TYPE,
+          Name: product[:parent_name]
+        }
+        category = item_service.create_category(cat)
+      end
+
+      category.id
     end
 
     def import_product(product)

@@ -24,7 +24,7 @@ module QBIntegration
         invoice = invoice_service.create
         [200, "Created QuickBooks Invoice #{invoice.doc_number}"]
       elsif !qb_invoice.present?
-        raise RecordNotFound.new "QuickBooks invoice not found for invoice #{invoice[:number] || invoice[:id]}"
+        raise RecordNotFound.new "QuickBooks invoice not found for invoice #{flowlink_invoice[:number] || flowlink_invoice[:id]}"
       else
         invoice = invoice_service.update qb_invoice
         [200, "Updated QuickBooks invoice #{invoice.doc_number}"]

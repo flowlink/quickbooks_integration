@@ -3,8 +3,6 @@ module QBIntegration
     class Customer < Base
       attr_reader :order
 
-      PER_PAGE_AMOUNT = 50
-
       def initialize(config, payload)
         super("Customer", config)
 
