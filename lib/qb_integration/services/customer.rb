@@ -50,6 +50,9 @@ module QBIntegration
         unless order['billing_address'].nil?
           name = "#{order['billing_address']['firstname']} #{order['billing_address']['lastname']}".strip
         end
+        unless name && name != ''
+          name = order['customer']['name']
+        end
 
         name
       end

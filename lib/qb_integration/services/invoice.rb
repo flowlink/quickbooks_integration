@@ -36,6 +36,8 @@ module QBIntegration
       def create
         invoice = create_model
         build invoice
+
+        puts invoice.inspect
         quickbooks.create invoice
       end
 
@@ -67,7 +69,7 @@ module QBIntegration
           invoice.tracking_num = shipments_tracking_number.join(", ")
 
           # TODO: Confirm if this needs to be set?
-          invoice.bill_email = flowlink_invoice['email']
+          invoice.bill_email = Quickbooks::Model::EmailAddress.new(flowlink_invoice['email'])
 
           # If ShipAddr, BillAddr, or both are not provided, 
           # the appropriate customer address from Customer is used to fill those values.
