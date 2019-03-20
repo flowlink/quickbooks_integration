@@ -25,9 +25,6 @@ module QBIntegration
         if line.sales_item?
           build_sales_line
         elsif line.group_line_detail?
-          puts line.group_line_detail.inspect
-          puts line.group_line_detail
-          # raise FeatureNotYetAvailable.new("Group Line Not available. Please contact FlowLink support for more detail")
           build_group_line
         elsif line.sub_total_item?
           build_sub_total_line

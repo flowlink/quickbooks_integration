@@ -57,7 +57,7 @@ module QBIntegration
 
       private
         def invoice_number
-          flowlink_invoice[:number] || flowlink_invoice[:id]
+          flowlink_invoice[:id] || flowlink_invoice[:number]
         end
 
         def build invoice
