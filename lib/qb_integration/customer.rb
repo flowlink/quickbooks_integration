@@ -20,7 +20,7 @@ module QBIntegration
     private
 
     def page_number
-      config.fetch("quickbooks_page_num") || 1
+      config.fetch("quickbooks_page_num").to_i || 1
     end
 
     def since
