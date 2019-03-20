@@ -25,8 +25,10 @@ module QBIntegration
         if line.sales_item?
           build_sales_line
         elsif line.group_line_detail?
-          raise FeatureNotYetAvailable.new("Group Line Not available. Please contact FlowLink support for more detail")
-          # build_group_line
+          puts line.group_line_detail.inspect
+          puts line.group_line_detail
+          # raise FeatureNotYetAvailable.new("Group Line Not available. Please contact FlowLink support for more detail")
+          build_group_line
         elsif line.sub_total_item?
           build_sub_total_line
         elsif line.discount_item?
@@ -34,17 +36,39 @@ module QBIntegration
         end
       end
       
-      def build_sales_line
+      def build_sales_line(sales_line = line)
         {
-          item: line_ref(line.sales_line_item_detail, 'item_ref'),
-          class: line_ref(line.sales_line_item_detail, 'class_ref'),
-          price_level: line_ref(line.sales_line_item_detail, 'price_level_ref'),
-          tax_code: line_ref(line.sales_line_item_detail, 'tax_code_ref'),
-          unit_price: line.sales_line_item_detail["unit_price"].to_f,
-          rate_percent: line.sales_line_item_detail["rate_percent"],
-          quantity: line.sales_line_item_detail["quantity"].to_f,
-          service_date: line.sales_line_item_detail["service_date"]
+          item: line_ref(sales_line.sales_line_item_detail, 'item_ref'),
+          class: line_ref(sales_line.sales_line_item_detail, 'class_ref'),
+          price_level: line_ref(sales_line.sales_line_item_detail, 'price_level_ref'),
+          tax_code: line_ref(sales_line.sales_line_item_detail, 'tax_code_ref'),
+          unit_price: sales_line.sales_line_item_detail["unit_price"].to_f,
+          rate_percent: sales_line.sales_line_item_detail["rate_percent"],
+          quantity: sales_line.sales_line_item_detail["quantity"].to_f,
+          service_date: sales_line.sales_line_item_detail["service_date"]
         }
+      end
+
+      def build_group_line
+        {
+          item: line_ref(line.group_line_detail, 'group_item_ref'),
+          line_items: build_group_line_items(line.group_line_detail.line_items),
+          price_level: line_ref(line.group_line_detail, 'price_level_ref'),
+          tax_code: line_ref(line.group_line_detail, 'tax_code_ref'),
+          description: line.group_line_detail["description"],
+          quantity: line.group_line_detail["quantity"].to_f,
+          service_date: line.group_line_detail["service_date"]
+        }
+      end
+
+      def build_group_line_items(items)
+        items.map do |item|
+          {
+            description: item.description,
+            amount: item.amount,
+            items: item.sales_line_item_detail ? build_sales_line(item) : nil
+          }
+        end
       end
 
       def build_sub_total_line
