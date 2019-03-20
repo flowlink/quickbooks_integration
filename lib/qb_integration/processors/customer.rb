@@ -21,12 +21,12 @@ module QBIntegration
           display_name: customer.display_name,
           print_on_check_name: customer.print_on_check_name,
           active: customer.active?,
-          primary_phone: customer.primary_phone,
-          alternate_phone: customer.alternate_phone,
-          mobile_phone: customer.mobile_phone,
-          fax_phone: customer.fax_phone,
+          primary_phone: build_number(customer.primary_phone),
+          alternate_phone: build_number(customer.alternate_phone),
+          mobile_phone: build_number(customer.mobile_phone),
+          fax_phone: build_number(customer.fax_phone),
           primary_email_address: email,
-          web_site: customer.web_site,
+          web_site: website,
           job: customer.job,
           bill_with_parent: customer.bill_with_parent,
           parent: build_ref(customer.parent_ref),
@@ -53,6 +53,14 @@ module QBIntegration
 
       def email
         customer.primary_email_address ? customer.primary_email_address.address : ''
+      end
+
+      def build_number(ref)
+        ref ? ref.free_form_number : ''
+      end
+
+      def website
+        customer.web_site ? customer.web_site.uri : ''
       end
 
     end
