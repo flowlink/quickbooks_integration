@@ -73,7 +73,7 @@ module QBIntegration
         attrs[:quantity_on_hand] = quantity
 
         attrs[:track_quantity_on_hand] = true
-        attrs[:inv_start_date] = time_now
+        attrs[:inv_start_date] = product[:inventory_start_date] || time_now
         attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
         attrs[:asset_account_id] = @inventory_account_id
         attrs[:expense_account_id] = @cogs_account_id
