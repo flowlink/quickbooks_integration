@@ -1,14 +1,8 @@
 version: '3'
 services:
-  web:
-    image: quickbooks-integration-container
-    container_name: quickbooks-integration-container
-    network_mode: bridge
-    build: .
+  quickbooks-integration:
     env_file:
       - ./prod.env
-    restart: always
-    volumes:
-      - .:/app
     logging:
       driver: gcplogs
+    restart: always

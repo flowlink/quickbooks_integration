@@ -1,0 +1,7 @@
+version: '3'
+services:
+  quickbooks-integration:
+    env_file:
+      - ./dev.env
+    ports:
+      - 3001:5000
