@@ -1,18 +1,6 @@
-FROM rlister/ruby:2.4.0
-MAINTAINER NuRelm <development@nurelm.com>
+FROM nurelmdevelopment/ruby-base-image
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -yq \
-    libssl-dev \
-    locales \
-    git
-
-## set the locale so gems built for utf8
-RUN dpkg-reconfigure locales && \
-    locale-gen C.UTF-8 && \
-    /usr/sbin/update-locale LANG=C.UTF-8
-ENV LC_ALL C.UTF-8
+RUN apt-get install -yq git
 
 ## help docker cache bundle
 WORKDIR /tmp
