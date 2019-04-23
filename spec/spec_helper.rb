@@ -6,9 +6,6 @@ require 'rubygems'
 require 'bundler'
 require "pstore"
 
-require 'dotenv'
-Dotenv.load
-
 require 'spree/testing_support/controllers'
 
 Bundler.require(:default, :test)
