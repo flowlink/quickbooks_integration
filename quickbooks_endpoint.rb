@@ -61,6 +61,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/update_purchase_order' do
+    code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).update
+    result code, summary
+  end
+
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
       puts 'ADD'

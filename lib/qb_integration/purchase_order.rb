@@ -12,5 +12,11 @@ module QBIntegration
       text = "Created Quickbooks Purchase Order #{purchase_order.id}"
       [200, text]
     end
+
+    def update
+      response = purchase_order_service.update
+      text = "Updated Quickbooks Purchase Order #{purchase_order[:id]}"
+      [200, text]
+    end
   end
 end

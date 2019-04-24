@@ -18,7 +18,19 @@ module QBIntegration
         quickbooks.create new_purchase_order
       end
 
+      def update
+        found = find_by_doc_number(purchase_order["id"])
+        raise RecordNotFound.new "Quickbooks record not found for purchase_order: #{purchase_order["id"]}" unless found
+        build found
+        quickbooks.update found
+      end
+
       private
+
+      def find_by_doc_number(doc_number)
+        query = "SELECT * FROM PurchaseOrder WHERE DocNumber = '#{doc_number}'"
+        quickbooks.query(query).entries.first
+      end
 
       def build(new_purchase_order)
         new_purchase_order.doc_number = purchase_order["id"]
