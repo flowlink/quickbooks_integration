@@ -52,6 +52,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/add_purchase_order' do
+    begin
+      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
 
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
