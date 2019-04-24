@@ -25,15 +25,13 @@ module QBIntegration
         new_purchase_order.vendor_address = Address.build purchase_order["supplier_address"]
         new_purchase_order.ship_address = Address.build purchase_order["shipping_address"]
 
-        if config["quickbooks_vendor_name"].present?
-          vendor = vendor_service.find_by_name config.fetch("quickbooks_vendor_name")
-          new_purchase_order.vendor_id = vendor.id
-        end
+        vendor_name = purchase_order["quickbooks_vendor_name"] || config.fetch("quickbooks_vendor_name")
+        vendor = vendor_service.find_by_name vendor_name
+        new_purchase_order.vendor_id = vendor.id
 
-        if config["quickbooks_account_name"].present?
-          account = account_service.find_by_name config.fetch("quickbooks_account_name")
-          new_purchase_order.ap_account_id = account.id
-        end
+        account_name = purchase_order["quickbooks_account_name"] || config.fetch("quickbooks_account_name")
+        account = account_service.find_by_name account_name
+        new_purchase_order.ap_account_id = account.id
 
         line_items = line_service.build_purchase_order_lines(account, purchase_order)
         new_purchase_order.line_items = line_items
