@@ -6,7 +6,7 @@ module QBIntegration
     # Memo lines
     class Line < Base
       attr_reader :line_items, :adjustments, :lines, :config, :item_service,
-        :inventory_units, :return_authorization, :order
+        :inventory_units, :return_authorization, :order, :account_service
 
       def initialize(config, payload)
         @config = config
@@ -23,6 +23,7 @@ module QBIntegration
 
         @lines = []
         @item_service = Item.new(config)
+        @account_service = Account.new config
       end
 
       def build_lines(account = nil)
@@ -157,6 +158,19 @@ module QBIntegration
           line
       end
 
+      def build_account_based_expense(line_item, account, purchase_order)
+          line = Quickbooks::Model::PurchaseLineItem.new
+          price = line_item["price"]
+          line.description = line_item["name"]
+
+          line.account_based_expense! do |detail|
+            unless account_found = account_service.find_by_name(line_item["name"])
+              raise RecordNotFound.new "Quickbooks record not found for account: #{line_item["name"]}"
+            end
+            detail.account_id = account_found.id
+          end
+          line
+      end
 
     end
   end
