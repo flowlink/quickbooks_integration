@@ -48,6 +48,10 @@ module QBIntegration
     def journal_line_service
       @journal_line_service ||= Service::JournalLine.new(config, payload)
     end
+
+    def purchase_order_service
+      @purchase_order_service ||= Service::PurchaseOrder.new(config, payload)
+    end
   end
 
   class RecordNotFound < StandardError; end
