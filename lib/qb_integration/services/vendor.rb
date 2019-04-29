@@ -13,6 +13,12 @@ module QBIntegration
         vendor
       end
 
+      def all
+        util = Quickbooks::Util::QueryBuilder.new
+        vendors = @quickbooks.all
+        vendors
+      end
+
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("CompanyName", "=", name)

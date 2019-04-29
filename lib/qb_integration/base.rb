@@ -52,6 +52,10 @@ module QBIntegration
     def purchase_order_service
       @purchase_order_service ||= Service::PurchaseOrder.new(config, payload)
     end
+
+    def vendor_service
+      @vendor_service ||= Service::Vendor.new(config, payload)
+    end
   end
 
   class RecordNotFound < StandardError; end
