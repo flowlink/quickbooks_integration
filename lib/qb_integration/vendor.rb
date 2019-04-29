@@ -7,7 +7,7 @@ module QBIntegration
       super
       @vendor = payload[:vendor]
       @config = config
-      @vendor_service = Service::Vendor.new(config)
+      @vendor_service = Service::Vendor.new(config, payload)
     end
 
     def index
@@ -19,6 +19,11 @@ module QBIntegration
       vendors = result[:vendors].map{|vendor| as_flowlink_hash(vendor)}
 
       result[:total] > (per_page * page) ?  [206, vendors] : [200, vendors]
+    end
+
+    def create
+      vendor = vendor_service.create
+      [200 , "Vendor with id #{vendor.id} created"]
     end
 
     private
