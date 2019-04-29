@@ -1,21 +1,28 @@
 module QBIntegration
   class Vendor < Base
-    attr_reader :vendor_service
+    attr_reader :vendor_service, :config
     attr_accessor :vendor
 
     def initialize(message = {}, config)
       super
       @vendor = payload[:vendor]
+      @config = config
       @vendor_service = Service::Vendor.new(config)
     end
 
     def index
-      vendors = vendor_service.all
-      vendors = vendors.map{|vendor| as_flowlink_hash(vendor)}
-      [200, vendors]
+      date = config.fetch("since")
+      page = config.fetch("page")
+      per_page = config.fetch("per_page")
+
+      result = vendor_service.all(date, page, per_page)
+      vendors = result[:vendors].map{|vendor| as_flowlink_hash(vendor)}
+
+      result[:total] > (per_page * page) ?  [206, vendors] : [200, vendors]
     end
 
-    private 
+    private
+
     def as_flowlink_hash(vendor)
       {
         id: vendor.id,

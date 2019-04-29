@@ -13,10 +13,15 @@ module QBIntegration
         vendor
       end
 
-      def all
+      def all(date, page = 1, per_page = 25)
+        total = @quickbooks.all.count
         util = Quickbooks::Util::QueryBuilder.new
-        vendors = @quickbooks.all
-        vendors
+        clause = util.clause("Metadata.LastUpdatedTime", ">", date)
+        vendors = @quickbooks.query("select * from Vendor where #{clause}", page: page, per_page: per_page)
+        {
+          vendors: vendors,
+          total: total
+        }
       end
 
       def find_by_name(name)
