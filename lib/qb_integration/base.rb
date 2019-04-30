@@ -1,5 +1,6 @@
 module QBIntegration
   class Base
+    OBJECT_LIMIT = 50
     include Helper
 
     attr_accessor :payload, :config

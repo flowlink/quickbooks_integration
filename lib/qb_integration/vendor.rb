@@ -12,8 +12,8 @@ module QBIntegration
 
     def index
       date = config.fetch("since")
-      page = config.fetch("page")
-      per_page = config.fetch("per_page")
+      page = config.fetch("page", 1)
+      per_page = config.fetch("per_page", OBJECT_LIMIT)
 
       result = vendor_service.all(date, page, per_page)
       vendors = result[:vendors].map{|vendor| as_flowlink_hash(vendor)}

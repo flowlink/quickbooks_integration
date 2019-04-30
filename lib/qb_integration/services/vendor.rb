@@ -16,7 +16,7 @@ module QBIntegration
         vendor
       end
 
-      def all(date, page = 1, per_page = 25)
+      def all(date, page, per_page)
         total = @quickbooks.all.count
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("Metadata.LastUpdatedTime", ">", date)

@@ -113,7 +113,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     summary = "Retrieved #{vendors.size} vendors"
     vendors.each { |vendor| add_object :vendor, vendor }
     add_parameter "since", @config.fetch("since")
-    add_parameter "page", @config.fetch("page")
+    add_parameter "page", @config.fetch("page", 1)
     result code, summary
   end
 
