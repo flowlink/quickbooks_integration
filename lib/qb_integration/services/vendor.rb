@@ -19,8 +19,9 @@ module QBIntegration
       def all(date, page, per_page)
         total = @quickbooks.all.count
         util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("Metadata.LastUpdatedTime", ">", date)
-        vendors = @quickbooks.query("select * from Vendor where #{clause}", page: page, per_page: per_page)
+        clause = util.clause("Where Metadata.LastUpdatedTime", ">", date)
+        order_by = "Order By Metadata.LastUpdatedTime"
+        vendors = @quickbooks.query("select * from Vendor #{clause} #{order_by}", page: page, per_page: per_page)
         {
           vendors: vendors,
           total: total
