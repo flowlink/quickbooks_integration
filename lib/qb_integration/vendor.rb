@@ -26,6 +26,11 @@ module QBIntegration
       [200 , "Vendor with id #{vendor.id} created"]
     end
 
+    def update
+      vendor = vendor_service.update
+      [200 , "Vendor with id #{vendor.id} updated", vendor]
+    end
+
     private
 
     def as_flowlink_hash(vendor)

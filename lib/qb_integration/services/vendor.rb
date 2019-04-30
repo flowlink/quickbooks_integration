@@ -33,6 +33,12 @@ module QBIntegration
         @quickbooks.create new_vendor
       end
 
+      def update
+        updated_vendor = find_by_name vendor["name"]
+        build updated_vendor
+        @quickbooks.create updated_vendor
+      end
+
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("CompanyName", "=", name)

@@ -122,6 +122,12 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/update_vendor' do
+    code, summary, vendor = QBIntegration::Vendor.new(@payload, @config).update
+    add_object :vendor, vendor
+    result code, summary
+  end
+
   post '/get_inventory' do
     stock = QBIntegration::Stock.new(@payload, @config)
 
