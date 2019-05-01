@@ -66,6 +66,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  ### ACCOUNTTECH SPECIFIC ENDPOINT ###
+  # Use the above journal endpoints for general use
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
       puts 'ADD'
@@ -82,6 +84,16 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
     result code, summary
   end
+  # End of Specific Endpoint
+
+  post '/add_order' do
+    begin
+      code, summary = QBIntegration::Order.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
 
   post '/update_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).update
@@ -90,6 +102,33 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/cancel_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).cancel
+    result code, summary
+  end
+
+  post '/add_invoice' do
+    begin
+      code, summary = QBIntegration::Invoice.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedInvoiceException => e
+      result 500, e.message
+    end
+  end
+
+  post '/update_invoice' do
+    code, summary = QBIntegration::Invoice.new(@payload, @config).update
+    result code, summary
+  end
+
+  post '/get_invoices' do
+    qbo_invoice = QBIntegration::Invoice.new(@payload, @config)
+    summary, page, since, code = qbo_invoice.get()
+  
+    qbo_invoice.invoices.each do |invoice|
+      add_object :invoice, qbo_invoice.build_invoice(invoice)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+  
     result code, summary
   end
 
@@ -143,12 +182,38 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/get_customers' do
+    qbo_customer = QBIntegration::Customer.new(@payload, @config)
+    summary, page, since, code = qbo_customer.get()
+
+    qbo_customer.customers.each do |customer|
+      add_object :customer, qbo_customer.build_customer(customer)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+
+    result code, summary
+  end
+
+  post '/get_products' do
+    qbo_item = QBIntegration::Item.new(@payload, @config)
+    summary, page, since, code = qbo_item.get()
+
+    qbo_item.items.each do |item|
+      add_object :product, qbo_item.build_item(item)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+
+    result code, summary
+  end
+
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"
-      "Authorization failure. Please check your Quickbooks credentials"
+      "Authorization failure. Please check your QuickBooks credentials"
     when "Quickbooks::ServiceUnavailable"
-      "Quickbooks API appears to be inaccessible HTTP 503 returned."
+      "QuickBooks API appears to be inaccessible HTTP 503 returned."
     else
       env['sinatra.error'].message
     end
