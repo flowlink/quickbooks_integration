@@ -157,7 +157,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_vendor' do
-    code, summary = QBIntegration::Vendor.new(@payload, @config).create
+    code, summary, vendor= QBIntegration::Vendor.new(@payload, @config).create
+    add_object :vendor, vendor
     result code, summary
   end
 
