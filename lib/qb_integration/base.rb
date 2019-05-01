@@ -18,8 +18,8 @@ module QBIntegration
       @account_service ||= Service::Account.new(@config)
     end
 
-    def sales_receipt_service
-      @receipt_service ||= Service::SalesReceipt.new(config, payload)
+    def sales_receipt_service(options = { dependencies: true })
+      @receipt_service ||= Service::SalesReceipt.new(config, payload, options)
     end
 
     def journal_entry_service
@@ -57,6 +57,13 @@ module QBIntegration
     def vendor_service
       @vendor_service ||= Service::Vendor.new(config, payload)
     end
+    def invoice_service(options = { dependencies: true })
+      @invoice_service ||= Service::Invoice.new(config, payload, options)
+    end
+
+    def invoice_line_service
+      @invoice_line_service ||= Service::InvoiceLine.new(config, payload)
+    end
   end
 
   class RecordNotFound < StandardError; end
@@ -64,13 +71,14 @@ module QBIntegration
   class LookupValueNotFoundException < StandardError; end
   class UnsupportedException < StandardError; end
   class AlreadyPersistedOrderException < StandardError; end
+  class AlreadyPersistedInvoiceException < StandardError; end
   class AlreadyPersistedJournalEntryException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
 
   class MissingTimestampParam < StandardError
     def message
-      "Parameter quickbooks_poll_stock_timestamp should be a valid date. e.g 2014-04-13T18:48:56.001Z"
+      "Parameter QuickBooks_poll_stock_timestamp should be a valid date. e.g 2014-04-13T18:48:56.001Z"
     end
   end
 end

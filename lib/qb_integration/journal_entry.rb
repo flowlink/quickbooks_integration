@@ -11,7 +11,7 @@ module QBIntegration
     def add
       if journal_entry = journal_entry_service.find_by_id
         raise AlreadyPersistedJournalEntryException.new(
-          "Journal Entry #{@journal_entry[:id]} already has a journal entry in QB with id: #{journal_entry.id}"
+          "Journal Entry #{@journal_entry[:id]} already has a journal entry in QuickBooks with id: #{journal_entry.id}"
         )
       end
       journal_entry_service.create
@@ -34,7 +34,7 @@ module QBIntegration
 
     def delete
       unless journal = journal_entry_service.find_by_id
-        raise RecordNotFound.new "001 - Quickbooks Journal Entry #{journal_entry_payload[:id]} not found"
+        raise RecordNotFound.new "001 - QuickBooks Journal Entry #{journal_entry_payload[:id]} not found"
       end
       journal_entry_service.delete journal
       add_notification('delete', @journal_entry)
@@ -52,9 +52,9 @@ module QBIntegration
 
     def text
       @text ||= {
-        'create' => "Journal Entry %s added to Quickbooks.",
-        'update' => "Journal Entry %s updated on Quickbooks.",
-        'delete' => "Journal Entry %s deleted on Quickbooks."
+        'create' => "Journal Entry %s added to QuickBooks.",
+        'update' => "Journal Entry %s updated on QuickBooks.",
+        'delete' => "Journal Entry %s deleted on QuickBooks."
       }
     end
 

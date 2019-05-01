@@ -45,11 +45,11 @@ module QBIntegration
               # First, check if there is a customer name on the line item, otherwise QBO will
               # autopopulate with "NotProvided NotProvided"
               unless line_item['customer']
-                raise RecordNotFound.new "002 - Error: No customer on this line item -> QB requires Accounts Receivable to have a customer"
+                raise RecordNotFound.new "002 - Error: No customer on this line item -> QuickBooks requires Accounts Receivable to have a customer"
               end
               # Then check if customer actually exists in QB already
               unless customer = customer_service.fetch_by_display_name(line_item['customer'])
-                raise RecordNotFound.new "003 - Quickbooks Customer #{line_item[:customer]} not found"
+                raise RecordNotFound.new "003 - QuickBooks Customer #{line_item[:customer]} not found"
               end
               entity = Quickbooks::Model::Entity.new(type: 'Customer')
               entity.entity_id = customer["id"]
@@ -59,7 +59,7 @@ module QBIntegration
             # Class is not required
             if line_item["class"]
               unless qb_class = class_service.find_by_name(line_item["class"])
-                raise RecordNotFound.new "004 - Quickbooks Class #{line_item[:class]} not found"
+                raise RecordNotFound.new "004 - QuickBooks Class #{line_item[:class]} not found"
               end
               journal_item.class_id = qb_class.id
             end
