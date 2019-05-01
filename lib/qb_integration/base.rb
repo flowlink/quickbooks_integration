@@ -1,5 +1,6 @@
 module QBIntegration
   class Base
+    OBJECT_LIMIT = 50
     include Helper
 
     attr_accessor :payload, :config
@@ -49,6 +50,13 @@ module QBIntegration
       @journal_line_service ||= Service::JournalLine.new(config, payload)
     end
 
+    def purchase_order_service
+      @purchase_order_service ||= Service::PurchaseOrder.new(config, payload)
+    end
+
+    def vendor_service
+      @vendor_service ||= Service::Vendor.new(config, payload)
+    end
     def invoice_service(options = { dependencies: true })
       @invoice_service ||= Service::Invoice.new(config, payload, options)
     end

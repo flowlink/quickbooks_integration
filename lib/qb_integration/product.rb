@@ -42,7 +42,8 @@ module QBIntegration
     end
 
     def account_id(account_name)
-      account_service.find_by_name(@config.fetch(account_name)).id
+      name = @product[account_name] || @config.fetch(account_name)
+      account_service.find_by_name(name).id
     end
 
     def attributes(product, is_update = false)

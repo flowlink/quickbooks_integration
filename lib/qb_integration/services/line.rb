@@ -6,7 +6,7 @@ module QBIntegration
     # Memo lines
     class Line < Base
       attr_reader :line_items, :adjustments, :lines, :config, :item_service,
-        :inventory_units, :return_authorization, :order
+        :inventory_units, :return_authorization, :order, :account_service
 
       def initialize(config, payload)
         @config = config
@@ -23,12 +23,26 @@ module QBIntegration
 
         @lines = []
         @item_service = Item.new(config)
+        @account_service = Account.new config
       end
 
       def build_lines(account = nil)
         build_from_line_items account
         build_from_adjustments account
 
+        lines
+      end
+
+      def build_purchase_order_lines(account, purchase_order)
+        @line_items = purchase_order["line_items"]
+        line_items.each do |line_item|
+          if line_item["quantity"]
+            built_line = build_item_based_expense(line_item, account, purchase_order)
+          else
+            built_line = build_account_based_expense(line_item, account, purchase_order)
+          end
+          lines.push built_line
+        end
         lines
       end
 
@@ -149,6 +163,45 @@ module QBIntegration
 
         lines
       end
+
+      private
+
+      def build_item_based_expense(line_item, account, purchase_order)
+          line = Quickbooks::Model::PurchaseLineItem.new
+          price = line_item["price"]
+          quantity = line_item["quantity"]
+
+          line.amount = (quantity * price)
+          line.description = line_item["name"]
+
+          line.item_based_expense! do |detail|
+            unless item_found = item_service.find_or_create_by_sku(line_item, account)
+              sku = line_item[:product_id] if line_item[:sku].to_s.empty?
+              sku = line_item[:sku] if sku.to_s.empty?
+              raise RecordNotFound.new "Quickbooks record not found for item: #{sku}"
+            end
+            detail.item_id = item_found.id
+            detail.quantity = line_item["quantity"]
+            detail.unit_price = line_item["price"]
+            detail.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
+          end
+          line
+      end
+
+      def build_account_based_expense(line_item, account, purchase_order)
+          line = Quickbooks::Model::PurchaseLineItem.new
+          price = line_item["price"]
+          line.description = line_item["name"]
+
+          line.account_based_expense! do |detail|
+            unless account_found = account_service.find_by_name(line_item["name"])
+              raise RecordNotFound.new "Quickbooks record not found for account: #{line_item["name"]}"
+            end
+            detail.account_id = account_found.id
+          end
+          line
+      end
+
     end
   end
 end

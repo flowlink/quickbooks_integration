@@ -43,6 +43,29 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/add_order' do
+    begin
+      code, summary = QBIntegration::Order.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
+
+  post '/add_purchase_order' do
+    begin
+      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
+
+  post '/update_purchase_order' do
+    code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).update
+    result code, summary
+  end
+
   ### ACCOUNTTECH SPECIFIC ENDPOINT ###
   # Use the above journal endpoints for general use
   post '/add_journal_entry' do
@@ -121,6 +144,26 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/set_inventory' do
     code, summary = QBIntegration::Stock.new(@payload, @config).set
+    result code, summary
+  end
+
+  post '/get_vendors' do
+    code, vendors = QBIntegration::Vendor.new(@payload, @config).index
+    summary = "Retrieved #{vendors.size} vendors"
+    vendors.each { |vendor| add_object :vendor, vendor }
+    add_parameter "since", @config.fetch("since")
+    add_parameter "page", @config.fetch("page", 1)
+    result code, summary
+  end
+
+  post '/add_vendor' do
+    code, summary = QBIntegration::Vendor.new(@payload, @config).create
+    result code, summary
+  end
+
+  post '/update_vendor' do
+    code, summary, vendor = QBIntegration::Vendor.new(@payload, @config).update
+    add_object :vendor, vendor
     result code, summary
   end
 
