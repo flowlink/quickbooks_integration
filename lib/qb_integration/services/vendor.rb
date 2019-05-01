@@ -37,7 +37,7 @@ module QBIntegration
       def update
         updated_vendor = find_by_name vendor["name"]
         build updated_vendor
-        @quickbooks.create updated_vendor
+        @quickbooks.update updated_vendor
       end
 
       def find_by_name(name)
