@@ -27,7 +27,9 @@ module QBIntegration
         #   "[{\"PayPal\":\"PayPal\",\"None\":\"Cash\",\"Online Credit Card\":\"Credit Card\"}]"
         #   "[{\"PayPal\":\"PayPal\",\"Mastercard\":\"Mastercard\",\"Visa\":\"Visa\",\"Discover\":\"Discover\",\"American Express\":\"American Express\",\"None\":\"Cash\",\"Online Credit Card\":\"Credit Card\"}]"
         #
-        if config.fetch("quickbooks_payment_method_name").is_a? String
+        if order['quickbooks_payment_method_name']
+          return order['quickbooks_payment_method_name']
+        elsif config.fetch("quickbooks_payment_method_name").is_a? String
           payment_method_name_mapping = JSON.parse(config.fetch("quickbooks_payment_method_name"))
         else
           payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")

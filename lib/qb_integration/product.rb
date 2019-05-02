@@ -33,7 +33,7 @@ module QBIntegration
 
     def load_configs
       @income_account_id = account_id('quickbooks_income_account')
-      @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
+      @inventory_costing = (track_inventory == '1')
 
       if @inventory_costing
         @inventory_account_id = account_id('quickbooks_inventory_account')
@@ -44,6 +44,10 @@ module QBIntegration
     def account_id(account_name)
       name = @product[account_name] || @config.fetch(account_name)
       account_service.find_by_name(name).id
+    end
+
+    def track_inventory
+      @product['quickbooks_track_inventory'] || @config.fetch("quickbooks_track_inventory", false).to_s
     end
 
     def attributes(product, is_update = false)

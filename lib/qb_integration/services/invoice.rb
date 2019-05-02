@@ -80,21 +80,21 @@ module QBIntegration
           
           # Used when creating a new product
           income_account = nil
-          if config["quickbooks_account_name"].present?
-            income_account = account_service.find_by_name config.fetch("quickbooks_account_name")
+          if acct = check_for_param("quickbooks_account_name")
+            income_account = account_service.find_by_name(acct)
           end
 
           invoice.line_items = invoice_line_service.build_lines income_account
         end
 
         def addAccounts invoice
-          if config["quickbooks_ar_account_name"].present?
-            deposit_account = account_service.find_by_name config.fetch("quickbooks_ar_account_name")
+          if ar_acct = check_for_param("quickbooks_ar_account_name")
+            deposit_account = account_service.find_by_name(ar_acct)
             invoice.ar_account_id = deposit_account.id
           end
 
-          if config["quickbooks_deposit_to_account_name"].present?
-            deposit_account = account_service.find_by_name config.fetch("quickbooks_deposit_to_account_name")
+          if dep_acct = check_for_param("quickbooks_deposit_to_account_name")
+            deposit_account = account_service.find_by_name(dep_acct)
             invoice.deposit_to_account_id = deposit_account.id
           end
         end
@@ -104,6 +104,11 @@ module QBIntegration
             shipment[:tracking]
           end
         end
+
+        def check_for_param(name)
+          flowlink_invoice[name] || config.fetch(name)
+        end
+
     end
   end
 end

@@ -78,7 +78,11 @@ module QBIntegration
 
       private
         def use_web_orders?
-          config['quickbooks_web_orders_users'].to_s == "1"
+          if order['quickbooks_web_orders_users']
+            (order['quickbooks_web_orders_users'] == "1") || (order['quickbooks_web_orders_users'] == true)
+          else
+            config['quickbooks_web_orders_users'] ? config['quickbooks_web_orders_users'].to_s == "1" : false
+          end
         end
 
         # Default this to true for backwards compatibility with QBO integration users

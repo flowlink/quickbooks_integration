@@ -60,7 +60,7 @@ module QBIntegration
       end
 
       def create_new_product(line_item, sku, name, account)
-        create = config["quickbooks_create_new_product"]
+        create = check_for_param("quickbooks_create_new_product", line_item)
         return unless create && create.to_s == "1"
 
         account_service = Account.new config
@@ -73,10 +73,10 @@ module QBIntegration
           income_account_id: account ? account.id : nil
         }
 
-        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
+        quickbooks_track_inventory = check_for_param("quickbooks_track_inventory", line_item).to_s || false
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
         if track_inventory
-          unless config["quickbooks_inventory_account"].present? && config["quickbooks_cogs_account"].present?
+          unless check_for_param("quickbooks_inventory_account", line_item) && check_for_param("quickbooks_cogs_account", line_item)
             raise RecordNotFound.new "Workflow parameter missing for Inventory items: quickbooks_inventory_account or quickbooks_cogs_account"            
           end
 
@@ -84,8 +84,8 @@ module QBIntegration
 
           params[:track_quantity_on_hand] = true
           params[:inv_start_date] = time_now
-          params[:asset_account_id] = account_service.find_by_name(config.fetch("quickbooks_inventory_account")).id
-          params[:expense_account_id] = account_service.find_by_name(config.fetch("quickbooks_cogs_account")).id
+          params[:asset_account_id] = account_service.find_by_name(check_for_param("quickbooks_inventory_account", line_item)).id
+          params[:expense_account_id] = account_service.find_by_name(check_for_param("quickbooks_cogs_account", line_item)).id
           params[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
         else
           params[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
@@ -96,6 +96,11 @@ module QBIntegration
 
       def time_now
         Time.now.utc
+      end
+
+
+      def check_for_param(name, line_item)
+        line_item[name] || config.fetch(name)
       end
     end
   end

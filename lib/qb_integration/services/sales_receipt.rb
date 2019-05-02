@@ -50,8 +50,8 @@ module QBIntegration
 
           sales_receipt.placed_on = order['placed_on']
 
-          sales_receipt.ship_address = Address.build order["shipping_address"]
-          sales_receipt.bill_address = Address.build order["billing_address"]
+          sales_receipt.ship_address = Address.build(order["shipping_address"])
+          sales_receipt.bill_address = Address.build(order["billing_address"])
 
           sales_receipt.payment_method_id = payment_method_service.matching_payment.id
           sales_receipt.customer_id = customer_service.find_or_create.id
@@ -60,11 +60,11 @@ module QBIntegration
           # Quickbooks might return an weird error if the name here is already used
           # by other, I think, quickbooks account
           income_account = nil
-          if config["quickbooks_account_name"].present?
-            income_account = account_service.find_by_name config.fetch("quickbooks_account_name")
+          if acct = check_for_param("quickbooks_account_name")
+            income_account = account_service.find_by_name(acct)
           end
 
-          sales_receipt.line_items = line_service.build_lines income_account
+          sales_receipt.line_items = line_service.build_lines(income_account)
 
           # Default to Undeposit Funds account if no account is set
           #
@@ -74,8 +74,8 @@ module QBIntegration
           #   request: Business Validation Error: You need to select a different
           #   type of account for this transaction.
           #
-          if config["quickbooks_deposit_to_account_name"].present?
-            deposit_account = account_service.find_by_name config.fetch("quickbooks_deposit_to_account_name")
+          if dep_acct = check_for_param("quickbooks_deposit_to_account_name")
+            deposit_account = account_service.find_by_name(dep_acct)
             sales_receipt.deposit_to_account_id = deposit_account.id
           end
         end
@@ -84,6 +84,10 @@ module QBIntegration
           order[:shipments].map do |shipment|
             shipment[:tracking]
           end
+        end
+
+        def check_for_param(name)
+          order[name] || config.fetch(name)
         end
     end
   end
