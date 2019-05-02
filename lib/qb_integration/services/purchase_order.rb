@@ -8,7 +8,7 @@ module QBIntegration
         @purchase_order = payload[:purchase_order]
         @line_service = Line.new config, payload
         @account_service = Account.new config
-        @vendor_service = Vendor.new config
+        @vendor_service = Vendor.new config, payload
         super("PurchaseOrder", config)
       end
 
