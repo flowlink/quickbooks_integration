@@ -32,6 +32,8 @@ module QBIntegration
         new_vendor = create_model
         build new_vendor
         @quickbooks.create new_vendor
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
       end
 
       def update
@@ -49,6 +51,14 @@ module QBIntegration
       end
 
       private
+
+      def check_duplicate_name(e)
+        if e.message.match(/Duplicate/) && config.fetch("create_or_update", "0") == "1"
+          update
+        else
+          raise e
+        end
+      end
 
       def build(new_vendor)
         new_vendor.title = vendor["sysid"]
