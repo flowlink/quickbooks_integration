@@ -12,7 +12,7 @@ module QBIntegration
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("id", "=", id)
         vendor = @quickbooks.query("select * from Vendor where #{clause}").entries.first
-        raise "No Vendor '#{name}' defined in service" unless vendor
+        raise "No Vendor '#{id}' defined in service" unless vendor
         vendor
       end
 
@@ -44,7 +44,7 @@ module QBIntegration
 
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("CompanyName", "=", name)
+        clause = util.clause("DisplayName", "=", name)
         vendor = @quickbooks.query("select * from Vendor where #{clause}").entries.first
         raise "No Vendor '#{name}' defined in service" unless vendor
         vendor
