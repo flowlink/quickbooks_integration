@@ -29,13 +29,11 @@ module QBIntegration
       end
 
       def create
-        begin
-          new_vendor = create_model
-          build new_vendor
-          @quickbooks.create new_vendor
-        rescue Quickbooks::IntuitRequestException => e
-          check_duplicate_name(e)
-        end
+        new_vendor = create_model
+        build new_vendor
+        @quickbooks.create new_vendor
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
       end
 
       def update
