@@ -42,7 +42,7 @@ module QBIntegration
           vendor = vendor_service.find_by_id vendor_id
           new_purchase_order.vendor_id = vendor.id
         else
-          vendor_name = purchase_order.dig("supplier", "name") || config.fetch("quickbooks_vendor_name")
+          vendor_name = purchase_order.dig("vendor", "name") || config.fetch("quickbooks_vendor_name")
           vendor = vendor_service.find_by_name vendor_name
           new_purchase_order.vendor_id = vendor.id
         end
