@@ -41,10 +41,10 @@ module QBIntegration
 
         if (purchase_order["quickbooks_vendor_id"])
           vendor_id = purchase_order["quickbooks_vendor_id"] || config.fetch("quickbooks_vendor_id")
-          vendor = vendor_service.find_by_id vendor_id
+          vendor = vendor_service.find_by_id vendor_id.to_i
           new_purchase_order.vendor_id = vendor.id
         elsif purchase_order.dig("vendor", "external_id")
-          vendor_id = purchase_order.dig("vendor", "external_id")
+          vendor_id = purchase_order.dig("vendor", "external_id").to_i
           vendor = vendor_service.find_by_id vendor_id
           new_purchase_order.vendor_id = vendor.id
         else
