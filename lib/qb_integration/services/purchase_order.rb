@@ -16,6 +16,8 @@ module QBIntegration
         new_purchase_order = create_model
         build new_purchase_order
         quickbooks.create new_purchase_order
+      rescue RecordNotFound => e
+        check_param(e, new_purchase_order)
       end
 
       def update
@@ -39,10 +41,14 @@ module QBIntegration
 
         if (purchase_order["quickbooks_vendor_id"])
           vendor_id = purchase_order["quickbooks_vendor_id"] || config.fetch("quickbooks_vendor_id")
+          vendor = vendor_service.find_by_id vendor_id.to_i
+          new_purchase_order.vendor_id = vendor.id
+        elsif purchase_order.dig("vendor", "external_id")
+          vendor_id = purchase_order.dig("vendor", "external_id").to_i
           vendor = vendor_service.find_by_id vendor_id
           new_purchase_order.vendor_id = vendor.id
         else
-          vendor_name = purchase_order["quickbooks_vendor_name"] || config.fetch("quickbooks_vendor_name")
+          vendor_name = purchase_order.dig("vendor", "name") || config.fetch("quickbooks_vendor_name")
           vendor = vendor_service.find_by_name vendor_name
           new_purchase_order.vendor_id = vendor.id
         end
@@ -54,6 +60,17 @@ module QBIntegration
         line_items = line_service.build_purchase_order_lines(account, purchase_order)
         new_purchase_order.line_items = line_items
         new_purchase_order
+      end
+
+      def check_param(e, new_purchase_order)
+        if config.fetch("create_or_update", "0") == "1"
+          vendor_service.vendor = purchase_order["vendor"]
+          vendor_service.create
+          build new_purchase_order
+          quickbooks.create new_purchase_order
+        else
+          raise e
+        end
       end
 
     end
