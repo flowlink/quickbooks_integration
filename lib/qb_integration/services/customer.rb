@@ -11,9 +11,15 @@ module QBIntegration
       end
 
       def create_customer
-        new_customer = create_model
-        build new_customer
-        quickbooks.create new_customer
+        if @customer[:qbo_id]
+          found_customer = find_by_id @customer[:qbo_id]
+          build found_customer
+          quickbooks.update found_customer
+        else
+          new_customer = create_model
+          build new_customer
+          quickbooks.create new_customer
+        end
       end
 
       def update
@@ -22,12 +28,20 @@ module QBIntegration
         quickbooks.update updated_customer
       end
 
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id)
+        customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
+        raise RecordNotFound.new "No Customer id: '#{id}' defined in service" unless customer
+        customer
+      end
+
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
-        vendor = @quickbooks.query("select * from Customer where #{clause}").entries.first
-        raise RecordNotFound.new "No Customer '#{name}' defined in service" unless vendor
-        vendor
+        customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
+        raise RecordNotFound.new "No Customer '#{name}' defined in service" unless customer
+        customer
       end
 
       def find_by_updated_at(page_num)
