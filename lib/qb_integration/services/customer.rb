@@ -20,6 +20,8 @@ module QBIntegration
           build new_customer
           quickbooks.create new_customer
         end
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
       end
 
       def update
@@ -119,6 +121,14 @@ module QBIntegration
 
         new_customer.billing_address = Address.build @customer[:addresses].select{ |address| address[:type] == "BILLING" }.first
         new_customer.shipping_address = Address.build @customer[:addresses].select{ |address| address[:type] == "SHIPPING" }.first
+      end
+
+      def check_duplicate_name(e)
+        if e.message.match(/Duplicate/) && config.fetch("create_or_update", "0") == "1"
+          update
+        else
+          raise e
+        end
       end
 
         def use_web_orders?
