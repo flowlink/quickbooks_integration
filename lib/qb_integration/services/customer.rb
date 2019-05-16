@@ -11,7 +11,7 @@ module QBIntegration
       end
 
       def create_customer
-        if @customer[:qbo_id]
+        if @customer[:qbo_id] && !!@config.fetch("create_or_update")
           found_customer = find_by_id @customer[:qbo_id]
           build found_customer
           quickbooks.update found_customer
