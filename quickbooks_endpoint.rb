@@ -192,7 +192,18 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
+    result code, summary
+  end
 
+  post '/add_customer' do
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).create
+    add_object :customer, customer
+    result code, summary
+  end
+
+  post '/update_customer' do
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).update
+    add_object :customer, customer
     result code, summary
   end
 

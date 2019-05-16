@@ -7,6 +7,27 @@ module QBIntegration
         super("Customer", config)
 
         @order = payload[:order] || payload[:invoice] || {}
+        @customer = payload[:customer]
+      end
+
+      def create_customer
+        new_customer = create_model
+        build new_customer
+        quickbooks.create new_customer
+      end
+
+      def update
+        updated_customer = find_by_name @customer[:name]
+        build updated_customer
+        quickbooks.update updated_customer
+      end
+
+      def find_by_name(name)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("DisplayName", "=", name)
+        vendor = @quickbooks.query("select * from Customer where #{clause}").entries.first
+        raise RecordNotFound.new "No Customer '#{name}' defined in service" unless vendor
+        vendor
       end
 
       def find_by_updated_at(page_num)
@@ -77,6 +98,15 @@ module QBIntegration
       end
 
       private
+
+      def build(new_customer)
+        new_customer.display_name = @customer[:name]
+        new_customer.email_address = @customer[:email]
+
+        new_customer.billing_address = Address.build @customer[:addresses].select{ |address| address[:type] == "BILLING" }.first
+        new_customer.shipping_address = Address.build @customer[:addresses].select{ |address| address[:type] == "SHIPPING" }.first
+      end
+
         def use_web_orders?
           config['quickbooks_web_orders_users'].to_s == "1"
         end
