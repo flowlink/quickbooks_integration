@@ -137,8 +137,14 @@ module QBIntegration
 
         # Default this to true for backwards compatibility with QBO integration users
         def create_new_customers?
-          config['quickbooks_create_new_customers'] ? config['quickbooks_create_new_customers'].to_s == "1" : true
+          check_customers = find_value("quickbooks_create_new_customers", order, config)
+          check_customers == "empty" ? true : check_customers == "1"
         end
+
+        def find_value(key_name, payload_object, parameters)
+          payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
+        end
+
     end
   end
 end

@@ -60,7 +60,7 @@ module QBIntegration
       end
 
       def create_new_product(line_item, sku, name, account, payload_object)
-        create = config["quickbooks_create_new_product"]
+        create = find_value("quickbooks_create_new_product", payload_object, config)
         return unless create && create.to_s == "1"
 
         account_service = Account.new config
@@ -73,7 +73,8 @@ module QBIntegration
           income_account_id: account ? account.id : nil
         }
 
-        quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
+        quickbooks_track_inventory = find_value("quickbooks_track_inventory", payload_object, config)
+
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
         if track_inventory
           unless check_account("quickbooks_inventory_account", payload_object, config) && check_account("quickbooks_cogs_account", payload_object, config)
@@ -110,6 +111,10 @@ module QBIntegration
 
       def decide_name(key_name, payload_object, parameters)
         payload_object.fetch(key_name, parameters[key_name])
+      end
+
+      def find_value(key_name, payload_object, parameters)
+        payload_object.fetch(key_name,  parameters.fetch(key_name, false)).to_s
       end
 
     end
