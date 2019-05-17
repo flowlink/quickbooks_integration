@@ -21,6 +21,7 @@ module QBIntegration
       end
 
       def qb_name
+        return @order[:quickbooks_payment_method_name] if @order[:quickbooks_payment_method_name]
         # NOTE due to bug which might send the mapping as a string. e.g.
         #
         #   "[{\"visa\":\"credit-card\",\"master-card\":\"credit-card\"}]"
