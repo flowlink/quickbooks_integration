@@ -107,7 +107,7 @@ module QBIntegration
         adjustments.each do |adjustment|
 
           # Get sku of adjustment, and move on if empty
-          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config
+          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config, order
           puts 'Sku is: ' + sku.to_s
           if sku.to_s.empty?
             next
