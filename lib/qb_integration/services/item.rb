@@ -48,7 +48,7 @@ module QBIntegration
       end
 
       # NOTE what if a product is given?
-      def find_or_create_by_sku(line_item, account = nil)
+      def find_or_create_by_sku(line_item, account = nil, payload_object = {})
         name = line_item[:sku] if line_item[:sku].to_s.empty?
         name = line_item[:product_id] if name.to_s.empty?
         name = line_item[:name] if name.to_s.empty?
@@ -56,10 +56,10 @@ module QBIntegration
         sku = line_item[:product_id] if line_item[:sku].to_s.empty?
         sku = line_item[:sku] if sku.to_s.empty?
 
-        find_by_sku(sku) || find_by_name(name) || create_new_product(line_item, sku, name, account)
+        find_by_sku(sku) || find_by_name(name) || create_new_product(line_item, sku, name, account, payload_object)
       end
 
-      def create_new_product(line_item, sku, name, account)
+      def create_new_product(line_item, sku, name, account, payload_object)
         create = config["quickbooks_create_new_product"]
         return unless create && create.to_s == "1"
 
@@ -76,7 +76,7 @@ module QBIntegration
         quickbooks_track_inventory = config.fetch("quickbooks_track_inventory", false).to_s
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
         if track_inventory
-          unless config["quickbooks_inventory_account"].present? && config["quickbooks_cogs_account"].present?
+          unless check_account("quickbooks_inventory_account", payload_object, config) && check_account("quickbooks_cogs_account", payload_object, config)
             raise RecordNotFound.new "Workflow parameter missing for Inventory items: quickbooks_inventory_account or quickbooks_cogs_account"            
           end
 
@@ -84,8 +84,12 @@ module QBIntegration
 
           params[:track_quantity_on_hand] = true
           params[:inv_start_date] = time_now
-          params[:asset_account_id] = account_service.find_by_name(config.fetch("quickbooks_inventory_account")).id
-          params[:expense_account_id] = account_service.find_by_name(config.fetch("quickbooks_cogs_account")).id
+
+          inventory_name = decide_name("quickbooks_inventory_account", payload_object, config)
+          cogs_name = decide_name("quickbooks_cogs_account", payload_object, config)
+
+          params[:asset_account_id] = account_service.find_by_name(inventory_name).id
+          params[:expense_account_id] = account_service.find_by_name(cogs_name).id
           params[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
         else
           params[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
@@ -97,6 +101,17 @@ module QBIntegration
       def time_now
         Time.now.utc
       end
+
+      private
+
+      def check_account(key_name, payload_object, parameters)
+        payload_object[key_name].present? || parameters[key_name].present?
+      end
+
+      def decide_name(key_name, payload_object, parameters)
+        payload_object.fetch(key_name, parameters[key_name])
+      end
+
     end
   end
 end
