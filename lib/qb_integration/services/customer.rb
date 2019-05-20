@@ -12,8 +12,13 @@ module QBIntegration
 
       def create_customer
         found_by_email = find_by_email @customer[:email]
+        found_by_name = find_by_name @customer[:name]
         if @customer[:qbo_id]
           found_customer = find_by_id @customer[:qbo_id].to_s
+          build found_customer
+          quickbooks.update found_customer
+        elsif found_by_name
+          found_customer = found_by_name
           build found_customer
           quickbooks.update found_customer
         elsif found_by_email.size > 1
@@ -50,9 +55,7 @@ module QBIntegration
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
-        customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
-        raise RecordNotFound.new "No Customer '#{name}' defined in service" unless customer
-        customer
+        @quickbooks.query("select * from Customer where #{clause}").entries.first
       end
 
       def find_by_email(email)

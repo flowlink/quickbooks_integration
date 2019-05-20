@@ -162,6 +162,9 @@ describe 'App' do
 
   describe "add_customer", vcr: true do
     it "returns 500 due to multiple customers" do
+      merged_customer = customer.merge({
+        "name": "no-matching-display-name"
+      })
       post '/add_customer', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -170,7 +173,7 @@ describe 'App' do
           "quickbooks_access_secret": secret,
           "create_or_update": "1"
         },
-        "customer": customer
+        "customer": merged_customer
       }.to_json, headers
       data = JSON.parse(last_response.body)
       expect(last_response.status).to eq 500
@@ -180,6 +183,23 @@ describe 'App' do
     it "returns 200 and summary when using qbo_id" do
       merged_customer = customer.merge({
         'qbo_id': 161
+      })
+      post '/add_customer', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "create_or_update": "1"
+        },
+        "customer": merged_customer
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 and summary when using display name" do
+      merged_customer = customer.merge({
+        "name": "Tony Stark"
       })
       post '/add_customer', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
