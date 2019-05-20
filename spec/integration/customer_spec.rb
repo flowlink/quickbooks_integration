@@ -16,6 +16,11 @@ VCR.configure do |c|
 end
 
 describe 'App' do
+  let(:headers) {
+    {
+      "Content-Type": "application/json"
+    }
+  }
   let(:realm) { ENV['quickbooks_realm'] }
   let(:secret) { ENV['quickbooks_access_secret'] }
   let(:token) { ENV['quickbooks_access_token'] }
@@ -122,9 +127,6 @@ describe 'App' do
 
   describe "#get_customers", vcr: true do
     it "first page returns 206 and list of 50 vendors" do
-      headers = {
-        "Content-Type": "application/json"
-      }
       post '/get_customers', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -141,9 +143,6 @@ describe 'App' do
     end
 
     it "second page returns 206 and list of 50 vendors" do
-      headers = {
-        "Content-Type": "application/json"
-      }
       post '/get_customers', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -162,10 +161,7 @@ describe 'App' do
   end
 
   describe "add_customer", vcr: true do
-    it "returns 200 and summary with id" do
-      headers = {
-        "Content-Type": "application/json"
-      }
+    it "returns 500 due to multiple customers" do
       post '/add_customer', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -175,6 +171,42 @@ describe 'App' do
           "create_or_update": "1"
         },
         "customer": customer
+      }.to_json, headers
+      data = JSON.parse(last_response.body)
+      expect(last_response.status).to eq 500
+      expect(data["summary"]). to eq("Multiple customers found with email: test@gmail.com")
+    end
+
+    it "returns 200 and summary when using qbo_id" do
+      merged_customer = customer.merge({
+        'qbo_id': 161
+      })
+      post '/add_customer', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "create_or_update": "1"
+        },
+        "customer": merged_customer
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 and summary when using unique email" do
+      merged_customer = customer.merge({
+        "email": "developoment+wootest@nurelm.com"
+      })
+      post '/add_customer', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "create_or_update": "1"
+        },
+        "customer": merged_customer
       }.to_json, headers
       expect(last_response.status).to eq 200
     end

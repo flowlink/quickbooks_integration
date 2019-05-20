@@ -11,8 +11,15 @@ module QBIntegration
       end
 
       def create_customer
+        found_by_email = find_by_email @customer[:email]
         if @customer[:qbo_id]
-          found_customer = find_by_id @customer[:qbo_id]
+          found_customer = find_by_id @customer[:qbo_id].to_s
+          build found_customer
+          quickbooks.update found_customer
+        elsif found_by_email.size > 1
+          raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
+        elsif found_by_email.size == 1
+          found_customer = found_by_email.first
           build found_customer
           quickbooks.update found_customer
         else
@@ -46,6 +53,12 @@ module QBIntegration
         customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
         raise RecordNotFound.new "No Customer '#{name}' defined in service" unless customer
         customer
+      end
+
+      def find_by_email(email)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("PrimaryEmailAddr", "=", email)
+        @quickbooks.query("select * from Customer where #{clause}").entries
       end
 
       def find_by_updated_at(page_num)

@@ -1,0 +1,80 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=select%20*%20from%20Customer%20where%20PrimaryEmailAddr%20=%20%27test@gmail.com%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="47RQrY4nmL656LEBuE9uOp8O7NL9NZ28XaaDeD53Dw",
+        oauth_signature="JBy%2Bf0mclntNuoBygWwEH5qFrVA%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1558377879", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 20 May 2019 18:44:39 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '639'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 5054ce0a-9068-46e4-b4d6-5fc3af1152f5
+      Set-Cookie:
+      - JSESSIONID=2D9BFDFAE635480C0B64288B2E56FCD0.c50-psbxc50uw2apu133187; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=aa3b726.589561fed191f; path=/; expires=Tue, 19-May-20 18:44:39 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1910.255'
+      Service-Time:
+      - total=277, db=97
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAO2WXU/bMBSG/0qU+zZftLSRa0bbITFto6ytdm2SU2rh2JHt
+        IPLvd9wPSjOkEWASF9y08TmvXx/5+IlDzh4K4d2DNlzJkR91Q98Dmamcy9uR
+        v1xcdAa+ZyyTORNKwsivwfhnlFxKW3H7C0yppAEPTaQZ+WtryzQITLaGgnX5
+        RtPNVBGsuGQyg+A+8T3LC/SJw2jYCXudOFxEUXpykibDbj8edMLTNAx9Sq4r
+        0PWjP1ag7UwZbrdl+l7BHjBbCYvLJqifVMaqArSXq4Jx1FyPr7DykmmDq62Y
+        MICqy5xG/YgE+E/mtcwW6g4kDUlwGJAfYNmUWYaeGpiFBdZL9+VG/UUUpr1e
+        mpxuSyXBExX5zoxdljmO839Na0pJcFj4ohKivq6Y4CsO+U+G6XkJmWfBWBI8
+        kyVTbkrB6qb0aZjMNHbkSk7WkN01hX/lyHlm+T1QqysgwW7gLAqm66+4xeI8
+        zzXK8BeMoc7my62Lu4bjjF18Y92Ys2AP7EbsvfcjMuZiJ8D2DAbDbZsm3NZ0
+        JphUuNXumUxUJa2u6VJy3DxvbnEPDSZ3YRIcjOZrXh4sh+GrLQ9G39QN3Rwn
+        ErjHTdW/uV3PmAZp96lGlIyZcAC4o7Z/3MecDJ3Mk9xjCI+1RoMMSVh5kjlw
+        jkr0pkoIpn26nE+x3IPYtQpWgON8CgJ7p2s8XmuV002nXVeeTzuXLUmtmIqb
+        TEX91lAN0t6wDVT46gj7aZikveitUHlxC6yc+IVgOenHQ2sYvT9a8Sda/wmt
+        5I3XVZLiBRv32l5XjWmvJitpQ1bycrKSD0lW8v5knXyS1Yas4OjLEcfHn6r0
+        DyFy44fyCgAA
+    http_version: 
+  recorded_at: Mon, 20 May 2019 18:44:40 GMT
+recorded_with: VCR 4.0.0
