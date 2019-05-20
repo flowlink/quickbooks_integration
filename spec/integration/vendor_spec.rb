@@ -54,7 +54,7 @@ describe 'App' do
           "quickbooks_realm": realm,
           "quickbooks_access_token": token,
           "quickbooks_access_secret": secret,
-          "since": "2010-03-13T14:50:22-08:00",
+          "quickbooks_since": "2010-03-13T14:50:22-08:00",
           "page": "1",
           "per_page": "25"
         }
@@ -71,7 +71,7 @@ describe 'App' do
           "quickbooks_realm": realm,
           "quickbooks_access_token": token,
           "quickbooks_access_secret": secret,
-          "since": "2010-03-13T14:50:22-08:00",
+          "quickbooks_since": "2010-03-13T14:50:22-08:00",
           "page": 2,
           "per_page": 25
         }
