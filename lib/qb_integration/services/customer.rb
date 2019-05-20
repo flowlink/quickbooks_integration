@@ -11,7 +11,7 @@ module QBIntegration
       end
 
       def create_customer
-        if @customer[:qbo_id] && !!@config.fetch("create_or_update")
+        if @customer[:qbo_id]
           found_customer = find_by_id @customer[:qbo_id]
           build found_customer
           quickbooks.update found_customer
@@ -28,6 +28,8 @@ module QBIntegration
         updated_customer = find_by_name @customer[:name]
         build updated_customer
         quickbooks.update updated_customer
+      rescue RecordNotFound => e
+        check_param(e)
       end
 
       def find_by_id(id)
@@ -123,8 +125,18 @@ module QBIntegration
         new_customer.shipping_address = Address.build @customer[:addresses].select{ |address| address[:type] == "SHIPPING" }.first
       end
 
+      def check_param(e)
+        if config.fetch("quickbooks_create_or_update") == "1"
+          new_customer = create_model
+          build new_customer
+          quickbooks.create new_customer
+        else
+          raise e
+        end
+      end
+
       def check_duplicate_name(e)
-        if e.message.match(/Duplicate/) && config.fetch("create_or_update", "0") == "1"
+        if e.message.match(/Duplicate/)
           update
         else
           raise e
