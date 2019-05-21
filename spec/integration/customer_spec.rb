@@ -235,9 +235,6 @@ describe 'App' do
 
   describe "update_customer", vcr: true do
     it "returns 200 and summary with id" do
-      headers = {
-        "Content-Type": "application/json"
-      }
       post '/update_customer', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -246,6 +243,40 @@ describe 'App' do
           "quickbooks_access_secret": secret
         },
         "customer": customer
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 500 and summary when using a non unique email" do
+      merged_customer = customer.merge({
+        name: '',
+
+      })
+      post '/update_customer', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret
+        },
+        "customer": merged_customer
+      }.to_json, headers
+      expect(last_response.status).to eq 500
+    end
+
+    it "returns 200 and summary when using an email" do
+      merged_customer = customer.merge({
+        name: '',
+        email: "developoment+wootest@nurelm.com"
+      })
+      post '/update_customer', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret
+        },
+        "customer": merged_customer
       }.to_json, headers
       expect(last_response.status).to eq 200
     end
