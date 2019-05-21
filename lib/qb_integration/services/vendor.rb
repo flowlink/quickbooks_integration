@@ -33,15 +33,13 @@ module QBIntegration
           updated_vendor = find_by_id vendor[:qbo_id]
           build updated_vendor
           @quickbooks.update updated_vendor
-        elsif found_by_name = find_by_name(vendor[:name])
-          updated_vendor = found_by_name
-          build updated_vendor
-          @quickbooks.update updated_vendor
         else
           new_vendor = create_model
           build new_vendor
           @quickbooks.create new_vendor
         end
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
       end
 
       def update

@@ -84,7 +84,7 @@ describe 'App' do
   describe "add_vendor", vcr: true do
     it "returns 200 and summary when using display name to match" do
       merged_vendor = vendor.merge({
-        name: "Centurt Theatres",
+        name: "Company 1",
       })
 
       post '/add_vendor', {
