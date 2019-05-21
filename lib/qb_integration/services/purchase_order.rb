@@ -26,10 +26,16 @@ module QBIntegration
         else
           found = find_by_doc_number purchase_order[:id]
         end
-        raise RecordNotFound.new "Quickbooks record not found for purchase_order: #{purchase_order[:id]}" unless found
 
-        build found
-        quickbooks.update found
+        if found
+          build found
+          quickbooks.update found
+        else
+          raise RecordNotFound.new "Quickbooks record not found for po: #{purchase_order[:id]}" unless config.fetch("quickbooks_create_or_update", "0") == "1"
+          new_purchase_order = create_model
+          build new_purchase_order
+          quickbooks.create new_purchase_order
+        end
       end
 
       private

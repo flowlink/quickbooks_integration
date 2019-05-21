@@ -108,7 +108,7 @@ describe 'App' do
         "address1": "123 2nd Street",
         "name": "Fulfillment"
       },
-      "supplier": {
+      "vendor": {
         "name": "Regal Industrial Sales",
         "country": "United States",
         "created_at": nil,
@@ -224,10 +224,8 @@ describe 'App' do
     QuickbooksEndpoint
   end
 
-  describe "#add_purchase_order", vcr: { record: :new_episodes } do
+  describe "#add_purchase_order", vcr: true do
     it "returns 200 for an item based" do
-      merged_po = item_purchase_order.merge({
-      })
       post '/add_purchase_order', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -260,7 +258,7 @@ describe 'App' do
     end
   end
 
-  describe "updated_purchase_order", vcr: { record: :new_episodes } do
+  describe "updated_purchase_order", vcr: true do
     it "returns 200 with a qbo_id" do
       merged_po = item_purchase_order.merge({
         qbo_id: 1315,
@@ -284,6 +282,46 @@ describe 'App' do
     it "returns 200 with a doc nunber" do
       merged_po = item_purchase_order.merge({
         id: 'SYS-4',
+      })
+
+      post '/update_purchase_order', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_account_name": "Accounts Payable (A/P)",
+          "quickbooks_vendor_name": "Books by Bessie",
+          "quickbooks_create_or_update": "1"
+        },
+        "purchase_order": merged_po
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 500 if it does_not_exist and create_or_update set to 0" do
+      merged_po = item_purchase_order.merge({
+        id: 'does_not_exist',
+      })
+
+      post '/update_purchase_order', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_account_name": "Accounts Payable (A/P)",
+          "quickbooks_vendor_name": "Books by Bessie",
+          "quickbooks_create_or_update": "0"
+        },
+        "purchase_order": merged_po
+      }.to_json, headers
+      expect(last_response.status).to eq 500
+    end
+
+    it "returns 200 if it does_not_exist_yet and create_or_update set to 1" do
+      merged_po = item_purchase_order.merge({
+        id: 'purchase_order_does_not_exist_yet',
       })
 
       post '/update_purchase_order', {

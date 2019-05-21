@@ -461,4 +461,79 @@ http_interactions:
         /xWP4ajXjd7xaLCvlqelWuIiYdWy3rGLr7jbuYvfBvsDIrWBEX4GAAA=
     http_version: 
   recorded_at: Tue, 21 May 2019 18:31:47 GMT
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=select%20*%20from%20Vendor%20where%20DisplayName%20=%20%27Regal%20Industrial%20Sales%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="ofKbsCbgJDqOWnPGQflq7k233nfKZ9d1DAl0uLfqImw",
+        oauth_signature="fjzcM8LkXDrs%2FJWgVOPvux5z0uo%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1558464943", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 21 May 2019 18:55:43 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '547'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - a5e2341a-8deb-5a43-d2e9-ba018ccd3375
+      Set-Cookie:
+      - JSESSIONID=E47148CA594D4F86088485D4079F388E.c50-psbxc50uw2apu133170; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=8e43fea5.5896a6557ddff; path=/; expires=Wed, 20-May-20 18:55:43 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1911.223'
+      Service-Time:
+      - total=44, db=25
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAH1TUW/iMAz+K1FfT6UNUI1WIbsBh4S0G2yUvedaM6K1SZWk
+        aP3351IGZZP20trOZ/tL/Jndf5QFOYKxUqupRwehR0BlOpfqbert0qU/8Yh1
+        QuWi0AqmXgPWu+dspVwt3QvYSisLBIsoO/UOzlVJENjsAKUYyBNmkOky2Esl
+        VAbBceQRJ0usMwxp7IeRP6QppUkUJePRYHQX+uFdEoYeZ881mOZSHxkYt9FW
+        uo6mR0rxgad14WzrcvYKKteG5LoUEhHPszXyroSx2GsvCguIWeWcjiMW4J9t
+        G5Wl+h0Up5QFV4/9BScWwgnO5gaEgxTp8o7t2B/GKY2ScJxEtGPKgh6KPQrr
+        dlWOft5Li/xwkoaYFibDS9pXKAt6jXVZCdU8CYy/wJsoyErltXVGorkVBVhs
+        28OwhbRVIX5O6GPYxuBw1mp+gOz9x6xvQPaQOXkE7kwNLDg7bb1SmGZzQI1w
+        tjQAS23Kp7r8B4b/oiSaRP4onvh0GOPdv5yfuvTSz94fnGTxkOcIaL9gLdcm
+        R6X+Ni1ZaWUrLeRwPryU6SXOZHG2cOYTOu5m/ygVUL5Zk5n+IKMIFdFF2Fy6
+        hr/KzGmDL9w6OItaOdPwnZI4KrJ1OLHT83dhFlxbzETRipzjDT/NsyxpGMf8
+        pEIW9CJsXhuD24Y63xMl2rW4aUMWuiiE8fhuu8CWVzD/LIPGzaKgf7uZ/D95
+        xIrO4QMAAA==
+    http_version: 
+  recorded_at: Tue, 21 May 2019 18:55:43 GMT
 recorded_with: VCR 4.0.0
