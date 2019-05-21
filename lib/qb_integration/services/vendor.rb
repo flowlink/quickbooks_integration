@@ -45,7 +45,11 @@ module QBIntegration
       end
 
       def update
-        updated_vendor = find_by_name vendor[:name]
+        if vendor[:qbo_id]
+          updated_vendor = find_by_id vendor[:qbo_id]
+        else
+          updated_vendor = find_by_name vendor[:name]
+        end
         build updated_vendor
         @quickbooks.update updated_vendor
       end

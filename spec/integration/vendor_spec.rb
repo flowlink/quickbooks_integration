@@ -137,7 +137,11 @@ describe 'App' do
 
 
   describe "update_vendor", vcr: true do
-    it "returns 200 and summary with id" do
+    it "returns 200 and with a qbo_id" do
+      merged_vendor = vendor.merge({
+        qbo_id: 149,
+      })
+
       post '/update_vendor', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -145,7 +149,24 @@ describe 'App' do
           "quickbooks_access_token": token,
           "quickbooks_access_secret": secret
         },
-        "vendor": vendor
+        "vendor": merged_vendor
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 and with a display name" do
+      merged_vendor = vendor.merge({
+        name: "Company 1",
+      })
+
+      post '/update_vendor', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret
+        },
+        "vendor": merged_vendor
       }.to_json, headers
       expect(last_response.status).to eq 200
     end
