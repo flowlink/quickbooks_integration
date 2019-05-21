@@ -13,11 +13,13 @@ module QBIntegration
       end
 
       def create
-        new_purchase_order = create_model
-        build new_purchase_order
-        quickbooks.create new_purchase_order
-      rescue RecordNotFound => e
-        check_param(e, new_purchase_order)
+        if purchase_order[:qbo_id]
+          update
+        else
+          new_purchase_order = create_model
+          build new_purchase_order
+          quickbooks.create new_purchase_order
+        end
       end
 
       def update
@@ -78,18 +80,6 @@ module QBIntegration
         new_purchase_order.line_items = line_items
         new_purchase_order
       end
-
-      def check_param(e, new_purchase_order)
-        if config.fetch("create_or_update", "0") == "1"
-          vendor_service.vendor = purchase_order["vendor"]
-          vendor_service.create
-          build new_purchase_order
-          quickbooks.create new_purchase_order
-        else
-          raise e
-        end
-      end
-
     end
   end
 end

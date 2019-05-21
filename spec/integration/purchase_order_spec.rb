@@ -225,36 +225,76 @@ describe 'App' do
   end
 
   describe "#add_purchase_order", vcr: true do
-    it "returns 200 for an item based" do
-      post '/add_purchase_order', {
-        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
-        "parameters": {
-          "quickbooks_realm": realm,
-          "quickbooks_access_token": token,
-          "quickbooks_access_secret": secret,
-          "quickbooks_account_name": "Accounts Payable (A/P)",
-          "quickbooks_vendor_name": "Books by Bessie",
-          "quickbooks_create_or_update": "1"
-        },
-        "purchase_order": item_purchase_order
-      }.to_json, headers
-      expect(last_response.status).to eq 200
+    context "item based purchase orders" do
+      it "returns 200 when creating a new purchase order" do
+        post '/add_purchase_order', {
+          "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+          "parameters": {
+            "quickbooks_realm": realm,
+            "quickbooks_access_token": token,
+            "quickbooks_access_secret": secret,
+            "quickbooks_account_name": "Accounts Payable (A/P)",
+            "quickbooks_vendor_name": "Books by Bessie",
+            "quickbooks_create_or_update": "1"
+          },
+          "purchase_order": item_purchase_order
+        }.to_json, headers
+        expect(last_response.status).to eq 200
+      end
+
+      it "returns 200 when using a qbo_id" do
+        merged_po = item_purchase_order.merge({
+          qbo_id: 135
+        })
+        post '/add_purchase_order', {
+          "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+          "parameters": {
+            "quickbooks_realm": realm,
+            "quickbooks_access_token": token,
+            "quickbooks_access_secret": secret,
+            "quickbooks_account_name": "Accounts Payable (A/P)",
+            "quickbooks_vendor_name": "Books by Bessie",
+            "quickbooks_create_or_update": "1"
+          },
+          "purchase_order": merged_po
+        }.to_json, headers
+        expect(last_response.status).to eq 200
+      end
     end
 
-    it "returns 200 for an account based expense" do
-      post '/add_purchase_order', {
-        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
-        "parameters": {
-          "quickbooks_realm": realm,
-          "quickbooks_access_token": token,
-          "quickbooks_access_secret": secret,
-          "quickbooks_account_name": "Accounts Payable (A/P)",
-          "quickbooks_vendor_name": "Books by Bessie",
-          "quickbooks_create_or_update": "1"
-        },
-        "purchase_order": account_purchase_order
-      }.to_json, headers
-      expect(last_response.status).to eq 200
+    context "account based purchase order" do
+      it "returns 200 for creating a new account based expense" do
+        post '/add_purchase_order', {
+          "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+          "parameters": {
+            "quickbooks_realm": realm,
+            "quickbooks_access_token": token,
+            "quickbooks_access_secret": secret,
+            "quickbooks_account_name": "Accounts Payable (A/P)",
+            "quickbooks_vendor_name": "Books by Bessie",
+          },
+          "purchase_order": account_purchase_order
+        }.to_json, headers
+        expect(last_response.status).to eq 200
+      end
+
+      it "returns 200 when using a qbo_id" do
+        merged_po = account_purchase_order.merge({
+          qbo_id: 1319
+        })
+        post '/add_purchase_order', {
+          "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+          "parameters": {
+            "quickbooks_realm": realm,
+            "quickbooks_access_token": token,
+            "quickbooks_access_secret": secret,
+            "quickbooks_account_name": "Accounts Payable (A/P)",
+            "quickbooks_vendor_name": "Books by Bessie",
+          },
+          "purchase_order": merged_po
+        }.to_json, headers
+        expect(last_response.status).to eq 200
+      end
     end
   end
 
