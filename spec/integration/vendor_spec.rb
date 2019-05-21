@@ -27,7 +27,6 @@ describe 'App' do
   let(:vendor) {
     {
       "sysid": 1103,
-      "name": "Centurt Theatres",
       "street1": "PO Box 355",
       "city": "Victor",
       "country": "United States",
@@ -83,7 +82,45 @@ describe 'App' do
   end
 
   describe "add_vendor", vcr: true do
-    it "returns 200 and summary with id" do
+    it "returns 200 and summary when using display name to match" do
+      merged_vendor = vendor.merge({
+        name: "Centurt Theatres",
+      })
+
+      post '/add_vendor', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+        },
+        "vendor": merged_vendor
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 and summary when using qbo_id to match" do
+      merged_vendor = vendor.merge({
+        qbo_id: 149,
+      })
+
+      post '/add_vendor', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+        },
+        "vendor": merged_vendor
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 and summary with new company name" do
+      merged_vendor = vendor.merge({
+        name: "Ollivander's",
+      })
+
       post '/add_vendor', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -92,7 +129,7 @@ describe 'App' do
           "quickbooks_access_secret": secret,
           "create_or_update": "1"
         },
-        "vendor": vendor
+        "vendor": merged_vendor
       }.to_json, headers
       expect(last_response.status).to eq 200
     end

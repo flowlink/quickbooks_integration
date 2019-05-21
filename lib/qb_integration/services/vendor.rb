@@ -29,31 +29,43 @@ module QBIntegration
       end
 
       def create
-        new_vendor = create_model
-        build new_vendor
-        @quickbooks.create new_vendor
-      rescue Quickbooks::IntuitRequestException => e
-        check_duplicate_name(e)
+        if vendor[:qbo_id]
+          updated_vendor = find_by_id vendor[:qbo_id]
+          build updated_vendor
+          @quickbooks.update updated_vendor
+        elsif found_by_name = find_by_name(vendor[:name])
+          updated_vendor = found_by_name
+          build updated_vendor
+          @quickbooks.update updated_vendor
+        else
+          new_vendor = create_model
+          build new_vendor
+          @quickbooks.create new_vendor
+        end
       end
 
       def update
-        updated_vendor = find_by_name vendor["name"]
+        updated_vendor = find_by_name vendor[:name]
         build updated_vendor
         @quickbooks.update updated_vendor
+      end
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id.to_s)
+        @quickbooks.query("select * from Vendor where #{clause}").entries.first
       end
 
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
-        vendor = @quickbooks.query("select * from Vendor where #{clause}").entries.first
-        raise RecordNotFound.new "No Vendor '#{name}' defined in service" unless vendor
-        vendor
+        @quickbooks.query("select * from Vendor where #{clause}").entries.first
       end
 
       private
 
       def check_duplicate_name(e)
-        if e.message.match(/Duplicate/) && config.fetch("create_or_update", "0") == "1"
+        if e.message.match(/Duplicate/)
           update
         else
           raise e
@@ -75,6 +87,7 @@ module QBIntegration
           "state" => vendor["state"],
           "zipcode" => vendor["zipcode"],
         })
+        new_vendor
       end
     end
   end
