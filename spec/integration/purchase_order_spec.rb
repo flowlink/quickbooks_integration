@@ -33,8 +33,8 @@ describe 'App' do
       "status": "RECEIVED",
       "totals": {
         "tax": 0,
-        "item": 0.48000000000000004,
-        "order": 0.48000000000000004,
+        "item": 10,
+        "order": 10,
         "refund": 0,
         "payment": nil,
         "discount": 0,
@@ -224,8 +224,10 @@ describe 'App' do
     QuickbooksEndpoint
   end
 
-  describe "#add_purchase_order", vcr: true do
+  describe "#add_purchase_order", vcr: { record: :new_episodes } do
     it "returns 200 for an item based" do
+      merged_po = item_purchase_order.merge({
+      })
       post '/add_purchase_order', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -258,8 +260,12 @@ describe 'App' do
     end
   end
 
-  describe "updated_purchase_order", vcr: true do
-    it "returns 200" do
+  describe "updated_purchase_order", vcr: { record: :new_episodes } do
+    it "returns 200 with a qbo_id" do
+      merged_po = item_purchase_order.merge({
+        qbo_id: 1315,
+      })
+
       post '/update_purchase_order', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -270,7 +276,27 @@ describe 'App' do
           "quickbooks_vendor_name": "Books by Bessie",
           "quickbooks_create_or_update": "1"
         },
-        "purchase_order": item_purchase_order
+        "purchase_order": merged_po
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
+    it "returns 200 with a doc nunber" do
+      merged_po = item_purchase_order.merge({
+        id: 'SYS-4',
+      })
+
+      post '/update_purchase_order', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_account_name": "Accounts Payable (A/P)",
+          "quickbooks_vendor_name": "Books by Bessie",
+          "quickbooks_create_or_update": "1"
+        },
+        "purchase_order": merged_po
       }.to_json, headers
       expect(last_response.status).to eq 200
     end

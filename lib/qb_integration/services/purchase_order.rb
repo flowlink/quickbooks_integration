@@ -21,13 +21,24 @@ module QBIntegration
       end
 
       def update
-        found = find_by_doc_number(purchase_order["id"])
-        raise RecordNotFound.new "Quickbooks record not found for purchase_order: #{purchase_order["id"]}" unless found
+        if purchase_order[:qbo_id]
+          found = find_by_id purchase_order[:qbo_id]
+        else
+          found = find_by_doc_number purchase_order[:id]
+        end
+        raise RecordNotFound.new "Quickbooks record not found for purchase_order: #{purchase_order[:id]}" unless found
+
         build found
         quickbooks.update found
       end
 
       private
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id.to_s)
+        quickbooks.query("select * from PurchaseOrder where #{clause}").entries.first
+      end
 
       def find_by_doc_number(doc_number)
         query = "SELECT * FROM PurchaseOrder WHERE DocNumber = '#{doc_number}'"

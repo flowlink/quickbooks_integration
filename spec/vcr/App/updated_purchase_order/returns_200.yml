@@ -461,4 +461,70 @@ http_interactions:
         XfE4Y59ND0s1xUXCqulpxy6+4m7nLn4b7Deg2YFYfgYAAA==
     http_version: 
   recorded_at: Mon, 20 May 2019 14:19:59 GMT
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=SELECT%20*%20FROM%20PurchaseOrder%20WHERE%20DocNumber%20=%20%27%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="qa5bjgrukAQfkQbQPmjm3lmzHs6q5Em6PFeNFcQJ8Y",
+        oauth_signature="zM3ZI%2F7uBpKgIHDqqBKrr58Z3vc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1558462388", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 21 May 2019 18:13:09 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '168'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 5ec17208-c5d4-55af-8832-4346bc201698
+      Set-Cookie:
+      - JSESSIONID=0BC36AEF16107F366A52A02C38C49A8B.c50-psbxc50uw2apu128130; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=c1c6de79.58969cd170ea8; path=/; expires=Wed, 20-May-20 18:13:08 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1911.223'
+      Service-Time:
+      - total=184, db=63
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNSwrCMBSF4a2EO28eLaItTToTHCp1ASG9aqC5KU1a7O4t
+        ggOnh5/vtN07jGzFOflIGhSXwJBcHDw9Ndz7c3EClrKlwY6RUMOGCTrTXigv
+        Pt8wTZESsh2hpOGV89QIkdwLg+X+23AXg3h4suRQrBWw7MPulFLVhTwUpeqV
+        alTVyJqrcp+OjZRg2uuC8/bzhWnF/6P5AEXdNbi5AAAA
+    http_version: 
+  recorded_at: Tue, 21 May 2019 18:13:09 GMT
 recorded_with: VCR 4.0.0
