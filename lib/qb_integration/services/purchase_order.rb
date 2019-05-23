@@ -13,21 +13,40 @@ module QBIntegration
       end
 
       def create
-        new_purchase_order = create_model
-        build new_purchase_order
-        quickbooks.create new_purchase_order
-      rescue RecordNotFound => e
-        check_param(e, new_purchase_order)
+        if purchase_order[:qbo_id]
+          update
+        else
+          new_purchase_order = create_model
+          build new_purchase_order
+          quickbooks.create new_purchase_order
+        end
       end
 
       def update
-        found = find_by_doc_number(purchase_order["id"])
-        raise RecordNotFound.new "Quickbooks record not found for purchase_order: #{purchase_order["id"]}" unless found
-        build found
-        quickbooks.update found
+        if purchase_order[:qbo_id]
+          found = find_by_id purchase_order[:qbo_id]
+        else
+          found = find_by_doc_number purchase_order[:id]
+        end
+
+        if found
+          build found
+          quickbooks.update found
+        else
+          raise RecordNotFound.new "Quickbooks record not found for po: #{purchase_order[:id]}" unless config.fetch("quickbooks_create_or_update", "0") == "1"
+          new_purchase_order = create_model
+          build new_purchase_order
+          quickbooks.create new_purchase_order
+        end
       end
 
       private
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id.to_s)
+        quickbooks.query("select * from PurchaseOrder where #{clause}").entries.first
+      end
 
       def find_by_doc_number(doc_number)
         query = "SELECT * FROM PurchaseOrder WHERE DocNumber = '#{doc_number}'"
@@ -61,18 +80,6 @@ module QBIntegration
         new_purchase_order.line_items = line_items
         new_purchase_order
       end
-
-      def check_param(e, new_purchase_order)
-        if config.fetch("create_or_update", "0") == "1"
-          vendor_service.vendor = purchase_order["vendor"]
-          vendor_service.create
-          build new_purchase_order
-          quickbooks.create new_purchase_order
-        else
-          raise e
-        end
-      end
-
     end
   end
 end

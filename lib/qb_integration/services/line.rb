@@ -50,7 +50,7 @@ module QBIntegration
         line_items.each do |line_item|
           line = create_model
 
-          unless item_found = item_service.find_or_create_by_sku(line_item, account)
+          unless item_found = item_service.find_or_create_by_sku(line_item, account, order)
             sku = line_item[:product_id] if line_item[:sku].to_s.empty?
             sku = line_item[:sku] if sku.to_s.empty?
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
@@ -107,7 +107,7 @@ module QBIntegration
         adjustments.each do |adjustment|
 
           # Get sku of adjustment, and move on if empty
-          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config
+          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config, order
           puts 'Sku is: ' + sku.to_s
           if sku.to_s.empty?
             next

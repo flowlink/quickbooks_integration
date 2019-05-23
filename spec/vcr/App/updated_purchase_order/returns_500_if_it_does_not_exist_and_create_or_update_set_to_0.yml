@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=SELECT%20*%20FROM%20PurchaseOrder%20WHERE%20DocNumber%20=%20%27does_not_exist%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="S7SBfIEA2elVT96bVNB9Kf3jRh91SIBxaAl9wzJ4Ig",
+        oauth_signature="d4QJnFurDU06ONSgS%2FQI1XsYVqs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1558464706", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 21 May 2019 18:51:47 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '168'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - c6f5372a-f23c-241e-0492-5810ee66ef06
+      Set-Cookie:
+      - JSESSIONID=7583FC36D0B853B84A663AB1F4ECAD16.c50-psbxc50uw2apu133170; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=d75a645b.5896a574354fc; path=/; expires=Wed, 20-May-20 18:51:47 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1911.223'
+      Service-Time:
+      - total=245, db=79
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNTQqDMBBA4auE2WsSf7CVJO4KXbbYA4hOa8BMxESpt68U
+        uuj+8T3VvN3ENlyC9aRBpgIYUu8HSy8Nj/aSnICF2NHQTZ5Qw44BGqOuFFcb
+        7xhmTwHZgVDQMMY415yHfkTXpfbbpL13/Gmpox75lgOL1h1OJuQ5EWWSyVbK
+        upR1UaV5USaiqoUAo24rLvvP50bx/6P5AJIh+xC5AAAA
+    http_version: 
+  recorded_at: Tue, 21 May 2019 18:51:47 GMT
+recorded_with: VCR 4.0.0

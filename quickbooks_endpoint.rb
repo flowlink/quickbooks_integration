@@ -86,15 +86,6 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
   # End of Specific Endpoint
 
-  post '/add_order' do
-    begin
-      code, summary = QBIntegration::Order.new(@payload, @config).create
-      result code, summary
-    rescue QBIntegration::AlreadyPersistedOrderException => e
-      result 500, e.message
-    end
-  end
-
   post '/update_order' do
     code, summary = QBIntegration::Order.new(@payload, @config).update
     result code, summary
@@ -151,7 +142,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     code, vendors = QBIntegration::Vendor.new(@payload, @config).index
     summary = "Retrieved #{vendors.size} vendors"
     vendors.each { |vendor| add_object :vendor, vendor }
-    add_parameter "since", @config.fetch("since")
+    add_parameter "since", @config.fetch("quickbooks_since")
     add_parameter "page", @config.fetch("page", 1)
     result code, summary
   end
@@ -192,7 +183,18 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
+    result code, summary
+  end
 
+  post '/add_customer' do
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).create
+    add_object :customer, customer
+    result code, summary
+  end
+
+  post '/update_customer' do
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).update
+    add_object :customer, customer
     result code, summary
   end
 
