@@ -7,6 +7,76 @@ module QBIntegration
         super("Customer", config)
 
         @order = payload[:order] || payload[:invoice] || {}
+        @customer = payload[:customer]
+      end
+
+      def create_customer
+        found_by_email = find_by_email @customer[:email]
+        found_by_name = find_by_name @customer[:name]
+        if @customer[:qbo_id]
+          found_customer = find_by_id @customer[:qbo_id].to_s
+          build found_customer
+          quickbooks.update found_customer
+        elsif found_by_name
+          found_customer = found_by_name
+          build found_customer
+          quickbooks.update found_customer
+        elsif found_by_email.size > 1
+          raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
+        elsif found_by_email.size == 1
+          found_customer = found_by_email.first
+          build found_customer
+          quickbooks.update found_customer
+        else
+          new_customer = create_model
+          build new_customer
+          quickbooks.create new_customer
+        end
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
+      end
+
+      def update
+        found_by_email = find_by_email @customer[:email]
+        found_by_name = find_by_name @customer[:name]
+
+        if @customer[:qbo_id]
+          found_customer = find_by_id @customer[:qbo_id].to_s
+        elsif found_by_name
+          found_customer = found_by_name
+        elsif found_by_email.size > 1
+          raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
+        elsif found_by_email.size == 1
+          found_customer = found_by_email.first
+        else
+          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
+        end
+
+        build found_customer
+        quickbooks.update found_customer
+
+      rescue RecordNotFound => e
+        check_param(e)
+      end
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id)
+        customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
+        raise RecordNotFound.new "No Customer id: '#{id}' defined in service" unless customer
+        customer
+      end
+
+      def find_by_name(name)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("DisplayName", "=", name)
+        @quickbooks.query("select * from Customer where #{clause}").entries.first
+      end
+
+      def find_by_email(email)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("PrimaryEmailAddr", "=", email)
+        @quickbooks.query("select * from Customer where #{clause}").entries
       end
 
       def find_by_updated_at(page_num)
@@ -77,14 +147,47 @@ module QBIntegration
       end
 
       private
+
+      def build(new_customer)
+        new_customer.display_name = @customer[:name]
+        new_customer.email_address = @customer[:email]
+
+        new_customer.billing_address = Address.build @customer[:addresses].select{ |address| address[:type] == "BILLING" }.first
+        new_customer.shipping_address = Address.build @customer[:addresses].select{ |address| address[:type] == "SHIPPING" }.first
+      end
+
+      def check_param(e)
+        if config.fetch("quickbooks_create_or_update") == "1"
+          new_customer = create_model
+          build new_customer
+          quickbooks.create new_customer
+        else
+          raise e
+        end
+      end
+
+      def check_duplicate_name(e)
+        if e.message.match(/Duplicate/)
+          update
+        else
+          raise e
+        end
+      end
+
         def use_web_orders?
           config['quickbooks_web_orders_users'].to_s == "1"
         end
 
         # Default this to true for backwards compatibility with QBO integration users
         def create_new_customers?
-          config['quickbooks_create_new_customers'] ? config['quickbooks_create_new_customers'].to_s == "1" : true
+          check_customers = find_value("quickbooks_create_new_customers", order, config)
+          check_customers == "empty" ? true : check_customers == "1"
         end
+
+        def find_value(key_name, payload_object, parameters)
+          payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
+        end
+
     end
   end
 end

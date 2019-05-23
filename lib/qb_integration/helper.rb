@@ -57,13 +57,13 @@ module QBIntegration
       adjustment_name.downcase.match(/shipping/)
     end
 
-    def self.adjustment_product_from_qb(adjustment_name, params)
+    def self.adjustment_product_from_qb(adjustment_name, params, payload_object)
       if is_adjustment_discount?(adjustment_name)
-        params['quickbooks_discount_item']
+        payload_object['quickbooks_discount_item'] || params['quickbooks_discount_item']
       elsif is_adjustment_shipping?(adjustment_name)
-        params['quickbooks_shipping_item']
+        payload_object['quickbooks_shipping_item'] || params['quickbooks_shipping_item']
       elsif is_adjustment_tax?(adjustment_name)
-        params['quickbooks_tax_item']
+        payload_object['quickbooks_tax_item'] || params['quickbooks_tax_item']
       else
         # Optional additional adjustments will be unmapped, i.e. the
         # adjustment_name is the sku

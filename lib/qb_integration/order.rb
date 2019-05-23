@@ -21,8 +21,7 @@ module QBIntegration
 
     def update
       sales_receipt = sales_receipt_service.find_by_order_number
-
-      if !sales_receipt.present? && config[:quickbooks_create_or_update].to_s == "1"
+      if !sales_receipt.present? && check_field(:quickbooks_create_or_update).to_s == "1"
         sales_receipt = sales_receipt_service.create
         [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}"]
       elsif !sales_receipt.present?
@@ -41,6 +40,12 @@ module QBIntegration
       credit_memo = credit_memo_service.create_from_receipt sales_receipt
       text = "Created QuickBooks Credit Memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
       [200, text]
+    end
+
+    private
+
+    def check_field(key_name)
+      order.fetch(key_name, config.fetch(key_name, false))
     end
   end
 end
