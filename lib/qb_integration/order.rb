@@ -1,11 +1,21 @@
 module QBIntegration
   class Order < Base
-    attr_accessor :order
+    attr_accessor :order, :new_page_number
 
     def initialize(message = {}, config)
       super
       @order = payload[:order]
     end
+
+    def get
+      @orders, @new_page_number = sales_receipt_service.find_by_updated_at(page_number)
+
+      flowlink_orders = @orders.map{ |order| as_flowlink_hash(order) }
+      summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
+
+      [flowlink_orders, summary, new_page_number, since, code]
+    end
+
 
     def create
       if sales_receipt = sales_receipt_service.find_by_order_number
@@ -42,10 +52,32 @@ module QBIntegration
       [200, text]
     end
 
+    def as_flowlink_hash(qbo_order)
+      {
+        id: qbo_order.id,
+        name: qbo_order.doc_number,
+        created_at: qbo_order.txn_date,
+        line_items: qbo_order.line_items.map{ |line_item| { id: line_item.id, description: line_item.description } }
+      }
+    end
+
     private
 
     def check_field(key_name)
       order.fetch(key_name, config.fetch(key_name, false))
     end
+
+    def page_number
+      config.fetch("quickbooks_page_num").to_i || 1
+    end
+
+    def since
+      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    end
+
+    def code
+      new_page_number == 1 ? 200 : 206
+    end
+
   end
 end

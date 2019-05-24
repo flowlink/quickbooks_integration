@@ -254,6 +254,26 @@ describe 'App' do
     QuickbooksEndpoint
   end
 
+  describe "get_orders", vcr: true do
+    it "returns 200 and summary with id for default configs" do
+      post '/get_orders', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_since": "2019-01-13T14:50:22-08:00",
+          "quickbooks_page_num": "1",
+        },
+      }.to_json, headers
+      response = JSON.parse(last_response.body)
+      p response["orders"]
+      expect(last_response.status).to eq 206
+      expect(response["summary"]).to be_instance_of(String)
+      expect(response["orders"].count).to eq 50
+    end
+  end
+
   describe "add_order", vcr: true do
     it "returns 200 and summary with id for default configs" do
       post '/add_order', {
@@ -493,4 +513,3 @@ describe 'App' do
   end
 
 end
-
