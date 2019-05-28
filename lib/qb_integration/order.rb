@@ -64,13 +64,19 @@ module QBIntegration
         placed_on: qbo_order.meta_data["create_time"],
         updated_at: qbo_order.meta_data["last_updated_time"],
         # TODO: totals,
-        # TODO: payments
+        payments: format_payments(qbo_order.payment_ref_number),
         shipping_address: Address.as_flowlink_hash(qbo_order.ship_address),
         billing_address: Address.as_flowlink_hash(qbo_order.bill_address)
       }
     end
 
     private
+
+    def format_payments(payments_ref)
+      return [] if payments_ref.nil?
+      payment = payment_service.find_by_id(payments_ref)
+      [payment.total]
+    end
 
     def customer_email(customer_id)
       customer = customer_service.find_by_id(customer_id)

@@ -37,6 +37,7 @@ require 'qb_integration/services/token'
 require 'qb_integration/services/purchase_order'
 require 'qb_integration/services/invoice'
 require 'qb_integration/services/invoice_line'
+require 'qb_integration/services/payment'
 
 require 'qb_integration/processors/invoice'
 require 'qb_integration/processors/invoice_line'
