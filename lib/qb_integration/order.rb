@@ -56,8 +56,17 @@ module QBIntegration
       {
         id: qbo_order.id,
         name: qbo_order.doc_number,
+        number: qbo_order.doc_number,
         created_at: qbo_order.txn_date,
-        line_items: qbo_order.line_items.map{ |line_item| { id: line_item.id, description: line_item.description } }
+        line_items: qbo_order.line_items.map{ |line_item| { id: line_item.id, description: line_item.description } },
+        currency: qbo_order.currency_ref.value,
+        customer: qbo_order.customer_ref.name,
+        placed_on: qbo_order.meta_data["create_time"],
+        updated_at: qbo_order.meta_data["last_updated_time"],
+        # TODO: totals,
+        # TODO: payments
+        shipping_address: qbo_order.ship_address, # TODO: Create an address Flowlink hash
+        billing_address: qbo_order.bill_address
       }
     end
 
