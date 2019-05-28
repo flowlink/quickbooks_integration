@@ -60,7 +60,7 @@ module QBIntegration
         created_at: qbo_order.txn_date,
         line_items: qbo_order.line_items.map{ |line_item| { id: line_item.id, description: line_item.description } },
         currency: qbo_order.currency_ref.value,
-        customer: qbo_order.customer_ref.name,
+        customer: customer_email(qbo_order.customer_ref.value),
         placed_on: qbo_order.meta_data["create_time"],
         updated_at: qbo_order.meta_data["last_updated_time"],
         # TODO: totals,
@@ -71,6 +71,14 @@ module QBIntegration
     end
 
     private
+
+    def customer_email(customer_id)
+      customer = customer_service.find_by_id(customer_id)
+      customer.primary_email_address['address']
+    rescue NoMethodError => e
+      # IF no email is found, default to the display name if a customer is found
+      customer ? customer.display_name : nil
+    end
 
     def check_field(key_name)
       order.fetch(key_name, config.fetch(key_name, false))

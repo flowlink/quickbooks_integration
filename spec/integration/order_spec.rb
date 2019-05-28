@@ -267,7 +267,7 @@ describe 'App' do
         },
       }.to_json, headers
       response = JSON.parse(last_response.body)
-      p response["orders"]
+      p response["orders"].first
       expect(last_response.status).to eq 206
       expect(response["summary"]).to be_instance_of(String)
       expect(response["orders"].count).to eq 50
