@@ -65,8 +65,8 @@ module QBIntegration
         updated_at: qbo_order.meta_data["last_updated_time"],
         # TODO: totals,
         # TODO: payments
-        shipping_address: qbo_order.ship_address, # TODO: Create an address Flowlink hash
-        billing_address: qbo_order.bill_address
+        shipping_address: Address.as_flowlink_hash(qbo_order.ship_address),
+        billing_address: Address.as_flowlink_hash(qbo_order.bill_address)
       }
     end
 
