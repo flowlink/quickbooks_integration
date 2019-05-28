@@ -58,7 +58,7 @@ module QBIntegration
         name: qbo_order.doc_number,
         number: qbo_order.doc_number,
         created_at: qbo_order.txn_date,
-        line_items: qbo_order.line_items.map{ |line_item| { id: line_item.id, description: line_item.description } },
+        line_items: format_line_items(qbo_order.line_items),
         currency: qbo_order.currency_ref.value,
         customer: customer_email(qbo_order.customer_ref.value),
         placed_on: qbo_order.meta_data["create_time"],
@@ -71,6 +71,21 @@ module QBIntegration
     end
 
     private
+
+    def format_line_items(line_items)
+      reject_items = /shipping|tax|discount/
+      sales_line_details = line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
+      filtered_line_items = sales_line_details.reject{ |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(reject_items) }
+      filtered_line_items.map do |line_item|
+        {
+          id: line_item.sales_item_line_detail["item_ref"]["value"],
+          name: line_item.sales_item_line_detail["item_ref"]["name"],
+          description: line_item.description,
+          price: line_item.sales_item_line_detail["unit_price"].truncate(2).to_s('F'),
+          quantity: line_item.sales_item_line_detail["quantity"].to_i
+        }
+      end
+    end
 
     def format_payments(payments_ref)
       return [] if payments_ref.nil?
