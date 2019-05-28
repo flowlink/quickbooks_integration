@@ -63,7 +63,7 @@ module QBIntegration
         customer: customer_email(qbo_order.customer_ref.value),
         placed_on: qbo_order.meta_data["create_time"],
         updated_at: qbo_order.meta_data["last_updated_time"],
-        # TODO: totals,
+        totals: format_total(qbo_order.line_items),
         payments: format_payments(qbo_order.payment_ref_number),
         shipping_address: Address.as_flowlink_hash(qbo_order.ship_address),
         billing_address: Address.as_flowlink_hash(qbo_order.bill_address)
@@ -71,6 +71,27 @@ module QBIntegration
     end
 
     private
+
+    def format_total(line_items)
+      sales_line_details = line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
+
+      tax_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/tax/) }.first
+      shipping_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/shipping/) }.first
+      discount_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/discount/) }.first
+
+      tax = tax_line && tax_line.amount || BigDecimal("0")
+      shipping = shipping_line && shipping_line.amount || BigDecimal("0")
+      discount = discount_line && discount_line.amount || BigDecimal("0")
+      item = sales_line_details.reduce(0) { |sum, line_details| sum + line_details.amount }.truncate(2).to_s("F").to_f
+
+      {
+        tax: tax,
+        shipping: shipping,
+        discount: discount,
+        item: item.to_s,
+        order: "%.2f" % BigDecimal(tax + shipping + discount + item).truncate(2)
+      }
+    end
 
     def format_line_items(line_items)
       reject_items = /shipping|tax|discount/

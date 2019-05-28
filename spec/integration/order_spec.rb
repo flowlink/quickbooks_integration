@@ -267,10 +267,17 @@ describe 'App' do
         },
       }.to_json, headers
       response = JSON.parse(last_response.body)
-      p response["orders"].first
       expect(last_response.status).to eq 206
       expect(response["summary"]).to be_instance_of(String)
       expect(response["orders"].count).to eq 50
+
+      first = response["orders"].first
+      totals = first["totals"]
+      expect(totals["tax"]).to eq "0.0"
+      expect(totals["shipping"]).to eq "0.0"
+      expect(totals["discount"]).to eq "0.0"
+      expect(totals["item"]).to eq "22.5"
+      expect(totals["order"]).to eq "22.50"
     end
   end
 
