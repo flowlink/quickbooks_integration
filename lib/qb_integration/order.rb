@@ -10,7 +10,13 @@ module QBIntegration
     def get
       @orders, @new_page_number = sales_receipt_service.find_by_updated_at(page_number)
 
-      flowlink_orders = @orders.map{ |order| as_flowlink_hash(order) }
+      flowlink_orders = []
+      @orders.each do |order|
+        flowlink_order = Processor::SalesReceipt.new(order).as_flowlink_hash
+        flowlink_order[:customer] = format_customer(order.customer_ref.value)
+        flowlink_order[:payments] = format_payments(order.payment_ref_number)
+        flowlink_orders << flowlink_order
+      end
       summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
 
       [flowlink_orders, summary, new_page_number, since, code]
@@ -52,61 +58,7 @@ module QBIntegration
       [200, text]
     end
 
-    def as_flowlink_hash(qbo_order)
-      {
-        id: qbo_order.id,
-        name: qbo_order.doc_number,
-        number: qbo_order.doc_number,
-        created_at: qbo_order.txn_date,
-        line_items: format_line_items(qbo_order.line_items),
-        currency: qbo_order.currency_ref.value,
-        customer: customer_email(qbo_order.customer_ref.value),
-        placed_on: qbo_order.meta_data["create_time"],
-        updated_at: qbo_order.meta_data["last_updated_time"],
-        totals: format_total(qbo_order.line_items),
-        payments: format_payments(qbo_order.payment_ref_number),
-        shipping_address: Processor::Address.new(qbo_order.ship_address).as_flowlink_hash,
-        billing_address: Processor::Address.new(qbo_order.bill_address).as_flowlink_hash
-      }
-    end
-
     private
-
-    def format_total(line_items)
-      sales_line_details = line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
-
-      tax_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/tax/) }.first
-      shipping_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/shipping/) }.first
-      discount_line = sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(/discount/) }.first
-
-      tax = tax_line && tax_line.amount || BigDecimal("0")
-      shipping = shipping_line && shipping_line.amount || BigDecimal("0")
-      discount = discount_line && discount_line.amount || BigDecimal("0")
-      item = sales_line_details.reduce(0) { |sum, line_details| sum + line_details.amount }.truncate(2).to_s("F").to_f
-
-      {
-        tax: tax,
-        shipping: shipping,
-        discount: discount,
-        item: item.to_s,
-        order: "%.2f" % BigDecimal(tax + shipping + discount + item).truncate(2)
-      }
-    end
-
-    def format_line_items(line_items)
-      reject_items = /shipping|tax|discount/
-      sales_line_details = line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
-      filtered_line_items = sales_line_details.reject{ |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(reject_items) }
-      filtered_line_items.map do |line_item|
-        {
-          id: line_item.sales_item_line_detail["item_ref"]["value"],
-          name: line_item.sales_item_line_detail["item_ref"]["name"],
-          description: line_item.description,
-          price: line_item.sales_item_line_detail["unit_price"].truncate(2).to_s('F'),
-          quantity: line_item.sales_item_line_detail["quantity"].to_i
-        }
-      end
-    end
 
     def format_payments(payments_ref)
       return [] if payments_ref.nil?
@@ -114,7 +66,7 @@ module QBIntegration
       [payment.total]
     end
 
-    def customer_email(customer_id)
+    def format_customer(customer_id)
       customer = customer_service.find_by_id(customer_id)
       customer.primary_email_address['address']
     rescue NoMethodError => e

@@ -19,7 +19,6 @@ module QBIntegration
         }
       end
 
-      private
     end
   end
 end
