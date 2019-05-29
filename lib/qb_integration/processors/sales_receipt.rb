@@ -6,7 +6,8 @@ module QBIntegration
 
       def initialize(sales_receipt)
         @sales_receipt = sales_receipt
-        @sales_line_details = sales_receipt.line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
+        @sales_line_details = select_sales_lines
+        @item_lines = select_item_lines
       end
 
       def as_flowlink_hash
@@ -34,9 +35,7 @@ module QBIntegration
       private
 
       def format_line_items
-        reject_items = /shipping|tax|discount/
-        filtered_line_items = @sales_line_details.reject{ |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(reject_items) }
-        filtered_line_items.map do |line_item|
+        @item_lines.map do |line_item|
           {
             id: line_item.sales_item_line_detail["item_ref"]["value"],
             name: line_item.sales_item_line_detail["item_ref"]["name"],
@@ -45,10 +44,6 @@ module QBIntegration
             quantity: line_item.sales_item_line_detail["quantity"].to_i
           }
         end
-      end
-
-      def filter_line(matching)
-        @sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(matching) }.first
       end
 
       def tax
@@ -68,6 +63,19 @@ module QBIntegration
 
       def item
         @sales_line_details.reduce(0) { |sum, line_details| sum + line_details.amount }.truncate(2).to_s("F").to_f
+      end
+
+      def filter_line(matching)
+        @sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(matching) }.first
+      end
+
+      def select_sales_lines
+        @sales_receipt.line_items.select { |line| line.detail_type.to_s == "SalesItemLineDetail" }
+      end
+
+      def select_item_lines
+        reject_items = /shipping|tax|discount/
+        @sales_line_details.reject{ |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(reject_items) }
       end
 
     end
