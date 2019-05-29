@@ -19,32 +19,19 @@ module QBIntegration
           currency: sales_receipt.currency_ref.value,
           placed_on: sales_receipt.meta_data["create_time"],
           updated_at: sales_receipt.meta_data["last_updated_time"],
-          totals: format_total,
+          totals: {
+            tax: tax,
+            shipping: shipping,
+            discount: discount,
+            item: item.to_s,
+            order: "%.2f" % BigDecimal(tax + shipping + discount + item).truncate(2)
+          },
           shipping_address: Processor::Address.new(sales_receipt.ship_address).as_flowlink_hash,
           billing_address: Processor::Address.new(sales_receipt.bill_address).as_flowlink_hash
         }
       end
 
       private
-
-      def format_total
-        tax_line = filter_line(/tax/)
-        shipping_line = filter_line(/shipping/)
-        discount_line = filter_line(/discount/)
-
-        tax = tax_line && tax_line.amount || BigDecimal("0")
-        shipping = shipping_line && shipping_line.amount || BigDecimal("0")
-        discount = discount_line && discount_line.amount || BigDecimal("0")
-        item = @sales_line_details.reduce(0) { |sum, line_details| sum + line_details.amount }.truncate(2).to_s("F").to_f
-
-        {
-          tax: tax,
-          shipping: shipping,
-          discount: discount,
-          item: item.to_s,
-          order: "%.2f" % BigDecimal(tax + shipping + discount + item).truncate(2)
-        }
-      end
 
       def format_line_items
         reject_items = /shipping|tax|discount/
@@ -62,6 +49,25 @@ module QBIntegration
 
       def filter_line(matching)
         @sales_line_details.select { |line| line.sales_item_line_detail["item_ref"]["name"].downcase.match(matching) }.first
+      end
+
+      def tax
+        tax_line = filter_line(/tax/)
+        tax_line && tax_line.amount || BigDecimal("0")
+      end
+
+      def shipping
+        shipping_line = filter_line(/shipping/)
+        shipping_line && shipping_line.amount || BigDecimal("0")
+      end
+
+      def discount
+        discount_line = filter_line(/discount/)
+        discount_line && discount_line.amount || BigDecimal("0")
+      end
+
+      def item
+        @sales_line_details.reduce(0) { |sum, line_details| sum + line_details.amount }.truncate(2).to_s("F").to_f
       end
 
     end
