@@ -65,8 +65,8 @@ module QBIntegration
         updated_at: qbo_order.meta_data["last_updated_time"],
         totals: format_total(qbo_order.line_items),
         payments: format_payments(qbo_order.payment_ref_number),
-        shipping_address: Address.as_flowlink_hash(qbo_order.ship_address),
-        billing_address: Address.as_flowlink_hash(qbo_order.bill_address)
+        shipping_address: Processor::Address.new(qbo_order.ship_address).as_flowlink_hash,
+        billing_address: Processor::Address.new(qbo_order.bill_address).as_flowlink_hash
       }
     end
 
