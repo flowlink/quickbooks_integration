@@ -326,4 +326,70 @@ http_interactions:
         yrAqz+mhwASPFSIYdVto3n6+NEr+H80HzqIvELkAAAA=
     http_version: 
   recorded_at: Mon, 20 May 2019 19:10:59 GMT
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=select%20*%20from%20Customer%20where%20PrimaryEmailAddr%20=%20%27%20test@gmail.com%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="WpVWiTZ9s59j92cAiSzFqthyagUxNKpPvgC0zkxCw",
+        oauth_signature="%2FuM%2FIgIL7d1p4DGXpVyR5mmR9Wc%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1558730488", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 24 May 2019 20:41:29 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '168'
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 32f5eaf6-c92e-555b-299d-4769d8b3726f
+      Set-Cookie:
+      - JSESSIONID=4CBF8873CB7A2665BBC1F44D0D09D448.c50-psbxc50uw2apu131018; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=fd21c824.589a8391f03e8; path=/; expires=Sat, 23-May-20 20:41:29 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1911.229'
+      Service-Time:
+      - total=124, db=10
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNSw6CMBSF4a00dw5teURtWpiZONTgAghcpQm9JbQQ2b1o
+        4sDpyZ/v6PrlRrbiHKwnAzIVwJA631t6Grg35+QILMSW+nb0hAY2DFBX+kJx
+        sfGGYfIUkO0IBQNDjJPiPHQDuja13ybtvOMPSy11yNccWLRudzIhT4kok6xo
+        ZK4KqbJTWn6mgxICKn1dcN5+Pq80/3+s3tGaYE65AAAA
+    http_version: 
+  recorded_at: Fri, 24 May 2019 20:41:29 GMT
 recorded_with: VCR 4.0.0

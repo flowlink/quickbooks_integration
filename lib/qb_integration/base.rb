@@ -58,16 +58,16 @@ module QBIntegration
       @vendor_service ||= Service::Vendor.new(config, payload)
     end
 
+    def payment_service
+      @payment_service ||= Service::Payment.new(config, payload)
+    end
+
     def invoice_service(options = { dependencies: true })
       @invoice_service ||= Service::Invoice.new(config, payload, options)
     end
 
     def invoice_line_service
       @invoice_line_service ||= Service::InvoiceLine.new(config, payload)
-    end
-
-    def payment_service
-      @payment_service ||= Service::Payment.new(config, payload)
     end
   end
 

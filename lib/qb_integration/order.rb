@@ -1,11 +1,27 @@
 module QBIntegration
   class Order < Base
-    attr_accessor :order
+    attr_accessor :order, :new_page_number
 
     def initialize(message = {}, config)
       super
       @order = payload[:order]
     end
+
+    def get
+      @orders, @new_page_number = sales_receipt_service.find_by_updated_at(page_number)
+
+      flowlink_orders = []
+      @orders.each do |order|
+        flowlink_order = Processor::SalesReceipt.new(order).as_flowlink_hash
+        flowlink_order[:customer] = format_customer(order.customer_ref.value)
+        flowlink_order[:payments] = format_payments(order.payment_ref_number)
+        flowlink_orders << flowlink_order
+      end
+      summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
+
+      [flowlink_orders, summary, new_page_number, since, code]
+    end
+
 
     def create
       if sales_receipt = sales_receipt_service.find_by_order_number
@@ -44,8 +60,35 @@ module QBIntegration
 
     private
 
+    def format_payments(payments_ref)
+      return [] if payments_ref.nil?
+      payment = payment_service.find_by_id(payments_ref)
+      [payment.total]
+    end
+
+    def format_customer(customer_id)
+      customer = customer_service.find_by_id(customer_id)
+      customer.primary_email_address['address']
+    rescue NoMethodError => e
+      # IF no email is found, default to the display name if a customer is found
+      customer ? customer.display_name : nil
+    end
+
     def check_field(key_name)
       order.fetch(key_name, config.fetch(key_name, false))
     end
+
+    def page_number
+      config.fetch("quickbooks_page_num").to_i || 1
+    end
+
+    def since
+      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    end
+
+    def code
+      new_page_number == 1 ? 200 : 206
+    end
+
   end
 end

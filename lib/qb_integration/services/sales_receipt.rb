@@ -17,6 +17,18 @@ module QBIntegration
         end
       end
 
+      def find_by_updated_at(page_num)
+        raise MissingTimestampParam unless config["quickbooks_since"].present?
+
+        filter = "Where Metadata.LastUpdatedTime>'#{config.fetch("quickbooks_since")}'"
+        order_by = "Order By Metadata.LastUpdatedTime"
+        query = "Select * from SalesReceipt #{filter} #{order_by}"
+        response = quickbooks.query(query, :page => page_num, :per_page => PER_PAGE_AMOUNT)
+
+        new_page = response.count == PER_PAGE_AMOUNT ? page_num.to_i + 1 : 1
+        [response.entries, new_page]
+      end
+
       def find_by_order_number
         query = "SELECT * FROM SalesReceipt WHERE DocNumber = '#{order_number}'"
         quickbooks.query(query).entries.first

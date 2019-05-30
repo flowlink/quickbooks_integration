@@ -1,11 +1,12 @@
 module QBIntegration
   module Service
     class Payment < Base
-      attr_reader :flowlink_payment
+      attr_accessor :vendor, :flowlink_payment
 
       def initialize(config, payload)
         super("Payment", config)
         @flowlink_payment = payload[:payment]
+        @vendor = payload[:vendor]
       end
 
       def create_payment
@@ -26,6 +27,14 @@ module QBIntegration
 
       def find_payment
         find_by_reference_number(flowlink_payment[:id])
+      end
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("id", "=", id)
+        vendor = @quickbooks.query("select * from Payment where #{clause}").entries.first
+        raise RecordNotFound.new "No Payment '#{id}' defined in service" unless vendor
+        vendor
       end
 
       private

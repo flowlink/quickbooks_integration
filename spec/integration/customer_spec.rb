@@ -9,98 +9,38 @@ describe 'App' do
   let(:realm) { ENV['quickbooks_realm'] }
   let(:secret) { ENV['quickbooks_access_secret'] }
   let(:token) { ENV['quickbooks_access_token'] }
-  let(:customer) {
+  let(:customer){
     {
       "name": "Spec test 2",
       "email": "test@gmail.com",
-      "phone": "+1 1111111111",
-      "emailPreference": "opt_in",
-      "mobile": "+1 2222222222",
-      "individual": false,
-      "socials": {},
-      "customFields": [
-        {
-          "DLRPTCTNEXP": ""
-        },
-        {
-          "DLRPTCTN": ""
-        },
-        {
-          "TYPNC": ""
-        },
-        {
-          "DEMO": ""
-        },
-        {
-          "TYPBDS": ""
-        },
-        {
-          "NBRBDS": ""
-        },
-        {
-          "Total Beds": ""
-        },
-        {
-          "Type of Beds": ""
-        },
-        {
-          "Type of Nursecall": ""
-        },
-        {
-          "Demo Sent?": ""
-        },
-        {
-          "Dealer Protection": ""
-        },
-        {
-          "Website": ""
-        },
-        {
-          "Account Type": ""
-        }
-      ],
-      "isB2b": true,
-      "since": "2019-03-05T17:01:05.845Z",
-      "lastTransaction": "2019-04-22T16:29:50.392Z",
-      "numberOfTransactions": 11,
-      "status": "ACTIVE",
-      "subStatus": "",
-      "site_id": nil,
-      "addresses": [
-        {
-          "sysid": 184185,
-          "street1": "6900 Dallas Parkway",
-          "street2": "",
-          "street3": "",
-          "isDefault": true,
-          "city": "Plano",
-          "postCode": "75024",
-          "country": "United States",
-          "locale": "Texas",
-          "status": "ACTIVE",
-          "name": "Systum Test",
-          "dateCreated": "2019-03-05T17:01:46.026Z",
-          "type": "SHIPPING"
-        },
-        {
-          "sysid": 184184,
-          "street1": "6900 Dallas Parkway",
-          "street2": "",
-          "street3": "",
-          "isDefault": true,
-          "city": "Plano",
-          "postCode": "75024",
-          "country": "United States",
-          "locale": "Texas",
-          "status": "ACTIVE",
-          "name": "Systum Test",
-          "dateCreated": "2019-03-05T17:01:46.026Z",
-          "type": "BILLING"
-        }
-      ],
-      "formNumber": "3145",
-      "hideCarts": false,
-      "carts": []
+      "is_b2b": nil,
+      "systum_id": 1176,
+      "external_id": "8000000C-1550867897",
+      "account_number": nil,
+      "billing_address": {
+        "city": "Somewhere",
+        "phone": nil,
+        "state": "California",
+        "company": nil,
+        "country": "United States",
+        "zipcode": nil,
+        "address1": "1234 Main Drive",
+        "address2": nil,
+        "lastname": "Smith",
+        "firstname": ""
+      },
+      "shipping_address": {
+        "city": "Somewhere",
+        "phone": nil,
+        "state": "California",
+        "company": nil,
+        "country": "United States",
+        "zipcode": nil,
+        "address1": "1234 Main Drive",
+        "address2": nil,
+        "lastname": "Smith",
+        "firstname": ""
+      }
     }
   }
 

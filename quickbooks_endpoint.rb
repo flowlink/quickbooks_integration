@@ -43,6 +43,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/get_orders' do
+    orders, summary, new_page_number, since, code = QBIntegration::Order.new(@payload, @config).get
+    orders.each do |order|
+      add_object :order, order
+    end
+    result code, summary
+  end
+
   post '/add_order' do
     begin
       code, summary = QBIntegration::Order.new(@payload, @config).create
