@@ -92,7 +92,7 @@ module QBIntegration
       end
 
       def find_or_create
-        name = use_web_orders? ? "Web Orders" : nil
+        name = use_web_orders? ? quickbooks_generic_customer_name : nil
         unless customer = fetch_by_display_name(name)
           if create_new_customers? || use_web_orders?
             customer = create
@@ -130,7 +130,7 @@ module QBIntegration
       def create
         new_customer = create_model
         if use_web_orders?
-          new_customer.display_name = "Web Orders"
+          new_customer.display_name = quickbooks_generic_customer_name
         else
           new_customer.given_name = order['billing_address'].nil? ? 'NotProvided' :
                                                                     order['billing_address']['firstname']
@@ -186,6 +186,10 @@ module QBIntegration
 
         def find_value(key_name, payload_object, parameters)
           payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
+        end
+
+        def quickbooks_generic_customer_name
+          payload['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
         end
 
     end
