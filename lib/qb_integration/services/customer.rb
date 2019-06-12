@@ -189,7 +189,7 @@ module QBIntegration
         end
 
         def quickbooks_generic_customer_name
-          payload['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
+          order['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
         end
 
     end
