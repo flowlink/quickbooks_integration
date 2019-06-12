@@ -11,20 +11,7 @@ module QBIntegration
       end
 
       def create_customer
-        found_by_email = find_by_email @customer[:email]
-        found_by_name = find_by_name @customer[:name]
-        if @customer[:qbo_id]
-          found_customer = find_by_id @customer[:qbo_id].to_s
-          build found_customer
-          quickbooks.update found_customer
-        elsif found_by_name
-          found_customer = found_by_name
-          build found_customer
-          quickbooks.update found_customer
-        elsif found_by_email.size > 1
-          raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
-        elsif found_by_email.size == 1
-          found_customer = found_by_email.first
+        if found_customer = find_customer
           build found_customer
           quickbooks.update found_customer
         else
@@ -37,26 +24,30 @@ module QBIntegration
       end
 
       def update
+        unless found_customer = find_customer
+          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
+        end
+        build found_customer
+        quickbooks.update found_customer
+      rescue RecordNotFound => e
+        check_param(e)
+      end
+
+      def find_customer
         found_by_email = find_by_email @customer[:email]
         found_by_name = find_by_name @customer[:name]
 
         if @customer[:qbo_id]
-          found_customer = find_by_id @customer[:qbo_id].to_s
+          find_by_id @customer[:qbo_id].to_s
         elsif found_by_name
-          found_customer = found_by_name
+          found_by_name
         elsif found_by_email.size > 1
           raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
         elsif found_by_email.size == 1
-          found_customer = found_by_email.first
+          found_by_email.first
         else
-          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
+          nil
         end
-
-        build found_customer
-        quickbooks.update found_customer
-
-      rescue RecordNotFound => e
-        check_param(e)
       end
 
       def find_by_id(id)
@@ -68,12 +59,14 @@ module QBIntegration
       end
 
       def find_by_name(name)
+        return [] unless name
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
         @quickbooks.query("select * from Customer where #{clause}").entries.first
       end
 
       def find_by_email(email)
+        return [] unless email
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("PrimaryEmailAddr", "=", email)
         @quickbooks.query("select * from Customer where #{clause}").entries
