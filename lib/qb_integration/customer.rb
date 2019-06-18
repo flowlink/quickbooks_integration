@@ -15,12 +15,16 @@ module QBIntegration
 
     def create
       customer = customer_service.create_customer
-      [200 , "Customer with id #{customer.id} created", build_customer(customer)]
+      updated_flowlink_customer = payload[:customer]
+      updated_flowlink_customer[:q_id] = customer.id
+      [200 , "Customer with id #{customer.id} created", updated_flowlink_customer]
     end
 
     def update
       customer = customer_service.update
-      [200 , "Customer with id #{customer.id} updated", build_customer(customer)]
+      updated_flowlink_customer = payload[:customer]
+      updated_flowlink_customer[:q_id] = customer.id
+      [200 , "Customer with id #{customer.id} updated", updated_flowlink_customer]
     end
 
     def build_customer(customer)
