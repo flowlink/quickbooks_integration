@@ -86,7 +86,8 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
 - quickbooks_tax_item - Name of the Item in QuickBooks used for adding tax amount as a line item => **Required**
 - quickbooks_payment_method_name - Mapping for payment methods in QuickBooks Online => **Required**
-- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer called "Web User" instead of creating new customers => **Required**
+- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer instead of creating new customers => **Required**
+- quickbooks_generic_customer_name - Name of the Customer used when rolling up customers into a general QuickBooks Online customer. Order payload field takes precedence over workflow parameter. Defaults to "Web User" if neither order payload or parameter are set. Unused if quickbooks_web_orders_users is false.
 - quickbooks_create_new_customers - Boolean used to determine if FlowLink should create new customers if the customer on the Order is not found  => **Required**
 - quickbooks_create_new_product - Boolean used to determine if FlowLink should create new items if any line items on the Order are not found  => **Required**
 - quickbooks_track_inventory - Boolean used to determine if the item we're creating is of Type Inventory => **Required if quickbooks_create_new_product is true**
@@ -101,7 +102,8 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
 - quickbooks_tax_item - Name of the Item in QuickBooks used for adding tax amount as a line item => **Required**
 - quickbooks_payment_method_name - Mapping for payment methods in QuickBooks Online => **Required**
-- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer called "Web User" instead of creating new customers => **Required**
+- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer instead of creating new customers => **Required**
+- quickbooks_generic_customer_name - Name of the Customer used when rolling up customers into a general QuickBooks Online customer. Order payload field takes precedence over workflow parameter. Defaults to "Web User" if neither order payload or parameter are set. Unused if quickbooks_web_orders_users is false.
 - quickbooks_create_new_customers - Boolean used to determine if FlowLink should create new customers if the customer on the Order is not found  => **Required**
 - quickbooks_create_new_product - Boolean used to determine if FlowLink should create new items if any line items on the Order are not found  => **Required**
 - quickbooks_track_inventory - Boolean used to determine if the item we're creating is of Type Inventory => **Required if quickbooks_create_new_product is true**
@@ -114,7 +116,8 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_discount_item- Name of the Item in QuickBooks used for adding discount amount as a line item => **Required**
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
 - quickbooks_tax_item - Name of the Item in QuickBooks used for adding tax amount as a line item => **Required**
-- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer called "Web User" instead of creating new customers => **Required**
+- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer instead of creating new customers => **Required**
+- quickbooks_generic_customer_name - Name of the Customer used when rolling up customers into a general QuickBooks Online customer. Invoice payload field takes precedence over workflow parameter. Defaults to "Web User" if neither invoice payload or parameter are set. Unused if quickbooks_web_orders_users is false.
 - quickbooks_create_new_customers - Boolean used to determine if FlowLink should create new customers if the customer on the Invoice is not found  => **Required**
 - quickbooks_create_new_product - Boolean used to determine if FlowLink should create new items if any line items on the Invoice are not found  => **Required**
 - quickbooks_track_inventory - Boolean used to determine if the item we're creating is of Type Inventory => **Required if quickbooks_create_new_product is true**
@@ -129,7 +132,8 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_discount_item- Name of the Item in QuickBooks used for adding discount amount as a line item => **Required**
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
 - quickbooks_tax_item - Name of the Item in QuickBooks used for adding tax amount as a line item => **Required**
-- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer called "Web User" instead of creating new customers => **Required**
+- quickbooks_web_orders_users - Boolean used to determine if FlowLink should group customers under a general customer instead of creating new customers => **Required**
+- quickbooks_generic_customer_name - Name of the Customer used when rolling up customers into a general QuickBooks Online customer. Invoice payload field takes precedence over workflow parameter. Defaults to "Web User" if neither invoice payload or parameter are set. Unused if quickbooks_web_orders_users is false.
 - quickbooks_create_new_customers - Boolean used to determine if FlowLink should create new customers if the customer on the Invoice is not found  => **Required**
 - quickbooks_create_new_product - Boolean used to determine if FlowLink should create new items if any line items on the Invoice are not found  => **Required**
 - quickbooks_track_inventory - Boolean used to determine if the item we're creating is of Type Inventory => **Required if quickbooks_create_new_product is true**
