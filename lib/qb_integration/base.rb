@@ -81,6 +81,7 @@ module QBIntegration
   class AlreadyPersistedJournalEntryException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
+  class TransactionMustBeOpen < StandardError; end
 
   class MissingTimestampParam < StandardError
     def message
