@@ -10,23 +10,20 @@ module QBIntegration
         @customer = payload[:customer]
       end
 
+      # Used by customer sync (not order/invoice sync)
       def create_customer
         if found_customer = find_customer
-          build found_customer
-          quickbooks.update found_customer
+          raise AlreadyPersistedInvoiceException.new "Customer with name '#{@customer[:name]}' or email '#{@customer[:email]}' already exists"
         else
           new_customer = create_model
           build new_customer
           quickbooks.create new_customer
         end
-      rescue Quickbooks::IntuitRequestException => e
-        check_duplicate_name(e)
       end
 
+      # Used by customer sync (not order/invoice sync)
       def update
-        unless found_customer = find_customer
-          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
-        end
+        found_customer = find_customer
         build found_customer
         quickbooks.update found_customer
       rescue RecordNotFound => e
@@ -84,6 +81,7 @@ module QBIntegration
         [response.entries, new_page]
       end
 
+      # only used by Invoice/Order (not customer sync)
       def find_or_create
         name = use_web_orders? ? quickbooks_generic_customer_name : nil
         unless customer = fetch_by_display_name(name)
@@ -120,9 +118,10 @@ module QBIntegration
         name
       end
 
+      # only used by Invoice/Order (not customer sync)
       def create
         new_customer = create_model
-        if use_web_orders?
+        if use_web_orders
           new_customer.display_name = quickbooks_generic_customer_name
         else
           new_customer.given_name = order['billing_address'].nil? ? 'NotProvided' :
@@ -150,25 +149,31 @@ module QBIntegration
       end
 
       def check_param(e)
-        if config.fetch("quickbooks_create_or_update") == "1"
+        if quickbooks_create_or_update?
           new_customer = create_model
           build new_customer
           quickbooks.create new_customer
         else
-          raise e
+          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
         end
       end
 
-      def check_duplicate_name(e)
-        if e.message.match(/Duplicate/)
-          update
-        else
-          raise e
-        end
-      end
+      # def check_duplicate_name(e)
+      #   if e.message.match(/Duplicate/)
+      #     update
+      #   else
+      #     raise e
+      #   end
+      # end
 
         def use_web_orders?
-          config['quickbooks_web_orders_users'].to_s == "1"
+          if order['quickbooks_web_orders_users']
+            order['quickbooks_web_orders_users'].to_s == "1"
+          elsif config['quickbooks_web_orders_users']
+            config["quickbooks_web_orders_users"].to_s == "1"
+          else
+            false
+          end
         end
 
         # Default this to true for backwards compatibility with QBO integration users
@@ -183,6 +188,16 @@ module QBIntegration
 
         def quickbooks_generic_customer_name
           order['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
+        end
+
+        def quickbooks_create_or_update?
+          if customer['quickbooks_create_or_update']
+            customer['quickbooks_create_or_update'].to_s == "1"
+          elsif config['quickbooks_create_or_update']
+            config["quickbooks_create_or_update"].to_s == "1"
+          else
+            false
+          end
         end
 
     end
