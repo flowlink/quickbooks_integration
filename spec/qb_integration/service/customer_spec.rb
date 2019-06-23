@@ -26,13 +26,13 @@ module QBIntegration
 
       it "fetchs customer given name" do
         VCR.use_cassette "customer/customer_fetch" do
-          customer = subject.fetch_by_display_name
+          customer = subject.find_customer
           expect(customer.display_name).to eq subject.display_name
         end
       end
 
       context "customer doesnt exist" do
-        before { subject.stub fetch_by_display_name: nil }
+        before { subject.stub find_customer: nil }
 
         it "creates a new customer" do
           subject.stub display_name: "Spree Commerce"
