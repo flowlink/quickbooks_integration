@@ -11,7 +11,7 @@ module QBIntegration
       def as_flowlink_hash
         {
           id: invoice.doc_number,
-          qbo_id: invoice.id,
+          q_id: invoice.id,
           due_date: invoice.due_date,
           created_at: invoice.meta_data['create_time'],
           customer_memo: invoice.customer_memo,

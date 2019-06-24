@@ -8,19 +8,15 @@ module QBIntegration
     end
 
     def create
-      response = purchase_order_service.create
-      created_po = purchase_order
-      created_po[:qbo_id] = response.id
-      text = "Created QuickBooks Purchase Order with number #{response.doc_number} and with id #{response.id}"
-      [200, text, created_po]
+      purchase_order = purchase_order_service.create
+      text = "Created Quickbooks Purchase Order #{purchase_order.id}"
+      [200, text]
     end
 
     def update
-      response, action = purchase_order_service.update
-      updated_po = purchase_order
-      updated_po[:qbo_id] = response.id
-      text = "#{action} QuickBooks Purchase Order with number #{response.doc_number} and with id #{response.id}"
-      [200, text, updated_po]
+      response = purchase_order_service.update
+      text = "Updated Quickbooks Purchase Order #{purchase_order[:id]}"
+      [200, text]
     end
   end
 end
