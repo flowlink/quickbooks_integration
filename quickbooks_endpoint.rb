@@ -62,7 +62,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_purchase_order' do
     begin
-      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      code, summary, po = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      add_object :purchase_order, po
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
       result 500, e.message
@@ -70,7 +71,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/update_purchase_order' do
-    code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).update
+    code, summary, po = QBIntegration::PurchaseOrder.new(@payload, @config).update
+    add_object :purchase_order, po
     result code, summary
   end
 
@@ -216,6 +218,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
 
+    result code, summary
+  end
+
+  post '/add_payment' do
+    code, summary = QBIntegration::Payment.new(@payload, @config).create
     result code, summary
   end
 

@@ -11,7 +11,7 @@ module QBIntegration
       def as_flowlink_hash
         {
           id: customer.id,
-          q_id: customer.id,
+          qbo_id: customer.id,
           created_at: customer.meta_data['create_time'],
           title: customer.title,
           given_name: customer.given_name,

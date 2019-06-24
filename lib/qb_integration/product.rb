@@ -66,18 +66,23 @@ module QBIntegration
       end
 
       # Test accounts do not support track_inventory feature
-      if @inventory_costing && !is_update
-        quantity = 0
-        if !product[:quantity].nil? && !product[:quantity].blank?
-          quantity = product[:quantity].to_i
-        end
-        attrs[:quantity_on_hand] = quantity
+      if @inventory_costing
+        attrs[:purchase_cost] = product[:cost] if product[:cost]
+        if !is_update
+          quantity = 0
+          if !product[:quantity].nil? && !product[:quantity].blank?
+            quantity = product[:quantity].to_i
+          end
+          attrs[:quantity_on_hand] = quantity
 
-        attrs[:track_quantity_on_hand] = true
-        attrs[:inv_start_date] = product[:inventory_start_date] || time_now
-        attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
-        attrs[:asset_account_id] = @inventory_account_id
-        attrs[:expense_account_id] = @cogs_account_id
+          attrs[:inv_start_date] = product[:inventory_start_date] || time_now
+          attrs[:type] = Quickbooks::Model::Item::INVENTORY_TYPE
+          attrs[:asset_account_id] = @inventory_account_id
+          attrs[:expense_account_id] = @cogs_account_id
+          attrs[:track_quantity_on_hand] = true
+        else
+          attrs[:quantity_on_hand] = product[:quantity].to_i if product[:quantity]
+        end
       end
 
       if import_as_sub_item?(product)
