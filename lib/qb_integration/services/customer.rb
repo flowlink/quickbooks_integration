@@ -1,19 +1,19 @@
 module QBIntegration
   module Service
     class Customer < Base
-      attr_reader :order
+      attr_accessor :order
 
       def initialize(config, payload)
         super("Customer", config)
 
         @order = payload[:order] || payload[:invoice] || {}
-        @customer = payload[:customer]
+        @customer = payload[:customer] || @order[:customer] || {}
       end
 
       # Used by customer sync (not order/invoice sync)
       def create_customer
         if found_customer = find_customer
-          raise AlreadyPersistedInvoiceException.new "Customer with name '#{@customer[:name]}' or email '#{@customer[:email]}' already exists"
+          raise AlreadyPersistedCustomerException.new "Customer with name '#{@customer[:name]}' or email '#{@customer[:email]}' already exists"
         else
           new_customer = create_model
           build new_customer
@@ -24,10 +24,11 @@ module QBIntegration
       # Used by customer sync (not order/invoice sync)
       def update
         found_customer = find_customer
+        raise RecordNotFound.new "No Customer with name: '#{@customer[:name]}' found in QuickBooks Online" unless found_customer
         build found_customer
         quickbooks.update found_customer
       rescue RecordNotFound => e
-        check_param(e)
+        check_param
       end
 
       def find_customer
@@ -50,13 +51,13 @@ module QBIntegration
       def find_by_id(id)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("Id", "=", id)
-        customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
-        raise RecordNotFound.new "No Customer id: '#{id}' defined in service" unless customer
-        customer
+        found_customer = @quickbooks.query("select * from Customer where #{clause}").entries.first
+        raise RecordNotFound.new "No Customer id: '#{id}' defined in service" unless found_customer
+        found_customer
       end
 
       def find_by_name(name)
-        return [] unless name
+        return nil unless name
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
         @quickbooks.query("select * from Customer where #{clause}").entries.first
@@ -83,8 +84,8 @@ module QBIntegration
 
       # only used by Invoice/Order (not customer sync)
       def find_or_create
-        name = use_web_orders? ? quickbooks_generic_customer_name : nil
-        unless customer = fetch_by_display_name(name)
+        determine_customer_name
+        unless customer = find_customer
           if create_new_customers? || use_web_orders?
             customer = create
           else 
@@ -93,14 +94,6 @@ module QBIntegration
         end
 
         customer
-      end
-
-      def fetch_by_display_name(name = nil)
-        util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("DisplayName", "=", name || display_name)
-
-        query = "SELECT * FROM Customer WHERE #{clause}"
-        quickbooks.query(query).entries.first
       end
 
       # If someone changes the display name via Quickbooks ui we
@@ -140,65 +133,60 @@ module QBIntegration
 
       private
 
+      def determine_customer_name
+        @customer[:name] = quickbooks_generic_customer_name if use_web_orders?
+        @customer[:name] = display_name if @customer[:name].nil? || @customer[:name] == ''
+      end
+
       def build(new_customer)
         new_customer.display_name = @customer[:name]
         new_customer.email_address = @customer[:email]
-
-        new_customer.billing_address = Address.build @customer[:billing_addresses]
+        new_customer.title = @customer[:title]
+        new_customer.given_name = @customer['billing_address']['firstname'] unless @customer['billing_address'].nil?
+        new_customer.family_name = @customer['billing_address']['lastname'] unless @customer['billing_address'].nil?
+        new_customer.company_name = @customer['billing_address']['company'] unless @customer['billing_address'].nil?
+        new_customer.primary_phone = Phone.build(@customer['billing_address']['phone'].to_s) unless @customer['billing_address'].nil?
+        new_customer.billing_address = Address.build @customer[:billing_address]
         new_customer.shipping_address = Address.build @customer[:shipping_address]
       end
 
-      def check_param(e)
+      def check_param
         if quickbooks_create_or_update?
           new_customer = create_model
           build new_customer
           quickbooks.create new_customer
         else
-          raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
+          raise RecordNotFound.new "No Customer with name: '#{@customer[:name]}' found in QuickBooks Online"
         end
       end
 
-      # def check_duplicate_name(e)
-      #   if e.message.match(/Duplicate/)
-      #     update
-      #   else
-      #     raise e
-      #   end
-      # end
-
-        def use_web_orders?
-          if order['quickbooks_web_orders_users']
-            order['quickbooks_web_orders_users'].to_s == "1"
-          elsif config['quickbooks_web_orders_users']
-            config["quickbooks_web_orders_users"].to_s == "1"
-          else
-            false
-          end
+      def use_web_orders?
+        if order['quickbooks_web_orders_users']
+          order['quickbooks_web_orders_users'].to_s == "1"
+        elsif config['quickbooks_web_orders_users']
+          config["quickbooks_web_orders_users"].to_s == "1"
+        else
+          false
         end
+      end
 
-        # Default this to true for backwards compatibility with QBO integration users
-        def create_new_customers?
-          check_customers = find_value("quickbooks_create_new_customers", order, config)
-          check_customers == "empty" ? true : check_customers == "1"
-        end
+      # Default this to true for backwards compatibility with QBO integration users
+      def create_new_customers?
+        check_customers = find_value("quickbooks_create_new_customers", order, config)
+        check_customers == "empty" ? true : check_customers == "1"
+      end
 
-        def find_value(key_name, payload_object, parameters)
-          payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
-        end
+      def find_value(key_name, payload_object, parameters)
+        payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
+      end
 
-        def quickbooks_generic_customer_name
-          order['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
-        end
+      def quickbooks_generic_customer_name
+        order['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
+      end
 
-        def quickbooks_create_or_update?
-          if customer['quickbooks_create_or_update']
-            customer['quickbooks_create_or_update'].to_s == "1"
-          elsif config['quickbooks_create_or_update']
-            config["quickbooks_create_or_update"].to_s == "1"
-          else
-            false
-          end
-        end
+      def quickbooks_create_or_update?
+        @customer['quickbooks_create_or_update'].to_s == "1" || config["quickbooks_create_or_update"].to_s == "1"
+      end
 
     end
   end

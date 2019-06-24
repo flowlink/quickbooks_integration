@@ -28,10 +28,10 @@ module QBIntegration
     end
 
     def update
-      vendor = vendor_service.update
+      vendor, action = vendor_service.update
       updated_flowlink_vendor = payload[:vendor]
       updated_flowlink_vendor[:qbo_id] = vendor.id
-      [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor]
+      [200 , "Vendor with id #{vendor.id} #{action}", updated_flowlink_vendor]
     end
 
     private

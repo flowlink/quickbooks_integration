@@ -2,7 +2,7 @@ module QBIntegration
   module Service
     class JournalLine < Base
       attr_reader :line_items, :lines, :config, :journal_entry
-      attr_reader :account_service, :customer_service, :class_service
+      attr_reader :account_service, :class_service
 
       def initialize(config, payload)
         @config = config
@@ -10,7 +10,6 @@ module QBIntegration
         @journal_entry = payload[:journal_entry] || {}
         @line_items = journal_entry[:line_items] || []
 
-        @customer_service = Customer.new config, payload
         @account_service = Account.new config
         @class_service = Class.new config
 
@@ -48,7 +47,8 @@ module QBIntegration
                 raise RecordNotFound.new "002 - Error: No customer on this line item -> QuickBooks requires Accounts Receivable to have a customer"
               end
               # Then check if customer actually exists in QB already
-              unless customer = customer_service.fetch_by_display_name(line_item['customer'])
+              customer_service = Customer.new(config, {customer: { name: line_item['customer']}})
+              unless customer = customer_service.find_customer
                 raise RecordNotFound.new "003 - QuickBooks Customer #{line_item[:customer]} not found"
               end
               entity = Quickbooks::Model::Entity.new(type: 'Customer')
