@@ -29,8 +29,6 @@ module QBIntegration
 
     def update
       vendor, action = vendor_service.update
-      puts vendor
-      puts action
       updated_flowlink_vendor = payload[:vendor]
       updated_flowlink_vendor[:qbo_id] = vendor.id
       [200 , "Vendor with id #{vendor.id} #{action}", updated_flowlink_vendor]

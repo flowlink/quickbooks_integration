@@ -36,8 +36,6 @@ module QBIntegration
       def create
         invoice = create_model
         build invoice
-
-        puts invoice.inspect
         quickbooks.create invoice
       end
 
