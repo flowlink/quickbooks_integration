@@ -96,6 +96,14 @@ module QBIntegration
           params[:type] = Quickbooks::Model::Item::NON_INVENTORY_TYPE
         end
 
+        if line_item[:quickbooks_income_account]
+          params[:income_account_id] = account_service.find_by_name(line_item[:quickbooks_income_account]).id
+        end
+
+        if line_item[:quickbooks_expense_account]
+          params[:expense_account_id] = account_service.find_by_name(line_item[:quickbooks_expense_account]).id
+        end
+
         create(params)
       end
 
