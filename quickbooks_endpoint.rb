@@ -226,6 +226,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/get_payments' do
+    qbo_payment = QBIntegration::Payment.new(@payload, @config)
+    summary, page, since, code = qbo_payment.get()
+
+    qbo_payment.new_or_updated_payments.each do |payment|
+      add_object :payment, qbo_payment.build_payment(payment)
+    end
+    add_parameter 'quickbooks_page_num', page
+    add_parameter 'quickbooks_since', since
+
+    result code, summary
+  end
+
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"
