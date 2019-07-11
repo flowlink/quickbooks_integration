@@ -1,6 +1,6 @@
 module QBIntegration
   class Payment < Base
-    attr_accessor :payment
+    attr_accessor :payment, :new_page_number, :new_or_updated_payments
 
     def initialize(message = {}, config)
       super
@@ -21,6 +21,17 @@ module QBIntegration
       [200, text]
     end
 
+    def get
+      @new_or_updated_payments, @new_page_number = payment_service.find_by_updated_at(page_number)
+      summary = "Retrieved #{@new_or_updated_payments.count} payments from QuickBooks Online"
+
+       [summary, new_page_number, since, code]
+    end
+
+     def build_payment(raw_payment)
+      Processor::Payment.new(raw_payment, config).as_flowlink_hash
+    end
+
     private
 
     def find_payment
@@ -32,6 +43,19 @@ module QBIntegration
       # Only invoice currently
       payment[:invoice_id] || payment[:invoice_number] || payment[:reference_number]
     end
+
+    def page_number
+      config.fetch("quickbooks_page_num").to_i || 1
+    end
+
+     def since
+      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    end
+
+     def code
+      new_page_number == 1 ? 200 : 206
+    end
+    
   end
 end
 
