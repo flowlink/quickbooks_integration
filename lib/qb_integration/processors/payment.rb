@@ -12,6 +12,7 @@ module QBIntegration
       def as_flowlink_hash
         {
           id: payment.id,
+          qbo_id: payment.id,
           sync_token: payment.sync_token,
           txn_date: payment.txn_date,
           private_note: payment.private_note,
