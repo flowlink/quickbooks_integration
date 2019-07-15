@@ -3,13 +3,13 @@ module QBIntegration
     class PaymentLineItem
       include Helper
       attr_reader :line
-
-       def initialize(line, linked_txn)
+      
+      def initialize(line, linked_txn)
         @line = line
         @linked_txn = linked_txn
       end
-
-       def as_flowlink_hash
+      
+      def as_flowlink_hash
         {
           id: line.id,
           line_num: line.line_num,
@@ -20,10 +20,10 @@ module QBIntegration
           line_extras: build_line_extras(line.line_extras)
         }.compact
       end
-
-       private
-
-       def build_line_extras(extras)
+      
+      private
+      
+      def build_line_extras(extras)
         extras.name_values.to_a.map do |name_value|
           {
             name: name_value.name,
@@ -32,6 +32,6 @@ module QBIntegration
         end
       end
 
-     end
+    end
   end
 end
