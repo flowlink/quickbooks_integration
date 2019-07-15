@@ -21,6 +21,11 @@ module QBIntegration
         quickbooks.query(query).entries.first
       end
 
+      def find_by_id(id)
+        query = "SELECT * FROM Invoice WHERE id = '#{id}'"
+        quickbooks.query(query).entries.first
+      end
+
       def find_by_updated_at(page_num)
         raise MissingTimestampParam unless config["quickbooks_since"].present?
       
