@@ -172,6 +172,16 @@ module QBIntegration
         lines
       end
 
+      def build_item_based_lines(bill, po)
+        item_detail = po.line_items.first.item_based_expense_line_detail
+        unit_price = item_detail["unit_price"]
+        line = Quickbooks::Model::BillLineItem.new
+        line.item_based_expense_item!
+        line.amount = bill["quantity"].to_i * unit_price
+        line.item_based_expense_line_detail = item_detail
+        [ line ]
+      end
+
       private
 
       def build_item_based_expense(line_item, account, purchase_order)

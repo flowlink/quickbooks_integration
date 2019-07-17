@@ -239,6 +239,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/add_bill_to_purchase_order' do
+    code, summary, bill = QBIntegration::Bill.new(@payload, @config).create
+    result code, summary
+  end
+
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"
