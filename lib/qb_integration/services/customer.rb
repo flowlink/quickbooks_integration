@@ -105,7 +105,9 @@ module QBIntegration
           name = "#{order['billing_address']['firstname']} #{order['billing_address']['lastname']}".strip
         end
         unless name && name != ''
-          name = order['customer']['name']
+          if order['customer']
+            name = order['customer']['name']
+          end
         end
 
         name
