@@ -11,16 +11,9 @@ module QBIntegration
       def find_by_id(id)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("id", "=", id)
-        found_vendor = @quickbooks.query("select * from Vendor where #{clause}").entries.first
-        raise RecordNotFound.new "No Vendor with id:'#{id}' found in QuickBooks Online" unless found_vendor
-        found_vendor
-      end
-
-      def find_by_name(name)
-        return nil unless name
-        util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("DisplayName", "=", name)
-        @quickbooks.query("select * from Vendor where #{clause}").entries.first
+        vendor = @quickbooks.query("select * from Vendor where #{clause}").entries.first
+        raise RecordNotFound.new "No Vendor '#{id}' defined in service" unless vendor
+        vendor
       end
 
       def all(date, page, per_page)
@@ -35,41 +28,56 @@ module QBIntegration
         }
       end
 
-      def find_vendor
-        if vendor[:qbo_id]
-          find_by_id(vendor[:qbo_id])
-        else
-          find_by_name(vendor[:name])
-        end
-      end
-
       def create
-        if found_vendor = find_vendor
-          raise AlreadyPersistedVendorException.new "Vendor with id '#{vendor[:qbo_id]}' already exists" if vendor[:qbo_id]
-          raise AlreadyPersistedVendorException.new "Vendor with name '#{vendor[:name]}' already exists"
+        if vendor[:qbo_id]
+          updated_vendor = find_by_id vendor[:qbo_id]
+          build updated_vendor
+          @quickbooks.update updated_vendor
         else
           new_vendor = create_model
           build new_vendor
-          @quickbooks.create(new_vendor)
+          @quickbooks.create new_vendor
         end
+      rescue Quickbooks::IntuitRequestException => e
+        check_duplicate_name(e)
       end
 
       def update
-        found_vendor = find_vendor
-        raise RecordNotFound.new "No Vendor with name: '#{vendor[:name]}' found in QuickBooks Online" unless found_vendor
-        build(found_vendor)
-        [@quickbooks.update(found_vendor), 'updated']
-      rescue RecordNotFound => e
-        check_param
+        if vendor[:qbo_id]
+          updated_vendor = find_by_id vendor[:qbo_id]
+        else
+          updated_vendor = find_by_name vendor[:name]
+        end
+        build updated_vendor
+        @quickbooks.update updated_vendor
       end
-  
+
+      def find_by_id(id)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("Id", "=", id.to_s)
+        @quickbooks.query("select * from Vendor where #{clause}").entries.first
+      end
+
+      def find_by_name(name)
+        util = Quickbooks::Util::QueryBuilder.new
+        clause = util.clause("DisplayName", "=", name)
+        @quickbooks.query("select * from Vendor where #{clause}").entries.first
+      end
 
       private
+
+      def check_duplicate_name(e)
+        if e.message.match(/Duplicate/)
+          update
+        else
+          raise e
+        end
+      end
 
       def build(new_vendor)
         new_vendor.title = vendor["sysid"]
         new_vendor.display_name = vendor["name"]
-        new_vendor.company_name = vendor["company"]
+        new_vendor.company_name = vendor["name"]
         new_vendor.primary_phone = Phone.build(vendor["phone"])
         new_vendor.primary_email_address = Email.build(vendor["email"])
         new_vendor.billing_address = Address.build({
@@ -83,18 +91,6 @@ module QBIntegration
         })
         new_vendor
       end
-
-      def create_vendor?
-        vendor['quickbooks_create_new_vendors'].to_s == '1' || config['quickbooks_create_new_vendors'].to_s == '1'
-      end
-
-      def check_param
-        raise RecordNotFound.new "No Vendor with name: '#{vendor[:name]}' found in QuickBooks Online" unless create_vendor?
-        new_vendor = create_model
-        build(new_vendor)
-        [@quickbooks.create(new_vendor), 'created']
-      end
-
     end
   end
 end

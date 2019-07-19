@@ -46,16 +46,6 @@ module QBIntegration
         lines
       end
 
-      def build_payment_lines(flowlink_payment, parent)
-        line = create_model
-        # Right now we only have single payments at once. We'll need to update this to handle multiple payments
-        line.amount = flowlink_payment[:amount]
-        line.linked_transactions = LinkedTransaction.new([parent]).build
-        lines.push line
-
-        lines
-      end
-
       def build_from_line_items(account = nil)
         line_items.each do |line_item|
           line = create_model
@@ -65,6 +55,8 @@ module QBIntegration
             sku = line_item[:sku] if sku.to_s.empty?
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
+
+          puts "Item type is #{item_found.type}"
 
           if item_found.type == "Group"
             # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
