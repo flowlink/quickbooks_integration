@@ -24,6 +24,23 @@ describe 'App' do
     }
   }
 
+  let(:new_vendor) {
+    {
+      "id": 189237,
+      "city": "Minneapolis",
+      "name": "Newest Supplier",
+      "type": "SUPPLIER",
+      "email": "supplier2@fakemail.com",
+      "phone": "+1 9876543210",
+      "locale": "Minnesota",
+      "country": "United States",
+      "street1": "abc 123 Ave",
+      "post_code": "55417",
+      "systum_id": 2519,
+      "created_at": 1563553197.291247
+    }
+  }
+
   include Rack::Test::Methods
 
   def app
@@ -122,6 +139,21 @@ describe 'App' do
 
 
   describe "update_vendor", vcr: true do
+    it "with quickbooks_create_new_vendors config" do
+      post '/update_vendor', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_vendor_name": "",
+          "quickbooks_create_new_vendors": "1"
+        },
+        "vendor": new_vendor
+      }.to_json, headers
+      expect(last_response.status).to eq 200
+    end
+
     it "returns 200 and with a qbo_id" do
       merged_vendor = vendor.merge({
         qbo_id: 149,
