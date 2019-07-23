@@ -48,8 +48,13 @@ module QBIntegration
         else
           updated_vendor = find_by_name vendor[:name]
         end
-        build updated_vendor
-        @quickbooks.update updated_vendor
+
+        if updated_vendor.nil? && config[:quickbooks_create_new_vendors] == "1"
+          create
+        else
+          build updated_vendor
+          @quickbooks.update updated_vendor
+        end
       end
 
       def find_by_id(id)
