@@ -10,9 +10,9 @@ module QBIntegration
         @journal_entry = payload[:journal_entry] || {}
         @line_items = journal_entry[:line_items] || []
 
-        @customer_service = Customer.new config, payload
-        @account_service = Account.new config
-        @class_service = Class.new config
+        @customer_service = Customer.new(config, payload)
+        @account_service = Account.new(config)
+        @class_service = Class.new(config)
 
         @lines = []
       end

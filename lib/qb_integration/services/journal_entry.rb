@@ -10,7 +10,7 @@ module QBIntegration
         super("JournalEntry", config)
 
         @journal_entry = payload[:journal_entry]
-        @journal_line_service = JournalLine.new config, payload
+        @journal_line_service = JournalLine.new(config, payload)
       end
 
       def find_by_id
@@ -25,17 +25,17 @@ module QBIntegration
 
       def create
         journal = create_model
-        build journal
-        quickbooks.create journal
+        build(journal)
+        quickbooks.create(journal)
       end
 
       def update(journal)
-        build journal
-        quickbooks.update journal
+        build(journal)
+        quickbooks.update(journal)
       end
 
       def delete(journal)
-        quickbooks.delete journal
+        quickbooks.delete(journal)
       end
 
       private

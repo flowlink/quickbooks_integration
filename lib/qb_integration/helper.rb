@@ -38,11 +38,11 @@ module QBIntegration
     end
 
     def self.payment_method_names service
-      fetch_names_hash service
+      fetch_names_hash(service)
     end
 
     def self.customer_names service
-      fetch_names_hash service
+      fetch_names_hash(service)
     end
 
     def self.is_adjustment_tax?(adjustment_name)
@@ -72,7 +72,7 @@ module QBIntegration
     end
 
     private
-    def self.fetch_names_hash service
+    def self.fetch_names_hash(service)
       data = {}
       page = 1
       per_page = 20

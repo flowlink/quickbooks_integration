@@ -13,8 +13,8 @@ module QBIntegration
       end
 
       def build_lines(account = nil)
-        build_from_line_items account
-        build_from_adjustments account
+        build_from_line_items(account)
+        build_from_adjustments(account)
 
         lines
       end
