@@ -8,7 +8,7 @@ module QBIntegration
         @bill = payload[:bill]
         @purchase_order_service = PurchaseOrder.new(config, payload)
         @purchase_order = purchase_order_service.find_po(payload[:bill][:purchase_order])
-        @line_service = Line.new config, payload
+        @line_service = Line.new(config, payload)
         super("Bill", config)
       end
 
