@@ -54,7 +54,8 @@ module QBIntegration
         {
           id: "qbs-#{inventory.name}",
           product_id: inventory.sku,
-          quantity: inventory.quantity_on_hand.to_i
+          quantity: inventory.quantity_on_hand.to_i,
+          updated_at: last_modified_date
         }
       end
     end
