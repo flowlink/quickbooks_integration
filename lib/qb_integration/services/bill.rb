@@ -6,7 +6,7 @@ module QBIntegration
       def initialize(config, payload)
         @payload = payload
         @bill = payload[:bill]
-        @purchase_order_service = PurchaseOrder.new config, payload
+        @purchase_order_service = PurchaseOrder.new(config, payload)
         @purchase_order = purchase_order_service.find_po(payload[:bill][:purchase_order])
         @line_service = Line.new config, payload
         super("Bill", config)
@@ -15,8 +15,8 @@ module QBIntegration
       def create
 
         new_bill = create_model
-        build new_bill
-        created_bill = quickbooks.create new_bill
+        build(new_bill)
+        created_bill = quickbooks.create(new_bill)
         purchase_order_service.add_bill_to_po(purchase_order, created_bill)
         created_bill
 
@@ -30,6 +30,7 @@ module QBIntegration
         new_bill.line_items = line_items
         new_bill.doc_number = bill["id"]
 
+        # Linked Txns are read only in v3 but will be added in v4
         linked = Quickbooks::Model::LinkedTransaction.new
         linked.txn_id = purchase_order.id
         linked.txn_type = "PurchaseOrder"
