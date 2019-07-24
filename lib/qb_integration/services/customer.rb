@@ -145,7 +145,7 @@ module QBIntegration
         new_customer.display_name = @customer[:name]
         new_customer.email_address = @customer[:email]
 
-        new_customer.billing_address = Address.build @customer[:billing_addresses]
+        new_customer.billing_address = Address.build @customer[:billing_address]
         new_customer.shipping_address = Address.build @customer[:shipping_address]
       end
 
