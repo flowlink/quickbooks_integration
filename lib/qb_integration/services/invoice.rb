@@ -41,6 +41,8 @@ module QBIntegration
       def create
         invoice = create_model
         build invoice
+
+        puts invoice.inspect
         quickbooks.create invoice
       end
 
@@ -60,7 +62,7 @@ module QBIntegration
 
       private
         def invoice_number
-          flowlink_invoice[:id] || flowlink_invoice[:number] 
+          flowlink_invoice[:number] || flowlink_invoice[:id]
         end
 
         def build invoice

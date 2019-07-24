@@ -33,6 +33,7 @@ module QBIntegration
         else
           payment_method_name_mapping = config.fetch("quickbooks_payment_method_name")
         end
+        puts payment_method_name_mapping
         lookup_value!(payment_method_name_mapping.first, augury_name)
       end
 
