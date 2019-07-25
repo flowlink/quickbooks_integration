@@ -23,12 +23,12 @@ module QBIntegration
 
         @lines = []
         @item_service = Item.new(config)
-        @account_service = Account.new config
+        @account_service = Account.new(config)
       end
 
       def build_lines(account = nil)
-        build_from_line_items account
-        build_from_adjustments account
+        build_from_line_items(account)
+        build_from_adjustments(account)
 
         lines
       end
@@ -41,8 +41,18 @@ module QBIntegration
           else
             built_line = build_account_based_expense(line_item, account, purchase_order)
           end
-          lines.push built_line
+          lines.push(built_line)
         end
+        lines
+      end
+
+      def build_payment_lines(flowlink_payment, parent)
+        line = create_model
+        # Right now we only have single payments at once. We'll need to update this to handle multiple payments
+        line.amount = flowlink_payment[:amount]
+        line.linked_transactions = LinkedTransaction.new([parent]).build
+        lines.push line
+
         lines
       end
 
@@ -55,8 +65,6 @@ module QBIntegration
             sku = line_item[:sku] if sku.to_s.empty?
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
-
-          puts "Item type is #{item_found.type}"
 
           if item_found.type == "Group"
             # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
@@ -99,7 +107,7 @@ module QBIntegration
             end
           end
 
-          lines.push line
+          lines.push(line)
         end
       end
 
@@ -107,8 +115,7 @@ module QBIntegration
         adjustments.each do |adjustment|
 
           # Get sku of adjustment, and move on if empty
-          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config, order
-          puts 'Sku is: ' + sku.to_s
+          sku = QBIntegration::Helper.adjustment_product_from_qb(adjustment[:name], @config, order)
           if sku.to_s.empty?
             next
           end
@@ -135,7 +142,7 @@ module QBIntegration
             sales_item.tax_code_id = adjustment["tax_code_id"] if adjustment["tax_code_id"]
           end
 
-          lines.push line
+          lines.push(line)
         end
       end
 
@@ -158,7 +165,7 @@ module QBIntegration
             sales_item.unit_price = unit[:subtotal].to_f / unit[:quantity]
           end
 
-          lines.push line
+          lines.push(line)
         end
 
         lines

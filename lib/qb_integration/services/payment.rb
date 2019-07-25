@@ -1,11 +1,52 @@
 module QBIntegration
   module Service
     class Payment < Base
-      attr_accessor :vendor
+      attr_accessor :vendor, :flowlink_payment
 
       def initialize(config, payload)
-        @vendor = payload[:vendor]
         super("Payment", config)
+        @flowlink_payment = payload[:payment]
+        @vendor = payload[:vendor]
+      end
+
+      def create_payment
+        transaction_cannot_be_paid
+        payment = create_model
+        build(payment)
+        add_linked_txn(payment)
+
+        created_payment = quickbooks.create(payment)
+        [created_payment, qbo_transaction.doc_number, get_transaction_name]
+      end
+
+      def create_unapplied_payment
+        payment = create_model
+        build(payment)
+        quickbooks.create(payment)
+      end
+
+      def find_payment
+        find_by_reference_number(flowlink_payment[:id])
+      end
+
+      def create_payment
+        transaction_cannot_be_paid
+        payment = create_model
+        build(payment)
+        add_linked_txn(payment)
+
+        created_payment = quickbooks.create(payment)
+        [created_payment, qbo_transaction.doc_number, get_transaction_name]
+      end
+
+      def create_unapplied_payment
+        payment = create_model
+        build(payment)
+        quickbooks.create(payment)
+      end
+
+      def find_payment
+        find_by_reference_number(flowlink_payment[:id])
       end
 
       def find_by_id(id)
@@ -14,23 +55,6 @@ module QBIntegration
         vendor = @quickbooks.query("select * from Payment where #{clause}").entries.first
         raise RecordNotFound.new "No Payment '#{id}' defined in service" unless vendor
         vendor
-      end
-
-      def find_by_updated_at(page_num)
-        raise MissingTimestampParam unless config["quickbooks_poll_stock_timestamp"].present?
-
-        filter = "Where Metadata.LastUpdatedTime > '#{config.fetch("quickbooks_poll_stock_timestamp")}'"
-        order = "Order By Metadata.LastUpdatedTime"
-        query = "select * from Payment #{filter} #{order}"
-        
-        if page_num
-          response = quickbooks.query(query, :page => page_num, :per_page => PER_PAGE_AMOUNT)
-          new_page = response.count == PER_PAGE_AMOUNT ? page_num.to_i + 1 : 1
-          [response.entries, new_page]
-        else
-          response = quickbooks.query(query)
-          response.entries
-        end        
       end
 
       private

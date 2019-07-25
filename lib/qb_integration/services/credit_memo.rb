@@ -24,13 +24,13 @@ module QBIntegration
         credit_memo.customer_ref = sales_receipt.customer_ref
         credit_memo.deposit_to_account_ref = sales_receipt.deposit_to_account_ref
 
-        quickbooks.create credit_memo
+        quickbooks.create(credit_memo)
       end
 
       def create_from_return(return_authorization, sales_receipt)
         credit_memo = create_model
-        build_from_return credit_memo, return_authorization, sales_receipt 
-        quickbooks.create credit_memo
+        build_from_return(credit_memo, return_authorization, sales_receipt)
+        quickbooks.create(credit_memo)
       end
 
       def find_by_number(number)
@@ -39,8 +39,8 @@ module QBIntegration
       end
 
       def update(credit_memo, return_authorization, sales_receipt)
-        build_from_return credit_memo, return_authorization, sales_receipt 
-        quickbooks.update credit_memo
+        build_from_return(credit_memo, return_authorization, sales_receipt)
+        quickbooks.update(credit_memo)
       end
 
       private

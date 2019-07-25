@@ -6,9 +6,9 @@ module QBIntegration
       def initialize(config, payload)
         @payload = payload
         @purchase_order = payload[:purchase_order]
-        @line_service = Line.new config, payload
-        @account_service = Account.new config
-        @vendor_service = Vendor.new config, payload
+        @line_service = Line.new(config, payload)
+        @account_service = Account.new(config)
+        @vendor_service = Vendor.new(config, payload)
         super("PurchaseOrder", config)
       end
 
@@ -17,26 +17,26 @@ module QBIntegration
           update
         else
           new_purchase_order = create_model
-          build new_purchase_order
-          quickbooks.create new_purchase_order
+          build(new_purchase_order)
+          quickbooks.create(new_purchase_order)
         end
       end
 
       def update
         if purchase_order[:qbo_id]
-          found = find_by_id purchase_order[:qbo_id]
+          found = find_by_id(purchase_order[:qbo_id])
         else
-          found = find_by_doc_number purchase_order[:id]
+          found = find_by_doc_number(purchase_order[:id])
         end
 
         if found
-          build found
-          quickbooks.update found
+          build(found)
+          quickbooks.update(found)
         else
           raise RecordNotFound.new "Quickbooks record not found for po: #{purchase_order[:id]}" unless config.fetch("quickbooks_create_or_update", "0") == "1"
           new_purchase_order = create_model
-          build new_purchase_order
-          quickbooks.create new_purchase_order
+          build(new_purchase_order)
+          quickbooks.create(new_purchase_order)
         end
       end
 
@@ -73,25 +73,25 @@ module QBIntegration
 
       def build(new_purchase_order)
         new_purchase_order.doc_number = purchase_order["id"]
-        new_purchase_order.vendor_address = Address.build purchase_order["supplier_address"]
-        new_purchase_order.ship_address = Address.build purchase_order["shipping_address"]
+        new_purchase_order.vendor_address = Address.build(purchase_order["supplier_address"])
+        new_purchase_order.ship_address = Address.build(purchase_order["shipping_address"])
 
         if (purchase_order["quickbooks_vendor_id"])
           vendor_id = purchase_order["quickbooks_vendor_id"] || config.fetch("quickbooks_vendor_id")
-          vendor = vendor_service.find_by_id vendor_id.to_i
+          vendor = vendor_service.find_by_id(vendor_id.to_i)
           new_purchase_order.vendor_id = vendor.id
         elsif purchase_order.dig("vendor", "external_id")
           vendor_id = purchase_order.dig("vendor", "external_id").to_i
-          vendor = vendor_service.find_by_id vendor_id
+          vendor = vendor_service.find_by_id(vendor_id)
           new_purchase_order.vendor_id = vendor.id
         else
           vendor_name = purchase_order.dig("vendor", "name") || config.fetch("quickbooks_vendor_name")
-          vendor = vendor_service.find_by_name vendor_name
+          vendor = vendor_service.find_by_name(vendor_name)
           new_purchase_order.vendor_id = vendor.id
         end
 
         account_name = purchase_order["quickbooks_account_name"] || config.fetch("quickbooks_account_name")
-        account = account_service.find_by_name account_name
+        account = account_service.find_by_name(account_name)
         new_purchase_order.ap_account_id = account.id
 
         line_items = line_service.build_purchase_order_lines(account, purchase_order)

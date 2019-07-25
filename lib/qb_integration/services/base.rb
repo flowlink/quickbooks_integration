@@ -15,11 +15,11 @@ module QBIntegration
 
       def create(attributes = {})
         model = fill(create_model, attributes)
-        quickbooks.create model
+        quickbooks.create(model)
       end
 
       def update(model, attributes = {})
-        quickbooks.update fill(model, attributes)
+        quickbooks.update(fill(model, attributes))
       end
 
       def create_model

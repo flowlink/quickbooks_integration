@@ -30,13 +30,13 @@ module QBIntegration
 
       def create
         if vendor[:qbo_id]
-          updated_vendor = find_by_id vendor[:qbo_id]
-          build updated_vendor
-          @quickbooks.update updated_vendor
+          updated_vendor = find_by_id(vendor[:qbo_id])
+          build(updated_vendor)
+          @quickbooks.update(updated_vendor)
         else
           new_vendor = create_model
-          build new_vendor
-          @quickbooks.create new_vendor
+          build(new_vendor)
+          @quickbooks.create(new_vendor)
         end
       rescue Quickbooks::IntuitRequestException => e
         check_duplicate_name(e)
@@ -44,16 +44,16 @@ module QBIntegration
 
       def update
         if vendor[:qbo_id]
-          updated_vendor = find_by_id vendor[:qbo_id]
+          updated_vendor = find_by_id(vendor[:qbo_id])
         else
-          updated_vendor = find_by_name vendor[:name]
+          updated_vendor = find_by_name(vendor[:name])
         end
 
         if updated_vendor.nil? && config[:quickbooks_create_new_vendors] == "1"
           create
         else
-          build updated_vendor
-          @quickbooks.update updated_vendor
+          build(updated_vendor)
+          @quickbooks.update(updated_vendor)
         end
       end
 

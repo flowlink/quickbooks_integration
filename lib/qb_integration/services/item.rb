@@ -63,7 +63,7 @@ module QBIntegration
         create = find_value("quickbooks_create_new_product", payload_object, config)
         return unless create && create.to_s == "1"
 
-        account_service = Account.new config
+        account_service = Account.new(config)
         params = {
           name: name,
           sku: sku,
