@@ -69,6 +69,11 @@ module QBIntegration
     def invoice_line_service
       @invoice_line_service ||= Service::InvoiceLine.new(config, payload)
     end
+
+    def bill_service
+      @bill_service ||= Service::Bill.new(config, payload)
+    end
+
   end
 
   class RecordNotFound < StandardError; end
@@ -81,6 +86,7 @@ module QBIntegration
   class AlreadyPersistedJournalEntryException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
+  class TransactionMustBeOpen < StandardError; end
 
   class MissingTimestampParam < StandardError
     def message

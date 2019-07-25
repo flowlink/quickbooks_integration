@@ -40,6 +40,24 @@ module QBIntegration
         end
       end
 
+      def find_po(po)
+        if po[:qbo_id]
+          find_by_id(po[:qbo_id])
+        else
+          find_by_doc_number(po[:id])
+        end
+      end
+
+      def add_bill_to_po(po, bill)
+        # Linked Txns are read only in v3 but will be added in v4
+        linked = Quickbooks::Model::LinkedTransaction.new
+        linked.txn_id = bill.id
+        linked.txn_type = "Bill"
+        existing_txns = po.linked_transactions
+        po.linked_transactions = existing_txns.push(linked)
+        quickbooks.update(po)
+      end
+
       private
 
       def find_by_id(id)
