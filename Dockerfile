@@ -14,5 +14,7 @@ RUN bundle install
 WORKDIR /app
 ADD ./ /app
 
+EXPOSE 5000
+
 ENTRYPOINT [ "bundle", "exec" ]
 CMD [ "foreman", "start" ]

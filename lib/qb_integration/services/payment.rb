@@ -29,6 +29,26 @@ module QBIntegration
         find_by_reference_number(flowlink_payment[:id])
       end
 
+      def create_payment
+        transaction_cannot_be_paid
+        payment = create_model
+        build(payment)
+        add_linked_txn(payment)
+
+        created_payment = quickbooks.create(payment)
+        [created_payment, qbo_transaction.doc_number, get_transaction_name]
+      end
+
+      def create_unapplied_payment
+        payment = create_model
+        build(payment)
+        quickbooks.create(payment)
+      end
+
+      def find_payment
+        find_by_reference_number(flowlink_payment[:id])
+      end
+
       def find_by_id(id)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("id", "=", id)

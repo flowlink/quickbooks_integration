@@ -131,6 +131,7 @@ module QBIntegration
                                                                      order['billing_address']['lastname']
           new_customer.display_name = display_name
           new_customer.email_address = order[:email]
+          new_customer.primary_phone = Phone.build(order[:phone]) if order[:phone]
 
           new_customer.billing_address = Address.build(order["billing_address"])
           new_customer.shipping_address = Address.build(order["shipping_address"])
@@ -144,6 +145,7 @@ module QBIntegration
       def build(new_customer)
         new_customer.display_name = @customer[:name]
         new_customer.email_address = @customer[:email]
+        new_customer.primary_phone = Phone.build(@customer[:phone])
 
         new_customer.billing_address = Address.build(@customer[:billing_address])
         new_customer.shipping_address = Address.build(@customer[:shipping_address])
