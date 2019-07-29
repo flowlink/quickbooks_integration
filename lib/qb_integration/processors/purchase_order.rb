@@ -18,18 +18,6 @@ module QBIntegration
           quantity_received_in_qbo: payload["purchase_order"]["received_items"],
         }.compact
       end
-
-      private
-
-      def quantity_received_in_qbo
-        purchase_order.line_items.map do | line_item|
-          {
-            line_item_name: line_item.item_based_expense_line_detail["item_ref"]["name"],
-            quantity_received_so_far: payload["purchase_order"]["quantity_received"]
-          }
-        end
-      end
-
     end
   end
 end
