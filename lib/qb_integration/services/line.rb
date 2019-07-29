@@ -195,14 +195,16 @@ module QBIntegration
             line = Quickbooks::Model::BillLineItem.new
             line.item_based_expense_item!
 
-            # TODO: quantity_received needs to be tied to a line_item in received_items
+            received_item = po_payload["received_items"].select { |itm| itm["sku"] == qty_object[:sku] }.first
             item_detail = po_model.line_items.select do | line_item |
-              qty_object[:line_item_name] == line_item.item_based_expense_line_detail["item_ref"]["name"]
+              qty_object[:sku] == line_item.item_based_expense_line_detail["item_ref"]["name"]
             end.first.item_based_expense_line_detail
 
-            unit_price = item_detail["unit_price"]
-            line.amount =  (po_payload["quantity_received"].to_i - qty_object[:quantity_received_so_far].to_i) * unit_price
 
+            unit_price = item_detail["unit_price"]
+            quantity = received_item["quantity"].to_i - qty_object["quantity"].to_i
+
+            line.amount =  quantity * unit_price
             line.item_based_expense_line_detail = item_detail
             line
           end
