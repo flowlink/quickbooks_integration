@@ -14,8 +14,8 @@ module QBIntegration
           id: purchase_order.id,
           doc_number: purchase_order.doc_number,
           last_updated_time: purchase_order.meta_data["last_updated_time"],
-          quantity_received: payload["purchase_order"]["quantity_received"],
-          quantity_received_in_qbo: quantity_received_in_qbo
+          received_items: payload["purchase_order"]["received_items"],
+          quantity_received_in_qbo: payload["purchase_order"]["received_items"],
         }.compact
       end
 

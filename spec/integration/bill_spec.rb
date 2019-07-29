@@ -34,16 +34,26 @@ describe 'App' do
           product_id: "SWS03",
           discount_value: 0.0
         ],
-        quantity_received: 24
+        received_items: [
+          {
+            quantity: 24,
+            sku: "Battery Wall Mirror"
+          }
+        ]
       }
 
       expected_po = {
         id: "1013",
-        quantity_received: 24,
+        received_items: [
+          {
+            "quantity" => 24,
+            "sku" => "Battery Wall Mirror"
+          }
+        ],
         quantity_received_in_qbo: [
           {
-            "line_item_name" => "Battery Wall Mirror",
-            "quantity_received_so_far" => 24
+            "sku" => "Battery Wall Mirror",
+            "quantity" => 24
           }
         ]
       }
@@ -58,8 +68,9 @@ describe 'App' do
       }.to_json, headers
       data = JSON.parse(last_response.body)
       expect(last_response.status).to eq 200
-      expect(data["purchase_orders"][0]["quantity_received"]).to eq expected_po[:quantity_received]
+      expect(data["purchase_orders"][0]["received_items"]).to eq expected_po[:received_items]
       expect(data["purchase_orders"][0]["quantity_received_in_qbo"][0]).to eq expected_po[:quantity_received_in_qbo][0]
+      expect(data["bills"][0]["balance"]).to eq 192
     end
 
     it "returns bill of 16 when received_so_far is 22 and quantity_received is 24" do
