@@ -13,22 +13,20 @@ describe 'App' do
 
   let(:payload) {
     {
-      purchase_order: {
-        id: "1013",
-        line_items: [
-          name: "Battery Wall Mirror",
-          price: 35.0,
-          product: {
-            "name": "Battery Wall Mirror",
-            "sysid": 1185,
-          },
-          quantity: 1,
-          systum_id: 2044,
-          product_id: "SWS03",
-          discount_value: 0.0
-        ],
-        quantity_received: 24
-      }
+      id: "1013",
+      line_items: [
+        name: "Battery Wall Mirror",
+        price: 35.0,
+        product: {
+          "name": "Battery Wall Mirror",
+          "sysid": 1185,
+        },
+        quantity: 1,
+        systum_id: 2044,
+        product_id: "SWS03",
+        discount_value: 0.0
+      ],
+      quantity_received: 24
     }
   }
 
@@ -45,8 +43,8 @@ describe 'App' do
         quantity_received: 24,
         quantity_received_in_qbo: [
           {
-            line_item_name: "Beats Headphones - green",
-            quantity_received_so_far: 24
+            "line_item_name" => "Battery Wall Mirror",
+            "quantity_received_so_far" => 24
           }
         ]
       }
@@ -57,12 +55,12 @@ describe 'App' do
           "quickbooks_access_token": token,
           "quickbooks_access_secret": secret,
         },
-        "bill": payload
+        "purchase_order": payload
       }.to_json, headers
       data = JSON.parse(last_response.body)
-      pp data
       expect(last_response.status).to eq 200
       expect(data["purchase_orders"][0]["quantity_received"]).to eq expected_po[:quantity_received]
+      expect(data["purchase_orders"][0]["quantity_received_in_qbo"][0]).to eq expected_po[:quantity_received_in_qbo][0]
     end
 
   end

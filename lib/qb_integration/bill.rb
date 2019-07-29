@@ -1,11 +1,9 @@
-require "pp"
-
 module QBIntegration
   class Bill < Base
 
     def initialize(message = {}, config)
       super
-      @bill = payload[:bill]
+      @payload = payload
     end
 
     def create
@@ -14,6 +12,7 @@ module QBIntegration
       summary = "Created Bill: #{bill[:doc_number]} with Purchase Order: #{po[:doc_number]}"
 
       [ code, summary, bill, po ]
+
     end
   end
 end

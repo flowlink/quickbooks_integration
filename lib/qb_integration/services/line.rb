@@ -171,12 +171,17 @@ module QBIntegration
         lines
       end
 
-      def build_item_based_lines(bill, po)
-        item_detail = po.line_items.first.item_based_expense_line_detail
-        unit_price = item_detail["unit_price"]
+      def build_item_based_lines(po_model, po_payload)
         line = Quickbooks::Model::BillLineItem.new
         line.item_based_expense_item!
-        line.amount = bill["quantity"].to_i * unit_price
+
+        # TODO: Update this to match by the line_item_name in quantity_received_in_qbo
+        item_detail = po_model.line_items.first.item_based_expense_line_detail
+        unit_price = item_detail["unit_price"]
+
+        # TODO: Update to use quantity_received_in_qbo
+        line.amount = po_payload["quantity_received"].to_i * unit_price
+
         line.item_based_expense_line_detail = item_detail
         [ line ]
       end
