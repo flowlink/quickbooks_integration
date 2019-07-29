@@ -1,0 +1,321 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=SELECT%20*%20FROM%20PurchaseOrder%20WHERE%20DocNumber%20=%20%271013%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="pLt8XeQCn3Y2iaEjdl7uHplOS8OhDNwdCiAKawEY",
+        oauth_signature="xuiqcNEHLrO0dPwuhhrqhenELCM%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564402920", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 29 Jul 2019 12:22:00 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '907'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 27663836-667a-464b-b4ef-32ef1158d25c
+      Set-Cookie:
+      - JSESSIONID=44FA151BC4182771784806C59E303241.c50-psbxc50uw2apu130063; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=f6742881.58ed0f061ca08; path=/; expires=Tue, 28-Jul-20 12:22:00 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=155, db=62
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAJVV227jNhD9FUIFFi3QWDcHjrwMF750gQAb24ns7uOCliY2
+        sRQpkJRr/U2/pV/WoeTYzmKDok/iXDhzZuZwRD8dK0kOYKzQ6j6IB1FAQBW6
+        FGp3H2zWn2/uAmIdVyWXWsF90IINPjH6oFwj3DPYWisLBIMoex/snavHYWiL
+        PVR8IDqfQaGr8EUorgoID2lAnKgwThLF2U00ukmydXQ7TpJxFA2yYYQqPAWM
+        PjVg2nN8RGDcSlvhepgBqfgRrY10thOddlzOdKOcFxldNabYcwtLU4Ihpa64
+        wHtP0yVWU3NjEcELlxbQ9aFk8XA4oiEeaN6qYq2/g2IRDS8CfQTH59xxRmcG
+        uIM1FsFea4hH6zgdR9kYzx1+Gl550S/cuk1dolz+17UfXWl4lbixTlefBUjE
+        OQdsadcND5+Gb2S64HgXIfxFfqFhJ9B1WwPLncG5+iMNOwUCvY76forkpyly
+        LsGSZ6j/V5a5LhZNtQXD4ihOMfBZpuujwmKvW4QhTjpEZwxyE1nxQhT3JNog
+        HihJ7tBuyVxLyU3ANvncZzw74wSEgn7Q/ZS9jCm9+HrEcm1hRO3rYx+k+1h/
+        2LmPX4FU4ogprK6AlFBow504ANlpWRJeFKCcRfIRtxeWGCjwpewaREGskPiq
+        8LYx2gz++duHDLuYvpOXVHRSedayOEsGngEnEeE4LmTXvgcH1RS5XP5xrAFf
+        g4fcm32osxt936+3Xfo25c7h8yJfuZTksYMYsOEIZ3HyY9S3dmVEAeyOhheB
+        PrmWJUMa+i9d8+NMl+AvLJYLHNVFplOB09hK8MNpLFto96qh4Q+2Pu170MN+
+        en+CKrW5qkHr75ZsWzIFawU+5BS7d3bCvq4mReF7eblyUliy4q1PT36dhKvf
+        8CYWfu2Ohfl1MqkuYzkrTjgmZWk6RqVXlIpZfEsecdMgIwc97hhpK7BVK1yf
+        ZCKdRmZ6mXa7yrR5s52Lg/Db13eOzSbo8HMTxf3XLTk8Z8M0QtBXGtwyjqWj
+        wXB42z0qL9IvWu3YTZwkgzjNcMl5vVe9NqqvIt+L+lxPHMfZdUWL5hlkReZw
+        AKnrCvlOcvwbbPWRzHRVc9V+2+Tf4nO1/pOwOElJLsAYjhxre2PSG1PcGgon
+        sJX6dzKbEHI3yrKsd0kR2QXNannixxI5gcUuz3R5s91RfvOz8HR683di/wIM
+        uSqa5QYAAA==
+    http_version: 
+  recorded_at: Mon, 29 Jul 2019 12:22:01 GMT
+- request:
+    method: post
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/bill
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Bill xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <DocNumber>Bill-1013</DocNumber>
+        <Line>
+        <Amount>16.0</Amount>
+        <DetailType>ItemBasedExpenseLineDetail</DetailType>
+        <ItemBasedExpenseLineDetail>
+        <ItemRef name="Battery Wall Mirror">473</ItemRef>
+        <UnitPrice>8.0</UnitPrice>
+        <Qty>24.0</Qty>
+        <TaxCodeRef>NON</TaxCodeRef>
+        <BillableStatus>NotBillable</BillableStatus>
+        </ItemBasedExpenseLineDetail>
+        </Line>
+        <LinkedTxn>
+        <TxnId>1447</TxnId>
+        <TxnType>PurchaseOrder</TxnType>
+        </LinkedTxn>
+        <VendorRef name="Books by Bessie">30</VendorRef>
+        </Bill>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '587'
+      Authorization:
+      - OAuth oauth_body_hash="dnfPqablNMcaeMNwAC%2BYw7ZeA%2FQ%3D", oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg",
+        oauth_nonce="9zGYhVE06w2eM6ITWzORgS2Y7MEyxNAs0NqYZv59CU", oauth_signature="dZQIo7t0d4cw%2BigbaVQdr6ZtwHY%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564402921", oauth_token="<TOKEN>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 29 Jul 2019 12:22:01 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '529'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 8c207bdc-7ad8-4734-9bc9-4bf1248f73db
+      Set-Cookie:
+      - JSESSIONID=B23A953D93DE408CBD9BA77729E82E44.c50-psbxc50uw2apu130063; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=7485088.58ed0f0711136; path=/; expires=Tue, 28-Jul-20 12:22:01 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=117, db=44
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAIVTUW/aMBD+K1aetgdwArSl6HBFyCYhrZSWsD2b5FitJjaK
+        nYr8+54bIKxbtaf4u/vOd993DtwdyoK9YmWV0dMg6ocBQ52ZXOnf02CTfu+N
+        A2ad1LksjMZp0KAN7gQstKuVe0K7N9oio0u0nQbPzu0nnNvsGUvZV++cfmZK
+        vlNa6gz56zBgTpV0zyCMbnvhTW9wm4ZXk8FgEkb98VVIoUkYBgJiVRQsN6VU
+        NNZj/EBT7GVlqXInC4vEWOQiGl2PgNMB1o3OUvOCWoTAOwD36GQinRQwr1A6
+        TKm5+Efvti/wCxb8kNZt9jnh/H9lH6nAu8aJyZZ1ucVKeE29KIyGwLsgpAdN
+        xMvrgZ9iMK+rivbRPOGOaemN22hFXdjaUd6yxBSFrAKxWSc0fEem6ZXG1qTW
+        IY+ppYenI8xKU2snouu+F3FEkNDoqkibPYqFwzKWFvNvhz3Son1lmyYJHQ0+
+        57W5bvxYOodVw35J2u+9qipD049uyJIjT4BXuKpUhmIMvAPw6BoxoH37L6Ty
+        MDc5+oLlw5Ic6/D725HbAr1HtRVL404R4B9ybdvPRuetiT9R56a60GDMi2Xb
+        hsVoraK3OCT3ziSydTXLMu9lV3IMWLaSjW/Pvsz46itVkvBLOgkzThaz8ryV
+        M4akxr8eyikGsSz8H3aqOsFWsJf5xw8r3gCF/nbA+AMAAA==
+    http_version: 
+  recorded_at: Mon, 29 Jul 2019 12:22:02 GMT
+- request:
+    method: post
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/purchaseorder
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <PurchaseOrder xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Id>1447</Id>
+        <SyncToken>0</SyncToken>
+        <MetaData>
+        <CreateTime>2019-07-17T13:09:07-0700</CreateTime>
+        <LastUpdatedTime>2019-07-17T13:09:07-0700</LastUpdatedTime>
+        </MetaData>
+        <DocNumber>1013</DocNumber>
+        <TxnDate>2019-07-17</TxnDate>
+        <CustomField>
+        <DefinitionId>1</DefinitionId>
+        <Name>Crew #</Name>
+        <Type>StringType</Type>
+        </CustomField>
+        <CustomField>
+        <DefinitionId>2</DefinitionId>
+        <Name>Sales Rep</Name>
+        <Type>StringType</Type>
+        </CustomField>
+        <LinkedTxn>
+        <TxnId>1464</TxnId>
+        <TxnType>Bill</TxnType>
+        </LinkedTxn>
+        <Line>
+        <Id>1</Id>
+        <LineNum>1</LineNum>
+        <Description>&lt;p&gt;We mixed some decorative gold accents to this rectangular silver mirror.&#xA0;&lt;/p&gt;</Description>
+        <Amount>192.0</Amount>
+        <DetailType>ItemBasedExpenseLineDetail</DetailType>
+        <ItemBasedExpenseLineDetail>
+        <ItemRef name="Battery Wall Mirror">473</ItemRef>
+        <UnitPrice>8.0</UnitPrice>
+        <Qty>24.0</Qty>
+        <TaxCodeRef>NON</TaxCodeRef>
+        <BillableStatus>NotBillable</BillableStatus>
+        </ItemBasedExpenseLineDetail>
+        </Line>
+        <VendorRef name="Books by Bessie">30</VendorRef>
+        <APAccountRef name="Accounts Payable (A/P)">33</APAccountRef>
+        <TotalAmt>192.0</TotalAmt>
+        <VendorAddr>
+        <Id>31</Id>
+        <Line1>15 Main St.</Line1>
+        <City>Palo Alto</City>
+        <CountrySubDivisionCode>CA</CountrySubDivisionCode>
+        <PostalCode>94303</PostalCode>
+        <Lat>37.445013</Lat>
+        <Long>-122.1391443</Long>
+        </VendorAddr>
+        <ShipAddr>
+        <Id>1119</Id>
+        <Line1>NuRelm Development Sandbox Company_US_1</Line1>
+        <Line2>123 Sierra Way</Line2>
+        <Line3>San Pablo, CA  87999</Line3>
+        </ShipAddr>
+        <POStatus>Open</POStatus>
+        <CurrencyRef name="United States Dollar">USD</CurrencyRef>
+        </PurchaseOrder>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '1713'
+      Authorization:
+      - OAuth oauth_body_hash="xgcC0yExErJPr86rHmZTUV8DUFU%3D", oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg",
+        oauth_nonce="PLfMDssLIhruZV67nUReigufEEkLz7LLIuMZoaNr38", oauth_signature="EE%2BFv7fPvshcUZdwD82gFzqMF0w%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564402922", oauth_token="<TOKEN>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 29 Jul 2019 12:22:02 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '873'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - eda019f6-419b-41a6-badc-290c8b0033eb
+      Set-Cookie:
+      - JSESSIONID=EE1F742A697C2CBC1EB2D4E37FB520E0.c50-psbxc50uw2apu132038; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=3909a9b2.58ed0f07ba824; path=/; expires=Tue, 28-Jul-20 12:22:02 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=368, db=186
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAJVV227bOBD9FUILFLvAxro5cOQyLHzZAgEa243s7WNBSxOb
+        KEUKJOW1/ma/Zb9sh5JjO0WDok/iXDhzZuZwRD8cK0kOYKzQ6j6IB1FAQBW6
+        FGp3H2zWH2/uAmIdVyWXWsF90IINPjD6oFwj3BPYWisLBIMoex/snavHYWiL
+        PVR8IDqfQaGr8FkorgoID2lAnKgwThLF2U00ukmydXQ7TpJxlAxG6R2qxlEU
+        MLpqTLHnFpamBENKXXGB+D5Plwin5sZiiGcuLaDrQ8ni4XBEQzzQvFXFWn8D
+        xSIaXgT6CI7PueOMzgxwB2tEwV5AxKN1nI6jbIznDgANr7zoJ27dpi5RLn92
+        7XtXGl4lbqzT1UcBEnHOAXsiHHbdw6fhK5kuON5FCP+Q32jYCXTd1sByZ3Aw
+        /kjDToFAr6O+nSL5YYqcS7DkCepfyjLXxaKptmBYHMUpBj7LdH1UWOx1izDE
+        SYfojEFytU/wTBT3LNggHihJ7tBuyVxLyU3ANvncZzw74wSEgn7Q/ZS9jCm9
+        +HLEcm1hRO3rY++ke1+/27n3X4BU4ogprK6AlFBow504ANlpWRJeFKCcJU4T
+        txeWGCiQ6rsGURArJD4LvG2MNoP//vUhwy6m7+QlFZ1UulGOxVky8Aw4iQjH
+        cSG79j04qKbI5fKvYw34XDzk3uxDnd3o23697dK3KXcOTEu+cCnJYwcxYMMR
+        zuLkx6hv7cqIAtgdDS8C/exalgxp6L90zY8zXYK/sFgucFQXmU4FTmMrwQ+n
+        sWyh3YuGht/Z+rRvQQ/76f0NqtTmqgatv1mybckUrBX4kFPs3tkJ+7qaFIXv
+        5eXKSWHJirc+Pfl9Eq7+wJtY+LU7FqYdl5PqMpaz4oRjUpamY1R6RamYxbfk
+        ETcNMnLQ446RtgJbtcL9RybSaWSml+nM5zJt3mzn4iD8+vSdY7MJOvzYRFca
+        N6nsztkwjRD0lQa3jGPpaDAc3naPyov0k1Y7dhMnySBOM1xyXu9VL43qq8j3
+        oj7XE8dxdl3RonkCWZE5HEDqukK+kxzX+VYfyUxXNVft103+NT5X6z8Ji5OU
+        5AKM4cixtjcmvTHFraFwAlup/ySzCSF3oyzLepcUkV3QrJYnfiyRE1js8kyX
+        V9vd0+fV74T9D2G7B+eWBgAA
+    http_version: 
+  recorded_at: Mon, 29 Jul 2019 12:22:03 GMT
+recorded_with: VCR 4.0.0

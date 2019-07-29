@@ -172,18 +172,38 @@ module QBIntegration
       end
 
       def build_item_based_lines(po_model, po_payload)
-        line = Quickbooks::Model::BillLineItem.new
-        line.item_based_expense_item!
+        if po_payload[:quantity_received_in_qbo].nil?
 
-        # TODO: Update this to match by the line_item_name in quantity_received_in_qbo
-        item_detail = po_model.line_items.first.item_based_expense_line_detail
-        unit_price = item_detail["unit_price"]
+          line = Quickbooks::Model::BillLineItem.new
+          line.item_based_expense_item!
 
-        # TODO: Update to use quantity_received_in_qbo
-        line.amount = po_payload["quantity_received"].to_i * unit_price
+          # TODO: quantity_received needs to be tied to a line_item?
+          item_detail = po_model.line_items.first.item_based_expense_line_detail
+          unit_price = item_detail["unit_price"]
+          line.amount = po_payload["quantity_received"].to_i * unit_price
 
-        line.item_based_expense_line_detail = item_detail
-        [ line ]
+          line.item_based_expense_line_detail = item_detail
+          [ line ]
+
+        else
+
+          po_payload[:quantity_received_in_qbo].map do | qty_object|
+
+            line = Quickbooks::Model::BillLineItem.new
+            line.item_based_expense_item!
+
+            item_detail = po_model.line_items.select do | line_item |
+              qty_object[:line_item_name] == line_item.item_based_expense_line_detail["item_ref"]["name"]
+            end.first.item_based_expense_line_detail
+
+            unit_price = item_detail["unit_price"]
+            line.amount =  (po_payload["quantity_received"].to_i - qty_object[:quantity_received_so_far].to_i) * unit_price
+
+            line.item_based_expense_line_detail = item_detail
+            line
+          end
+
+        end
       end
 
       private
