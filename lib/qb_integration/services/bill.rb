@@ -18,7 +18,11 @@ module QBIntegration
         build(new_bill)
         created_bill = quickbooks.create(new_bill)
         purchase_order_service.add_bill_to_po(purchase_order, created_bill)
-        created_bill
+
+        flowlink_po = Processor::PurchaseOrder.new(purchase_order).as_flowlink_hash
+        flowlink_bill = Processor::Bill.new(created_bill).as_flowlink_hash
+
+        [flowlink_bill, flowlink_po]
 
       end
 
