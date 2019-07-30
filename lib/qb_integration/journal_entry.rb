@@ -21,7 +21,7 @@ module QBIntegration
 
     def update
       if journal = journal_entry_service.find_by_id
-        journal_entry_service.update journal
+        journal_entry_service.update(journal)
         add_notification('update', @journal_entry)
         [200, @notification]
       else
@@ -36,7 +36,7 @@ module QBIntegration
       unless journal = journal_entry_service.find_by_id
         raise RecordNotFound.new "001 - QuickBooks Journal Entry #{journal_entry_payload[:id]} not found"
       end
-      journal_entry_service.delete journal
+      journal_entry_service.delete(journal)
       add_notification('delete', @journal_entry)
       [200, @notification]
     end

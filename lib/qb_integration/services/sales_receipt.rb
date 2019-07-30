@@ -10,10 +10,10 @@ module QBIntegration
         @order = payload[:order] || payload[:return] || payload[:refund]
 
         if options[:dependencies]
-          @payment_method_service = PaymentMethod.new config, payload
-          @customer_service = Customer.new config, payload
-          @account_service = Account.new config
-          @line_service = Line.new config, payload
+          @payment_method_service = PaymentMethod.new(config, payload)
+          @customer_service = Customer.new(config, payload)
+          @account_service = Account.new(config)
+          @line_service = Line.new(config, payload)
         end
       end
 
@@ -36,18 +36,18 @@ module QBIntegration
 
       def create
         sales_receipt = create_model
-        build sales_receipt
-        quickbooks.create sales_receipt
+        build(sales_receipt)
+        quickbooks.create(sales_receipt)
       end
 
       def update(sales_receipt)
-        build sales_receipt
+        build(sales_receipt)
         if order[:shipments] && !order[:shipments].empty?
           sales_receipt.tracking_num = shipments_tracking_number.join(", ")
           sales_receipt.ship_method_ref = order[:shipments].last[:shipping_method]
           sales_receipt.ship_date = order[:shipments].last[:shipped_at]
         end
-        quickbooks.update sales_receipt
+        quickbooks.update(sales_receipt)
       end
 
       private
@@ -62,8 +62,8 @@ module QBIntegration
 
           sales_receipt.placed_on = order['placed_on']
 
-          sales_receipt.ship_address = Address.build order["shipping_address"]
-          sales_receipt.bill_address = Address.build order["billing_address"]
+          sales_receipt.ship_address = Address.build(order["shipping_address"])
+          sales_receipt.bill_address = Address.build(order["billing_address"])
 
           sales_receipt.payment_method_id = payment_method_service.matching_payment.id
           sales_receipt.customer_id = customer_service.find_or_create.id
@@ -74,10 +74,10 @@ module QBIntegration
           income_account = nil
           if order["quickbooks_account_name"].present?  || config["quickbooks_account_name"].present?
             income_account_name = order.fetch("quickbooks_account_name", config["quickbooks_account_name"])
-            income_account = account_service.find_by_name income_account_name
+            income_account = account_service.find_by_name(income_account_name)
           end
 
-          sales_receipt.line_items = line_service.build_lines income_account
+          sales_receipt.line_items = line_service.build_lines(income_account)
 
           # Default to Undeposit Funds account if no account is set
           #
@@ -89,7 +89,7 @@ module QBIntegration
           #
           if order["quickbooks_deposit_to_account_name"].present?  || config["quickbooks_deposit_to_account_name"].present?
             deposit_account_name = order.fetch("quickbooks_deposit_to_account_name", config["quickbooks_deposit_to_account_name"])
-            deposit_account = account_service.find_by_name deposit_account_name
+            deposit_account = account_service.find_by_name(deposit_account_name)
             sales_receipt.deposit_to_account_id = deposit_account.id
           end
         end

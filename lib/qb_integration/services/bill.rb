@@ -7,7 +7,7 @@ module QBIntegration
         @payload = payload
         @bill = payload[:bill]
         @purchase_order_service = PurchaseOrder.new(config, payload)
-        @purchase_order = purchase_order_service.find_po(payload[:bill][:purchase_order])
+        @purchase_order = purchase_order_service.find_po(payload[:purchase_order])
         @line_service = Line.new(config, payload)
         super("Bill", config)
       end
@@ -18,7 +18,11 @@ module QBIntegration
         build(new_bill)
         created_bill = quickbooks.create(new_bill)
         purchase_order_service.add_bill_to_po(purchase_order, created_bill)
-        created_bill
+
+        flowlink_po = Processor::PurchaseOrder.new(purchase_order, payload).as_flowlink_hash
+        flowlink_bill = Processor::Bill.new(created_bill).as_flowlink_hash
+
+        [flowlink_bill, flowlink_po]
 
       end
 
@@ -26,9 +30,9 @@ module QBIntegration
 
       def build(new_bill)
         new_bill.vendor_ref = purchase_order.vendor_ref
-        line_items = line_service.build_item_based_lines(bill, purchase_order)
+        line_items = line_service.build_item_based_lines(purchase_order, payload[:purchase_order])
         new_bill.line_items = line_items
-        new_bill.doc_number = bill["id"]
+        new_bill.doc_number = "Bill-#{purchase_order.doc_number}"
 
         # Linked Txns are read only in v3 but will be added in v4
         linked = Quickbooks::Model::LinkedTransaction.new

@@ -9,7 +9,7 @@ module QBIntegration
 
     def create
       if sales_receipt = sales_receipt_service.find_by_order_number
-        credit_memo = credit_memo_service.create_from_return ra, sales_receipt
+        credit_memo = credit_memo_service.create_from_return(ra, sales_receipt)
         text = "Created QuickBooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
         [200, text]
       else
@@ -23,11 +23,11 @@ module QBIntegration
       if sales_receipt = sales_receipt_service.find_by_order_number
 
         if credit_memo = credit_memo_service.find_by_number(ra[:number])
-          credit_memo_service.update credit_memo, ra, sales_receipt
+          credit_memo_service.update(credit_memo, ra, sales_receipt)
           text = "Updated QuickBooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
           [200, text]
         else
-          credit_memo = credit_memo_service.create_from_return ra, sales_receipt
+          credit_memo = credit_memo_service.create_from_return(ra, sales_receipt)
           text = "Created QuickBooks Credit Memo #{credit_memo.id} for return #{ra[:number]}"
           [200, text]
         end

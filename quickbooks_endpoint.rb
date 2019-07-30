@@ -238,7 +238,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_bill_to_purchase_order' do
-    code, summary, bill = QBIntegration::Bill.new(@payload, @config).create
+    code, summary, bill, po = QBIntegration::Bill.new(@payload, @config).create
+
+    add_object :bill, bill
+    add_object :purchase_order, po
+
     result code, summary
   end
 

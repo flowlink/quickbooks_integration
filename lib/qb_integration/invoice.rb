@@ -26,7 +26,7 @@ module QBIntegration
       elsif !qb_invoice.present?
         raise RecordNotFound.new "QuickBooks invoice not found for invoice #{flowlink_invoice[:number] || flowlink_invoice[:id]}"
       else
-        invoice = invoice_service.update qb_invoice
+        invoice = invoice_service.update(qb_invoice)
         [200, "Updated QuickBooks invoice #{invoice.doc_number}"]
       end
     end

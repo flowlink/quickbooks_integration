@@ -43,7 +43,7 @@ module QBIntegration
       elsif !sales_receipt.present?
         raise RecordNotFound.new "QuickBooks Sales Receipt not found for order #{order[:number]}"
       else
-        sales_receipt = sales_receipt_service.update sales_receipt
+        sales_receipt = sales_receipt_service.update(sales_receipt)
         [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}"]
       end
     end
@@ -53,7 +53,7 @@ module QBIntegration
         raise RecordNotFound.new "QuickBooks Sales Receipt not found for order #{order[:number]}"
       end
 
-      credit_memo = credit_memo_service.create_from_receipt sales_receipt
+      credit_memo = credit_memo_service.create_from_receipt(sales_receipt)
       text = "Created QuickBooks Credit Memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
       [200, text]
     end

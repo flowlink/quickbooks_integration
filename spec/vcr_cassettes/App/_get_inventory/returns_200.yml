@@ -1,0 +1,106 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?minorversion=4&query=select%20*%20from%20Item%20Where%20Metadata.LastUpdatedTime%20%3E%20%272019-02-05T18:48:56.001Z%27%20Order%20By%20Metadata.LastUpdatedTime%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="oauth_consumer_key", oauth_nonce="t6G3wkr4WPRiFCmqWK4Y7NgO3mJxLCNMItgntgqvs",
+        oauth_signature="dO833RgM98QKC0Dj%2FeA8zL29BPs%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564063293", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Jul 2019 14:01:33 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '1919'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - fceaca28-f820-4664-8944-6cc1d729a0cd
+      Set-Cookie:
+      - JSESSIONID=C317E03A6865283B24DD5DAF6E933725.c50-psbxc50uw2apu128091; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=9a2a221d.58e81dd08bbd9; path=/; expires=Fri, 24-Jul-20 14:01:33 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=39, db=28
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        cgT3wTMQqY50Nzf+tZWbN/6X1v4PpqJTQpM7AAA=
+    http_version: 
+  recorded_at: Thu, 25 Jul 2019 14:01:33 GMT
+recorded_with: VCR 4.0.0

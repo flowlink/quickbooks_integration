@@ -12,12 +12,12 @@ module QBIntegration
 
       def create_customer
         if found_customer = find_customer
-          build found_customer
-          quickbooks.update found_customer
+          build(found_customer)
+          quickbooks.update(found_customer)
         else
           new_customer = create_model
-          build new_customer
-          quickbooks.create new_customer
+          build(new_customer)
+          quickbooks.create(new_customer)
         end
       rescue Quickbooks::IntuitRequestException => e
         check_duplicate_name(e)
@@ -27,18 +27,18 @@ module QBIntegration
         unless found_customer = find_customer
           raise RecordNotFound.new "No Customer found with given name: #{@customer[:name]}"
         end
-        build found_customer
-        quickbooks.update found_customer
+        build(found_customer)
+        quickbooks.update(found_customer)
       rescue RecordNotFound => e
         check_param(e)
       end
 
       def find_customer
-        found_by_email = find_by_email @customer[:email]
-        found_by_name = find_by_name @customer[:name]
+        found_by_email = find_by_email(@customer[:email])
+        found_by_name = find_by_name(@customer[:name])
 
         if @customer[:qbo_id]
-          find_by_id @customer[:qbo_id].to_s
+          find_by_id(@customer[:qbo_id].to_s)
         elsif found_by_name
           found_by_name
         elsif found_by_email.size > 1
@@ -133,11 +133,11 @@ module QBIntegration
           new_customer.email_address = order[:email]
           new_customer.primary_phone = Phone.build(order[:phone]) if order[:phone]
 
-          new_customer.billing_address = Address.build order["billing_address"]
-          new_customer.shipping_address = Address.build order["shipping_address"]
+          new_customer.billing_address = Address.build(order["billing_address"])
+          new_customer.shipping_address = Address.build(order["shipping_address"])
         end
 
-        quickbooks.create new_customer
+        quickbooks.create(new_customer)
       end
 
       private
@@ -147,15 +147,15 @@ module QBIntegration
         new_customer.email_address = @customer[:email]
         new_customer.primary_phone = Phone.build(@customer[:phone])
 
-        new_customer.billing_address = Address.build @customer[:billing_address]
-        new_customer.shipping_address = Address.build @customer[:shipping_address]
+        new_customer.billing_address = Address.build(@customer[:billing_address])
+        new_customer.shipping_address = Address.build(@customer[:shipping_address])
       end
 
       def check_param(e)
         if config.fetch("quickbooks_create_or_update") == "1"
           new_customer = create_model
-          build new_customer
-          quickbooks.create new_customer
+          build(new_customer)
+          quickbooks.create(new_customer)
         else
           raise e
         end

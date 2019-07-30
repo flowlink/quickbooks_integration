@@ -23,12 +23,12 @@ module QBIntegration
 
         @lines = []
         @item_service = Item.new(config)
-        @account_service = Account.new config
+        @account_service = Account.new(config)
       end
 
       def build_lines(account = nil)
-        build_from_line_items account
-        build_from_adjustments account
+        build_from_line_items(account)
+        build_from_adjustments(account)
 
         lines
       end
@@ -41,7 +41,7 @@ module QBIntegration
           else
             built_line = build_account_based_expense(line_item, account, purchase_order)
           end
-          lines.push built_line
+          lines.push(built_line)
         end
         lines
       end
@@ -65,8 +65,6 @@ module QBIntegration
             sku = line_item[:sku] if sku.to_s.empty?
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
-
-          puts "Item type is #{item_found.type}"
 
           if item_found.type == "Group"
             # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
@@ -109,7 +107,7 @@ module QBIntegration
             end
           end
 
-          lines.push line
+          lines.push(line)
         end
       end
 
@@ -117,8 +115,7 @@ module QBIntegration
         adjustments.each do |adjustment|
 
           # Get sku of adjustment, and move on if empty
-          sku = QBIntegration::Helper.adjustment_product_from_qb adjustment[:name], @config, order
-          puts 'Sku is: ' + sku.to_s
+          sku = QBIntegration::Helper.adjustment_product_from_qb(adjustment[:name], @config, order)
           if sku.to_s.empty?
             next
           end
@@ -134,8 +131,7 @@ module QBIntegration
           # make an adjustment look like a line_item
           adjustment[:price] = adjustment["value"].to_f * multiplier
           adjustment[:name] = adjustment["name"]
-          adjustment[:sku] = adjustment['name'].downcase == "tax" ? "" : sku
-          puts 'Sku now is: ' + adjustment[:sku].to_s
+          adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
@@ -145,7 +141,7 @@ module QBIntegration
             sales_item.tax_code_id = adjustment["tax_code_id"] if adjustment["tax_code_id"]
           end
 
-          lines.push line
+          lines.push(line)
         end
       end
 
@@ -168,20 +164,51 @@ module QBIntegration
             sales_item.unit_price = unit[:subtotal].to_f / unit[:quantity]
           end
 
-          lines.push line
+          lines.push(line)
         end
 
         lines
       end
 
-      def build_item_based_lines(bill, po)
-        item_detail = po.line_items.first.item_based_expense_line_detail
-        unit_price = item_detail["unit_price"]
-        line = Quickbooks::Model::BillLineItem.new
-        line.item_based_expense_item!
-        line.amount = bill["quantity"].to_i * unit_price
-        line.item_based_expense_line_detail = item_detail
-        [ line ]
+      def build_item_based_lines(po_model, po_payload)
+        if po_payload[:quantity_received_in_qbo].nil?
+
+          po_payload[:received_items].map do | received_item |
+            line = Quickbooks::Model::BillLineItem.new
+            line.item_based_expense_item!
+
+
+            item_detail = po_model.line_items{ |line_item| line_item.item_based_expense_line_detail["item_ref"]["name"] == received_item["sku"] }.first.item_based_expense_line_detail
+
+            unit_price = item_detail["unit_price"]
+            line.amount = received_item["quantity"].to_i * unit_price
+
+            line.item_based_expense_line_detail = item_detail
+            line
+          end
+
+        else
+
+          po_payload[:quantity_received_in_qbo].map do | qty_object|
+
+            line = Quickbooks::Model::BillLineItem.new
+            line.item_based_expense_item!
+
+            received_item = po_payload["received_items"].select { |itm| itm["sku"] == qty_object[:sku] }.first
+            item_detail = po_model.line_items.select do | line_item |
+              qty_object[:sku] == line_item.item_based_expense_line_detail["item_ref"]["name"]
+            end.first.item_based_expense_line_detail
+
+
+            unit_price = item_detail["unit_price"]
+            quantity = received_item["quantity"].to_i - qty_object["quantity"].to_i
+
+            line.amount =  quantity * unit_price
+            line.item_based_expense_line_detail = item_detail
+            line
+          end
+
+        end
       end
 
       private

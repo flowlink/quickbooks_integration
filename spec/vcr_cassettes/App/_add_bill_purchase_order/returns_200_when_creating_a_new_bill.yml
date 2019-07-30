@@ -16,20 +16,20 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Authorization:
-      - OAuth oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg", oauth_nonce="IDolEOPtgryBEEbOqTfaX8zx7v73gUmjuallfAiLVo",
-        oauth_signature="8LeItQrHqz4Nkgw%2BIuBR5iEwKVk%3D", oauth_signature_method="HMAC-SHA1",
-        oauth_timestamp="1564399524", oauth_token="<TOKEN>", oauth_version="1.0"
+      - OAuth oauth_consumer_key="oauth_consumer_key", oauth_nonce="enXR8tHhkznJcG4P1XhIPoD4omFRTxvSTsmxIj8",
+        oauth_signature="SfkjDGnfMLIecyVE%2BxPr2k43IMQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564063271", oauth_token="<TOKEN>", oauth_version="1.0"
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Mon, 29 Jul 2019 11:25:25 GMT
+      - Thu, 25 Jul 2019 14:01:12 GMT
       Content-Type:
       - application/xml;charset=UTF-8
       Content-Length:
-      - '908'
+      - '909'
       Connection:
       - keep-alive
       Server:
@@ -37,16 +37,16 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=15552000
       Intuit-Tid:
-      - 57b934ed-8559-4c8b-b7be-5ea79fe4033d
+      - eb2b06fe-9bb9-4c46-903d-f8db889bea4a
       Set-Cookie:
-      - JSESSIONID=E38E8D7FA4E1D29F2A3BCA20DA5D5A15.c50-psbxc50uw2apu128252; Domain=qbo.intuit.com;
+      - JSESSIONID=B210039DE34A47FED4101DA06A0EBD41.c50-psbxc50uw2apu130063; Domain=qbo.intuit.com;
         Path=/; Secure; HttpOnly
-      - qboeuid=b26e1dc0.58ed025f862ca; path=/; expires=Tue, 28-Jul-20 11:25:24 GMT;
+      - qboeuid=b401cca2.58e81dbc444c9; path=/; expires=Fri, 24-Jul-20 14:01:12 GMT;
         domain=.intuit.com
       Qbo-Version:
       - '1915.190'
       Service-Time:
-      - total=468, db=375
+      - total=169, db=67
       Expires:
       - '0'
       Content-Encoding:
@@ -58,29 +58,29 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAJVVa27bOBC+CqEFil1gY72cdZQyLPzYAgEa24ns7c+CliY2
-        UYoUSMq1brNn2ZPtUHJsp2hQFDBgzoMz38x8HNEPh0qSPRgrtLoL4kEUEFCF
-        LoXa3gXr1cerm4BYx1XJpVZwF7Rggw+M3ivXCPcEttbKAsEgyt4FO+fq2zC0
-        xQ4qPhCdz6DQVfgsFFcFhPs0IE5UGCeJ4uwqGl0l2Soa3ibX+BtEf6Wouo2i
-        gNHHBkx7io8IjFtqK1wPMyAVP6C1kc52otOOy6lulPMio8vGFDtuYWFKMKTU
-        FRd473GywGpqbiwieObSArrelyweDkc0xAPNW1Ws9FdQLKLhWaAP4PiMO87o
-        1AB3sMIi2EsN8WgVp7dRdovnDj8NL7zoJ27dui5RLn927XtXGl4kbqzT1UcB
-        EnHOAFvadcPDp+Ermc453kUI38hvNOwEumprYLkzOFd/pGGnQKCXUd9Okfww
-        Rc4lWPIE9S9lmeli3lQbMCyO4hQDn2S6Oigs9rJFGOKoQ3TGIDeRFc9EcU+i
-        NeKBkuQO7ZbMtJTcBGydz3zGkzNOQCjoB91P2cuY0osvRyzXFkbUvj72Trr3
-        9bute/8ZSCUOmMLqCkgJhTbciT2QrZYl4UUBylkkH3E7YYmBAl/KtkEUxAqJ
-        rwpvG6PN4L9/fciwi+k7eU5Fx5VnLYuzZOAZcBQRjuNCdu27d1BNkMvl34ca
-        8DV4yL3Zhzq50bf9etu5bxPuHD4v8plLSR46iAEbjnAWRz9GfWuXRhTAbmh4
-        Fuija1kypKH/pyt+mOoS/IX5Yo6jOst0InAaGwl+OI1lc+1eNDT8ztanfQt6
-        2E/vH1ClNhc1aP3Vkk1LJmCtwIecYvdOTtjX5bgofC/PV44KS5a89enJ7+Nw
-        +QfexMIv3bEwv07G1XksJ8URx7gsTceo9IJSMYuvyQNuGmTkoMcdI20FtmqJ
-        65OMpdPITC/TbleZNm82M7EXfvv6zrHpGB1+bKK4/7olh+dsmEYI+kKDW8ax
-        dDQYDq+7R+VF+kmrLbuKk2QQpxkuOa/3qpdG9VXkO1Gf6onjOLusaN48gazI
-        DPYgdV0h30mOX4ONPpCprmqu2i/r/Et8qtb/JSxOUpILMIYjx9remPTGFLeG
-        wglspP6TTMeE3IyyLOtdUkR2RrNcHPmxQE5gsYsTXV5td5RffSw8nV59ndj/
-        r2D+B+UGAAA=
+        H4sIAAAAAAAAAJVV227bOBD9FUILFLvA2hIlp45dhoUvWyBAYzuRvX0saGli
+        E5VIgaS81t/st+yX7VBybKdoUPRJnAtnzswcjtjHY1mQAxgrtboLaD8KCKhM
+        51Lt7oLN+lPvNiDWCZWLQiu4CxqwwUfO7pWrpXsCW2llgWAQZe+CvXPVOAxt
+        todS9GXr0890GT5LJVQG4SEJiJMlxokjOupFw158s46G44iOadx///6254Uo
+        4OyxBtOc4yMC41baStfBDEgpjmitC2db0WknipmulfMiZ6vaZHthYWlyMCTX
+        pZB473G6xGoqYSwieBaFBXS9zzkdDIYsxANLG5Wt9TdQPGLhRWAP4MRcOMHZ
+        zIBwsMYi+EsNdLimyTgajfHc4mfhlRf7LKzbVDnK+c+ufe/KwqvEtXW6/CSh
+        QJxzwJa23fDwWfhKZguBdxHCP+Q3FrYCWzcV8NQZnKs/srBVINDrqG+niH+Y
+        IhUFWPIE1S9lmetsUZdbMJxGNMHAZ5mtjwqLvW4RhjjpEJ0xyE1kxTNRwpNo
+        g3ggJ6lDuyVzXRTCBHyTzn3GszNOQCroBt1N2cuY0osvRyzXZkZWvj7+rnAf
+        qnc79+ELkFIeMYXVJZAcMm2EkwcgO13kRGQZKGeRfMTtpSUGMnwpuxpRECsL
+        fFV42xht+v/960OGbUzfyUsqNik9azkdxX3PgJOIcJyQRdu+ewflFLmc/3Ws
+        AF+Dh9yZfaizG3vbr7Nd+jYVzuHzIl9EUZCHFmLAB0OcxcmPM9/alZEZ8FsW
+        XgT26BoeD1jov2wtjjOdg7+wWC5wVBeZTSVOY1uAH05t+UK7Fw0Lv7N1ad+C
+        HnbT+xtUrs1VDVp/s2TbkClYK/EhJ9i9sxP2dTXJMt/Ly5WTwpKVaHx68vsk
+        XP2BN7Hwa3cszK+TSXkZy1lxwjHJc9MyKrmiFOX0hjzgpkFG9jvcFGkrsVUr
+        XJ9kUjiNzPQya3eVadJ6O5cH6bev7xyfTdDhxyaG+69dcngeDZIIQV9pcMs4
+        ngz7g8FN+6i8yD5rteM9Gsd9moxwyXm9V700qqsi3cvqXA+ldHRd0aJ+gqIk
+        czhAoasS+U5S/Bts9ZHMdFkJ1XzdpF/puVr/iTmNE5JKMEYgx5rOGHfGBLeG
+        wglsC/0nmU0IuR2ORqPOJUFkFzSr5YkfS+QEFrs80+XVdkf51c/C0+nV34n/
+        Dwtb40TlBgAA
     http_version: 
-  recorded_at: Mon, 29 Jul 2019 11:25:25 GMT
+  recorded_at: Thu, 25 Jul 2019 14:01:12 GMT
 - request:
     method: post
     uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/bill
@@ -89,7 +89,7 @@ http_interactions:
       string: |-
         <?xml version="1.0" encoding="utf-8"?>
         <Bill xmlns="http://schema.intuit.com/finance/v3" sparse="false">
-        <DocNumber>Bill-1013</DocNumber>
+        <DocNumber>bill-026</DocNumber>
         <Line>
         <Amount>192.0</Amount>
         <DetailType>ItemBasedExpenseLineDetail</DetailType>
@@ -117,11 +117,11 @@ http_interactions:
       User-Agent:
       - OAuth gem v0.4.7
       Content-Length:
-      - '588'
+      - '587'
       Authorization:
-      - OAuth oauth_body_hash="nUJ3NAYVbN30rYt%2BiKCiMBuqP%2F8%3D", oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg",
-        oauth_nonce="rWV19AImYBWydZ7lWyJoNXCsDRxHAS3q9MXTI9EYOo", oauth_signature="ReZ3j5cUJPoIANmOdEiF80PiiXQ%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564399635", oauth_token="<TOKEN>",
+      - OAuth oauth_body_hash="XynjGxCwzsVkrSAKUJwK1f3%2BrQg%3D", oauth_consumer_key="oauth_consumer_key",
+        oauth_nonce="SvSS07e0z2YSkqXmNsxDZqQhNSAirfVLjvWQ3EwCE", oauth_signature="nU3UDn3xYhzxJyFiiO3BqDNnOYc%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564063272", oauth_token="<TOKEN>",
         oauth_version="1.0"
   response:
     status:
@@ -129,11 +129,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Jul 2019 11:27:16 GMT
+      - Thu, 25 Jul 2019 14:01:13 GMT
       Content-Type:
       - application/xml;charset=UTF-8
       Content-Length:
-      - '528'
+      - '530'
       Connection:
       - keep-alive
       Server:
@@ -141,16 +141,16 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=15552000
       Intuit-Tid:
-      - 4708b6d9-0a73-4c20-bd38-9425346c98a5
+      - 2d9a7b8b-be51-45d6-835c-327175aa0c2d
       Set-Cookie:
-      - JSESSIONID=CF1EDC1B88B53C702FDFBF3024B6CBA3.c50-psbxc50uw2apu128091; Domain=qbo.intuit.com;
+      - JSESSIONID=02A66E1DD4F5C3048900101CC3F600FA.c50-psbxc50uw2apu128091; Domain=qbo.intuit.com;
         Path=/; Secure; HttpOnly
-      - qboeuid=e8d9fd67.58ed02c998464; path=/; expires=Tue, 28-Jul-20 11:27:16 GMT;
+      - qboeuid=4b2237ad.58e81dbd05080; path=/; expires=Fri, 24-Jul-20 14:01:13 GMT;
         domain=.intuit.com
       Qbo-Version:
       - '1915.190'
       Service-Time:
-      - total=449, db=274
+      - total=397, db=221
       Expires:
       - '0'
       Content-Encoding:
@@ -162,20 +162,20 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAIVTUW/aMBD+K1aetgdwElAp6HAFZJOQVkpL2J5NcqxWEzuK
-        TUX+/c4NENqt2lN8d9/5u+87B+6OZcFesbbK6GkQ9cOAoc5MrvTvabBNv/du
-        A2ad1LksjMZp0KAN7gQstTso94S2Mtoio0u0nQbPzlUTzm32jKXsqzdMPzMl
-        3ystdYb8dRAwp0q6Jw6jcS8c9eJxGg4n8WgS3fTjkU9NwjAQMFdFwXJTSkVj
-        Pc4faIpK1pY697KwSIhlLqLhTQycDrBpdJaaF9QiBN4FcI9OJtJJAYsapcOU
-        yMU/uFte4Fco+CGt21Y5xfn/2j5CgXfEiclWh3KHtfCaelEYDYB3SUiPmoDX
-        1wM/52BxqGvaR/OEe6alN26rFbGwjaO6ZYkpClkHYrtJaPgOTNMrja1JrUM+
-        Jkofno8wK81BOxGN475XcQohodlVkTYViqXDci4t5t+OFdKmfWtbJg0dDD7H
-        tbVu/rl0DuuG/ZK04HtV14bGH47IkxNOgJe4rlWG4hZ4F8Cja0Q8BO6/kMrj
-        wuToG1YPK7Ksi98ej9wV6E06WLEy7pwB/qHW0n42Om9d/Ik6N/WVBmNeLNs1
-        bI7WKnqMA3LvAiJf17Ms8152LaeEZWvZeHr2ZcbXX6mThF/DSZhxspiV3Vou
-        CUgO+NdTOedgLgv/j13aznEr2Qt998+KPx2Cx/37AwAA
+        H4sIAAAAAAAAAIVTXXPaMBD8Kxo/tQ8gm49AmEMZjNsZZhpCgmmfhX00mtgS
+        Y8kZ/O9zikNM02b6ZO1pT7e7kuHmVBbsGSurjJ4HUT8MGOrM5Er/nge79Htv
+        GjDrpM5lYTTOgwZtcCNgpV2t3APao9EWGR2i7Tx4dO4449xmj1jKvnrl9DNT
+        8oPSUmfIn4cBc6qkcwZhdN0LJ73BOA0nszCaRcP+6Gra8yAMBMSqKFhuSqlI
+        1n18RyqOsrLUeZCFRWKschGNxmPgtIBto7PUPKEWIfAOwC06mUgnBSwrlA5T
+        Gi7+MbudC/yCBT+kdbtjTjj/X9tHKvBucGKydV3usRJ78tQLB1fAuxqkJ028
+        y9OBn2uwrKuKrqN5wAPT0ue204qGsK2jfcsSUxSyCsRum5D2jkzilcY2ozYg
+        j2mkh+clLEpTayei60Hfm3iDkJB0VaTNEcXKYRlLi/m30xHpon1ru00eOhp8
+        zmv3Ov2xdA6rhv2SdL+3qqoMyR9NhqSy5QnwFjeVylBMgXcA7l0jBiPg/gup
+        PC1Njr5hfbemyDr8+nbkvkAfUm3F2rhzBfiHvXbsZ9J5m+JP1LmpLjwY82TZ
+        vmExWqvoLQ4pvXcS5bpZZJnPsmt5K1i2kY0fz74s+OYrdZLxSzoZM04Wi7K7
+        lvcCJDX+9VTONYhl4X+x97Yzbi17o3/8suIFuSnp+foDAAA=
     http_version: 
-  recorded_at: Mon, 29 Jul 2019 11:27:16 GMT
+  recorded_at: Thu, 25 Jul 2019 14:01:13 GMT
 - request:
     method: post
     uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/purchaseorder
@@ -203,7 +203,7 @@ http_interactions:
         <Type>StringType</Type>
         </CustomField>
         <LinkedTxn>
-        <TxnId>1462</TxnId>
+        <TxnId>1455</TxnId>
         <TxnType>Bill</TxnType>
         </LinkedTxn>
         <Line>
@@ -253,9 +253,9 @@ http_interactions:
       Content-Length:
       - '1713'
       Authorization:
-      - OAuth oauth_body_hash="9jD8D4MX3O8ZCPdTnl4v%2F6S6ZeY%3D", oauth_consumer_key="qyprdsx5RtYvRMkusL4AVsbE9uPFQg",
-        oauth_nonce="OPCQRcW0TlrODKJfJnvni7tKW2w4qYKu8aCgCDc8NHw", oauth_signature="axD25Of7SxDpx%2FKyZSiIhhozDZ0%3D",
-        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564399636", oauth_token="<TOKEN>",
+      - OAuth oauth_body_hash="UKxO8XmIfz%2BcKHAAzuG1FdiSLFk%3D", oauth_consumer_key="oauth_consumer_key",
+        oauth_nonce="ExU414Lf0JkZRCSFayfShREPtqGTh4VlMJemVFqAEa4", oauth_signature="AUVhtqfCvdHm22eP4A4Yp6HN6ZA%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564063273", oauth_token="<TOKEN>",
         oauth_version="1.0"
   response:
     status:
@@ -263,11 +263,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 29 Jul 2019 11:27:17 GMT
+      - Thu, 25 Jul 2019 14:01:14 GMT
       Content-Type:
       - application/xml;charset=UTF-8
       Content-Length:
-      - '874'
+      - '873'
       Connection:
       - keep-alive
       Server:
@@ -275,16 +275,16 @@ http_interactions:
       Strict-Transport-Security:
       - max-age=15552000
       Intuit-Tid:
-      - 713b2c7f-12d8-43fa-8f74-7b33a1d0ee1d
+      - 8b6c020b-6033-40b3-8dbd-cdca79dfbc94
       Set-Cookie:
-      - JSESSIONID=67C024AD9463A674BB56FBC3BB26AD4C.c50-psbxc50uw2apu128252; Domain=qbo.intuit.com;
+      - JSESSIONID=7855F35E64A43640C22F62D029A60634.c50-psbxc50uw2apu130063; Domain=qbo.intuit.com;
         Path=/; Secure; HttpOnly
-      - qboeuid=dafec9ef.58ed02ca9d9ac; path=/; expires=Tue, 28-Jul-20 11:27:17 GMT;
+      - qboeuid=5f9ed9d9.58e81dbdfadad; path=/; expires=Fri, 24-Jul-20 14:01:14 GMT;
         domain=.intuit.com
       Qbo-Version:
       - '1915.190'
       Service-Time:
-      - total=100, db=65
+      - total=44, db=22
       Expires:
       - '0'
       Content-Encoding:
@@ -296,26 +296,26 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAAAAAAAAAJVVbW/bNhD+K4QGFBuwWKLkwpHLsPDLCgRobDdy1o8FLV1s
-        ohQpkLRn/Zv9lv2yHSXHdooGwz6J98K75+4entjHY63IAayTRt9FdJBEBHRp
-        Kqm3d9HT+tPNbUScF7oSymi4i1pw0UfO7rXfS/8IrjHaAcEg2t1FO++bcRy7
-        cge1GMjOZ1CaOn6WWugS4kMWES9rjJMmNL9JRjdpvk6G43Q0pqNBOrxF1ThJ
-        Is5We1vuhIOlrcCSytRCIr4v0yXCaYR1GOJZKAfoel9xOhyOWIwHVrS6XJvv
-        oHnC4ovAHsCLufCCs5kF4WGNKPgLCDpa02yc5GM8dwBYfOXFPgvnn5oK5eq/
-        rv3oyuKrxHvnTf1JgkKcc8CeSI9dD/BZ/EpmC4F3EcJf5BcWdwJbtw3wwlsc
-        TDiyuFMg0Ouob6dIf5qiEAoceYTmf2WZm3KxrzdgOU1ohoHPMlsfNRZ73SIM
-        cdIhOmuRXO0jPBMtAgueEA9UpPBod2RulBI24k/FPGQ8O+MEpIZ+0P2Ug4wp
-        g/hyxHJdaWUT6uPvlP/QvNv6D1+B1PKIKZypgVRQGiu8PADZGlURUZagvSPe
-        EL+TjlgokerbPaIgTip8FnjbWmMH//wdQsZdzNDJSyo2qc1ee07zdBAYcBIR
-        jhdSde2791BPkcvVH8cG8LkEyL05hDq7sbf9etulb1PhPdiWfBVKkYcOYsSH
-        I5zFyY+z0NqVlSXwWxZfBPbFtzwdsjh82VocZ6aCcGGxXOCoLjKbSpzGRkEY
-        zt7xhfEvGhb/YOvTvgU97qf3J+jK2KsajPnuyKYlU3BO4kPOsHtnJ+zralKW
-        oZeXKyeFIyvRhvTk10m8+g1vYuHX7liY8UJN6stYzooTjklV2Y5R2RWlKKfv
-        yQNuGmTkoMdNkbYSW7XC/UcmyhtkZpDZLOSybbHfzOVBhvUZOsdnE3T4uYmt
-        DG5S1Z3zYZYg6CsNbhnPs9FgOHzfPaogss9Gb/kNTdMBzXJcckEfVC+N6qso
-        drI510Mpza8rWuwfQdVkDgdQpqmR76TAdb4xRzIzdSN0++2p+EbP1YZPymma
-        kUKCtQI51vbGtDdmuDU0TmCjzO9kNiHkdpTnee+SIbILmtXyxI8lcgKLXZ7p
-        8mq7B/q8+p3wfwEmRirGlgYAAA==
+        H4sIAAAAAAAAAJVVbW/bNhD+K4QGFBswW6LkzHHKsPDLCgRobDey148FLV1s
+        ohQpkLRr/Zv9lv2yHSXHdooGwz6J98K75+4entiHY6XIAayTRt9HtJ9EBHRh
+        Sqm399F69bF3GxHnhS6FMhruowZc9IGzB+330j+Bq412QDCIdvfRzvv6Lo5d
+        sYNK9GXr0y9MFT9LLXQB8SGLiJcVxkkTOuolw156s0qGdwm9o4N+9kfaC0IS
+        cbbc22InHCxsCZaUphIS8X2eLBBOLazDEM9COUDXh5LTwWDIYjywvNHFynwD
+        zRMWXwT2CF7MhBecTS0IDytEwV9A0OGKZnfJ6A7PLQAWX3mxT8L5dV2iXP7X
+        tR9dWXyVeO+8qT5KUIhzBtgT6bHrAT6LX8lsLvAuQvhOfmFxK7BVUwPPvcXB
+        hCOLWwUCvY76dor0pylyocCRJ6j/V5aZKeb7agOW04RmGPgss9VRY7HXLcIQ
+        Jx2isxbJ1TzBM9EisGCNeKAkuUe7IzOjlLARX+ezkPHsjBOQGrpBd1MOMqYM
+        4ssRy3WFlXWoj79T/n39buvffwFSySOmcKYCUkJhrPDyAGRrVElEUYD2jnhD
+        /E46YqFAqm/3iII4qfBZ4G1rje3/83cIGbcxQycvqdi4MnvtOR2l/cCAk4hw
+        vJCqbd+Dh2qCXC7/PNaAzyVA7swh1NmNve3X2S59mwjvwTbki1CKPLYQIz4Y
+        4ixOfpyF1i6tLIDfsvgisM++4emAxeHLVuI4NSWEC/PFHEd1kdlE4jQ2CsJw
+        9o7PjX/RsPgHW5f2LehxN72/QJfGXtVgzDdHNg2ZgHMSH3KG3Ts7YV+X46II
+        vbxcOSkcWYompCe/juPlb3gTC792x8KMF2pcXcZyVpxwjMvStozKrihFOb0h
+        j7hpkJH9DjdF2kps1RL3Hxkrb5CZQWbTkMs2+X4zkwcZ1mfoHJ+O0eHnJrY0
+        uElVex4NsgRBX2lwy3ieDfuDwU37qILIPhm95T2apn2ajXDJBX1QvTSqqyLf
+        yfpcD6V0dF3RfP8EqiIzOIAydYV8Jzmu8405kqmpaqGbr+v8Kz1XGz4pp2lG
+        cgnWCuRY0xnTzpjh1tA4gY0yv5PpmJDb4Wg06lwyRHZBs1yc+LFATmCxizNd
+        Xm33QJ9XvxP+LwkHJ2OWBgAA
     http_version: 
-  recorded_at: Mon, 29 Jul 2019 11:27:17 GMT
+  recorded_at: Thu, 25 Jul 2019 14:01:14 GMT
 recorded_with: VCR 4.0.0
