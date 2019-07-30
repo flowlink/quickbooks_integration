@@ -49,12 +49,8 @@ module QBIntegration
 
       # NOTE what if a product is given?
       def find_or_create_by_sku(line_item, account = nil, payload_object = {})
-        name = line_item[:sku] if line_item[:sku].to_s.empty?
-        name = line_item[:product_id] if name.to_s.empty?
-        name = line_item[:name] if name.to_s.empty?
-
-        sku = line_item[:product_id] if line_item[:sku].to_s.empty?
-        sku = line_item[:sku] if sku.to_s.empty?
+        name = line_item[:sku] || line_item[:product_id] || line_item[:name]
+        sku = line_item[:product_id] || line_item[:sku]
 
         find_by_sku(sku) || find_by_name(name) || create_new_product(line_item, sku, name, account, payload_object)
       end
