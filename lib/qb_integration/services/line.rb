@@ -170,14 +170,45 @@ module QBIntegration
         lines
       end
 
-      def build_item_based_lines(bill, po)
-        item_detail = po.line_items.first.item_based_expense_line_detail
-        unit_price = item_detail["unit_price"]
-        line = Quickbooks::Model::BillLineItem.new
-        line.item_based_expense_item!
-        line.amount = bill["quantity"].to_i * unit_price
-        line.item_based_expense_line_detail = item_detail
-        [ line ]
+      def build_item_based_lines(po_model, po_payload)
+        if po_payload[:quantity_received_in_qbo].nil?
+
+          po_payload[:received_items].map do | received_item |
+            line = Quickbooks::Model::BillLineItem.new
+            line.item_based_expense_item!
+
+
+            item_detail = po_model.line_items{ |line_item| line_item.item_based_expense_line_detail["item_ref"]["name"] == received_item["sku"] }.first.item_based_expense_line_detail
+
+            unit_price = item_detail["unit_price"]
+            line.amount = received_item["quantity"].to_i * unit_price
+
+            line.item_based_expense_line_detail = item_detail
+            line
+          end
+
+        else
+
+          po_payload[:quantity_received_in_qbo].map do | qty_object|
+
+            line = Quickbooks::Model::BillLineItem.new
+            line.item_based_expense_item!
+
+            received_item = po_payload["received_items"].select { |itm| itm["sku"] == qty_object[:sku] }.first
+            item_detail = po_model.line_items.select do | line_item |
+              qty_object[:sku] == line_item.item_based_expense_line_detail["item_ref"]["name"]
+            end.first.item_based_expense_line_detail
+
+
+            unit_price = item_detail["unit_price"]
+            quantity = received_item["quantity"].to_i - qty_object["quantity"].to_i
+
+            line.amount =  quantity * unit_price
+            line.item_based_expense_line_detail = item_detail
+            line
+          end
+
+        end
       end
 
       private
