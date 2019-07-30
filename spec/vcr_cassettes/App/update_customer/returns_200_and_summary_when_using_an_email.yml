@@ -1,0 +1,255 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=select%20*%20from%20Customer%20where%20PrimaryEmailAddr%20=%20%27developoment%2Bwootest@nurelm.com%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="oauth_consumer_key", oauth_nonce="leZYfiwjnlR6j7ISTSFZoUmMGQUvrU6Dt7M0XplFyk",
+        oauth_signature="X96nwPLdVrD2S5s%2BnP1eTmwa6KQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564063291", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Jul 2019 14:01:31 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '628'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - c7302335-6689-414c-a515-327534596b41
+      Set-Cookie:
+      - JSESSIONID=E29FB26179F66108E8A487714C7FEA21.c50-psbxc50uw2apu132253; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=e47d2859.58e81dceb522c; path=/; expires=Fri, 24-Jul-20 14:01:31 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=15, db=8
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAM1U23KbMBD9FYbXjg3YIRdGVhqbZiadpEkKnj7LsC6aCImR
+        hBP+PitsfEs/oC+gPXs4Omh3RW4/auFtQBuu5MyPxqHvgSxUyeXfmb/M70fX
+        vmcskyUTSsLM78D4t5Q8SNty+xtMo6QBD0WkmfmVtU0SBKaooGZj3nPGhaqD
+        NZdMFhBspr5neY06kzC6GYVXo0mch1dJGCXTaHwTTkcuCH1KXlvQ3V4fHWj7
+        ogy3W5u+V7MPzLbCGhdSsmiNVTVor1Q148h5nT+j84Zpg7utmTCArIeSRpNr
+        EuCbZJ0scvUGkk5IcAjIE1iWMstQUwOzkKNfinavR2E8CqM8vEziKIkvtlZJ
+        cMQij8zYZVNiXA6f9X8ZTfMoTqIwicPhs3MqCQ4b37Oai+4XQzirua1IcISQ
+        +1aI7rVlgq85lCesrxmSctMIdiJ2DJEXjXV6losKirceycFYb2lAk+BLjtwV
+        lm+AWt0CCXaBk6iZ7n7gwYu7stRIwycYQ0vYgFANFkbab+9KWdT+LlsNonZ9
+        gRI7Yr/XmUjOPthKDJsNEZlzsSO4akbh1bacj1xChNWdXnhP2ABeqtEbHnMP
+        kwW3Hc3Qx3sFGuE+JgvVSqs7upQcy+BlFqthMLmDh3zWrlK+4W5EFqoEunAH
+        rLTkbM89p5DgYDOreLM3fDmN/0+/B5c/1Yr2A0MCt+wP/A82zgvTWMYhdYaS
+        ORNuxCm29rAcMEdDJXOU20M4uBoFCpz1tSeZuxpO/s5LlRBM+3SZpej+QHZt
+        B2vAuExB4NnpDgeoUiXtu9Y11L/TTmV7V+Dy5JrB+PReo5+f3RxsHwUAAA==
+    http_version: 
+  recorded_at: Thu, 25 Jul 2019 14:01:31 GMT
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=select%20*%20from%20Customer%20where%20DisplayName%20=%20%27%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="oauth_consumer_key", oauth_nonce="pfTOt6zEIaI0U5TP6ITSwZVeFO8oGUpjCVwoGjN2w",
+        oauth_signature="rivbH4J550mjkKS6tpDp6N6SsJQ%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564063291", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Jul 2019 14:01:32 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '167'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - 34da8810-c6ab-4357-9a7f-02a70447bfeb
+      Set-Cookie:
+      - JSESSIONID=5118603F72CF4EEBBA80201E19497ECA.c50-psbxc50uw2apu132038; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=426bf004.58e81dcf495db; path=/; expires=Fri, 24-Jul-20 14:01:32 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=16, db=8
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAFXNQQ6CMBCF4as0s4cOEIISCjsTlxo9QFNGaUKnhBYitxdN
+        XLh9+fO9pnu5Uaw0B+tZQZYiCGLje8tPBffbKTmACFFzr0fPpGCjAF3bnDku
+        Nl4pTJ4DiR3hoGCIcaqlDGYgp1P7bVLjnXxY1mxIrgWIaN3u5JgdE6ySvLxh
+        VWNWF3la4meqEaFtLgvN28+XbSP/H9s35Zy+YLkAAAA=
+    http_version: 
+  recorded_at: Thu, 25 Jul 2019 14:01:32 GMT
+- request:
+    method: post
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/customer
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Customer xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Id>128</Id>
+        <SyncToken>2</SyncToken>
+        <MetaData>
+        <CreateTime>2018-05-01T06:51:54-0700</CreateTime>
+        <LastUpdatedTime>2019-07-13T15:10:50-0700</LastUpdatedTime>
+        </MetaData>
+        <FamilyName>Smith</FamilyName>
+        <DisplayName/>
+        <PrintOnCheckName>Test User</PrintOnCheckName>
+        <Active>true</Active>
+        <PrimaryPhone/>
+        <PrimaryEmailAddr>
+        <Address>developoment+wootest@nurelm.com</Address>
+        </PrimaryEmailAddr>
+        <BillAddr>
+        <Line1>1234 Main Drive</Line1>
+        <City>Somewhere</City>
+        <Country>United States</Country>
+        <CountrySubDivisionCode>California</CountrySubDivisionCode>
+        </BillAddr>
+        <ShipAddr>
+        <Line1>1234 Main Drive</Line1>
+        <City>Somewhere</City>
+        <Country>United States</Country>
+        <CountrySubDivisionCode>California</CountrySubDivisionCode>
+        </ShipAddr>
+        <Job>false</Job>
+        <BillWithParent>false</BillWithParent>
+        <Balance>0.0</Balance>
+        <BalanceWithJobs>0.0</BalanceWithJobs>
+        <PreferredDeliveryMethod>Print</PreferredDeliveryMethod>
+        <FullyQualifiedName>Smith</FullyQualifiedName>
+        <Taxable>true</Taxable>
+        <CurrencyRef name="United States Dollar">USD</CurrencyRef>
+        </Customer>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '1157'
+      Authorization:
+      - OAuth oauth_body_hash="80w9oLeSIbA5VyQJKvq85fvGUDM%3D", oauth_consumer_key="oauth_consumer_key",
+        oauth_nonce="FjiWBi5OW0GlinLPuTHtVTTuKIC4dvhKJxS0WmAkd9Y", oauth_signature="aXoxBllMuPxJLCLFf%2FQmDOWZUzQ%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564063292", oauth_token="<TOKEN>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Jul 2019 14:01:33 GMT
+      Content-Type:
+      - application/xml;charset=UTF-8
+      Content-Length:
+      - '607'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=15552000
+      Intuit-Tid:
+      - dd63282c-e3d5-4d7e-95bc-54e54d2bd6b1
+      Set-Cookie:
+      - JSESSIONID=4E97B49E2BED7F3B025301D96C9DAC02.c50-psbxc50uw2apu130063; Domain=qbo.intuit.com;
+        Path=/; Secure; HttpOnly
+      - qboeuid=4440f77b.58e81dcfdb1d0; path=/; expires=Fri, 24-Jul-20 14:01:33 GMT;
+        domain=.intuit.com
+      Qbo-Version:
+      - '1915.190'
+      Service-Time:
+      - total=99, db=22
+      Expires:
+      - '0'
+      Content-Encoding:
+      - gzip
+      Cache-Control:
+      - max-age=0, no-cache, no-store, must-revalidate, private
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAAM1U21LbMBD9FY9fO4nshADNKKIQlxk6UC52ps/C2tQaZMkj
+        yQH/PSsTkwv9gL4k2rNHZ4+1WtGLt1pFG7BOGr2I03ESR6BLI6T+u4hXxfXo
+        PI6c51pwZTQs4g5cfMHojfat9E/gGqMdRCii3SKuvG/mhLiygpqPZc8Zl6Ym
+        a6m5LoFspnHkZY06kyT9PkrORpNZkZzNk3Q+nY7T5HwUgiRmdNk6b2qwkTA1
+        l2jt8eoenTTcOty95soBsm4ESyfnlOA/zTtdFuYFNJtSsgvoHXiecc9R0wL3
+        UGB9huWx1myUpEVyOp+l89nJR2lK9lj0lju/agTGYth27HrYdkylZFf4mtdS
+        db85wnktfUXJHkKvW6W6x5YruZYgDlhfMzSTrlH8QGwfog8Wz/1eLysoX3qk
+        AOejlQNLyZccvSy93ADztgVKtkGQqLntfuLBq0shLNLwF5xjAjagTION0f7b
+        qzEetX/o1oKqQ59RYkvsax2JZLDmrfIFf1saAU+wZhP0/gWkuObPajA1RPRK
+        qq1Q6HqanH20/VZqSPEWTE+iO7woUWbxG7AdPUyX0ncsR7+vFViE+5guTau9
+        7dhKS2xXlHvsmsPkFh7yefucyY0MoxHMsWVohLFa8k/uMYWSnc28ks2n4dPp
+        7P/0u3P5yzyzfrAoCcv+wP/gBXvgFts9pI5QesVVGG2GIzAsByzQUMnt5T4h
+        HHCLAmWHLY80D0/CwddFmVGK25it8gzd78jhesIaMBYZKDw72+GgVUaw/naH
+        i/fvdFD5eFNwefh+sXdlha5LBwUAAA==
+    http_version: 
+  recorded_at: Thu, 25 Jul 2019 14:01:33 GMT
+recorded_with: VCR 4.0.0

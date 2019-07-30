@@ -131,8 +131,7 @@ module QBIntegration
           # make an adjustment look like a line_item
           adjustment[:price] = adjustment["value"].to_f * multiplier
           adjustment[:name] = adjustment["name"]
-          adjustment[:sku] = adjustment['name'].downcase == "tax" ? "" : sku
-          puts 'Sku now is: ' + adjustment[:sku].to_s
+          adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
