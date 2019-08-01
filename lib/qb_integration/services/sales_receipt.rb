@@ -52,7 +52,11 @@ module QBIntegration
 
       private
         def order_number
-          order[:number] || order[:id]
+          if config['quickbooks_prefix'].nil?
+            order[:number] || order[:id]
+          else
+            config['quickbooks_prefix'] + (order[:number] || order[:id])
+          end
         end
 
         def build(sales_receipt)
