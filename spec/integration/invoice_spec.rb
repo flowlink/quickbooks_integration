@@ -207,12 +207,12 @@ describe 'App' do
           "quickbooks_web_orders_users": "0",
           "quickbooks_inventory_account": "Inventory Asset",
           "quickbooks_cogs_account": "Cost of Goods Sold",
-          "quickbooks_create_new_product": "1"
+          "quickbooks_create_new_product": "1",
+          "quickbooks_prefix": "QBO-"
         },
         invoice: invoice
       }.to_json, headers
       body = JSON.parse(last_response.body)
-      p body
       expect(last_response.status).to eq 200
     end
   end

@@ -281,7 +281,7 @@ describe 'App' do
     end
   end
 
-  describe "add_order", vcr: { record: :new_episodes } do
+  describe "add_order", vcr: true do
     it "add a quickbooks_prefix" do
       merged_order = order.merge({
         number: "23"
@@ -305,7 +305,6 @@ describe 'App' do
         "order": merged_order
       }.to_json, headers
       response = JSON.parse(last_response.body)
-      pp response
       expect(last_response.status).to eq 200
       expect(response["summary"]).to be_instance_of(String)
     end
