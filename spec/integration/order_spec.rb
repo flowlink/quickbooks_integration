@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require 'pp'
 
 describe 'App' do
   let(:headers) {
@@ -278,6 +279,32 @@ describe 'App' do
       expect(totals["discount"]).to eq "0.0"
       expect(totals["item"]).to eq "22.5"
       expect(totals["order"]).to eq "22.50"
+    end
+
+    it "returns 200 and accepts a quickbooks_prefix param" do
+      post '/get_orders', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_since": "2019-01-13T14:50:22-08:00",
+          "quickbooks_page_num": "1",
+          "quickbooks_prefix": "FL-",
+        },
+      }.to_json, headers
+      response = JSON.parse(last_response.body)
+      expect(last_response.status).to eq 206
+      expect(response["summary"]).to be_instance_of(String)
+      expect(response["orders"].count).to eq 50
+
+      # Original doc_number of TEST115
+      first = response["orders"][0]
+      expect(first["number"]).to eq "TEST115"
+
+      # Original doc_number of FL-1104
+      order = response["orders"][7]
+      expect(order["number"]).to eq "1104"
     end
   end
 
