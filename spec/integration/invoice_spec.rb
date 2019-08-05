@@ -420,9 +420,29 @@ describe 'App' do
       expect(last_response.status).to eq 200
       expect(invoices.size).to eq 12
     end
+
+    it "returns 200 and accepts & users quickbooks_prefix" do
+      post '/get_invoices', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_since": "2017-03-11T18:48:56.001Z",
+          "quickbooks_page_num": "1",
+          "quickbooks_prefix": "008"
+        }
+      }.to_json, headers
+      invoices = JSON.parse(last_response.body)['invoices']
+      first = invoices.first
+      expect(last_response.status).to eq 200
+      expect(invoices.size).to eq 28
+
+      expect(first["doc_number"]).to eq "testinvoice"
+    end
   end
 
-  describe "#add_invoice", vcr: { record: :new_episodes } do
+  describe "#add_invoice", vcr: true do
     it "returns 200 and a summary" do
       skip("Getting Transaction Date Error even though inventory start date is prev year")
       post '/add_invoice', {
@@ -449,7 +469,7 @@ describe 'App' do
     end
   end
 
-  describe "#update_invoice", vcr: { record: :new_episodes } do
+  describe "#update_invoice", vcr: true do
     it "returns 200 and a summary" do
       post '/update_invoice', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",

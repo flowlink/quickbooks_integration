@@ -38,8 +38,8 @@ module QBIntegration
       [summary, new_page_number, since, code]
     end
 
-    def build_invoice(invoice)
-      Processor::Invoice.new(invoice).as_flowlink_hash
+    def build_invoice(invoice, configuration)
+      Processor::Invoice.new(invoice, configuration).as_flowlink_hash
     end
 
     private

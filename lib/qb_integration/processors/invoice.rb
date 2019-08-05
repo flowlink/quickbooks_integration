@@ -2,10 +2,11 @@ module QBIntegration
   module Processor
     class Invoice
       include Helper
-      attr_reader :invoice
+      attr_reader :invoice, :config
 
-      def initialize(invoice)
+      def initialize(invoice, config)
         @invoice = invoice
+        @config = config
       end
 
       def as_flowlink_hash
@@ -20,7 +21,7 @@ module QBIntegration
           total: invoice.total.to_f,
           home_total: invoice.home_total.to_f,
           auto_doc_number: invoice.auto_doc_number,
-          doc_number: invoice.doc_number,
+          doc_number: doc_number,
           txn_date: invoice.txn_date,
           apply_tax_after_discount: invoice.apply_tax_after_discount?,
           print_status: invoice.print_status,
@@ -57,6 +58,20 @@ module QBIntegration
       end
 
       private
+
+      def doc_number
+        if config['quickbooks_prefix'].nil?
+          invoice.doc_number
+        else
+          match_prefix ? invoice.doc_number.sub(config['quickbooks_prefix'], "") : invoice.doc_number
+        end
+      end
+
+      def match_prefix
+        prefix = Regexp.new("^" + config['quickbooks_prefix'])
+        invoice.doc_number.match(prefix)
+      end
+
 
       def build_delivery_info
         return unless invoice.delivery_info
