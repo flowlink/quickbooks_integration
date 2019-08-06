@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require 'pp'
 
 describe 'App' do
   let(:headers) {
@@ -279,10 +280,64 @@ describe 'App' do
       expect(totals["item"]).to eq "22.5"
       expect(totals["order"]).to eq "22.50"
     end
+
+    it "returns 200 and accepts a quickbooks_prefix param" do
+      post '/get_orders', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_since": "2019-01-13T14:50:22-08:00",
+          "quickbooks_page_num": "1",
+          "quickbooks_prefix": "FL-",
+        },
+      }.to_json, headers
+      response = JSON.parse(last_response.body)
+      expect(last_response.status).to eq 206
+      expect(response["summary"]).to be_instance_of(String)
+      expect(response["orders"].count).to eq 50
+
+      # Original doc_number of TEST115
+      first = response["orders"][0]
+      expect(first["number"]).to eq "TEST115"
+
+      # Original doc_number of FL-1104
+      order = response["orders"][7]
+      expect(order["number"]).to eq "1104"
+    end
   end
 
   describe "add_order", vcr: true do
+    it "add a quickbooks_prefix" do
+      merged_order = order.merge({
+        number: "23"
+      })
+
+      post '/add_order', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_track_inventory": "1",
+          "quickbooks_account_name": "Sales of Product Income",
+          "quickbooks_web_orders_users": "1",
+          "quickbooks_payment_method_name": "[{\"shopify_payments\":\"MasterCard\", \"PayPal\":\"PayPal\", \"Visa\":\"Visa\", \"Discover\":\"Discover\", \"American Express\":\"American Express\", \"None\":\"Cash\", \"Cash\":\"Cash\", \"Money Order\":\"Cash\", \"Check Payments\":\"Cash\"}]",
+          "quickbooks_inventory_account": "Inventory Asset",
+          "quickbooks_create_new_product": "0",
+          "quickbooks_cogs_account": "Cost of Goods Sold",
+          "quickbooks_prefix": "QBO-",
+        },
+        "order": merged_order
+      }.to_json, headers
+      response = JSON.parse(last_response.body)
+      expect(last_response.status).to eq 200
+      expect(response["summary"]).to be_instance_of(String)
+    end
+
     it "returns 200 and summary with id for default configs" do
+      skip("Transaction date is prior to start date for inventory item")
       post '/add_order', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
         "parameters": {
@@ -297,7 +352,7 @@ describe 'App' do
           "quickbooks_web_orders_users": "1",
           "quickbooks_payment_method_name": "[{\"shopify_payments\":\"MasterCard\", \"PayPal\":\"PayPal\", \"Visa\":\"Visa\", \"Discover\":\"Discover\", \"American Express\":\"American Express\", \"None\":\"Cash\", \"Cash\":\"Cash\", \"Money Order\":\"Cash\", \"Check Payments\":\"Cash\"}]",
           "quickbooks_inventory_account": "Inventory Asset",
-          "quickbooks_create_new_product": "0",
+          "quickbooks_create_new_product": "1",
           "quickbooks_cogs_account": "Cost of Goods Sold"
         },
         "order": order
@@ -463,6 +518,37 @@ describe 'App' do
   end
 
   describe "update_order", vcr: true do
+    it "uses quickbooks_prefix" do
+      merged_order = existing_order.merge({
+        "number": "23"
+      })
+
+      post '/update_order', {
+        "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",
+        "parameters": {
+          "quickbooks_create_or_update": "1",
+          "quickbooks_realm": realm,
+          "quickbooks_access_token": token,
+          "quickbooks_access_secret": secret,
+          "quickbooks_tax_item": "product_tax",
+          "quickbooks_discount_item": "discount",
+          "quickbooks_shipping_item": "shipping",
+          "quickbooks_track_inventory": "1",
+          "quickbooks_account_name": "Sales of Product Income",
+          "quickbooks_web_orders_users": "1",
+          "quickbooks_payment_method_name": "[{\"shopify_payments\":\"MasterCard\", \"PayPal\":\"PayPal\", \"Visa\":\"Visa\", \"Discover\":\"Discover\", \"American Express\":\"American Express\", \"None\":\"Cash\", \"Cash\":\"Cash\", \"Money Order\":\"Cash\", \"Check Payments\":\"Cash\"}]",
+          "quickbooks_inventory_account": "Inventory Asset",
+          "quickbooks_create_new_product": "0",
+          "quickbooks_cogs_account": "Cost of Goods Sold",
+          "quickbooks_prefix": "QBO-"
+        },
+        "order": merged_order
+      }.to_json, headers
+      response = JSON.parse(last_response.body)
+      pp response
+      expect(last_response.status).to eq 200
+      expect(response["summary"]).to be_instance_of(String)
+    end
     it "returns 200 and summary with id for default configs" do
       post '/update_order', {
         "request_id": "25d4847a-a9ba-4b1f-9ab1-7faa861a4e67",

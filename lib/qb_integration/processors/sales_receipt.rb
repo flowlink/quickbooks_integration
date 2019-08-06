@@ -2,10 +2,11 @@ module QBIntegration
   module Processor
     class SalesReceipt
       include Helper
-      attr_reader :sales_receipt
+      attr_reader :sales_receipt, :config
 
-      def initialize(sales_receipt)
+      def initialize(sales_receipt, config)
         @sales_receipt = sales_receipt
+        @config = config
         @sales_line_details = select_sales_lines
         @item_lines = select_item_lines
       end
@@ -13,8 +14,8 @@ module QBIntegration
       def as_flowlink_hash
         {
           id: sales_receipt.id,
-          name: sales_receipt.doc_number,
-          number: sales_receipt.doc_number,
+          name: doc_number,
+          number: doc_number,
           created_at: sales_receipt.txn_date,
           line_items: format_line_items,
           currency: sales_receipt.currency_ref.value,
@@ -33,6 +34,19 @@ module QBIntegration
       end
 
       private
+
+      def doc_number
+        if config['quickbooks_prefix'].nil?
+          sales_receipt.doc_number
+        else
+          match_prefix ? sales_receipt.doc_number.sub(config['quickbooks_prefix'], "") : sales_receipt.doc_number
+        end
+      end
+
+      def match_prefix
+        prefix = Regexp.new("^" + config['quickbooks_prefix'])
+        sales_receipt.doc_number.match(prefix)
+      end
 
       def format_line_items
         @item_lines.map do |line_item|
