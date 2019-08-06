@@ -51,7 +51,7 @@ module QBIntegration
               end
             end
           else      
-            price = line_item["price"]
+            price = line_item["line_item_price"]
             quantity = line_item["quantity"]
 
             unless price && quantity
