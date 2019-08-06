@@ -35,7 +35,7 @@ describe 'App' do
           "name": "1234321",
           "quantity": 1.0,
           "product_id": "1234321",
-          "price": 30
+          "line_item_price": 30
         }
       ],
       "adjustments": [
@@ -114,7 +114,7 @@ describe 'App' do
           "name": "09876",
           "quantity": 1.0,
           "product_id": "09876",
-          "price": 30
+          "line_item_price": 30
         }
       ],
       "adjustments": [
@@ -194,7 +194,7 @@ describe 'App' do
           "name": "1234321",
           "quantity": 1.0,
           "product_id": "1234321",
-          "price": 30
+          "line_item_price": 30
         }
       ],
       "adjustments": [
@@ -453,7 +453,7 @@ describe 'App' do
           "name": "new item 2",
           "quantity": 1.0,
           "sku": "new-item-sku-2",
-          "price": 30
+          "line_item_price": 30
         }
       ]
       order["placed_on"] = Time.now

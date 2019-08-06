@@ -91,16 +91,16 @@ module QBIntegration
             #   end
             # end
           else
-            unless line_item["price"] && line_item["quantity"]
+            unless line_item["line_item_price"] && line_item["quantity"]
               raise UnsupportedException.new "Line Items must have a valid price and quantity"
             end
-            line.amount = (line_item["quantity"].to_i * line_item["price"].to_f)
+            line.amount = (line_item["quantity"].to_i * line_item["line_item_price"].to_f)
             line.description = line_item["name"]
 
             line.sales_item! do |sales_item|
               sales_item.item_id = item_found.id
               sales_item.quantity = line_item["quantity"].to_i
-              sales_item.unit_price = line_item["price"].to_f
+              sales_item.unit_price = line_item["line_item_price"].to_f
               # TODO: we should be querying QBO to ensure this actually exists. Raise an error if it doesn't?
               sales_item.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
                # TODO: Add Class ref, Price Level ref, Service Date
