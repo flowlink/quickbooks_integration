@@ -100,7 +100,7 @@ module QBIntegration
             line.sales_item! do |sales_item|
               sales_item.item_id = item_found.id
               sales_item.quantity = line_item["quantity"].to_i
-              sales_item.unit_price = line_item["line_item_price"].to_f
+              sales_item.unit_price = price(line_item).to_f
               # TODO: we should be querying QBO to ensure this actually exists. Raise an error if it doesn't?
               sales_item.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
                # TODO: Add Class ref, Price Level ref, Service Date
@@ -212,6 +212,10 @@ module QBIntegration
       end
 
       private
+
+      def price(line_item)
+        line_item["line_item_price"] || line_item["price"]
+      end
 
       def build_item_based_expense(line_item, account, purchase_order)
           line = Quickbooks::Model::PurchaseLineItem.new
