@@ -87,6 +87,7 @@ module QBIntegration
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
   class TransactionMustBeOpen < StandardError; end
+  class ReceivedItemsRequired < StandardError; end
 
   class MissingTimestampParam < StandardError
     def message
