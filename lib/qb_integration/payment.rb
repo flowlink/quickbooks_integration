@@ -54,7 +54,7 @@ module QBIntegration
     end
 
     def allow_unapplied_payment?
-      config.has_key?('allow_unapplied_payment') || payment.has_key?('allow_unapplied_payment')
+      payment.has_key?('allow_unapplied_payment') || config.has_key?('allow_unapplied_payment')
     end
 
      def code
