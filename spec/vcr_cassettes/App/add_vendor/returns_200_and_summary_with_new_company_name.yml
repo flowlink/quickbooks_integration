@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/vendor
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="utf-8"?>
+        <Vendor xmlns="http://schema.intuit.com/finance/v3" sparse="false">
+        <Title>1103</Title>
+        <CompanyName>Ollivander's</CompanyName>
+        <DisplayName>Ollivander's</DisplayName>
+        <PrimaryPhone>
+        <FreeFormNumber>+1 585-398-1290</FreeFormNumber>
+        </PrimaryPhone>
+        <PrimaryEmailAddr>
+        <Address>orders@regalisi.com</Address>
+        </PrimaryEmailAddr>
+        <BillAddr>
+        <Line1>PO Box 355</Line1>
+        <City>Victor</City>
+        <Country>United States</Country>
+        </BillAddr>
+        <Balance>0.0</Balance>
+        </Vendor>
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '499'
+      Authorization:
+      - OAuth oauth_body_hash="4e7s1QxRnq9lkIeE2hJ70G78pro%3D", oauth_consumer_key="oauth_consumer_key",
+        oauth_nonce="RaOYjIyiMdbXWnHrcZTNjZWZYYZtuWDWXiCQ2Kgp0", oauth_signature="KfmXe3or%2FTy9PKJ7KpHIDS0TgYw%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1564496992", oauth_token="<TOKEN>",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Tue, 30 Jul 2019 14:29:53 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '369'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Intuit-Tid:
+      - a9a5f55a-6a34-4ee0-a01a-8970b0dd4c30
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <IntuitResponse time="2019-07-30T07:29:53.174-07:00" xmlns="http://schema.intuit.com/finance/v3">
+            <Fault type="AUTHENTICATION">
+                <Error code="3200">
+                    <Message>message=ApplicationAuthenticationFailed; errorCode=003200; statusCode=401</Message>
+                </Error>
+            </Fault>
+        </IntuitResponse>
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 14:29:53 GMT
+recorded_with: VCR 4.0.0

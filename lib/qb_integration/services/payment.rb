@@ -81,7 +81,7 @@ module QBIntegration
         payment.customer_id = customer.id
         payment.total = flowlink_payment[:amount]
         payment.payment_method_id = find_payment_method.id
-        payment.payment_ref_number = payment[:id]
+        payment.payment_ref_number = flowlink_payment[:id]
       end
 
       def add_linked_txn(payment)

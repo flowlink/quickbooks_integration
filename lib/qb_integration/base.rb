@@ -89,6 +89,12 @@ module QBIntegration
   class TransactionMustBeOpen < StandardError; end
   class ReceivedItemsRequired < StandardError; end
 
+  class UnnappliedPaymentsNotAllowed < StandardError
+    def message
+      "Payments with no related transaction are not allowed. You can add 'allow_unapplied_payment' parameter in FlowLink workflow to allow unapplied payments."
+    end
+  end
+
   class MissingTimestampParam < StandardError
     def message
       "Parameter QuickBooks_poll_stock_timestamp should be a valid date. e.g 2014-04-13T18:48:56.001Z"

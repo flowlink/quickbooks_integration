@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://quickbooks.api.intuit.com/v3/company/<REALM>/query?query=SELECT%20*%20FROM%20SalesReceipt%20WHERE%20DocNumber%20=%20%27%27%20STARTPOSITION%201%20MAXRESULTS%2020
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/xml
+      Accept:
+      - application/xml
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="oauth_consumer_key", oauth_nonce="2RRfSDq1S6vp7kmoo9sjfS9Q8B0DY0MbajhRRLNIrU",
+        oauth_signature="1uV%2BBt1dTRZf3KWwaTqdUTWkoZE%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1564496977", oauth_token="<TOKEN>", oauth_version="1.0"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Tue, 30 Jul 2019 14:29:38 GMT
+      Content-Type:
+      - text/xml
+      Content-Length:
+      - '369'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Intuit-Tid:
+      - 0af6a3c9-7f0b-46d5-991c-59083157f57d
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <IntuitResponse time="2019-07-30T07:29:38.551-07:00" xmlns="http://schema.intuit.com/finance/v3">
+            <Fault type="AUTHENTICATION">
+                <Error code="3200">
+                    <Message>message=ApplicationAuthenticationFailed; errorCode=003200; statusCode=401</Message>
+                </Error>
+            </Fault>
+        </IntuitResponse>
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 14:29:38 GMT
+recorded_with: VCR 4.0.0
