@@ -130,7 +130,7 @@ describe 'App' do
             "rate_percent": nil,
             "service_date": nil
           },
-          "price": 13,
+          "line_item_price": 13,
           "quantity": 1
         }
       ],
@@ -255,7 +255,7 @@ describe 'App' do
          "rate_percent"=>nil,
          "quantity"=>1.0,
          "service_date"=>nil,
-         "price": 13,
+         "line_item_price": 13,
          "quantity": 1
        }
      ],
@@ -298,7 +298,7 @@ describe 'App' do
           "sku": "200901-NONAME",
           "description": "200901 - NONAME",
           "detail_type": "SalesItemLineDetail",
-          "price": 78.0,
+          "line_item_price": 78.0,
           "quantity": 5,
           "line_detail": {
             "item": {
