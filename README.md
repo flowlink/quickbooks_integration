@@ -143,6 +143,9 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_deposit_to_account_name - The Account Name in which payments from Invoices should be deposited (normally Undeposited Funds)
 - quickbooks_ar_account_name - The Account Name used for your Accounts Receivable account in QuickBooks Online
 
+/add_payment
+- quickbooks_payment_method_name - Mapping for payment methods in QuickBooks Online => **Required**
+- allow_unapplied_payment - If this parameter is set, payments that have no transaction ID on them will still be created in QBO. They will have no related transaction.
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found

@@ -171,6 +171,8 @@ module QBIntegration
       end
 
       def build_item_based_lines(po_model, po_payload)
+        raise ReceivedItemsRequired.new('Missing items to create a bill from received_items') if po_payload[:received_items].empty?
+
         if po_payload[:quantity_received_in_qbo].nil?
 
           po_payload[:received_items].map do | received_item |
@@ -188,6 +190,8 @@ module QBIntegration
           end
 
         else
+
+          raise ReceivedItemsRequired.new('Missing new items to create a bill from received_items') if po_payload[:received_items] == po_payload[:quantity_received_in_qbo]
 
           po_payload[:quantity_received_in_qbo].map do | qty_object|
 
