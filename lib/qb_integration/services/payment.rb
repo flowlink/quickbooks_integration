@@ -91,7 +91,13 @@ module QBIntegration
       def find_payment_method
         # Payment Method class expects order key
         order_payload = {
-          order: {payments: [flowlink_payment[:payment_method]]}
+          order: {
+            payments: [
+              {
+                payment_method: flowlink_payment[:payment_method]
+              }
+            ]
+          }
         }
         PaymentMethod.new(config, order_payload).matching_payment
       end
