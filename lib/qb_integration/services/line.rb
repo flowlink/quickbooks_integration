@@ -66,30 +66,27 @@ module QBIntegration
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
 
-          if item_found.type == "Group"
-            # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
-            raise UnsupportedException.new "Bundled Item Present: FlowLink does not support adding bundled items to Sales Receipts at this time. Please contatct a FlowLink representative for more information."
-            
-            # line.group_line_detail! do |detail|
-            #   detail.id = item_found.id
-            #   detail.group_item_ref = Quickbooks::Model::BaseReference.new(item_found.name, value: item_found.id)
-            #   detail.quantity = line_item["quantity"]
+          if item_found.type == "Group"            
+            line.group_line! do |detail|
+              detail.id = item_found.id
+              detail.group_item_ref = Quickbooks::Model::BaseReference.new(item_found.name, value: item_found.id)
+              detail.quantity = line_item["quantity"]
           
-            #   item_found.item_group_details.line_items.each do |group_line|
-            #     g_line_item = create_model
-            #     group_item_found = item_service.find_by_id(group_line.id)
+              item_found.item_group_details.line_items.each do |group_line|
+                g_line_item = create_model
+                group_item_found = item_service.find_by_id(group_line.id)
 
-            #     g_line_item.amount = group_line.quantity.to_i * group_item_found.unit_price.to_f
+                g_line_item.amount = group_line.quantity.to_i * group_item_found.unit_price.to_f
 
-            #     g_line_item.sales_item! do |gl|
-            #       gl.item_id = group_line.id
-            #       gl.quantity = group_line.quantity.to_i
-            #       gl.unit_price = group_item_found.unit_price.to_f
-            #     end
+                g_line_item.sales_item! do |gl|
+                  gl.item_id = group_line.id
+                  gl.quantity = group_line.quantity.to_i
+                  gl.unit_price = group_item_found.unit_price.to_f
+                end
           
-            #     detail.line_items << g_line_item
-            #   end
-            # end
+                detail.line_items << g_line_item
+              end
+            end
           else
             unless line_item["line_item_price"] && line_item["quantity"]
               raise UnsupportedException.new "Line Items must have a valid price and quantity"

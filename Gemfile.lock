@@ -8,10 +8,11 @@ GIT
       json
 
 GIT
-  remote: git://github.com/ruckus/quickbooks-ruby.git
-  revision: b3b742389c438351f0826013e128ba706f1ed41c
+  remote: git://github.com/flowlink/quickbooks-ruby.git
+  revision: a44e0772263e965ffb24ded321aeaf345ac55762
+  branch: feature/group-line-detail
   specs:
-    quickbooks-ruby (0.6.5)
+    quickbooks-ruby (0.6.7)
       activemodel
       multipart-post
       nokogiri
