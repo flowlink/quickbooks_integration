@@ -53,9 +53,9 @@ module QBIntegration
       private
         def order_number
           if config['quickbooks_prefix'].nil?
-            order[:number] || order[:id]
+            order[:id] || order[:number]
           else
-            "#{config['quickbooks_prefix']}#{(order[:number] || order[:id])}"
+            "#{config['quickbooks_prefix']}#{(order[:id] || order[:number])}"
           end
         end
 

@@ -61,9 +61,9 @@ module QBIntegration
       private
         def invoice_number
           if config['quickbooks_prefix'].nil?
-            flowlink_invoice[:number] || flowlink_invoice[:id]
+            flowlink_invoice[:id] || flowlink_invoice[:number]
           else
-            "#{config['quickbooks_prefix']}#{(flowlink_invoice[:number] || flowlink_invoice[:id])}"
+            "#{config['quickbooks_prefix']}#{(flowlink_invoice[:id] || flowlink_invoice[:number])}"
           end
         end
 
