@@ -12,7 +12,6 @@ module QBIntegration
       summary = "Created Bill: #{bill[:doc_number]} with Purchase Order: #{po[:doc_number]}"
 
       [ code, summary, bill, po ]
-
     end
   end
 end

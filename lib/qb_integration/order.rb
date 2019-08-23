@@ -12,7 +12,7 @@ module QBIntegration
 
       flowlink_orders = []
       @orders.each do |order|
-        flowlink_order = Processor::SalesReceipt.new(order).as_flowlink_hash
+        flowlink_order = Processor::SalesReceipt.new(order, config).as_flowlink_hash
         flowlink_order[:customer] = format_customer(order.customer_ref.value)
         flowlink_order[:payments] = format_payments(order.payment_ref_number)
         flowlink_orders << flowlink_order

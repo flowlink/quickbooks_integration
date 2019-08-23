@@ -123,7 +123,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     summary, page, since, code = qbo_invoice.get()
   
     qbo_invoice.invoices.each do |invoice|
-      add_object :invoice, qbo_invoice.build_invoice(invoice)
+      add_object :invoice, qbo_invoice.build_invoice(invoice, @config)
     end
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
