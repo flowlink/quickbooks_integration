@@ -66,41 +66,38 @@ module QBIntegration
             raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
           end
 
-          if item_found.type == "Group"
-            # Currently, the ruckus QuickBooks gem we use doesn't allow for adding bundles to sales receipts
-            raise UnsupportedException.new "Bundled Item Present: FlowLink does not support adding bundled items to Sales Receipts at this time. Please contatct a FlowLink representative for more information."
-            
-            # line.group_line_detail! do |detail|
-            #   detail.id = item_found.id
-            #   detail.group_item_ref = Quickbooks::Model::BaseReference.new(item_found.name, value: item_found.id)
-            #   detail.quantity = line_item["quantity"]
+          if item_found.type == "Group"            
+            line.group_line! do |detail|
+              detail.id = item_found.id
+              detail.group_item_ref = Quickbooks::Model::BaseReference.new(item_found.name, value: item_found.id)
+              detail.quantity = line_item["quantity"]
           
-            #   item_found.item_group_details.line_items.each do |group_line|
-            #     g_line_item = create_model
-            #     group_item_found = item_service.find_by_id(group_line.id)
+              item_found.item_group_details.line_items.each do |group_line|
+                g_line_item = create_model
+                group_item_found = item_service.find_by_id(group_line.id)
 
-            #     g_line_item.amount = group_line.quantity.to_i * group_item_found.unit_price.to_f
+                g_line_item.amount = group_line.quantity.to_i * group_item_found.unit_price.to_f
 
-            #     g_line_item.sales_item! do |gl|
-            #       gl.item_id = group_line.id
-            #       gl.quantity = group_line.quantity.to_i
-            #       gl.unit_price = group_item_found.unit_price.to_f
-            #     end
+                g_line_item.sales_item! do |gl|
+                  gl.item_id = group_line.id
+                  gl.quantity = group_line.quantity.to_i
+                  gl.unit_price = group_item_found.unit_price.to_f
+                end
           
-            #     detail.line_items << g_line_item
-            #   end
-            # end
+                detail.line_items << g_line_item
+              end
+            end
           else
-            unless line_item["price"] && line_item["quantity"]
+            unless line_item["line_item_price"] && line_item["quantity"]
               raise UnsupportedException.new "Line Items must have a valid price and quantity"
             end
-            line.amount = (line_item["quantity"].to_i * line_item["price"].to_f)
+            line.amount = (line_item["quantity"].to_i * line_item["line_item_price"].to_f)
             line.description = line_item["name"]
 
             line.sales_item! do |sales_item|
               sales_item.item_id = item_found.id
               sales_item.quantity = line_item["quantity"].to_i
-              sales_item.unit_price = line_item["price"].to_f
+              sales_item.unit_price = price(line_item).to_f
               # TODO: we should be querying QBO to ensure this actually exists. Raise an error if it doesn't?
               sales_item.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
                # TODO: Add Class ref, Price Level ref, Service Date
@@ -171,6 +168,8 @@ module QBIntegration
       end
 
       def build_item_based_lines(po_model, po_payload)
+        raise ReceivedItemsRequired.new('Missing items to create a bill from received_items') if po_payload[:received_items].empty?
+
         if po_payload[:quantity_received_in_qbo].nil?
 
           po_payload[:received_items].map do | received_item |
@@ -188,6 +187,8 @@ module QBIntegration
           end
 
         else
+
+          raise ReceivedItemsRequired.new('Missing new items to create a bill from received_items') if po_payload[:received_items] == po_payload[:quantity_received_in_qbo]
 
           po_payload[:quantity_received_in_qbo].map do | qty_object|
 
@@ -212,6 +213,10 @@ module QBIntegration
       end
 
       private
+
+      def price(line_item)
+        line_item["line_item_price"] || line_item["price"]
+      end
 
       def build_item_based_expense(line_item, account, purchase_order)
           line = Quickbooks::Model::PurchaseLineItem.new

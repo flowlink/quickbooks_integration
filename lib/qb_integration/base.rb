@@ -87,6 +87,13 @@ module QBIntegration
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
   class TransactionMustBeOpen < StandardError; end
+  class ReceivedItemsRequired < StandardError; end
+
+  class UnnappliedPaymentsNotAllowed < StandardError
+    def message
+      "Payments without a related transaction are not allowed. You can add 'allow_unapplied_payment' parameter in FlowLink workflow to allow unapplied payments."
+    end
+  end
 
   class MissingTimestampParam < StandardError
     def message

@@ -60,7 +60,11 @@ module QBIntegration
 
       private
         def invoice_number
-          flowlink_invoice[:number] || flowlink_invoice[:id]
+          if config['quickbooks_prefix'].nil?
+            flowlink_invoice[:number] || flowlink_invoice[:id]
+          else
+            "#{config['quickbooks_prefix']}#{(flowlink_invoice[:number] || flowlink_invoice[:id])}"
+          end
         end
 
         def build(invoice)
