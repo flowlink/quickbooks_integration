@@ -88,10 +88,10 @@ module QBIntegration
               end
             end
           else
-            unless line_item["line_item_price"] && line_item["quantity"]
+            unless price(line_item) && line_item["quantity"]
               raise UnsupportedException.new "Line Items must have a valid price and quantity"
             end
-            line.amount = (line_item["quantity"].to_i * line_item["line_item_price"].to_f)
+            line.amount = (line_item["quantity"].to_i * price(line_item).to_f)
             line.description = line_item["name"]
 
             line.sales_item! do |sales_item|
