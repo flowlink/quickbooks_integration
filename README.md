@@ -72,16 +72,16 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 - quickbooks_realm: QuickBooks realm
 - quickbooks_access_token: Access token from Intuit
 
-## Endpoints
-[Order Endpoints](./docs/Orders.md)
-[Invoice Endpoints](./docs/Invoices.md)
-[Product Endpoints](./docs/Products.md)
-[Vendor Endpoints](./docs/Vendors.md)
-[Customer Endpoints](./docs/Customers.md)
-[Purchase Order Endpoints](./docs/PurchaseOrders.md)
-[Inventory Endpoints](./docs/Inventory.md)
-[Bill Endpoints](./docs/Bills.md)
-[Payment Endpoints](./docs/Payments.md)
+## Endpoints  
+[Order Endpoints](./docs/Orders.md)  
+[Invoice Endpoints](./docs/Invoices.md)  
+[Product Endpoints](./docs/Products.md)  
+[Vendor Endpoints](./docs/Vendors.md)  
+[Customer Endpoints](./docs/Customers.md)  
+[Purchase Order Endpoints](./docs/PurchaseOrders.md)  
+[Inventory Endpoints](./docs/Inventory.md)  
+[Bill Endpoints](./docs/Bills.md)  
+[Payment Endpoints](./docs/Payments.md)  
 
 # Error Codes:
 001 - QuickBooks Journal Entry not found
