@@ -172,6 +172,8 @@ module QBIntegration
         if @customer && @customer['billing_address']
           name = @customer['billing_address'][name_field]
         end
+
+        name = name.strip unless name.nil?
         
         name
       end
