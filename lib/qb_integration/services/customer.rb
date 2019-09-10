@@ -59,7 +59,7 @@ module QBIntegration
       end
 
       def find_by_name(name)
-        return [] unless name
+        return unless name
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("DisplayName", "=", name)
         @quickbooks.query("select * from Customer where #{clause}").entries.first
@@ -100,8 +100,10 @@ module QBIntegration
       end
 
       def fetch_by_display_name(name = nil)
+        name_to_search = name || display_name
+        return if name_to_search.nil?
         util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("DisplayName", "=", name || display_name)
+        clause = util.clause("DisplayName", "=", name_to_search)
 
         query = "SELECT * FROM Customer WHERE #{clause}"
         quickbooks.query(query).entries.first
@@ -111,7 +113,9 @@ module QBIntegration
       # will probably lose track of this customer and create another one
       # Client's now have ability to run a customer sync and configure automatic customer creation as well
       def display_name
-        name = "#{determine_name('firstname')} #{determine_name('lastname')}"
+        first = determine_name('firstname')
+        last = determine_name('lastname')
+        name = "#{first} #{last}" if first || last
         unless name && name != ''
           name = order['customer']['name']
         end
@@ -171,6 +175,7 @@ module QBIntegration
         name = order['billing_address'][name_field] unless order['billing_address'].nil?
         if @customer && @customer['billing_address']
           name = @customer['billing_address'][name_field]
+          name = @customer['name'] if name.nil?
         end
 
         name = name.strip unless name.nil?

@@ -99,7 +99,11 @@ module QBIntegration
           adjustment[:sku] = sku
 
           line.sales_item! do |sales_item|
-            sales_item.item_id = item_service.find_or_create_by_sku(adjustment, account).id
+            unless adj_found = item_service.find_or_create_by_sku(adjustment, account)
+              sku = adjustment[:sku] || adjustment[:name]
+              raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
+            end
+            sales_item.item_id = adj_found.id
             sales_item.quantity = 1
             sales_item.unit_price = adjustment["value"].to_f * multiplier
 
