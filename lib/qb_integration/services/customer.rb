@@ -7,7 +7,7 @@ module QBIntegration
         super("Customer", config)
 
         @order = payload[:order] || payload[:invoice] || {}
-        @customer = payload[:customer]
+        @customer = payload[:customer] || @order[:customer]
       end
 
       def create_customer
@@ -86,15 +86,17 @@ module QBIntegration
 
       def find_or_create
         name = use_web_orders? ? quickbooks_generic_customer_name : nil
-        unless customer = fetch_by_display_name(name)
-          if create_new_customers? || use_web_orders?
-            customer = create
-          else 
+        unless found_or_created_customer = fetch_by_display_name(name)
+          found_or_created_customer = find_customer if @customer
+
+          if create_new_customers?
+            found_or_created_customer = create if found_or_created_customer.nil?
+          else
             raise RecordNotFound.new "Quickbooks record not found for customer: #{display_name}"
           end
         end
 
-        customer
+        found_or_created_customer
       end
 
       def fetch_by_display_name(name = nil)
@@ -109,10 +111,7 @@ module QBIntegration
       # will probably lose track of this customer and create another one
       # Client's now have ability to run a customer sync and configure automatic customer creation as well
       def display_name
-        name = 'NotProvided NotProvided'
-        unless order['billing_address'].nil?
-          name = "#{order['billing_address']['firstname']} #{order['billing_address']['lastname']}".strip
-        end
+        name = "#{determine_name('firstname')} #{determine_name('lastname')}"
         unless name && name != ''
           name = order['customer']['name']
         end
@@ -125,16 +124,14 @@ module QBIntegration
         if use_web_orders?
           new_customer.display_name = quickbooks_generic_customer_name
         else
-          new_customer.given_name = order['billing_address'].nil? ? 'NotProvided' :
-                                                                    order['billing_address']['firstname']
-          new_customer.family_name = order['billing_address'].nil? ? 'NotProvided' :
-                                                                     order['billing_address']['lastname']
+          new_customer.given_name = determine_name('firstname')
+          new_customer.family_name = determine_name('lastname')
           new_customer.display_name = display_name
-          new_customer.email_address = order[:email]
-          new_customer.primary_phone = Phone.build(order[:phone]) if order[:phone]
+          new_customer.email_address = @customer ? @customer[:email] : order[:email]
+          new_customer.primary_phone = primary_phone if primary_phone
 
-          new_customer.billing_address = Address.build(order["billing_address"])
-          new_customer.shipping_address = Address.build(order["shipping_address"])
+          new_customer.billing_address = new_customer_address("billing_address")
+          new_customer.shipping_address = new_customer_address("shipping_address")
         end
 
         quickbooks.create(new_customer)
@@ -169,8 +166,29 @@ module QBIntegration
         end
       end
 
+      def determine_name(name_field)
+        name = 'NotProvided'
+        name = order['billing_address'][name_field].strip unless order['billing_address'].nil?
+        if @customer && @customer['billing_address']
+          name = @customer['billing_address'][name_field]
+        end
+        
+        name
+      end
+
+      def primary_phone
+        return Phone.build(@customer[:billing_address][:phone]) if @customer && @customer[:billing_address]
+        Phone.build(order[:phone]) if order[:phone]
+      end
+
+      def new_customer_address(address)
+        return Address.build(@customer[address]) if @customer
+        Address.build(order[address])
+      end
+
         def use_web_orders?
-          config['quickbooks_web_orders_users'].to_s == "1"
+          return config['quickbooks_web_orders_users'].to_s == "1" unless @customer && @customer['is_b2b']
+          config['quickbooks_web_orders_users'].to_s == "1" && !@customer['is_b2b']
         end
 
         # Default this to true for backwards compatibility with QBO integration users
@@ -184,7 +202,12 @@ module QBIntegration
         end
 
         def quickbooks_generic_customer_name
-          order['quickbooks_generic_customer_name'] || config['quickbooks_generic_customer_name'] || "Web Orders" 
+          customer_generic_name = @customer ? @customer['quickbooks_generic_customer_name'] : nil
+
+          customer_generic_name ||
+          order['quickbooks_generic_customer_name'] ||
+          config['quickbooks_generic_customer_name'] ||
+          "Web Orders" 
         end
 
     end
