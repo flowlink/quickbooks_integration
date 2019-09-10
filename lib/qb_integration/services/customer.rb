@@ -168,10 +168,12 @@ module QBIntegration
 
       def determine_name(name_field)
         name = 'NotProvided'
-        name = order['billing_address'][name_field].strip unless order['billing_address'].nil?
+        name = order['billing_address'][name_field] unless order['billing_address'].nil?
         if @customer && @customer['billing_address']
           name = @customer['billing_address'][name_field]
         end
+
+        name = name.strip unless name.nil?
         
         name
       end
