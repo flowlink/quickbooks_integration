@@ -13,7 +13,6 @@ module QBIntegration
       end
 
       def create
-
         new_bill = create_model
         build(new_bill)
         created_bill = quickbooks.create(new_bill)
@@ -23,7 +22,6 @@ module QBIntegration
         flowlink_bill = Processor::Bill.new(created_bill).as_flowlink_hash
 
         [flowlink_bill, flowlink_po]
-
       end
 
       private

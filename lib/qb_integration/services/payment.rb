@@ -7,6 +7,8 @@ module QBIntegration
         super("Payment", config)
         @flowlink_payment = payload[:payment]
         @vendor = payload[:vendor]
+
+        @account_service = Account.new(config)
       end
 
       def create_payment
@@ -45,6 +47,10 @@ module QBIntegration
         end
       end
 
+      def deposit_to_account_parameter
+        @flowlink_payment['deposit_to_account'] || config['deposit_to_account'] || nil
+      end
+
       def find_by_reference_number(reference_number)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("PaymentRefNum", "=", reference_number)
@@ -57,6 +63,10 @@ module QBIntegration
 
       def build(payment)
         customer = find_qbo_customer
+        if deposit_to_account_parameter
+          deposit_to_account = @account_service.find_by_name(deposit_to_account_parameter)
+          payment.deposit_to_account_id = deposit_to_account.id
+        end
 
         payment.customer_id = customer.id
         payment.total = flowlink_payment[:amount]
