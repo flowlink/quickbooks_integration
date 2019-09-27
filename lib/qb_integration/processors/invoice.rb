@@ -53,7 +53,10 @@ module QBIntegration
           linked_transactions: build_linked_transactions(invoice.linked_transactions),
           custom_fields: build_custom_fields(invoice.custom_fields),
           line_items: build_line_items(invoice.line_items),
-          status: determine_status
+          status: determine_status,
+          relationships: [
+            { object: "customer", key: "id" }
+          ]
         }
       end
 

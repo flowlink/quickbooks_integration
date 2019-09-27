@@ -37,7 +37,11 @@ module QBIntegration
           sales_tax_code_ref: build_ref(item.sales_tax_code_ref),
           purchase_tax_code_ref: build_ref(item.purchase_tax_code_ref),
           # parent_ref: item.sub_item? && build_ref(item.parent_ref)
-          parent_ref_id: item.parent_ref
+          parent_ref_id: item.parent_ref,
+          vendor: build_ref(item.pref_vendor_ref),
+          relationships: [
+            { object: "vendor", key: "id" }
+          ]
         }
       end
     end
