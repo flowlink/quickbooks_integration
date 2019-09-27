@@ -30,9 +30,9 @@ module QBIntegration
           },
           shipping_address: Processor::Address.new(sales_receipt.ship_address).as_flowlink_hash,
           billing_address: Processor::Address.new(sales_receipt.bill_address).as_flowlink_hash,
-          customer: build_ref(sales_receipt.customer_ref),
+          customer_object: build_ref(sales_receipt.customer_ref),
           relationships: [
-            { object: "customer", key: "id" }
+            { object: "customer_object", key: "id" }
           ]
         }
       end
