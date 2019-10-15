@@ -1,24 +1,26 @@
 module QBIntegration
   module Service
-    class Class < Base
+    class ShipMethod < Base
       attr_reader :config
 
       def initialize(config)
-        super("Class", config)
+        super("ShipMethod", config)
 
         @config = config
-        @model_name = "Class"
+        @model_name = "ShipMethod"
       end
 
-      def find_class(value)
+      def find_ship_method(value)
         find_by_id(value) || find_by_name(value)
       end
+
+      private
 
       def find_by_name(name)
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("Name", "=", name)
 
-        query = "SELECT * FROM Class WHERE #{clause}"
+        query = "SELECT * FROM ShipMethod WHERE #{clause}"
         quickbooks.query(query).entries.first
       end
 
@@ -26,7 +28,7 @@ module QBIntegration
         util = Quickbooks::Util::QueryBuilder.new
         clause = util.clause("id", "=", id)
 
-        query = "SELECT * FROM Class WHERE #{clause}"
+        query = "SELECT * FROM ShipMethod WHERE #{clause}"
         quickbooks.query(query).entries.first
       end
     end

@@ -60,6 +60,15 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/add_refund_receipt' do
+    begin
+      code, summary = QBIntegration::RefundReceipt.new(@payload, @config).create
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
+
   post '/add_purchase_order' do
     begin
       code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
@@ -150,7 +159,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     code, vendors = QBIntegration::Vendor.new(@payload, @config).index
     summary = "Retrieved #{vendors.size} vendors"
     vendors.each { |vendor| add_object :vendor, vendor }
-    add_parameter "since", @config.fetch("quickbooks_since")
+    add_parameter "quickbooks_since", @config.fetch("quickbooks_since")
     add_parameter "page", @config.fetch("page", 1)
     result code, summary
   end

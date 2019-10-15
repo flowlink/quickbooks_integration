@@ -74,6 +74,10 @@ module QBIntegration
       @bill_service ||= Service::Bill.new(config, payload)
     end
 
+    def refund_receipt_service
+      @refund_receipt_service ||= Service::RefundReceipt.new(config, payload)
+    end
+
   end
 
   class RecordNotFound < StandardError; end

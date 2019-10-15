@@ -142,23 +142,36 @@ module QBIntegration
         end
       end
 
-      # NOTE watch out as the price here might not always be accurate. If the
-      # variant price changed after the order was created we'd get that price
-      # here not the one in the order line item
-      #
-      # TODO We should group inventory units variant and create only one line
-      # per variant with the proper quantity set
       def build_from_inventory_units(account = nil)
         inventory_units.each do |unit|
           line = create_model
 
-          line.amount = unit[:subtotal]
-          line.description = unit[:name]
+          line.amount = unit[:quantity] * price(unit).to_f
+          line.description = unit[:description] if unit[:description]
+          line.line_num = unit[:line_num] if unit[:line_num]
+          
+          # TODO: Build out linked transactions - not sure how they get linked within QBO yet?
+          # line.linked_transactions = build_linked_transactions_method_here
+
+          # TODO: Build out line item extras here - not sure what these are yet?
+          # line.line_extras = build_line_extras_method_here
+
+          qbo_class = nil
+          if quickbooks_class(unit)
+            qbo_class = Class.new(config).find_class(quickbooks_class(unit))
+            raise "No Class found in QuickBooks Online with the ID or Name: #{quickbooks_class(unit)}" unless qbo_class
+          end
 
           line.sales_item! do |sales_item|
             sales_item.item_id = item_service.find_or_create_by_sku(unit, account).id
             sales_item.quantity = unit[:quantity]
-            sales_item.unit_price = unit[:subtotal].to_f / unit[:quantity]
+            sales_item.unit_price = price(unit).to_f
+            sales_item.rate_percent = unit[:rate_percent] if unit[:rate_percent]
+            sales_item.service_date = unit[:service_date] if unit[:service_date]
+            sales_item.class_id = qbo_class.id if qbo_class
+
+            # TODO: Add unit[:price_level_ref] reference 
+            # TODO: Add unit[:tax_code_ref] reference 
           end
 
           lines.push(line)
@@ -254,6 +267,11 @@ module QBIntegration
           line
       end
 
+      def quickbooks_class(line)
+        line['quickbooks_class_id'] || config['quickbooks_class_id'] ||
+        line['quickbooks_class_name'] || config['quickbooks_class_name'] ||
+        nil
+      end
     end
   end
 end
