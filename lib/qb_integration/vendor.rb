@@ -23,14 +23,14 @@ module QBIntegration
     def create
       vendor = vendor_service.create
       updated_flowlink_vendor = payload[:vendor]
-      updated_flowlink_vendor[:q_id] = vendor.id
+      updated_flowlink_vendor[:qbo_id] = vendor.id
       [200 , "Vendor with id #{vendor.id} created", updated_flowlink_vendor]
     end
 
     def update
       vendor = vendor_service.update
       updated_flowlink_vendor = payload[:vendor]
-      updated_flowlink_vendor[:q_id] = vendor.id
+      updated_flowlink_vendor[:qbo_id] = vendor.id
       [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor]
     end
 
@@ -39,7 +39,7 @@ module QBIntegration
     def as_flowlink_hash(vendor)
       {
         id: vendor.id,
-        q_id: vendor.id,
+        qbo_id: vendor.id,
         last_updated_time: vendor.meta_data['last_updated_time'],
         name: vendor.display_name,
         phone: parse_number(vendor),

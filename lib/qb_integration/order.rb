@@ -31,20 +31,26 @@ module QBIntegration
       end
 
       sales_receipt = sales_receipt_service.create
+      updated_flowlink_order = order
+      updated_flowlink_order[:qbo_id] = sales_receipt.id
       text = "Created QuickBooks Sales Receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
-      [200, text]
+      [200, text, updated_flowlink_order]
     end
 
     def update
       sales_receipt = sales_receipt_service.find_by_order_number
       if !sales_receipt.present? && check_field(:quickbooks_create_or_update).to_s == "1"
         sales_receipt = sales_receipt_service.create
-        [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}"]
+        updated_flowlink_order = order
+        updated_flowlink_order[:qbo_id] = sales_receipt.id
+        [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order]
       elsif !sales_receipt.present?
         raise RecordNotFound.new "QuickBooks Sales Receipt not found for order #{order[:number]}"
       else
         sales_receipt = sales_receipt_service.update(sales_receipt)
-        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}"]
+        updated_flowlink_order = order
+        updated_flowlink_order[:qbo_id] = sales_receipt.id
+        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order]
       end
     end
 

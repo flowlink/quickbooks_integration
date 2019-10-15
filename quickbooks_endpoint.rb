@@ -53,7 +53,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_order' do
     begin
-      code, summary = QBIntegration::Order.new(@payload, @config).create
+      code, summary, added_order = QBIntegration::Order.new(@payload, @config).create
+      add_object :order, added_order
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
       result 500, e.message
@@ -95,7 +96,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   # End of Specific Endpoint
 
   post '/update_order' do
-    code, summary = QBIntegration::Order.new(@payload, @config).update
+    code, summary, updated_order = QBIntegration::Order.new(@payload, @config).update
+    add_object :order, updated_order
     result code, summary
   end
 
