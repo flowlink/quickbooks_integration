@@ -169,7 +169,7 @@ describe 'App' do
 
   let(:existing_invoice) {
     {"id"=>"1045",
-     "q_id"=>"1177",
+     "qbo_id"=>"1177",
      "due_date"=>"2019-04-05",
      "created_at"=>"2019-03-06 10:43:14 -0800",
      "customer_memo"=>"Thank you for your business and have a great day!",
