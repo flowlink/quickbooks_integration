@@ -11,7 +11,7 @@ module QBIntegration
       def as_flowlink_hash
         {
           id: item.id,
-          q_id: item.id,
+          qbo_id: item.id,
           name: item.name,
           sync_token: item.sync_token,
           sku: item.sku,
