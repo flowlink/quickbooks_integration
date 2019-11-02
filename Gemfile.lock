@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/flowlink/endpoint_base.git
-  revision: b3c06ec88b6cfcd9bea165def5f0592a0707730e
+  remote: https://github.com/flowlink/endpoint_base.git
+  revision: dc1b8ee16e085d81b282f54f05c3bfaa4daad4f9
   specs:
     endpoint_base (0.3)
       activesupport
@@ -8,7 +8,7 @@ GIT
       json
 
 GIT
-  remote: git://github.com/flowlink/quickbooks-ruby.git
+  remote: https://github.com/flowlink/quickbooks-ruby.git
   revision: a44e0772263e965ffb24ded321aeaf345ac55762
   branch: feature/group-line-detail
   specs:
@@ -87,7 +87,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
