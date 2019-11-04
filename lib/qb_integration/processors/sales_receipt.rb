@@ -29,7 +29,11 @@ module QBIntegration
             order: "%.2f" % BigDecimal(tax + shipping + discount + item).truncate(2)
           },
           shipping_address: Processor::Address.new(sales_receipt.ship_address).as_flowlink_hash,
-          billing_address: Processor::Address.new(sales_receipt.bill_address).as_flowlink_hash
+          billing_address: Processor::Address.new(sales_receipt.bill_address).as_flowlink_hash,
+          customer_object: build_ref(sales_receipt.customer_ref),
+          relationships: [
+            { object: "customer_object", key: "id" }
+          ]
         }
       end
 
