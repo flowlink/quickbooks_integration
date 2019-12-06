@@ -6,7 +6,7 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', :github => 'flowlink/endpoint_base'
 gem 'honeybadger'
 
-gem 'quickbooks-ruby', github: 'flowlink/quickbooks-ruby', branch: 'feature/group-line-detail'
+gem 'quickbooks-ruby', '~> 1.0.1'
 gem 'tzinfo'
 gem 'capistrano'
 gem 'unicorn'
