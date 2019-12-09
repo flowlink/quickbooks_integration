@@ -5,3 +5,5 @@ services:
       - ./dev.env
     ports:
       - 3001:5000
+    volumes:
+      - .:/app
