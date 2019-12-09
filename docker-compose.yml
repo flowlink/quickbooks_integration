@@ -3,5 +3,3 @@ services:
   quickbooks-integration:
     build: .
     network_mode: bridge
-    volumes:
-      - .:/app
