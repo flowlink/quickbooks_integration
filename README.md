@@ -71,7 +71,10 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 "quickbooks_access_secret": "Access Secret from Intuit",
 "quickbooks_realm": "QuickBooks realm",
 "quickbooks_access_token": "Access Token from Intuit"
+"quickbooks_sandbox": "1"
 ```
+
+Note: "quickbooks_sandbox" is not required and defaults to prodcution accounts. Set to "1" if you'd like to access a sandbox account
 
 ### Endpoints
 
