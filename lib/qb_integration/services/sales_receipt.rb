@@ -64,7 +64,7 @@ module QBIntegration
           sales_receipt.email = order["email"]
           sales_receipt.total = order['totals']['order']
 
-          sales_receipt.placed_on = order['placed_on']
+          sales_receipt.txn_date = order['placed_on']
 
           sales_receipt.ship_address = Address.build(order["shipping_address"])
           sales_receipt.bill_address = Address.build(order["billing_address"])
