@@ -57,6 +57,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       add_object :order, added_order
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
+      notify_honeybadger e
       result 500, e.message
     end
   end
@@ -66,6 +67,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
+      notify_honeybadger e
       result 500, e.message
     end
   end
@@ -111,6 +113,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
       code, summary = QBIntegration::Invoice.new(@payload, @config).create
       result code, summary
     rescue QBIntegration::AlreadyPersistedInvoiceException => e
+      notify_honeybadger e
       result 500, e.message
     end
   end
@@ -257,5 +260,17 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     else
       env['sinatra.error'].message
     end
+  end
+
+  private
+
+  def notify_honeybadger e
+    Honeybadger.notify(
+      e,
+      context: {
+        payload: @payload,
+        config: @config
+      }
+    )
   end
 end
