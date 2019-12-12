@@ -19,14 +19,14 @@ module QBIntegration
         text = "Created unapplied QuickBooks Payment #{created_payment.id}. Payment reference number is #{created_payment.payment_ref_number}"
       end
       
-      [200, text]
+      [200, text, payment_service.access_token]
     end
 
     def get
       @new_or_updated_payments, @new_page_number = payment_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@new_or_updated_payments.count} payments from QuickBooks Online"
 
-       [summary, new_page_number, since, code]
+       [summary, new_page_number, since, code, payment_service.access_token]
     end
 
      def build_payment(raw_payment)
