@@ -5,6 +5,13 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   set :show_exceptions, false
 
+  before do
+    Honeybadger.context({
+      payload: @payload,
+      config: @config
+    })
+  end
+
   error do
     result 500, lookup_error_message
   end
