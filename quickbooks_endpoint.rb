@@ -198,7 +198,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/get_invoices' do
     qbo_invoice = QBIntegration::Invoice.new(@payload, @config)
-    summary, page, since, code, auth_invoice = qbo_invoice.get()
+    summary, page, since, code, auth_info = qbo_invoice.get()
   
     qbo_invoice.invoices.each do |invoice|
       add_object :invoice, qbo_invoice.build_invoice(invoice, @config)
