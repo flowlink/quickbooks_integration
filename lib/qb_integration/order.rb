@@ -19,7 +19,7 @@ module QBIntegration
       end
       summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
 
-      [flowlink_orders, summary, new_page_number, since, code]
+      [flowlink_orders, summary, new_page_number, since, code, sales_receipt_service.access_token]
     end
 
 
@@ -34,7 +34,7 @@ module QBIntegration
       updated_flowlink_order = order
       updated_flowlink_order[:qbo_id] = sales_receipt.id
       text = "Created QuickBooks Sales Receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
-      [200, text, updated_flowlink_order]
+      [200, text, updated_flowlink_order, sales_receipt_service.access_token]
     end
 
     def update
@@ -43,14 +43,14 @@ module QBIntegration
         sales_receipt = sales_receipt_service.create
         updated_flowlink_order = order
         updated_flowlink_order[:qbo_id] = sales_receipt.id
-        [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order]
+        [200, "Created QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order, sales_receipt_service.access_token]
       elsif !sales_receipt.present?
         raise RecordNotFound.new "QuickBooks Sales Receipt not found for order #{order[:number]}"
       else
         sales_receipt = sales_receipt_service.update(sales_receipt)
         updated_flowlink_order = order
         updated_flowlink_order[:qbo_id] = sales_receipt.id
-        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order]
+        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order, sales_receipt_service.access_token]
       end
     end
 
@@ -61,7 +61,7 @@ module QBIntegration
 
       credit_memo = credit_memo_service.create_from_receipt(sales_receipt)
       text = "Created QuickBooks Credit Memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
-      [200, text]
+      [200, text, sales_receipt_service.access_token]
     end
 
     private

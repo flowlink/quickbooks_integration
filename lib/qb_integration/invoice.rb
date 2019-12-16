@@ -14,7 +14,7 @@ module QBIntegration
 
       invoice = invoice_service.create
       text = "Created QuickBooks Invoice #{invoice.doc_number}"
-      [200, text]
+      [200, text, invoice_service.access_token]
     end
 
     def update
@@ -22,12 +22,12 @@ module QBIntegration
 
       if !qb_invoice.present? && config[:quickbooks_create_or_update].to_s == "1"
         invoice = invoice_service.create
-        [200, "Created QuickBooks Invoice #{invoice.doc_number}"]
+        [200, "Created QuickBooks Invoice #{invoice.doc_number}", invoice_service.access_token]
       elsif !qb_invoice.present?
         raise RecordNotFound.new "QuickBooks invoice not found for invoice #{flowlink_invoice[:number] || flowlink_invoice[:id]}"
       else
         invoice = invoice_service.update(qb_invoice)
-        [200, "Updated QuickBooks invoice #{invoice.doc_number}"]
+        [200, "Updated QuickBooks invoice #{invoice.doc_number}", invoice_service.access_token]
       end
     end
 
@@ -35,7 +35,7 @@ module QBIntegration
       @invoices, @new_page_number = invoice_service({ dependencies: false }).find_by_updated_at(page_number)
       summary = "Retrieved #{@invoices.count} invoices from QuickBooks Online"
 
-      [summary, new_page_number, since, code]
+      [summary, new_page_number, since, code, invoice_service.access_token]
     end
 
     def build_invoice(invoice, configuration)

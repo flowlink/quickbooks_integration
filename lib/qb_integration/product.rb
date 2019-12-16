@@ -21,12 +21,12 @@ module QBIntegration
           if variant[:name].to_s.empty?
             variant[:name] = @product[:name] + " " + index.to_s
           end
-          import_product(variant)
+          service = import_product(variant)
         }
       else
-        import_product(@product)
+        service = import_product(@product)
       end
-      [200, @notification]
+      [200, @notification, service.access_token]
     end
 
     private
@@ -124,6 +124,7 @@ module QBIntegration
         item_service.create(attributes(product, false))
         add_notification('create', product)
       end
+      item_service
     end
 
     def parent_ref
