@@ -92,7 +92,7 @@ module QBIntegration
           if create_new_customers?
             found_or_created_customer = create if found_or_created_customer.nil?
           else
-            raise RecordNotFound.new "Quickbooks record not found for customer: #{display_name}" unless found_or_created_customer.nil?
+            raise RecordNotFound.new "Quickbooks record not found for customer: #{display_name}" if found_or_created_customer.nil?
           end
         end
 
