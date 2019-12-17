@@ -39,6 +39,7 @@ module QBIntegration
       def create_service
         service = "Quickbooks::Service::#{@model_name}".constantize.new
         service.access_token = access_token
+        service.sandbox = true if @config.dig('quickbooks_sandbox').to_s == "1"
         service.company_id = @config.dig('quickbooks_realm') || @config.dig('realmId') 
         service
       end
