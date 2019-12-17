@@ -16,18 +16,18 @@ module QBIntegration
       end
       journal_entry_service.create
       add_notification('create', @journal_entry)
-      [200, @notification]
+      [200, @notification, journal_entry_service.access_token]
     end
 
     def update
       if journal = journal_entry_service.find_by_id
         journal_entry_service.update(journal)
         add_notification('update', @journal_entry)
-        [200, @notification]
+        [200, @notification, journal_entry_service.access_token]
       else
         journal_entry_service.create
         add_notification('create', @journal_entry)
-        [200, @notification]
+        [200, @notification, journal_entry_service.access_token]
       end
 
     end
@@ -38,7 +38,7 @@ module QBIntegration
       end
       journal_entry_service.delete(journal)
       add_notification('delete', @journal_entry)
-      [200, @notification]
+      [200, @notification, journal_entry_service.access_token]
     end
 
     private

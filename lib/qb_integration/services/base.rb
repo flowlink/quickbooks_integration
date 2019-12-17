@@ -26,6 +26,15 @@ module QBIntegration
         "Quickbooks::Model::#{model_name}".constantize.new
       end
 
+      def access_token
+        @access_token ||= QBIntegration::Auth.new(
+          @config.merge({
+            token: @config.dig("quickbooks_access_token"),
+            secret: @config.dig("quickbooks_access_secret")
+          })
+        ).access_token
+      end
+      
       private
       def create_service
         service = "Quickbooks::Service::#{@model_name}".constantize.new
@@ -40,14 +49,6 @@ module QBIntegration
         item
       end
 
-      def access_token
-        @access_token ||= QBIntegration::Auth.new(
-          @config.merge({
-            token: @config.dig("quickbooks_access_token"),
-            secret: @config.dig("quickbooks_access_secret")
-          })
-        ).access_token
-      end
     end
   end
 end
