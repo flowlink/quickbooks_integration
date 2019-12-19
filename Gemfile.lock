@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/flowlink/endpoint_base.git
+  remote: https://github.com/flowlink/endpoint_base.git
   revision: dc1b8ee16e085d81b282f54f05c3bfaa4daad4f9
   specs:
     endpoint_base (0.3)
@@ -105,7 +105,7 @@ GEM
       oauth (~> 0.4.7)
       oauth2 (~> 1.4)
       roxml (= 4.0.0)
-    rack (1.6.8)
+    rack (1.6.12)
     rack-protection (1.5.3)
       rack
     rack-test (0.8.2)
