@@ -22,7 +22,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     add_parameter 'access_token', base_service.access_token.token
     add_parameter 'refresh_token', base_service.access_token.refresh_token
 
-    resul 200, "Tokens successfully retrieved"
+    result 200, "Tokens successfully retrieved"
   end
 
   post '/validate_token'do
