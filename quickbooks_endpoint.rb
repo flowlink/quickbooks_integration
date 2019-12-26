@@ -16,6 +16,15 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result 500, lookup_error_message
   end
 
+  post '/get_tokens' do
+    base_service = QBIntegration::Service::Token.new(@config)
+
+    add_parameter 'access_token', base_service.access_token.token
+    add_parameter 'refresh_token', base_service.access_token.refresh_token
+
+    resul 200, "Tokens successfully retrieved"
+  end
+
   post '/validate_token'do
     token = QBIntegration::Service::Token.new(@config)
     if token.valid?
