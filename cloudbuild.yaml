@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/flowlink-project/github.com/flowlink/quickbooks_integration:${SHORT_SHA}', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/flowlink-project/github.com/flowlink/quickbooks_integration:${SHORT_SHA}']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'quickbooksintegration', '--image', 'gcr.io/flowlink-project/github.com/flowlink/quickbooks_integration:${SHORT_SHA}', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']

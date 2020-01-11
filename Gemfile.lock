@@ -1,23 +1,11 @@
 GIT
   remote: git://github.com/flowlink/endpoint_base.git
-  revision: b3c06ec88b6cfcd9bea165def5f0592a0707730e
+  revision: dc1b8ee16e085d81b282f54f05c3bfaa4daad4f9
   specs:
     endpoint_base (0.3)
       activesupport
       jbuilder
       json
-
-GIT
-  remote: git://github.com/flowlink/quickbooks-ruby.git
-  revision: a44e0772263e965ffb24ded321aeaf345ac55762
-  branch: feature/group-line-detail
-  specs:
-    quickbooks-ruby (0.6.7)
-      activemodel
-      multipart-post
-      nokogiri
-      oauth (~> 0.4.5)
-      roxml (>= 3.3.1, < 4.1)
 
 GEM
   remote: https://www.rubygems.org/
@@ -46,7 +34,9 @@ GEM
       safe_yaml (~> 1.0.0)
     diff-lcs (1.3)
     docile (1.1.5)
-    ffi (1.9.18)
+    faraday (0.17.1)
+      multipart-post (>= 1.2, < 3)
+    ffi (1.11.3)
     foreman (0.84.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
@@ -65,13 +55,14 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashdiff (0.3.7)
-    honeybadger (3.3.0)
+    honeybadger (4.5.4)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     json (2.1.0)
+    jwt (2.2.1)
     kgio (2.11.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -82,17 +73,24 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multi_xml (0.6.0)
     multipart-post (2.1.1)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.4.7)
+    oauth2 (1.4.2)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -100,8 +98,15 @@ GEM
       byebug (~> 9.1)
       pry (~> 0.10)
     public_suffix (3.0.1)
-    rack (1.6.8)
-    rack-protection (1.5.3)
+    quickbooks-ruby (1.0.1)
+      activemodel
+      multipart-post
+      nokogiri
+      oauth (~> 0.4.7)
+      oauth2 (~> 1.4)
+      roxml (= 4.0.0)
+    rack (1.6.12)
+    rack-protection (1.5.5)
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
@@ -165,9 +170,9 @@ DEPENDENCIES
   endpoint_base!
   foreman
   guard-rspec
-  honeybadger
+  honeybadger (~> 4.0)
   pry-byebug
-  quickbooks-ruby!
+  quickbooks-ruby (~> 1.0.1)
   rack-test
   rake
   rb-fsevent (~> 0.9.1)

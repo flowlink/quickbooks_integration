@@ -26,11 +26,21 @@ module QBIntegration
         "Quickbooks::Model::#{model_name}".constantize.new
       end
 
+      def access_token
+        @access_token ||= QBIntegration::Auth.new(
+          @config.merge({
+            token: @config.dig("quickbooks_access_token"),
+            secret: @config.dig("quickbooks_access_secret")
+          })
+        ).access_token
+      end
+      
       private
       def create_service
         service = "Quickbooks::Service::#{@model_name}".constantize.new
         service.access_token = access_token
-        service.company_id = @config.fetch('quickbooks_realm')
+        Quickbooks.sandbox_mode = true if @config.dig('quickbooks_sandbox').to_s == "1"
+        service.company_id = @config.dig('quickbooks_realm') || @config.dig('realmId') 
         service
       end
 
@@ -39,12 +49,6 @@ module QBIntegration
         item
       end
 
-      def access_token
-        @access_token ||= QBIntegration::Auth.new(
-          token: @config.fetch("quickbooks_access_token"),
-          secret: @config.fetch("quickbooks_access_secret")
-        ).access_token
-      end
     end
   end
 end

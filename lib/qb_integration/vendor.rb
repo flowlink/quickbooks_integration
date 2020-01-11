@@ -17,21 +17,21 @@ module QBIntegration
       result = vendor_service.all(date, page, per_page)
       vendors = result[:vendors].map{|vendor| as_flowlink_hash(vendor)}
 
-      result[:total] > (per_page * page) ?  [206, vendors] : [200, vendors]
+      result[:total] > (per_page * page) ?  [206, vendors, vendor_service.access_token] : [200, vendors, vendor_service.access_token]
     end
 
     def create
       vendor = vendor_service.create
       updated_flowlink_vendor = payload[:vendor]
-      updated_flowlink_vendor[:q_id] = vendor.id
-      [200 , "Vendor with id #{vendor.id} created", updated_flowlink_vendor]
+      updated_flowlink_vendor[:qbo_id] = vendor.id
+      [200 , "Vendor with id #{vendor.id} created", updated_flowlink_vendor, vendor_service.access_token]
     end
 
     def update
       vendor = vendor_service.update
       updated_flowlink_vendor = payload[:vendor]
-      updated_flowlink_vendor[:q_id] = vendor.id
-      [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor]
+      updated_flowlink_vendor[:qbo_id] = vendor.id
+      [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor, vendor_service.access_token]
     end
 
     private
@@ -39,7 +39,7 @@ module QBIntegration
     def as_flowlink_hash(vendor)
       {
         id: vendor.id,
-        q_id: vendor.id,
+        qbo_id: vendor.id,
         last_updated_time: vendor.meta_data['last_updated_time'],
         name: vendor.display_name,
         phone: parse_number(vendor),
