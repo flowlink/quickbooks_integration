@@ -108,7 +108,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_refund_receipt' do
     begin
-      code, summary = QBIntegration::RefundReceipt.new(@payload, @config).create
+      code, summary, added_refund, auth_info = QBIntegration::RefundReceipt.new(@payload, @config).create
+
+      add_parameter 'access_token', auth_info.token
+      add_parameter 'refresh_token', auth_info.refresh_token
+
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
       result 500, e.message

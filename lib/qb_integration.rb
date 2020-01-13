@@ -20,6 +20,7 @@ require 'qb_integration/customer'
 require 'qb_integration/item'
 require 'qb_integration/payment'
 require 'qb_integration/bill'
+require 'qb_integration/refund_receipt'
 
 require 'qb_integration/services/base'
 require 'qb_integration/services/account'
