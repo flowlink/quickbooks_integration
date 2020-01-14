@@ -54,10 +54,12 @@ module QBIntegration
     end
 
     def inventories
+      puts items
       items.map do |inventory|
         {
           id: "qbs-#{inventory.name}",
           product_id: inventory.sku,
+          sku: inventory.sku,
           quantity: inventory.quantity_on_hand.to_i,
           updated_at: last_modified_date
         }
@@ -68,6 +70,7 @@ module QBIntegration
       {
         id: "qbs-#{item.name}",
         product_id: item.sku,
+        sku: item.sku,
         quantity: item.quantity_on_hand.to_i
       }
     end
