@@ -106,6 +106,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/add_refund_receipt' do
+    begin
+      code, summary, added_refund, auth_info = QBIntegration::RefundReceipt.new(@payload, @config).create
+
+      add_parameter 'access_token', auth_info.token
+      add_parameter 'refresh_token', auth_info.refresh_token
+
+      result code, summary
+    rescue QBIntegration::AlreadyPersistedOrderException => e
+      result 500, e.message
+    end
+  end
+
   post '/add_purchase_order' do
     begin
       code, summary, auth_info = QBIntegration::PurchaseOrder.new(@payload, @config).create
@@ -252,7 +265,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     code, vendors, auth_info = QBIntegration::Vendor.new(@payload, @config).index
     summary = "Retrieved #{vendors.size} vendors"
     vendors.each { |vendor| add_object :vendor, vendor }
-    add_parameter "since", @config.fetch("quickbooks_since")
+    add_parameter "quickbooks_since", @config.fetch("quickbooks_since")
     add_parameter "page", @config.fetch("page", 1)
 
     add_parameter 'access_token', auth_info.token

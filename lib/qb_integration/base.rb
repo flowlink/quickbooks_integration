@@ -74,6 +74,10 @@ module QBIntegration
       @bill_service ||= Service::Bill.new(config, payload)
     end
 
+    def refund_receipt_service
+      @refund_receipt_service ||= Service::RefundReceipt.new(config, payload)
+    end
+
   end
 
   class RecordNotFound < StandardError; end
@@ -84,6 +88,7 @@ module QBIntegration
   class AlreadyPersistedOrderException < StandardError; end
   class AlreadyPersistedInvoiceException < StandardError; end
   class AlreadyPersistedJournalEntryException < StandardError; end
+  class AlreadyPersistedRefundReceiptException < StandardError; end
   class NoReceiptForOrderException < StandardError; end
   class NoSkuForOrderException < StandardError; end
   class TransactionMustBeOpen < StandardError; end
