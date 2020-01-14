@@ -54,7 +54,6 @@ module QBIntegration
     end
 
     def inventories
-      puts items
       items.map do |inventory|
         {
           id: "qbs-#{inventory.name}",
