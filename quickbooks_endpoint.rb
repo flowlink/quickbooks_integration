@@ -298,6 +298,9 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     stock = QBIntegration::Stock.new(@payload, @config)
 
     if stock.name.present? && stock.item
+      inventory = stock.inventory
+      inventory[:key] = @config[:flowlink_data_object_identifier] if @config[:flowlink_data_object_identifier]
+
       add_object :inventory, stock.inventory
 
       add_parameter 'access_token', stock.auth_info.token
@@ -305,7 +308,10 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
       result 200
     elsif stock.items.present?
-      stock.inventories.each { |item| add_object :inventory, item }
+      stock.inventories.each do |item|
+        item[:key] = @config[:flowlink_data_object_identifier] if @config[:flowlink_data_object_identifier]
+        add_object :inventory, item
+      end
       add_parameter 'quickbooks_poll_stock_timestamp', stock.last_modified_date
 
       add_parameter 'access_token', stock.auth_info.token

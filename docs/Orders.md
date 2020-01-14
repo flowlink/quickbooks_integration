@@ -1,4 +1,7 @@
-# /add_order
+# Order Endpoints
+
+## /add_order
+
 - quickbooks_discount_item- Name of the Item in QuickBooks used for adding discount amount as a line item => **Required**
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
 - quickbooks_tax_item - Name of the Item in QuickBooks used for adding tax amount as a line item => **Required**
@@ -13,7 +16,8 @@
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item => **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which Sales Receipts should be deposited (normally Undeposited Funds)
 
-# /update_order
+## /update_order
+
 - quickbooks_create_or_update - Boolean used to determine if FlowLink should create the Order if it is not found in QuickBooks => **Required**
 - quickbooks_discount_item- Name of the Item in QuickBooks used for adding discount amount as a line item => **Required**
 - quickbooks_shipping_item - Name of the Item in QuickBooks used for adding shipping amount as a line item => **Required**
@@ -29,13 +33,15 @@
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item => **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which Sales Receipts should be deposited (normally Undeposited Funds)
 
-# /get_orders
+## /get_orders
+
 - quickbooks_since - Timestamp that tells the integration to retrieve all orders that are new or have been updated since this timestamp => **Required**
 - quickbooks_page_num - Number used for paginating requests. Defaults to 1 => **Required**
 
+## Notes
 
-# Notes
 When Finding/Creating a Customer during the Order add/update process, FlowLink uses the following logic.
+
 - Check to see if customer exists
   - Find by generic_customer_name if parameter is set, else
   - Find by QBO ID, else
