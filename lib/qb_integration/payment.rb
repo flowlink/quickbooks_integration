@@ -23,10 +23,11 @@ module QBIntegration
     end
 
     def get
+      now = Time.now.utc.iso8601
       @new_or_updated_payments, @new_page_number = payment_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@new_or_updated_payments.count} payments from QuickBooks Online"
 
-       [summary, new_page_number, since, code, payment_service.access_token]
+       [summary, new_page_number, since(now), code, payment_service.access_token]
     end
 
      def build_payment(raw_payment)
@@ -49,8 +50,8 @@ module QBIntegration
       config.fetch("quickbooks_page_num").to_i || 1
     end
 
-     def since
-      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+     def since(now)
+      new_page_number == 1 ? now : config.fetch("quickbooks_since")
     end
 
     def allow_unapplied_payment?

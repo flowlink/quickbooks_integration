@@ -7,10 +7,11 @@ module QBIntegration
     end
 
     def get
+      now = Time.now.utc.iso8601
       @items, @new_page_number = item_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@items.count} items from QuickBooks Online"
 
-      [summary, new_page_number, since, code, item_service.access_token]
+      [summary, new_page_number, since(now), code, item_service.access_token]
     end
 
     def build_item(item)
@@ -23,8 +24,8 @@ module QBIntegration
       config.fetch("quickbooks_page_num").to_i || 1
     end
 
-    def since
-      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    def since(now)
+      new_page_number == 1 ? now : config.fetch("quickbooks_since")
     end
 
     def code

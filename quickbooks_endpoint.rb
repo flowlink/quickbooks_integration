@@ -262,16 +262,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/get_vendors' do
-    code, vendors, auth_info = QBIntegration::Vendor.new(@payload, @config).index
-    summary = "Retrieved #{vendors.size} vendors"
-    vendors.each { |vendor| add_object :vendor, vendor }
-    add_parameter "quickbooks_since", @config.fetch("quickbooks_since")
-    add_parameter "page", @config.fetch("page", 1)
+    now = Time.now.utc.iso8601
 
+    code, vendors, auth_info = QBIntegration::Vendor.new(@payload, @config).index
+    vendors.each { |vendor| add_object :vendor, vendor }
+
+    new_since = code === 200 ? now : @config.fetch("quickbooks_since")
+    add_parameter "quickbooks_since", new_since
+    
+    add_parameter "page", @config.fetch("page", 1)
     add_parameter 'access_token', auth_info.token
     add_parameter 'refresh_token', auth_info.refresh_token
 
-    result code, summary
+    result code, "Retrieved #{vendors.size} vendors"
   end
 
   post '/add_vendor' do

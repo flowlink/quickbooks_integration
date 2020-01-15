@@ -8,6 +8,7 @@ module QBIntegration
     end
 
     def get
+      now = Time.now.utc.iso8601
       @orders, @new_page_number = sales_receipt_service.find_by_updated_at(page_number)
 
       flowlink_orders = []
@@ -19,7 +20,7 @@ module QBIntegration
       end
       summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
 
-      [flowlink_orders, summary, new_page_number, since, code, sales_receipt_service.access_token]
+      [flowlink_orders, summary, new_page_number, since(now), code, sales_receipt_service.access_token]
     end
 
 
@@ -88,8 +89,8 @@ module QBIntegration
       config.fetch("quickbooks_page_num").to_i || 1
     end
 
-    def since
-      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    def since(now)
+      new_page_number == 1 ? now : config.fetch("quickbooks_since")
     end
 
     def code
