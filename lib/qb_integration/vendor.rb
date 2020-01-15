@@ -18,7 +18,7 @@ module QBIntegration
       vendors = result[:vendors].map{|vendor| as_flowlink_hash(vendor)}
 
       code = 200
-      if result[:total] > (per_page * page) code = 206
+      code = 206 if result[:total] > (per_page * page)
 
       [code, vendors, vendor_service.access_token]
     end
