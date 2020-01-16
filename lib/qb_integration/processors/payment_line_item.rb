@@ -16,7 +16,7 @@ module QBIntegration
           description: line.description,
           amount: line.amount.to_f,
           detail_type: line.detail_type,
-          invoice: QBIntegration::Invoice.new({}, {}).build_invoice(@linked_txn),
+          invoice: QBIntegration::Invoice.new({}, {}).build_invoice(@linked_txn, {}),
           line_extras: build_line_extras(line.line_extras)
         }.compact
       end
