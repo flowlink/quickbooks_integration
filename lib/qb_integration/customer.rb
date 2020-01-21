@@ -7,10 +7,11 @@ module QBIntegration
     end
 
     def get
+      now = Time.now.utc.iso8601
       @customers, @new_page_number = customer_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@customers.count} customers from QuickBooks Online"
 
-      [summary, new_page_number, since, code, customer_service.access_token]
+      [summary, new_page_number, since(now), code, customer_service.access_token]
     end
 
     def create
@@ -37,8 +38,8 @@ module QBIntegration
       config.fetch("quickbooks_page_num").to_i || 1
     end
 
-    def since
-      new_page_number == 1 ? Time.now.utc.iso8601 : config.fetch("quickbooks_since")
+    def since(now)
+      new_page_number == 1 ? now : config.fetch("quickbooks_since")
     end
 
     def code

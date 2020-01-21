@@ -8,5 +8,5 @@
 
 ## /get_payments
 
-- quickbooks_since - This is a timestamp => **Required**
+- quickbooks_poll_stock_timestamp - This is a timestamp => **Required**
 - quickbooks_page_num - Integer. Should be set to 1 to start. The Integration will update and reset as needed => **Required**
