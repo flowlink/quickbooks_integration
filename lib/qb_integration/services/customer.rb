@@ -42,6 +42,9 @@ module QBIntegration
         elsif found_by_name
           found_by_name
         elsif found_by_email.size > 1
+          found_by_email_then_filtered = determine_which_customer_based_on_param(found_by_email)
+          return found_by_email_then_filtered unless found_by_email_then_filtered.nil?
+
           raise MultipleMatchingRecords.new "Multiple customers found with email: #{@customer[:email]}"
         elsif found_by_email.size == 1
           found_by_email.first
@@ -102,11 +105,7 @@ module QBIntegration
       def fetch_by_display_name(name = nil)
         name_to_search = name || display_name
         return if name_to_search.nil?
-        util = Quickbooks::Util::QueryBuilder.new
-        clause = util.clause("DisplayName", "=", name_to_search)
-
-        query = "SELECT * FROM Customer WHERE #{clause}"
-        quickbooks.query(query).entries.first
+        find_by_name(name_to_search)
       end
 
       # If someone changes the display name via Quickbooks ui we
@@ -173,8 +172,8 @@ module QBIntegration
       def determine_name(name_field)
         name = 'NotProvided'
         name = order['billing_address'][name_field] unless order['billing_address'].nil?
-        if @customer && @customer['billing_address']
-          name = @customer['billing_address'][name_field]
+        if @customer
+          name = @customer['billing_address'][name_field] if @customer['billing_address']
           name = @customer['name'] if name.nil?
         end
 
@@ -193,30 +192,44 @@ module QBIntegration
         Address.build(order[address])
       end
 
-        def use_web_orders?
-          return config['quickbooks_web_orders_users'].to_s == "1" unless @customer && @customer['is_b2b']
-          config['quickbooks_web_orders_users'].to_s == "1" && !@customer['is_b2b']
+      def determine_which_customer_based_on_param(customers)
+        if config['multiple_email_fallback'] == 'last_updated'
+          customers.sort_by {|obj| obj.meta_data['last_updated_time']}.last
+        else
+          nil
         end
+      end
 
-        # Default this to true for backwards compatibility with QBO integration users
-        def create_new_customers?
-          check_customers = find_value("quickbooks_create_new_customers", order, config)
-          check_customers == "empty" ? true : check_customers == "1"
-        end
+      def multiple_email_fallback
+        order['multiple_email_fallback'] ||
+        @customer['multiple_email_fallback'] ||
+        config['multiple_email_fallback'] ||
+        nil
+      end
 
-        def find_value(key_name, payload_object, parameters)
-          payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
-        end
+      def use_web_orders?
+        return config['quickbooks_web_orders_users'].to_s == "1" unless @customer && @customer['is_b2b']
+        config['quickbooks_web_orders_users'].to_s == "1" && !@customer['is_b2b']
+      end
 
-        def quickbooks_generic_customer_name
-          customer_generic_name = @customer ? @customer['quickbooks_generic_customer_name'] : nil
+      # Default this to true for backwards compatibility with QBO integration users
+      def create_new_customers?
+        check_customers = find_value("quickbooks_create_new_customers", order, config)
+        check_customers == "empty" ? true : check_customers == "1"
+      end
 
-          customer_generic_name ||
-          order['quickbooks_generic_customer_name'] ||
-          config['quickbooks_generic_customer_name'] ||
-          "Web Orders" 
-        end
+      def find_value(key_name, payload_object, parameters)
+        payload_object.fetch(key_name,  parameters.fetch(key_name, "empty")).to_s
+      end
 
+      def quickbooks_generic_customer_name
+        customer_generic_name = @customer ? @customer['quickbooks_generic_customer_name'] : nil
+
+        customer_generic_name ||
+        order['quickbooks_generic_customer_name'] ||
+        config['quickbooks_generic_customer_name'] ||
+        "Web Orders" 
+      end
     end
   end
 end
