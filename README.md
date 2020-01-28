@@ -76,6 +76,46 @@ Copy "sample.env" to ".env" and ".dev.env" and fill out the following variables:
 
 Note: "quickbooks_sandbox" is not required and defaults to prodcution accounts. Set to "1" if you'd like to access a sandbox account
 
+### Finding a customer in QBO
+
+Possible params used:
+
+```json
+"quickbooks_web_orders_users": "0 or 1",
+"quickbooks_generic_customer_name": "Name in QBO to use for Grouped/Generic Customer - defaults to 'Web Orders'",
+"multiple_email_fallback": "Special set of values can be used here",
+"quickbooks_create_new_customers": "0 or 1"
+```
+
+There is a set process for looking for a customer in QBO:
+
+1. Using a "Rolled up" customer or Generic customer
+
+    If `quickbooks_web_orders_users == "1" && order[:customer][:is_b2b] == false`, we check the `quickbooks_generic_customer_name` in the following order
+
+    * `order[:customer][:quickbooks_generic_customer_name]`
+    * `order[:quickbooks_generic_customer_name]`
+    * `config[:quickbooks_generic_customer_name]`
+    * Use "Web Orders" as the Customer Name
+
+    We search QBO using the name from above. If found, we use that customer. If not found and `order[:customer]` is not nil...
+
+2. Finding an existing customer
+
+    * Find the customer by QBO ID if `order[:customer][:qbo_id]` exists. If it does not exist...
+    * Search by name using `order[:customer][:name]`. If not found...
+    * Seach by email using `order[:customer][:email]`. If multiple email entries, we raise an error unless `config[:multiple_email_fallback]` is set.
+
+    The `multiple_email_fallback` parameter can be used on Add/Update Order, Add/Update Invoice, and Add/Update Customer. NOTE: This param is only used when the customer object is on an order. If order[:customer] does not exist, this value is not used.
+    Multiple Email Fallback can be set with the following values:
+
+    * "last_updated" => When set with this value, the integration will return the customer that has been most recently been updated based on the `last_updated_time` field
+
+3. Creating a new customer
+
+    If the above 2 options don't yield any customers, we check the `quickbooks_create_new_customers` parameter. NOTE: we default this to true for older customers using FlowLink.
+    If the value is set to "1" or it's not set on the workflow at all, we create a new customer.
+
 ### Endpoints
 
 [Order Endpoints](./docs/Orders.md)  
