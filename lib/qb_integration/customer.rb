@@ -11,21 +11,21 @@ module QBIntegration
       @customers, @new_page_number = customer_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@customers.count} customers from QuickBooks Online"
 
-      [summary, new_page_number, since(now), code, customer_service.access_token]
+      [summary, new_page_number, since(now), code]
     end
 
     def create
       customer = customer_service.create_customer
       updated_flowlink_customer = payload[:customer]
       updated_flowlink_customer[:qbo_id] = customer.id
-      [200 , "Customer with id #{customer.id} created", updated_flowlink_customer, customer_service.access_token]
+      [200 , "Customer with id #{customer.id} created", updated_flowlink_customer]
     end
 
     def update
       customer = customer_service.update
       updated_flowlink_customer = payload[:customer]
       updated_flowlink_customer[:qbo_id] = customer.id
-      [200 , "Customer with id #{customer.id} updated", updated_flowlink_customer, customer_service.access_token]
+      [200 , "Customer with id #{customer.id} updated", updated_flowlink_customer]
     end
 
     def build_customer(customer)

@@ -16,7 +16,7 @@ module QBIntegration
       
       text = "Created QuickBooks Refund Receipt #{created_refund.id}. Reference number is #{created_refund.doc_number}"
       
-      [200, text, updated_flowlink_refund, refund_receipt_service.access_token]
+      [200, text, updated_flowlink_refund]
     end
 
     private
