@@ -20,10 +20,6 @@ module QBIntegration
       end
     end
 
-    def auth_info
-      item_service.access_token
-    end
-
     def set
       set_inventory(item, @amount, @id)
 
