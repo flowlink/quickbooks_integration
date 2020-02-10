@@ -10,13 +10,13 @@ module QBIntegration
     def create
       purchase_order = purchase_order_service.create
       text = "Created Quickbooks Purchase Order #{purchase_order.id}"
-      [200, text, purchase_order_service.access_token]
+      [200, text]
     end
 
     def update
       response = purchase_order_service.update
       text = "Updated Quickbooks Purchase Order #{purchase_order[:id]}"
-      [200, text, purchase_order_service.access_token]
+      [200, text]
     end
   end
 end

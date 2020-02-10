@@ -26,7 +26,7 @@ module QBIntegration
       else
         service = import_product(@product)
       end
-      [200, @notification, service.access_token]
+      [200, @notification ]
     end
 
     private

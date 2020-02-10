@@ -20,21 +20,21 @@ module QBIntegration
       code = 200
       code = 206 if result[:total] > (per_page * page)
 
-      [code, vendors, vendor_service.access_token]
+      [code, vendors]
     end
 
     def create
       vendor = vendor_service.create
       updated_flowlink_vendor = payload[:vendor]
       updated_flowlink_vendor[:qbo_id] = vendor.id
-      [200 , "Vendor with id #{vendor.id} created", updated_flowlink_vendor, vendor_service.access_token]
+      [200 , "Vendor with id #{vendor.id} created", updated_flowlink_vendor]
     end
 
     def update
       vendor = vendor_service.update
       updated_flowlink_vendor = payload[:vendor]
       updated_flowlink_vendor[:qbo_id] = vendor.id
-      [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor, vendor_service.access_token]
+      [200 , "Vendor with id #{vendor.id} updated", updated_flowlink_vendor]
     end
 
     private
