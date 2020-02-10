@@ -35,69 +35,48 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_product' do
-    code, summary, auth_info = QBIntegration::Product.new(@payload, @config).import
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::Product.new(@payload, @config).import
 
     result code, summary
   end
 
   post '/update_product' do
-    code, summary, auth_info = QBIntegration::Product.new(@payload, @config).import
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::Product.new(@payload, @config).import
 
     result code, summary
   end
 
   post '/add_journal' do
-    code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).add
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
 
     result code, summary
   end
 
   post '/update_journal' do
-    code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).update
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
 
     result code, summary
   end
 
   post '/delete_journal' do
-    code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).delete
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
 
     result code, summary
   end
 
   post '/get_orders' do
-    orders, summary, new_page_number, since, code, auth_info = QBIntegration::Order.new(@payload, @config).get
+    orders, summary, new_page_number, since, code = QBIntegration::Order.new(@payload, @config).get
     orders.each do |order|
       add_object :order, order
     end
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
 
     result code, summary
   end
 
   post '/add_order' do
     begin
-      code, summary, added_order, auth_info = QBIntegration::Order.new(@payload, @config).create
+      code, summary, added_order = QBIntegration::Order.new(@payload, @config).create
       add_object :order, added_order
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
 
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
@@ -108,10 +87,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_refund_receipt' do
     begin
-      code, summary, added_refund, auth_info = QBIntegration::RefundReceipt.new(@payload, @config).create
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary, added_refund = QBIntegration::RefundReceipt.new(@payload, @config).create
 
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
@@ -121,10 +97,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_purchase_order' do
     begin
-      code, summary, auth_info = QBIntegration::PurchaseOrder.new(@payload, @config).create
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
 
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
@@ -134,10 +107,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/update_purchase_order' do
-    code, summary, auth_info = QBIntegration::PurchaseOrder.new(@payload, @config).update
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).update
 
     result code, summary
   end
@@ -147,24 +117,15 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   post '/add_journal_entry' do
     if @payload['journal_entry']['action'] == "ADD"
       puts 'ADD'
-      code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).update
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
 
     elsif @payload['journal_entry']['action'] == "UPDATE"
       puts 'UPDATE'
-      code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).update
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).update
 
     elsif @payload['journal_entry']['action'] == "DELETE"
       puts 'DELETE'
-      code, summary, auth_info = QBIntegration::JournalEntry.new(@payload, @config).delete
-
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary = QBIntegration::JournalEntry.new(@payload, @config).delete
 
     else
       code = 200
@@ -176,31 +137,22 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   # End of Specific Endpoint
 
   post '/update_order' do
-    code, summary, updated_order, auth_info = QBIntegration::Order.new(@payload, @config).update
+    code, summary, updated_order = QBIntegration::Order.new(@payload, @config).update
 
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
-    
     add_object :order, updated_order
     
     result code, summary
   end
 
   post '/cancel_order' do
-    code, summary, auth_info = QBIntegration::Order.new(@payload, @config).cancel
+    code, summary = QBIntegration::Order.new(@payload, @config).cancel
 
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
-    
     result code, summary
   end
 
   post '/add_invoice' do
     begin
-      code, summary, auth_info = QBIntegration::Invoice.new(@payload, @config).create
-      
-      add_parameter 'access_token', auth_info.token
-      add_parameter 'refresh_token', auth_info.refresh_token
+      code, summary = QBIntegration::Invoice.new(@payload, @config).create
 
       result code, summary
     rescue QBIntegration::AlreadyPersistedInvoiceException => e
@@ -210,17 +162,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/update_invoice' do
-    code, summary, auth_info = QBIntegration::Invoice.new(@payload, @config).update
+    code, summary = QBIntegration::Invoice.new(@payload, @config).update
 
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
-    
     result code, summary
   end
 
   post '/get_invoices' do
     qbo_invoice = QBIntegration::Invoice.new(@payload, @config)
-    summary, page, since, code, auth_info = qbo_invoice.get()
+    summary, page, since, code = qbo_invoice.get()
   
     qbo_invoice.invoices.each do |invoice|
       add_object :invoice, qbo_invoice.build_invoice(invoice, @config)
@@ -228,35 +177,23 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
 
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
-  
     result code, summary
   end
 
   post '/add_return' do
-    code, summary, auth_info = QBIntegration::ReturnAuthorization.new(@payload, @config).create
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).create
 
     result code, summary
   end
 
   post '/update_return' do
-    code, summary, auth_info = QBIntegration::ReturnAuthorization.new(@payload, @config).update
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::ReturnAuthorization.new(@payload, @config).update
 
     result code, summary
   end
 
   post '/set_inventory' do
-    code, summary, auth_info = QBIntegration::Stock.new(@payload, @config).set
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::Stock.new(@payload, @config).set
 
     result code, summary
   end
@@ -264,34 +201,26 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   post '/get_vendors' do
     now = Time.now.utc.iso8601
 
-    code, vendors, auth_info = QBIntegration::Vendor.new(@payload, @config).index
+    code, vendors = QBIntegration::Vendor.new(@payload, @config).index
     vendors.each { |vendor| add_object :vendor, vendor }
 
     new_since = code === 200 ? now : @config.fetch("quickbooks_since")
     add_parameter "quickbooks_since", new_since
     
     add_parameter "page", @config.fetch("page", 1)
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
 
     result code, "Retrieved #{vendors.size} vendors"
   end
 
   post '/add_vendor' do
-    code, summary, vendor, auth_info = QBIntegration::Vendor.new(@payload, @config).create
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary, vendor = QBIntegration::Vendor.new(@payload, @config).create
 
     add_object :vendor, vendor
     result code, summary
   end
 
   post '/update_vendor' do
-    code, summary, vendor, auth_info = QBIntegration::Vendor.new(@payload, @config).update
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary, vendor = QBIntegration::Vendor.new(@payload, @config).update
 
     add_object :vendor, vendor
     result code, summary
@@ -306,9 +235,6 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
       add_object :inventory, stock.inventory
 
-      add_parameter 'access_token', stock.auth_info.token
-      add_parameter 'refresh_token', stock.auth_info.refresh_token
-
       result 200
     elsif stock.items.present?
       stock.inventories.each do |item|
@@ -316,9 +242,6 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
         add_object :inventory, item
       end
       add_parameter 'quickbooks_poll_stock_timestamp', stock.last_modified_date
-
-      add_parameter 'access_token', stock.auth_info.token
-      add_parameter 'refresh_token', stock.auth_info.refresh_token
 
       result 200
     else
@@ -328,14 +251,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/get_customers' do
     qbo_customer = QBIntegration::Customer.new(@payload, @config)
-    summary, page, since, code, auth_info = qbo_customer.get()
+    summary, page, since, code = qbo_customer.get()
 
     qbo_customer.customers.each do |customer|
       add_object :customer, qbo_customer.build_customer(customer)
     end
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
 
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
@@ -343,20 +263,14 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_customer' do
-    code, summary, customer, auth_info = QBIntegration::Customer.new(@payload, @config).create
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).create
 
     add_object :customer, customer
     result code, summary
   end
 
   post '/update_customer' do
-    code, summary, customer, auth_info = QBIntegration::Customer.new(@payload, @config).update
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary, customer = QBIntegration::Customer.new(@payload, @config).update
 
     add_object :customer, customer
     result code, summary
@@ -364,14 +278,11 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/get_products' do
     qbo_item = QBIntegration::Item.new(@payload, @config)
-    summary, page, since, code, auth_info = qbo_item.get()
+    summary, page, since, code = qbo_item.get()
 
     qbo_item.items.each do |item|
       add_object :product, qbo_item.build_item(item)
     end
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
 
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
@@ -380,24 +291,19 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_payment' do
-    code, summary, auth_info = QBIntegration::Payment.new(@payload, @config).create
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary = QBIntegration::Payment.new(@payload, @config).create
 
     result code, summary
   end
 
   post '/get_payments' do
     qbo_payment = QBIntegration::Payment.new(@payload, @config)
-    summary, page, since, code, auth_info = qbo_payment.get()
+    summary, page, since, code = qbo_payment.get()
 
     qbo_payment.new_or_updated_payments.each do |payment|
       add_object :payment, qbo_payment.build_payment(payment)
     end
 
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
     add_parameter 'quickbooks_page_num', page
     add_parameter 'quickbooks_since', since
     
@@ -405,10 +311,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_bill_to_purchase_order' do
-    code, summary, bill, po, auth_info = QBIntegration::Bill.new(@payload, @config).create
-
-    add_parameter 'access_token', auth_info.token
-    add_parameter 'refresh_token', auth_info.refresh_token
+    code, summary, bill, po = QBIntegration::Bill.new(@payload, @config).create
 
     add_object :bill, bill
     add_object :purchase_order, po

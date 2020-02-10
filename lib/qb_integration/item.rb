@@ -11,7 +11,7 @@ module QBIntegration
       @items, @new_page_number = item_service.find_by_updated_at(page_number)
       summary = "Retrieved #{@items.count} items from QuickBooks Online"
 
-      [summary, new_page_number, since(now), code, item_service.access_token]
+      [summary, new_page_number, since(now), code]
     end
 
     def build_item(item)

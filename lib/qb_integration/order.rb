@@ -20,7 +20,7 @@ module QBIntegration
       end
       summary = "Retrieved #{@orders.count} Sales Receipts from QuickBooks Online"
 
-      [flowlink_orders, summary, new_page_number, since(now), code, sales_receipt_service.access_token]
+      [flowlink_orders, summary, new_page_number, since(now), code]
     end
 
 
@@ -35,7 +35,7 @@ module QBIntegration
       updated_flowlink_order = order
       updated_flowlink_order[:qbo_id] = sales_receipt.id
       text = "Created QuickBooks Sales Receipt #{sales_receipt.id} for order #{sales_receipt.doc_number}"
-      [200, text, updated_flowlink_order, sales_receipt_service.access_token]
+      [200, text, updated_flowlink_order]
     end
 
     def update
@@ -51,7 +51,7 @@ module QBIntegration
         sales_receipt = sales_receipt_service.update(sales_receipt)
         updated_flowlink_order = order
         updated_flowlink_order[:qbo_id] = sales_receipt.id
-        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order, sales_receipt_service.access_token]
+        [200, "Updated QuickBooks Sales Receipt #{sales_receipt.doc_number}", updated_flowlink_order]
       end
     end
 
@@ -62,7 +62,7 @@ module QBIntegration
 
       credit_memo = credit_memo_service.create_from_receipt(sales_receipt)
       text = "Created QuickBooks Credit Memo #{credit_memo.id} for canceled order #{sales_receipt.doc_number}"
-      [200, text, sales_receipt_service.access_token]
+      [200, text]
     end
 
     private
