@@ -5,6 +5,8 @@ services:
     container_name: qb-dev-integration-container
     env_file:
       - ./dev.env
+    expose:
+      - "5000"
     image: qbdev-integration
     logging:
       driver: gcplogs
