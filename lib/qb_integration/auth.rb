@@ -13,7 +13,7 @@ module QBIntegration
           oauth2_consumer, 
           accesstoken, 
           { :refresh_token => refreshtoken }
-      ).refresh!
+      )
     end
 
     private
