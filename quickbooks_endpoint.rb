@@ -18,10 +18,10 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/get_tokens' do
     base_service = QBIntegration::Service::Token.new(@config)
-    base_service.access_token.refresh!
+    new_token = base_service.access_token.refresh!
 
-    add_parameter 'access_token', base_service.access_token.token
-    add_parameter 'refresh_token', base_service.access_token.refresh_token
+    add_parameter 'access_token', new_token.token
+    add_parameter 'refresh_token', new_token.refresh_token
 
     result 200, "Tokens successfully retrieved"
   end
