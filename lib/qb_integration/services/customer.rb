@@ -177,7 +177,6 @@ module QBIntegration
         name = order['billing_address'][name_field] unless order['billing_address'].nil?
         if @customer
           name = @customer['billing_address'][name_field] if @customer['billing_address']
-          name = @customer['name'] if name.nil?
         end
 
         name = name.strip unless name.nil?
