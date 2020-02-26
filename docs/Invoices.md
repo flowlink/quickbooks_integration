@@ -15,6 +15,8 @@
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item => **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which payments from Invoices should be deposited (normally Undeposited Funds)
 - quickbooks_ar_account_name - The Account Name used for your Accounts Receivable account in QuickBooks Online
+- quickbooks_empty_sku - During automatic item creation, forces an empty sku field regardless of the sku, name and product_id given. This is used when the name is used instead of the SKU field
+- quickbooks_taxable - This forces all items created automatically to be taxable. Since its an optional field, the company settings decides if its taxable or not if its not explicitly set
 
 ## /update_invoice
 
@@ -33,6 +35,8 @@
 - quickbooks_cogs_account- Name of the Cost of Goods Sold account (usually Cost of Goods Sold) associated with the item => **Required if quickbooks_create_new_product is true AND quickbooks_track_inventory is set to true or '1'**
 - quickbooks_deposit_to_account_name - The Account Name in which payments from Invoices should be deposited (normally Undeposited Funds)
 - quickbooks_ar_account_name - The Account Name used for your Accounts Receivable account in QuickBooks Online
+- quickbooks_empty_sku - During automatic item creation, forces an empty sku field regardless of the sku, name and product_id given. This is used when the name is used instead of the SKU field
+- quickbooks_taxable - This forces all items created automatically to be taxable. Since its an optional field, the company settings decides if its taxable or not if its not explicitly set
 
 ## /get_invoices
 
