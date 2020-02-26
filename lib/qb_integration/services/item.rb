@@ -73,6 +73,10 @@ module QBIntegration
           income_account_id: account ? account.id : nil
         }
 
+        if find_value("quickbooks_empty_sku", payload_object, config) == '1'
+          params[:sku] = ''
+        end
+
         quickbooks_track_inventory = find_value("quickbooks_track_inventory", payload_object, config)
 
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
