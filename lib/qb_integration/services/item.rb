@@ -77,6 +77,10 @@ module QBIntegration
           params[:sku] = ''
         end
 
+        if find_value("quickbooks_taxable", payload_object, config) == '1'
+          params[:taxable] = true
+        end
+
         quickbooks_track_inventory = find_value("quickbooks_track_inventory", payload_object, config)
 
         track_inventory = quickbooks_track_inventory == "true" || quickbooks_track_inventory == "1"
