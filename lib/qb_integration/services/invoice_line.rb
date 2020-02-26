@@ -59,7 +59,11 @@ module QBIntegration
             end
 
             line.amount = quantity * price
-            line.description = line_item["name"]
+            if line_item["description"]
+              line.description = line_item["description"]
+            else
+              line.description = line_item["name"]
+            end
 
             line.sales_item! do |sales_item|
               sales_item.item_id = item_found.id
