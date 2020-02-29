@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/flowlink/endpoint_base.git
+  remote: https://github.com/flowlink/endpoint_base.git
   revision: dc1b8ee16e085d81b282f54f05c3bfaa4daad4f9
   specs:
     endpoint_base (0.3)
@@ -111,7 +111,7 @@ GEM
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
     raindrops (0.19.0)
-    rake (12.3.0)
+    rake (12.3.3)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
