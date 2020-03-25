@@ -33,12 +33,17 @@ module QBIntegration
 
     def load_configs
       @income_account_id = account_id('quickbooks_income_account')
-      @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
+      @inventory_costing = track_inventory
 
       if @inventory_costing
         @inventory_account_id = account_id('quickbooks_inventory_account')
         @cogs_account_id = account_id('quickbooks_cogs_account')
       end
+    end
+
+    def track_inventory
+      @product_payload.fetch("quickbooks_track_inventory", false).to_s == '1' ||
+        @config.fetch("quickbooks_track_inventory", false).to_s == '1'
     end
 
     def account_id(account_name)
@@ -106,7 +111,7 @@ module QBIntegration
       unless category = item_service.find_category_by_name(product[:parent_name])
         # NOTE: We only support creating top level categories right now. Nested categories is a future update
         cat = {
-          sub_item: false, 
+          sub_item: false,
           type: Quickbooks::Model::Item::CATEGORY_TYPE,
           name: product[:parent_name]
         }
