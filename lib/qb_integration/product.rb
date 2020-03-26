@@ -32,7 +32,6 @@ module QBIntegration
     private
 
     def load_configs
-      @income_account_id = account_id('quickbooks_income_account')
       @inventory_costing = track_inventory
 
       if @inventory_costing
@@ -62,8 +61,12 @@ module QBIntegration
         # purchase_tax_included?: product[:purchase_tax_included],
         # taxable?: product[:taxable],
         # sales_tax_included?: product[:sales_tax_included],
-        income_account_id: @income_account_id
       }
+
+      # Income account needed if item is being used for sales receipts and invoices
+      attrs[:income_account_id] = account_id('quickbooks_income_account') if account_check('quickbooks_income_account')
+      # Expense account needed if item is being used for purchase orders
+      attrs[:expense_account_id] = account_id('quickbooks_cogs_account') if account_check('quickbooks_cogs_account')
 
       # TODO: Need to add support for item creation as a SERVICE_TYPE
       if !@inventory_costing && !is_update
@@ -149,6 +152,11 @@ module QBIntegration
 
     def time_now
       Time.now.utc
+    end
+
+    def account_check(name)
+      @product_payload.fetch(name, false).to_s == '1' ||
+        @config.fetch(name, false).to_s == '1'
     end
   end
 end
