@@ -155,8 +155,11 @@ module QBIntegration
     end
 
     def account_check(name)
-      @product_payload.fetch(name, false).to_s == '1' ||
-        @config.fetch(name, false).to_s == '1'
+      if @product_payload.fetch(name, false) || @config.fetch(name, false)
+        true
+      else
+        false
+      end
     end
   end
 end
