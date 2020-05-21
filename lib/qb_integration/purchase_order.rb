@@ -8,9 +8,10 @@ module QBIntegration
     end
 
     def create
-      purchase_order = purchase_order_service.create
-      text = "Created Quickbooks Purchase Order #{purchase_order.id}"
-      [200, text]
+      po = purchase_order_service.create
+      text = "Created Quickbooks Purchase Order #{purchase_order[:id]}"
+      purchase_order[:qbo_id] = po.id
+      [200, text, purchase_order]
     end
 
     def update
