@@ -1,6 +1,4 @@
-FROM nurelmdevelopment/ruby-base-image
-
-COPY sources.list /etc/apt/sources.list
+FROM nurelmdevelopment/ruby-base-image:stretch
 
 RUN apt-get update && apt-get install -yq git
 

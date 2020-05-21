@@ -98,8 +98,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_purchase_order' do
     begin
-      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
-
+      code, summary, po = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      add_object :purchase_order, po
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
       notify_honeybadger e
