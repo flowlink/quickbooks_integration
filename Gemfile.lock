@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/flowlink/endpoint_base.git
+  remote: https://github.com/flowlink/endpoint_base.git
   revision: dc1b8ee16e085d81b282f54f05c3bfaa4daad4f9
   specs:
     endpoint_base (0.3)
@@ -189,4 +189,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.0.1
+   2.1.4
