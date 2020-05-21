@@ -11,7 +11,7 @@ module QBIntegration
 
       def as_flowlink_hash
         {
-          id: purchase_order.id,
+          id: payload["purchase_order"]["id"],
           doc_number: purchase_order.doc_number,
           last_updated_time: purchase_order.meta_data["last_updated_time"],
           received_items: payload["purchase_order"]["received_items"],
