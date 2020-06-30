@@ -56,6 +56,17 @@ module QBIntegration
         lines
       end
 
+      def build_credit_memo_lines(credit_memo)
+        @line_items = credit_memo["line_items"]
+        line_items.each do |line_item|
+          line = create_model
+          # TODO: Add details from the line items
+          lines.push line
+        end
+
+        lines
+      end
+
       def build_from_line_items(account = nil)
         line_items.each do |line_item|
           line = create_model

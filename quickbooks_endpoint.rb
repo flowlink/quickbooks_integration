@@ -320,6 +320,20 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/add_credit_memo' do
+    code, summary, memo = QBIntegration::CreditMemo.new(@payload, @config).create
+
+    add_object :credit_memo, memo
+    result code, summary
+  end
+
+  post '/update_crdit_memo' do
+    code, summary, memo = QBIntegration::CreditMemo.new(@payload, @config).update
+
+    add_object :credit_memo, memo
+    result code, summary
+  end
+
   def lookup_error_message
     case env['sinatra.error'].class.to_s
     when "Quickbooks::AuthorizationFailure"
