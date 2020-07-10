@@ -327,7 +327,7 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
-  post '/update_crdit_memo' do
+  post '/update_credit_memo' do
     code, summary, memo = QBIntegration::CreditMemo.new(@payload, @config).update
 
     add_object :credit_memo, memo
