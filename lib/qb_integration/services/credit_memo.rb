@@ -9,6 +9,7 @@ module QBIntegration
         @payload = payload
         @order = payload[:order]
         @credit_memo = payload[:credit_memo]
+        @customer_service = Customer.new(config, payload)
       end
 
       def create
