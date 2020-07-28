@@ -56,11 +56,28 @@ module QBIntegration
         lines
       end
 
-      def build_credit_memo_lines(credit_memo)
+      def build_credit_memo_lines(credit_memo, account = nil)
         @line_items = credit_memo["line_items"]
         line_items.each do |line_item|
+          unless price(line_item) && line_item["quantity"]
+            raise UnsupportedException.new "Line Items must have a valid price and quantity"
+          end
+          unless item_found = item_service.find_or_create_by_sku(line_item, account, order)
+            sku = line_item[:product_id] if line_item[:sku].to_s.empty?
+            sku = line_item[:sku] if sku.to_s.empty?
+            raise RecordNotFound.new "QuickBooks record not found for product: #{sku}"
+          end
+
           line = create_model
-          # TODO: Add details from the line items
+          line.amount = (line_item["quantity"].to_i * price(line_item).to_f)
+          line.description = line_item["name"]
+
+          line.sales_item! do |sales_item|
+            sales_item.item_id = item_found.id
+            sales_item.quantity = line_item["quantity"].to_i
+            sales_item.unit_price = price(line_item).to_f
+            sales_item.tax_code_id = line_item["tax_code_id"] if line_item["tax_code_id"]
+          end
           lines.push line
         end
 

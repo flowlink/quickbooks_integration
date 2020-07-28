@@ -26,7 +26,6 @@ module QBIntegration
       def build(memo)
         memo.doc_number = memo_number
         memo.customer_id = customer_service.find_or_create.id
-        # TODO: Add more fields
         memo.line_items = line_service.build_credit_memo_lines(memo)
       end
 
