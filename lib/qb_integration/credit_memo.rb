@@ -26,10 +26,10 @@ module QBIntegration
         text = "Created QuickBooks Credit Memo: #{credit_memo.doc_number}"
         flowlink_credit_memo[:qbo_id] = credit_memo.id
         [200, text, flowlink_credit_memo]
-      elsif !qb_invoice.present?
+      elsif !credit_memo.present?
         raise RecordNotFound.new "QuickBooks credit memo not found for doc_number #{flowlink_credit_memo[:number] || flowlink_credit_memo[:id]}"
       else
-        credit_memo = credit_memo_service.update
+        credit_memo = credit_memo_service.update_memo(credit_memo)
         text = "Update QuickBooks Credit Memo: #{credit_memo.doc_number}"
         flowlink_credit_memo[:qbo_id] = credit_memo.id
         [200, text, flowlink_credit_memo]

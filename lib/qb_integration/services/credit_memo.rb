@@ -13,12 +13,12 @@ module QBIntegration
       end
 
       def create
-        credit_memo = create_model
-        build(credit_memo)
-        quickbooks.create(credit_memo)
+        memo = create_model
+        build(memo)
+        quickbooks.create(memo)
       end
 
-      def update(memo)
+      def update_memo(memo)
         build(memo)
         quickbooks.update(memo)
       end
@@ -26,7 +26,7 @@ module QBIntegration
       def build(memo)
         memo.doc_number = memo_number
         memo.customer_id = customer_service.find_or_create.id
-        memo.line_items = line_service.build_credit_memo_lines(memo)
+        memo.line_items = line_service.build_credit_memo_lines(credit_memo)
       end
 
       def memo_number
