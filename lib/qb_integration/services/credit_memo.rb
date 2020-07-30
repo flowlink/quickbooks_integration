@@ -1,13 +1,40 @@
 module QBIntegration
   module Service
     class CreditMemo < Base
-      attr_reader :order, :payload
+      attr_reader :order, :payload, :credit_memo
       attr_reader :payment_method_service, :line_service, :account_service, :customer_service
 
       def initialize(config, payload)
         super("CreditMemo", config)
         @payload = payload
         @order = payload[:order]
+        @credit_memo = payload[:credit_memo]
+        @customer_service = Customer.new(config, payload)
+      end
+
+      def create
+        memo = create_model
+        build(memo)
+        quickbooks.create(memo)
+      end
+
+      def update_memo(memo)
+        build(memo)
+        quickbooks.update(memo)
+      end
+
+      def build(memo)
+        memo.doc_number = memo_number
+        memo.customer_id = customer_service.find_or_create.id
+        memo.line_items = line_service.build_credit_memo_lines(credit_memo)
+      end
+
+      def memo_number
+        if config['quickbooks_prefix'].nil?
+          credit_memo[:id] || credit_memo[:number]
+        else
+          "#{config['quickbooks_prefix']}#{(credit_memo[:id] || credit_memo[:number])}"
+        end
       end
 
       def create_from_receipt(sales_receipt)
