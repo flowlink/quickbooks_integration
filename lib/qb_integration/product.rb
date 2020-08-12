@@ -45,6 +45,11 @@ module QBIntegration
         @config.fetch("quickbooks_track_inventory", false).to_s == '1'
     end
 
+    def force_date_update
+      @product_payload.fetch("quickbooks_inventory_date_update", false).to_s == '1' ||
+        @config.fetch("quickbooks_inventory_date_update", false).to_s == '1'
+    end
+
     def account_id(account_name)
       name = @product[account_name] || @config.fetch(account_name)
       account_service.find_by_name(name).id
@@ -97,6 +102,8 @@ module QBIntegration
         attrs[:sub_item] = true
         attrs[:parent_ref] = category_id(product)
       end
+
+      attrs[:inv_start_date] = product[:inventory_start_date] if force_date_update
 
       attrs
     end
