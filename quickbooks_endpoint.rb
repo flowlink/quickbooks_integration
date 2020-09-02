@@ -47,6 +47,13 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/update_product_sku' do
+    code, summary, updated_product = QBIntegration::Product.new(@payload, @config).update_sku
+
+    add_object :product, updated_product
+    result code, summary
+  end
+
   post '/add_journal' do
     code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
 
