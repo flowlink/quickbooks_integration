@@ -29,6 +29,23 @@ module QBIntegration
       [200, @notification ]
     end
 
+    def update_sku
+      if item = item_service.find_by_sku(@product[:sku])
+        attrs = {
+          sku: @product[:update_sku],
+          name: @product[:name],
+          sku: @product[:update_sku],
+          description: @product[:description],
+          purchase_desc: @product[:purchase_description]
+        }
+        item_service.update(item, attrs)
+        add_notification('update', @product)
+      else
+        raise RecordNotFound.new "QuickBooks product not found for sku#{@product[:sku]}"
+      end
+      [200, @notification, { id: @product[:id], sku: @product[:update_sku] }]
+    end
+
     private
 
     def load_configs
