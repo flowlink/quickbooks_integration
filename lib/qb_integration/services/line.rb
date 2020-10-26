@@ -220,13 +220,14 @@ module QBIntegration
             line = Quickbooks::Model::BillLineItem.new
             line.item_based_expense_item!
 
-
-            item_detail = po_model.line_items{ |line_item| line_item.item_based_expense_line_detail["item_ref"]["name"] == received_item["sku"] }.first.item_based_expense_line_detail
+            item_detail = po_model.line_items.select{ |line_item| line_item.item_based_expense_line_detail["item_ref"]["name"] == received_item["sku"] }.first.item_based_expense_line_detail
 
             unit_price = item_detail["unit_price"]
             line.amount = received_item["quantity"].to_i * unit_price
+            line.description = received_item["quantity"]
 
             line.item_based_expense_line_detail = item_detail
+
             line
           end
 
