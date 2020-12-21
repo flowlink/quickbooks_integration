@@ -25,15 +25,16 @@ module QBIntegration
 
       def build(memo)
         memo.doc_number = memo_number
+        memo.txn_date = credit_memo[:created_at]
         memo.customer_id = customer_service.find_or_create.id
         memo.line_items = line_service.build_credit_memo_lines(credit_memo)
       end
 
       def memo_number
         if config['quickbooks_prefix'].nil?
-          credit_memo[:id] || credit_memo[:number]
+          credit_memo[:number] || credit_memo[:id]
         else
-          "#{config['quickbooks_prefix']}#{(credit_memo[:id] || credit_memo[:number])}"
+          "#{config['quickbooks_prefix']}#{(credit_memo[:number] || credit_memo[:id])}"
         end
       end
 
