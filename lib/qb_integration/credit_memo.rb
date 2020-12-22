@@ -19,7 +19,7 @@ module QBIntegration
     end
 
     def update
-      credit_memo = credit_memo_service.find_by_number(@flowlink_credit_memo[:id])
+      credit_memo = credit_memo_service.find_by_memo_number
 
       if !credit_memo.present? && config[:quickbooks_create_or_update].to_s == "1"
         credit_memo = credit_memo_service.create
