@@ -66,6 +66,11 @@ module QBIntegration
         quickbooks.query(query).entries.first
       end
 
+      def find_by_memo_number
+        query = "SELECT * FROM CreditMemo WHERE DocNumber = '#{memo_number}'"
+        quickbooks.query(query).entries.first
+      end
+
       def update(credit_memo, return_authorization, sales_receipt)
         build_from_return(credit_memo, return_authorization, sales_receipt)
         quickbooks.update(credit_memo)
