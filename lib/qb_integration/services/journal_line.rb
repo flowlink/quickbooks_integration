@@ -4,6 +4,8 @@ module QBIntegration
       attr_reader :line_items, :lines, :config, :journal_entry
       attr_reader :account_service, :customer_service, :class_service
 
+      LINE_MISSING_ZERO_ERROR ||= "Both the credit and debit amounts are non-zero. Journal lines must contain at least one credit or debit amount of $0.0."
+
       def initialize(config, payload)
         @config = config
         @model_name = "Line"
@@ -20,6 +22,7 @@ module QBIntegration
       def build_from_line_items
         line_number = 0
         line_items.each do |line_item|
+          check_for_valid_line(line)
           line = create_model
 
           if line_item["credit"] != 0
@@ -69,6 +72,12 @@ module QBIntegration
           lines.push line
         end
         lines
+      end
+
+      def check_for_valid_line(line)
+        if line_item["credit"] != 0 && line_item["debit"] != 0
+          raise LINE_MISSING_ZERO_ERROR
+        end
       end
     end
   end
