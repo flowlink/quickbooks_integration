@@ -22,7 +22,7 @@ module QBIntegration
       def build_from_line_items
         line_number = 0
         line_items.each do |line_item|
-          check_for_valid_line(line)
+          check_for_valid_line(line_item)
           line = create_model
 
           if line_item["credit"] != 0
@@ -74,7 +74,7 @@ module QBIntegration
         lines
       end
 
-      def check_for_valid_line(line)
+      def check_for_valid_line(line_item)
         if line_item["credit"] != 0 && line_item["debit"] != 0
           raise LINE_MISSING_ZERO_ERROR
         end

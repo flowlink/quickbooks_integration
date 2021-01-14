@@ -155,9 +155,6 @@ module QBIntegration
         if config.fetch("quickbooks_create_or_update") == "1"
           new_customer = create_model
           build(new_customer)
-          if config.fetch("realmId") == "123146406203559"
-            puts new_customer.inspect
-          end
           quickbooks.create(new_customer)
         else
           raise e
