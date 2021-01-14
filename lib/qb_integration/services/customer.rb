@@ -6,7 +6,7 @@ module QBIntegration
       def initialize(config, payload)
         super("Customer", config)
 
-        @order = payload[:order] || payload[:invoice] || {}
+        @order = payload[:order] || payload[:invoice] || payload[:credit_memo] || {}
         @customer = payload[:customer] || @order[:customer]
       end
 

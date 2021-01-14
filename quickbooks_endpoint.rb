@@ -47,6 +47,13 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result code, summary
   end
 
+  post '/update_product_sku' do
+    code, summary, updated_product = QBIntegration::Product.new(@payload, @config).update_sku
+
+    add_object :product, updated_product
+    result code, summary
+  end
+
   post '/add_journal' do
     code, summary = QBIntegration::JournalEntry.new(@payload, @config).add
 
@@ -98,8 +105,8 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
 
   post '/add_purchase_order' do
     begin
-      code, summary = QBIntegration::PurchaseOrder.new(@payload, @config).create
-
+      code, summary, po = QBIntegration::PurchaseOrder.new(@payload, @config).create
+      add_object :purchase_order, po
       result code, summary
     rescue QBIntegration::AlreadyPersistedOrderException => e
       notify_honeybadger e
@@ -317,6 +324,20 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     add_object :bill, bill
     add_object :purchase_order, po
 
+    result code, summary
+  end
+
+  post '/add_credit_memo' do
+    code, summary, memo = QBIntegration::CreditMemo.new(@payload, @config).create
+
+    add_object :credit_memo, memo
+    result code, summary
+  end
+
+  post '/update_credit_memo' do
+    code, summary, memo = QBIntegration::CreditMemo.new(@payload, @config).update
+
+    add_object :credit_memo, memo
     result code, summary
   end
 

@@ -29,16 +29,42 @@ module QBIntegration
       [200, @notification ]
     end
 
+    def update_sku
+      if item = item_service.find_by_sku(@product[:sku])
+        attrs = {
+          sku: @product[:update_sku],
+          name: @product[:name],
+          sku: @product[:update_sku],
+          description: @product[:description],
+          purchase_desc: @product[:purchase_description]
+        }
+        item_service.update(item, attrs)
+        add_notification('update', @product)
+      else
+        raise RecordNotFound.new "QuickBooks product not found for sku#{@product[:sku]}"
+      end
+      [200, @notification, { id: @product[:id], sku: @product[:update_sku] }]
+    end
+
     private
 
     def load_configs
-      @income_account_id = account_id('quickbooks_income_account')
-      @inventory_costing = (@config.fetch("quickbooks_track_inventory", false).to_s == '1')
+      @inventory_costing = track_inventory
 
       if @inventory_costing
         @inventory_account_id = account_id('quickbooks_inventory_account')
         @cogs_account_id = account_id('quickbooks_cogs_account')
       end
+    end
+
+    def track_inventory
+      @product_payload.fetch("quickbooks_track_inventory", false).to_s == '1' ||
+        @config.fetch("quickbooks_track_inventory", false).to_s == '1'
+    end
+
+    def force_date_update
+      @product_payload.fetch("quickbooks_inventory_date_update", false).to_s == '1' ||
+        @config.fetch("quickbooks_inventory_date_update", false).to_s == '1'
     end
 
     def account_id(account_name)
@@ -57,8 +83,12 @@ module QBIntegration
         # purchase_tax_included?: product[:purchase_tax_included],
         # taxable?: product[:taxable],
         # sales_tax_included?: product[:sales_tax_included],
-        income_account_id: @income_account_id
       }
+
+      # Income account needed if item is being used for sales receipts and invoices
+      attrs[:income_account_id] = account_id('quickbooks_income_account') if account_check('quickbooks_income_account')
+      # Expense account needed if item is being used for purchase orders
+      attrs[:expense_account_id] = account_id('quickbooks_cogs_account') if account_check('quickbooks_cogs_account')
 
       # TODO: Need to add support for item creation as a SERVICE_TYPE
       if !@inventory_costing && !is_update
@@ -90,6 +120,8 @@ module QBIntegration
         attrs[:parent_ref] = category_id(product)
       end
 
+      attrs[:inv_start_date] = product[:inventory_start_date] if force_date_update
+
       attrs
     end
 
@@ -106,7 +138,7 @@ module QBIntegration
       unless category = item_service.find_category_by_name(product[:parent_name])
         # NOTE: We only support creating top level categories right now. Nested categories is a future update
         cat = {
-          sub_item: false, 
+          sub_item: false,
           type: Quickbooks::Model::Item::CATEGORY_TYPE,
           name: product[:parent_name]
         }
@@ -144,6 +176,14 @@ module QBIntegration
 
     def time_now
       Time.now.utc
+    end
+
+    def account_check(name)
+      if @product_payload.fetch(name, false) || @config.fetch(name, false)
+        true
+      else
+        false
+      end
     end
   end
 end
