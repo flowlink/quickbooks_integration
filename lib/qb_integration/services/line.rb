@@ -148,7 +148,7 @@ module QBIntegration
           line = create_model
 
           # Discounts will be counted as negative
-          multiplier = (adjustment['name'] == 'Discounts') ? -1 : 1
+          multiplier = adjustment['name'].downcase.match(/discount/) ? -1 : 1
 
           line.amount = adjustment["value"].to_f * multiplier
           line.description = adjustment["name"]
