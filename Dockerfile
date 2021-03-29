@@ -1,4 +1,4 @@
-FROM nurelmdevelopment/ruby-base-image:stretch
+FROM nurelmdevelopment/ruby-base-image:stretch-2.7.2
 
 RUN apt-get update && apt-get install -yq git
 

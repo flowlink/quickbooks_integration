@@ -1,7 +1,7 @@
 source 'https://www.rubygems.org'
 
 gem 'sinatra'
-gem 'tilt', '~> 1.4.1'
+gem 'tilt'
 gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', :github => 'flowlink/endpoint_base'
 gem 'honeybadger', '~> 4.0'
