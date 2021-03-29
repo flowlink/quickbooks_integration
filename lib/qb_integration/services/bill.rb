@@ -27,10 +27,12 @@ module QBIntegration
       private
 
       def build(new_bill)
+        payload_po = payload[:purchase_order]
         new_bill.vendor_ref = purchase_order.vendor_ref
-        line_items = line_service.build_item_based_lines(purchase_order, payload[:purchase_order])
+        line_items = line_service.build_item_based_lines(purchase_order, payload_po)
         new_bill.line_items = line_items
         new_bill.doc_number = "Bill-#{purchase_order.doc_number}"
+        new_bill.txn_date = payload_po["transaction_date"] if payload_po["transaction_date"]
 
         # Linked Txns are read only in v3 but will be added in v4
         linked = Quickbooks::Model::LinkedTransaction.new

@@ -1,13 +1,41 @@
 module QBIntegration
   module Service
     class CreditMemo < Base
-      attr_reader :order, :payload
+      attr_reader :order, :payload, :credit_memo
       attr_reader :payment_method_service, :line_service, :account_service, :customer_service
 
       def initialize(config, payload)
         super("CreditMemo", config)
         @payload = payload
         @order = payload[:order]
+        @credit_memo = payload[:credit_memo]
+        @customer_service = Customer.new(config, payload)
+      end
+
+      def create
+        memo = create_model
+        build(memo)
+        quickbooks.create(memo)
+      end
+
+      def update_memo(memo)
+        build(memo)
+        quickbooks.update(memo)
+      end
+
+      def build(memo)
+        memo.doc_number = memo_number
+        memo.txn_date = credit_memo[:created_at]
+        memo.customer_id = customer_service.find_or_create.id
+        memo.line_items = line_service.build_credit_memo_lines(credit_memo)
+      end
+
+      def memo_number
+        if config['quickbooks_prefix'].nil?
+          credit_memo[:number] || credit_memo[:id]
+        else
+          "#{config['quickbooks_prefix']}#{(credit_memo[:number] || credit_memo[:id])}"
+        end
       end
 
       def create_from_receipt(sales_receipt)
@@ -35,6 +63,11 @@ module QBIntegration
 
       def find_by_number(number)
         query = "SELECT * FROM CreditMemo WHERE DocNumber = '#{number}'"
+        quickbooks.query(query).entries.first
+      end
+
+      def find_by_memo_number
+        query = "SELECT * FROM CreditMemo WHERE DocNumber = '#{memo_number}'"
         quickbooks.query(query).entries.first
       end
 

@@ -75,6 +75,7 @@ module QBIntegration
         new_purchase_order.doc_number = purchase_order["id"]
         new_purchase_order.vendor_address = Address.build(purchase_order["supplier_address"])
         new_purchase_order.ship_address = Address.build(purchase_order["shipping_address"])
+        new_purchase_order.txn_date = purchase_order["transaction_date"] if purchase_order["transaction_date"]
 
         if (purchase_order["quickbooks_vendor_id"])
           vendor_id = purchase_order["quickbooks_vendor_id"] || config.fetch("quickbooks_vendor_id")

@@ -85,6 +85,7 @@ module QBIntegration
           payment.deposit_to_account_id = deposit_to_account.id
         end
 
+        payment.txn_date = flowlink_payment[:transaction_date] if flowlink_payment[:transaction_date]
         payment.customer_id = customer.id
         payment.total = flowlink_payment[:amount]
         payment.payment_method_id = find_payment_method.id
