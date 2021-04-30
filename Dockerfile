@@ -1,16 +1,15 @@
-FROM nurelmdevelopment/ruby-base-image:stretch
+FROM ruby:2.7-alpine
+MAINTAINER NuRelm <development@nurelm.com>
 
-RUN apt-get update && apt-get install -yq git
-
-## help docker cache bundle
-WORKDIR /tmp
-ADD ./Gemfile /tmp/
-ADD ./Gemfile.lock /tmp/
-
-RUN bundle install
+RUN apk add --no-cache --update build-base curl-dev git libcurl linux-headers openssl-dev ruby-dev sqlite-dev tzdata
 
 WORKDIR /app
-ADD ./ /app
+COPY ./ /app
+
+RUN gem install bundler:1.16.0
+RUN bundle install --jobs 5
+
+RUN apk del build-base curl-dev git linux-headers openssl-dev ruby-dev
 
 ENTRYPOINT [ "bundle", "exec" ]
 CMD [ "foreman", "start" ]
