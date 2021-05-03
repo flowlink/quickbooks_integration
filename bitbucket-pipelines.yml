@@ -1,0 +1,11 @@
+image: ruby:2.7-alpine
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          script:
+            - apk add --no-cache --update build-base curl-dev git libcurl linux-headers openssl-dev ruby-dev sqlite-dev tzdata
+            - gem install bundler:1.16.0
+            - bundle install --jobs 5
+            - bundle exec rspec
