@@ -65,6 +65,8 @@ module QBIntegration
           sales_receipt.total = order['totals']['order']
 
           sales_receipt.txn_date = order['placed_on']
+          sales_receipt.private_note = order['private_note'] if order['private_note']
+          sales_receipt.customer_memo = order['customer_memo'] if order['customer_memo']
 
           sales_receipt.ship_address = Address.build(order["shipping_address"])
           sales_receipt.bill_address = Address.build(order["billing_address"])
