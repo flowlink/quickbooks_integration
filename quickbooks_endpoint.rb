@@ -26,13 +26,28 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result 200, "Tokens successfully retrieved"
   end
 
-  post '/validate_token'do
+  post '/validate_token' do
     token = QBIntegration::Service::Token.new(@config)
     if token.valid?
       result 200
     else
       result 401
     end
+  end
+
+  post '/disconnect' do
+    # TODO: call service that calls QBO API to disconnect the app
+    # https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-2.0#Revoking_access
+    # POST https://developer.api.intuit.com/v2/oauth2/tokens/revoke HTTP/1.1
+    # Accept: application/json
+    # Authorization: Basic UTM0dVBvRDIwanp2OUdxNXE1dmlMemppcTlwM1d2
+    #     NzRUdDNReGkwZVNTTDhFRWwxb0g6VEh0WEJlR3dheEtZSlVNaFhzeGxma1l
+    #     XaFg3ZlFlRzFtN2szTFRwbw==
+    # Content-Type: application/json
+
+    # {
+    #     "token": "{bearerToken or refreshToken}"
+    # }
   end
 
   post '/add_product' do
