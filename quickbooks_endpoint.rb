@@ -36,23 +36,12 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/disconnect' do
-    # TODO: call service that calls QBO API to disconnect the app
-    # https://developer.intuit.com/app/developer/qbo/docs/develop/authentication-and-authorization/oauth-here2.0#Revoking_access
-    # POST https://developer.api.intuit.com/v2/oauth2/tokens/revoke HTTP/1.1
-    # Accept: application/json
-    # Authorization: Basic UTM0dVBvRDIwanp2OUdxNXE1dmlMemppcTlwM1d2
-    #     NzRUdDNReGkwZVNTTDhFRWwxb0g6VEh0WEJlR3dheEtZSlVNaFhzeGxma1l
-    #     XaFg3ZlFlRzFtN2szTFRwbw==
-    # Content-Type: application/json
-
-    # {
-    #     "token": "{bearerToken or refreshToken}"
-    # }
-
-    oauth = QBIntegration::Service::Oauth.new(@payload, @config)
-    oauth.disconnect
-
-    result code, summary
+    token = QBIntegration::Service::Token.new(@config)
+    if token.disconnect
+      result 200
+    else
+      result 401
+    end
   end
 
   post '/add_product' do
