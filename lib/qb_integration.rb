@@ -27,7 +27,6 @@ require 'qb_integration/services/base'
 require 'qb_integration/services/account'
 require 'qb_integration/services/item'
 require 'qb_integration/services/vendor'
-require 'qb_integration/services/oauth'
 
 require 'qb_integration/address'
 require 'qb_integration/services/payment_method'
