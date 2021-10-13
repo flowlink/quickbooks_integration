@@ -3,7 +3,7 @@ module QBIntegration
     class Token < Base
 
       def initialize(config)
-        super("Customer", config)
+        super("AccessToken", config)
       end
 
       def valid?
@@ -12,6 +12,10 @@ module QBIntegration
         false
       rescue
         false
+      end
+
+      def disconnect
+        quickbooks.disconnect
       end
     end
   end

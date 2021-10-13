@@ -26,9 +26,18 @@ class QuickbooksEndpoint < EndpointBase::Sinatra::Base
     result 200, "Tokens successfully retrieved"
   end
 
-  post '/validate_token'do
+  post '/validate_token' do
     token = QBIntegration::Service::Token.new(@config)
     if token.valid?
+      result 200
+    else
+      result 401
+    end
+  end
+
+  post '/disconnect' do
+    token = QBIntegration::Service::Token.new(@config)
+    if token.disconnect
       result 200
     else
       result 401
